@@ -1,15 +1,22 @@
 name: Build and test
 
 on:
-  pull_request
+  pull_request:
+    branches: 
+      - '*main*'
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
+
+defaults:
+  run:
+    working-directory: ./CLIENT/mMORPG_AI12
+
 jobs:
   build:
     name: Build and test
-    runs-on: [windows-latest, ]
+    runs-on: ubuntu-latest
     steps:
       # Checkout
       - name: Checkout repository
@@ -20,20 +27,23 @@ jobs:
       # Cache
       - uses: actions/cache@v1.1.0
         with:
-          path: Library
-          key: Library
-
+          path: ./CLIENT/mMORPG_AI12/Library
+          key: Library-AI12-ubuntu
+          restore-keys: |
+            Library-
       # Test
       - name: Run tests
         uses: webbertakken/unity-test-runner@v1.4
         with:
           unityVersion: 2019.4.13f1
+          projectPath: ./CLIENT/mMORPG_AI12
 
       # Build
       - name: Build project
         uses: webbertakken/unity-builder@v0.10
         with:
           unityVersion: 2019.4.13f1
+          projectPath: ./CLIENT/mMORPG_AI12
           targetPlatform: WebGL
 
       # Output
