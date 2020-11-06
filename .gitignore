@@ -69,3 +69,5 @@
 # Temporary auto-generated Android Assets
 /CLIENT/mMORPG_AI12/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /CLIENT/mMORPG_AI12/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+.DS_Store
