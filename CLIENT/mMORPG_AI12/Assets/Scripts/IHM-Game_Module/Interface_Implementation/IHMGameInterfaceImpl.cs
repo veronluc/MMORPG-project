@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class IHMGameInterfaceImpl : IHMGameInterface
 {
+
+    /// <summary>
+    /// Launch the game. Start the display of the game view
+    /// </summary>
+    public void launch_game()
+    {
+        throw new System.NotImplementedException();
+    }
+
     /// <summary>
     /// Diplays the message sent by the Data module in the chat
     /// </summary>
