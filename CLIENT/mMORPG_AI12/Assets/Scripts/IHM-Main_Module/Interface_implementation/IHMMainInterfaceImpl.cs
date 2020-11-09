@@ -1,14 +1,1 @@
-﻿using UnityEngine;
-
-public class IHMMainInterfaceImpl : IHMMainInterface
-{
-    public void DisplayListUsersWorlds()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void LoadMainScene()
-    {
-        throw new System.NotImplementedException();
-    }
-}
+﻿using UnityEngine;public class IHMMainInterfaceImpl : IHMMainInterface{    public void LoadMainScene()    {        throw new System.NotImplementedException();    }    public void DisplayListUsersWorlds(/*List<User> usersList, List<World> worldsList*/)    {        throw new System.NotImplementedException();    }    public void DisplayNewAvailableWorld(/*World newWorld*/)    {        throw new System.NotImplementedException();    }    public void DisplayNewConnectedUser(/*User newUser*/)    {        throw new System.NotImplementedException();    }    public void DisplayUserDetail(string token)    {        throw new System.NotImplementedException();    }    public void DisplayWorldDetail(/*World world*/)    {        throw new System.NotImplementedException();    }    public void IHMLogOutConfirmation()    {        throw new System.NotImplementedException();    }    public void DisplayOwnerDisconnected(/*User user*/)    {        throw new System.NotImplementedException();    }    public void DisplayUserLogOut(/*User user*/)    {        throw new System.NotImplementedException();    }    public void ServerStopped()    {        throw new System.NotImplementedException();    }}
