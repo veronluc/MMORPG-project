@@ -17,9 +17,11 @@ public class IHMMainModule : MonoBehaviour
     //test click on button
     public void ClickOnButton()
     {
-        List<string> list = this.dataInterface.getListUserWorlds();
+        // TODO - This method is not in the conception diagrams : is this an error ?
+        /* List<string> list = this.dataInterface.getListUserWorlds();
         foreach (string r in list){
             Debug.Log(r);
         }
+        */
     }
 }
