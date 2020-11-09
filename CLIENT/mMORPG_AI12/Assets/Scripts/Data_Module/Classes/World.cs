@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
-    public enum gamemodes
+    public enum GameMode
     {
         pvp,
         pve
@@ -16,7 +16,7 @@ namespace AI12_DataObjects
     {
         public string name { get; set; }
         public int sizeMap { get; set; }
-        public gamemodes gamemode { get; set; }
+        public GameMode gamemode { get; set; }
         public bool realDeath { get; set; }
         public int difficulty { get; set; }
         public int roundTimeSec { get; set; }
