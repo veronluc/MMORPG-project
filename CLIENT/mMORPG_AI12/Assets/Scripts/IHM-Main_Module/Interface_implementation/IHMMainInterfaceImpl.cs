@@ -17,12 +17,12 @@ public class IHMMainInterfaceImpl : IHMMainInterface
         throw new System.NotImplementedException();
     }
 
-    public void DisplayNewAvailableWorld(World newWorld)
+    public void DisplayNewAvailableWorld(List<World> worlds)
     {
         throw new System.NotImplementedException();
     }
 
-    public void DisplayNewConnectedUser(User newUser)
+    public void DisplayNewConnectedUser(List<User> users)
     {
         throw new System.NotImplementedException();
     }
