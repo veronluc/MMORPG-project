@@ -71,3 +71,5 @@
 /CLIENT/mMORPG_AI12/[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .DS_Store
+/.vs
+/.idea
