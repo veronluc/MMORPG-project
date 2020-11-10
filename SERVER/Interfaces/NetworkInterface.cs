@@ -1,4 +1,5 @@
 ﻿using System;
+using AI12_DataObjects;
 public interface NetworkInterface
 {
     /// <summary>
