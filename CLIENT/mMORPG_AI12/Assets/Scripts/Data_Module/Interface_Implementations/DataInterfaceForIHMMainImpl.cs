@@ -9,7 +9,9 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
     public string CreateUserSession(string pseudo, string password) { return null; }
     public void ConnectSessionToServer(User user, string ipServer, string port) { }
-    public void LoadWorld(World world) { }
+    public void LoadWorld(World world) {
+        // appeler la fonction de network
+    }
     public void JoinWorld(string worldId) { }
     public void GetWorldDetails(string worldId) { }
     public void GetUserDetails(string userId) { }
@@ -20,6 +22,8 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     public List<Player> ListPlayers() { return null; }
     public void DeletePlayer(Player player) { }
     public Player EditPlayer(Player editedPlayer) { return null; }
-    public World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, Player creator, GameState gameState) { return null; }
+    public World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, Player creator, GameState gameState) {
+        return new World(name, sizeMap, gameMode, realDeath, difficulty, roundTimeSec, nbMaxPlayer, nbMaxMonsters, nbShops, hasCity, hasPlain, hasSwamp, hasRiver, hasForest, hasRockyPlain, hasMontain, hasSea, players,monsters,creator, gameState);
+    }
     public void GetWorlds() { }
 }
