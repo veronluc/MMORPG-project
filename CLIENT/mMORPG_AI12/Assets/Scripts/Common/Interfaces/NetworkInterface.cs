@@ -5,61 +5,61 @@ using UnityEngine;
 public interface NetworkInterface
 {
     /// <summary>
-    /// Connecter le client au serveur.
+    /// Connect the client to the server.
     /// </summary>
-    /// <param name="user">Informations sur l'utilisateur SANS SON ID (géré par le réseau)</param>
-    /// <param name="ipAdress">Adresse IP du serveur</param>
-    /// <param name="port">Port de connexion du serveur</param>
+    /// <param name="user">The info about the user WITHOUT ITS ID (Network handles it)</param>
+    /// <param name="ipAdress">Server adress IP</param>
+    /// <param name="port">Server connexion port</param>
     void ConnectUser(User user, string ipAdress, int port);
 
     /// <summary>
-    /// Envoyer un messag
-    /// </summary>e au serveur (le client connait l'id du user à envoyer au serveur)
-    /// <param name="message">Message à envoyer</param>
+    /// Send a message to the server (the client already knows the id to send it to)
+    /// </summary>
+    /// <param name="message">Message to send</param>
     void SendChatMessage(Message message);
 
     /// <summary>
-    /// Envoyer une action au serveur. Le client connait l'id du user à envoyer au serveur, et le serveur fait le lien entre le user et le monde auquel appartient le joueur
+    /// Send an action to process to the server. The client already knows the id of the user. The server links the user to the world he is currently in.
     /// </summary>
-    /// <param name="player">Personnage en jeu</param>
-    /// <param name="action">Action à effectuer</param>
+    /// <param name="player">The player in game</param>
+    /// <param name="action">Action to perform</param>
     void SendAction(Player player, Action action);
 
     /// <summary>
-    /// Envoyer un nouveau monde (world) au serveur
+    /// Send a new workd to the server
     /// </summary>
-    /// <param name="world"></param>
+    /// <param name="world">The world to send</param>
     void AddNewWorld(World world);
 
     /// <summary>
-    /// Connecter le joueur à un monde du serveur
+    /// Connect the player to a world on the server.
     /// </summary>
-    /// <param name="idWorld">Monde auquel le joueur doit se connecter</param>
+    /// <param name="idWorld">The world the player has to connect to</param>
     void ConnectToWorld(int idWorld);
 
     /// <summary>
-    /// Envoyer une demande de la liste de tous les utilisateurs connectés du serveur
+    /// Send a request to recieve the full list of users connected to the server
     /// </summary>
     void AskServerUserList();
 
     /// <summary>
-    /// Envoyer une demande de la liste de tous les utilisateurs mondes du serveur
+    /// Send a request to recieve the list of all world on the server.
     /// </summary>
     void AskServerWorldList();
 
     /// <summary>
-    /// Actualiser les infos de l'utilisateur et les envoyer au serveur (TOUJOURS SANS l'ID, géré par le réseau)
+    /// Refresh the infos about the user nd send them to the server (without id as always)
     /// </summary>
-    /// <param name="user"></param>
+    /// <param name="user">The user with refreshed data</param>
     void RefreshUserInfos(User user);
 
     /// <summary>
-    /// Envoyer une demande de deconnexion du user au monde
+    /// Send a logout request to a world on the server.
     /// </summary>
     void DisconnectUserFromWorld();
 
     /// <summary>
-    /// Envoyer une demande de deconnexion du user au serveur
+    /// Send a logout request to the server
     /// </summary>
     void DisconnectUserFromServer();
 
