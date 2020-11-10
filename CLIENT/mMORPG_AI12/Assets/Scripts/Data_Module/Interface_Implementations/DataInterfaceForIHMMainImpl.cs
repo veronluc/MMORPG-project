@@ -10,9 +10,11 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     public string CreateUserSession(string pseudo, string password) { return null; }
     public void ConnectSessionToServer(User user, string ipServer, string port) { }
     public void LoadWorld(World world) {
-        // appeler la fonction de network
+        // TODO appeler la fonction de network
     }
-    public void JoinWorld(string worldId) { }
+    public void JoinWorld(string worldId) {
+        // TODO check la liste de mondes en local (ou pas, à voir en fonction de la fonction serveur), récupérer le token de l'utilisateur courant et faire l'appel au serveur
+    }
     public void GetWorldDetails(string worldId) { }
     public void GetUserDetails(string userId) { }
     public void LogOut() { }
