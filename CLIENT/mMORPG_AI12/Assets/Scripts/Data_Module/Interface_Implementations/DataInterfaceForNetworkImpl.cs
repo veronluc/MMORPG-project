@@ -17,4 +17,5 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
     public void DisconnectServerError() { }
     public void UserDisconnectedFromWorld(User user) { }
     public void UserDisconnectedFromServer(User user) { }
+    public void OwnerDisconnectedFromWorld(User user) { }
 }
