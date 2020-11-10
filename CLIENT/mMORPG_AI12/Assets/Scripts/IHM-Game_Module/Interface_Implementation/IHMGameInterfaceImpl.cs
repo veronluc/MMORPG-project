@@ -8,7 +8,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <summary>
     /// Launch the game. Start the display of the game view
     /// </summary>
-    public void launch_game()
+    public void LaunchGame()
     {
         throw new System.NotImplementedException();
     }
@@ -17,7 +17,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// Diplays the message sent by the Data module in the chat
     /// </summary>
     /// <param name="message">New message to display</param>
-    public void display_Message()
+    public void DisplayMessage()
     {
         throw new System.NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <summary>
     /// Update the display of the user. It will ask to Data module the new position of each entities and their caracteristics (life point, mana point...)
     /// </summary>
-    public void update_Display()
+    public void UpdateDisplay()
     {
         throw new System.NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <summary>
     /// Notifies the actual user that it can do an action. It means he can use a skill (if he has not already do it) or move (if he still have movement point)
     /// </summary>
-    public void notify_action_possible()
+    public void NotifyActionPossible()
     {
         throw new System.NotImplementedException();
     }
@@ -41,7 +41,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <summary>
     /// Displays on user's screen that the server has stopped
     /// </summary>
-    public void display_Server_Stop()
+    public void DisplayServerStop()
     {
         throw new System.NotImplementedException();
     }
@@ -50,7 +50,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// Displays on user's screen that the user has logout 
     /// </summary>
     /// <param name="user">user that just log out</param>
-    public void display_User_Logout()
+    public void DisplayUserLogout()
     {
         throw new System.NotImplementedException();
     }
