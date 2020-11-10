@@ -1,15 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AI12_DataObjects;
 
 public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 {
-    public List<string> getListUserWorlds()
-    {
-        List<string> res = new List<string>();
-        res.Add("coucou");
-        res.Add("Domaine des dieux");
-        res.Add("il est 17h, on est dimanche et je bosse là dessus...");
-        return res;
-    }
+    public void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
+    public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
+    public string CreateUserSession(string pseudo, string password) { return null; }
+    public void ConnectSessionToServer(User user, string ipServer, string port) { }
+    public void LoadWorld(World world) { }
+    public void JoinWorld(string worldId) { }
+    public void GetWorldDetails(string worldId) { }
+    public void GetUserDetails(string userId) { }
+    public void LogOut() { }
+    public void SaveWorld(World world) { }
+    public World RestoreWorld(string name) { return null; }
+    public Player CreatePlayer(EntityClass entityClass, string name) { return null; }
+    public List<Player> ListPlayers() { return null; }
+    public void DeletePlayer(Player player) { }
+    public Player EditPlayer(Player editedPlayer) { return null; }
+    public World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, Player creator, GameState gameState) { return null; }
+    public void GetWorlds() { }
 }
