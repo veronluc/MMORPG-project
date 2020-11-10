@@ -73,6 +73,12 @@ public interface DataInterfaceForNetwork
     void UserDisconnectedFromWorld(User user);
 
     /// <summary>
+    /// User disconnected from the World it owns
+    /// </summary>
+    /// <param name="user">User instance</param>
+    void OwnerDisconnectedFromWorld(User user);
+
+    /// <summary>
     /// User disconnected from the server it is connected to
     /// </summary>
     /// <param name="user">User instance</param>
