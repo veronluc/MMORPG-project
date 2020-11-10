@@ -21,16 +21,16 @@ public interface IHMMainInterface
     void DisplayListUsersWorlds(List<User> usersList, List<World> worldsList);
 
     /// <summary>
-    /// Displays every information about the new world
+    /// Displays all worlds
     /// </summary>
-    /// <param name="newWorld">The new World</param>
-    void DisplayNewAvailableWorld(World newWorld);
+    /// <param name="worlds">All worlds</param>
+    void DisplayNewAvailableWorld(List<World> worlds);
 
     /// <summary>
-    /// Add the new user in the list of all users
+    /// Displays all users
     /// </summary>
-    /// <param name="newUser">The new user</param>
-    void DisplayNewConnectedUser(User newUser);
+    /// <param name="users">All users</param>
+    void DisplayNewConnectedUser(List<User> users);
 
     /// <summary>
     /// Diplays every user's details
