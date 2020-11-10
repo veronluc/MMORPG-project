@@ -5,13 +5,17 @@ using AI12_DataObjects;
 
 public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
 {
-    public void ReceiveListWorlds(List<World> worlds) { }
+    public void ReceiveListWorlds(List<World> worlds) {
+        // TODO appeler l'interface de IHM Main
+    }
     public void ReceiveListUsers(List<User> users) { }
     public void ReceiveListUsersFromWorld(List<User> users, World world) { }
     public void ReceiveMessage(Message message) { }
     public void ReceiveAction(Action action, Player player) { }
     public void ReceiveAction(Action action, Monster monster) { }
-    public void ReceiveWorld(World world) { }
+    public void ReceiveWorld(World world) {
+         // TODO appeler launch game de Game
+    }
     public void ReceiveUser(User user) { }
     public void DisconnectServerStop() { }
     public void DisconnectServerError() { }
