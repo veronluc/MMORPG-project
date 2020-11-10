@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using AI12_DataObjects;
 
 public class MainConnectedScreen : MonoBehaviour
 {
     // Properties
     private string serverIp;
     private string port;
-    // private List<User> usersList; // TODO : retrieve User object when available
-    // private List<World> worldsList; // TODO : retrieve World object when available
+    private List<User> usersList;
+    private List<World> worldsList;
 
     // Screens
     // private ConnexionScreen connexionScreen; // TODO : develop class
@@ -30,7 +31,7 @@ public class MainConnectedScreen : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
-    public void UpdateListDisplay(/*List<User> listUsers*/) {
+    public void UpdateListDisplay(List<User> listUsers) {
         throw new System.NotImplementedException();
     }
 
@@ -66,6 +67,7 @@ public class MainConnectedScreen : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
+    // TODO : what is GameBoard object ?
     private void ChangeScene(/*GameBoard gameBoard*/) {
         throw new System.NotImplementedException();
     }
