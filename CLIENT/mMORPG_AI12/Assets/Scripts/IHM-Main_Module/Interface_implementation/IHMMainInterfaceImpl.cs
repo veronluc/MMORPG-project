@@ -7,6 +7,9 @@ using AI12_DataObjects;
 
 public class IHMMainInterfaceImpl : IHMMainInterface
 {
+
+    //TO DO: Implement functions
+
     public void LoadMainScene()
     {
         throw new System.NotImplementedException();
