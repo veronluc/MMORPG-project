@@ -75,3 +75,9 @@
 .DS_Store
 /.vs
 /.idea
+
+# Server ignores
+/SERVER/.vs/*
+/SERVER/Server/.vs/*
+/SERVER/Server/[Dd]ebug/
+/SERVER/Server/[Bb]in/
