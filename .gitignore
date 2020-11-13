@@ -77,7 +77,8 @@
 /.idea
 
 # Server ignores
-/SERVER/.vs/*
-/SERVER/Server/.vs/*
-/SERVER/Server/[Dd]ebug/
-/SERVER/Server/[Bb]in/
+/SERVER/Server/Server/.vs/
+/SERVER/Server/.vs/
+/SERVER/.vs/
+/SERVER/Server/Server/[Dd]ebug/
+/SERVER/Server/Server/[Bb]in/
