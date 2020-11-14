@@ -20,7 +20,7 @@ public class OnlineUsersManager : MonoBehaviour
 
     private void Start()
     {	
-		Populate();
+		// Populate();
 	}
 
     /// <summary>

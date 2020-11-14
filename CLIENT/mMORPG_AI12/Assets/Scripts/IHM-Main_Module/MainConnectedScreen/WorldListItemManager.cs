@@ -97,7 +97,9 @@ public class WorldListItemManager : MonoBehaviour
 
         this.worldTurnTime.text = world.roundTimeSec.ToString() + "s";
 
-        //this.joinButton.onClick = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>().JoinWorld(/*idWorld*/)
+        // TODO : Change worldName by worldId when available
+        this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+            .JoinWorld(this.worldName.text));
     }
 
     /// <summary>
@@ -116,5 +118,8 @@ public class WorldListItemManager : MonoBehaviour
         int time = 18;
 
         this.worldTurnTime.text = time.ToString() + "s";
+        
+        this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+            .JoinWorld(this.worldName.text));
     }
 }

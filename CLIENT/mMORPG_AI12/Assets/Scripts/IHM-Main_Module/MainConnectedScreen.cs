@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using AI12_DataObjects;
+using TMPro;
+using UnityEngine.UI;
 
 public class MainConnectedScreen : MonoBehaviour
 {
@@ -10,8 +12,12 @@ public class MainConnectedScreen : MonoBehaviour
     private string port;
     private List<User> usersList;
     private List<World> worldsList;
+    private IHMMainModule ihmMainModule;
     private DataInterfaceForIHMMain dataInterface;
-    
+    private GameObject usersManager;
+    private GameObject worldsManager;
+    private GameObject serverInformation;
+
     // Screens
     // private ConnexionScreen connexionScreen; // TODO : develop class
     // private ConnectToAServerScreen connectToAServerScreen; // TODO : develop class
@@ -20,14 +26,17 @@ public class MainConnectedScreen : MonoBehaviour
 
     public void Awake()
     {
-        dataInterface = new DataInterfaceForIHMMainImpl();
+        this.ihmMainModule = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>();
+        this.dataInterface = ihmMainModule.dataInterface;
     }
 
     public void Start()
     {
-        
-        // TODO : link gameObjects
 
+        usersManager = GameObject.FindGameObjectWithTag("OnlineUsers");
+        worldsManager = GameObject.FindGameObjectWithTag("OnlineWorlds");
+        serverInformation = GameObject.FindGameObjectWithTag("InfoConnectedServer");
+        
     }
     
     public void DisplayCreateProfileScreen() {
@@ -40,7 +49,7 @@ public class MainConnectedScreen : MonoBehaviour
     /// </summary>
     public void UpdateListUsersDisplay(List<User> newListUsers) {
         usersList = newListUsers;
-        // TODO
+        usersManager.GetComponent<OnlineUsersManager>().SetUserList(newListUsers);
     }
     
     /// <summary>
@@ -50,7 +59,7 @@ public class MainConnectedScreen : MonoBehaviour
     public void UpdateListWorldsDisplay(List<World> newListWorlds)
     {
         worldsList = newListWorlds;
-        // TODO
+        worldsManager.GetComponent<OnlineWorldsManager>().SetWorldList(newListWorlds);
     }
 
     /// <summary>
@@ -58,35 +67,54 @@ public class MainConnectedScreen : MonoBehaviour
     /// </summary>
     /// <param name="ip">Server ip address for connexion</param>
     /// <param name="port">Port for connexion</param>
-    private void ConnectToAServer(string ip, string port) {
-        // TODO: remove user when function signature will change
+    public void ConnectToAServer(string ip, string port) {
         try
         {
-            dataInterface.ConnectSessionToServer(null, ip, port);
-
+            // TODO: remove user when function signature will change
+            //dataInterface.ConnectSessionToServer(null, ip, port);
+        
         }
         catch (Exception e)
         {
             // TODO : handle server connexion errors
         }
 
-        World world = createTestWorld();
-        dataInterface.LoadWorld(world);
+        // Set the new server information (ip and port) and close the connection pop-up
+        serverInformation.GetComponent<TextMeshProUGUI>().SetText("IP = " + ip + " - Port = " + port);
+        GameObject.FindGameObjectWithTag("ServerConnection").GetComponent<ServerConnectionManager>().OpenClosePopup();
+        
+        // TODO: to remove when data is linked to our interfaces
+        // For tests purpose we populate users and worlds here
+        
+        // List<User> users = new List<User>();
+        // users.Add(new User(){players = new List<Player>(), firstName = "Ines", lastName = "Ryder", login="iryder", birthDate = new DateTime(2000, 1, 1)});
+        // users.Add(new User(){players = new List<Player>(), firstName = "Lucie",lastName = "Gratreau", login="lgratreau", birthDate = new DateTime(2000, 1, 1)});
+        // users.Add(new User(){players = new List<Player>(), firstName = "Anais",lastName = "Mace", login="amace", birthDate = new DateTime(2000, 1, 1)});
+        // users.Add(new User(){players = new List<Player>(), firstName = "Manuel",lastName = "Beaudru", login="mbeaudru", birthDate = new DateTime(2000, 1, 1)});
+        // UpdateListUsersDisplay(users);
+        
+        // List<World> worlds = new List<World>();
+        // worlds.Add(CreateTestWorld("Forest Map"));
+        // worlds.Add(CreateTestWorld("Welcome to hell"));
+        // worlds.Add(CreateTestWorld("Banana Land"));
+        // worlds.Add(CreateTestWorld("Mario Land"));
+        // UpdateListWorldsDisplay(worlds);
+
     }
     
-    private void OnClickManageMyWorlds() {
+    public void OnClickManageMyWorlds() {
         throw new System.NotImplementedException();
     }
 
-    private void OnClickManageMyCharacters() {
+    public void OnClickManageMyCharacters() {
         throw new System.NotImplementedException();
     }
 
-    private void OnClickOneUser() {
+    public void OnClickOneUser() {
         throw new System.NotImplementedException();
     }
 
-    private void OnClickOneWorld() {
+    public void OnClickOneWorld() {
         throw new System.NotImplementedException();
     }
 
@@ -94,11 +122,13 @@ public class MainConnectedScreen : MonoBehaviour
     /// Request to join a specific world regarding its identifier
     /// </summary>
     /// <param name="idWorld">Identifier of the world to join</param>
-    private void JoinWorld(string idWorld) {
+    public void JoinWorld(string idWorld) {
+        
+        Debug.Log("Join World -> " + idWorld);
 
         try
         {
-            dataInterface.JoinWorld(idWorld);
+            //dataInterface.JoinWorld(idWorld);
         }
         catch (Exception e)
         {
@@ -109,12 +139,12 @@ public class MainConnectedScreen : MonoBehaviour
     /// <summary>
     /// Log out for the server ? The authentication ? To review
     /// </summary>
-    private void Logout()
+    public void Logout()
     {
         // TODO : review
         try
         {
-            dataInterface.LogOut();
+            // dataInterface.LogOut();
         }
         catch (Exception e)
         {
@@ -123,18 +153,12 @@ public class MainConnectedScreen : MonoBehaviour
 
     }
     
-    // TODO : add function to handle save before logging out
-
-    // TODO : what is GameBoard object ?
-    private void ChangeScene(/*GameBoard gameBoard*/) {
-        throw new System.NotImplementedException();
-    }
     
     // TESTS functions ---------
-    private World createTestWorld()
+    private World CreateTestWorld(string name)
     {
         World newWorld = new World();
-        newWorld.name = "World1";
+        newWorld.name = name;
         newWorld.sizeMap = 50;
         newWorld.gamemode = GameMode.pvp;
         newWorld.realDeath = true;
@@ -153,7 +177,7 @@ public class MainConnectedScreen : MonoBehaviour
         newWorld.hasSea = true;
         newWorld.players = null;
         newWorld.monsters = null;
-        newWorld.creator = null;
+        newWorld.creator = new Player() {name = "Gus le Chat"};
         newWorld.gameState = null;
 
         return newWorld;
