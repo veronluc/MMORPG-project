@@ -4203,6 +4203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1805798112}
   - component: {fileID: 1805798113}
+  - component: {fileID: 1805798114}
   m_Layer: 0
   m_Name: IHM-Main Module
   m_TagString: IHMMainModule
@@ -4234,6 +4235,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e298c95e1ce02ef49a46193ba6f33582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1805798114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805798111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fba4434353e1204a8171b3a68eaed3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1811010864

@@ -92,6 +92,7 @@ public class UserListItemManager : MonoBehaviour
     /// <param name="user"></param>
     public void SetUserToGameObject(User user)
     {
+        
         this.image.color = Color.black;
 
         this.userName.text = user.login;
