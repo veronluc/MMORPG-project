@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\CLIENT\mMORPG_AI12\Assets\Scripts\Network_Module\Client.cs" Link="Client.cs" />
+    <Compile Include="..\..\..\CLIENT\mMORPG_AI12\Assets\Scripts\Network_Module\Packets\InitializationPacket.cs" Link="Network\Packets\InitializationPacket.cs" />
+    <Compile Include="..\..\..\CLIENT\mMORPG_AI12\Assets\Scripts\Network_Module\Packets\Packet.cs" Link="Network\Packets\Packet.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Network\Packets\" />
   </ItemGroup>
 
 </Project>

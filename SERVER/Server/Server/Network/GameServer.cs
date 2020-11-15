@@ -1,5 +1,5 @@
-﻿using Server.Network.Messages;
-using Server.Network.Packets;
+﻿using Server;
+using Server.Network.Messages;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -8,6 +8,9 @@ using System.Text;
 
 public class GameServer
 {
+    DataImplementation data;
+    NetworkImplementation network;
+
     private static TcpListener tcpListener;
     public static Dictionary<int, ClientServer> clients = new Dictionary<int, ClientServer>();
     public static int MaxPlayers { get; private set; }
@@ -26,6 +29,9 @@ public class GameServer
 
 
         Console.WriteLine($"Server started on port {Port}.");
+        network = new NetworkImplementation();
+        data = new DataImplementation();
+        data.SetupServer(network);
     }
     private void TCPConnectCallback(IAsyncResult _result)
     {

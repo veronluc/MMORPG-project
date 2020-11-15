@@ -1,4 +1,5 @@
-﻿using Server.Network.Messages;
+﻿using Server.Network;
+using Server.Network.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,14 +12,23 @@ public class InitializationPacket : Packet
     {
         clientID = pClientId;
     }
+
+    /*
+    protected override void RunHandle()
+    {
+        client.myId = clientID;
+        client.DebugIt("Received new id : " + clientID);
+    }*/
+
     public override void Handle(Client c)
     {
         c.myId = clientID;
-        c.DebugIt("Id seted to client to : " + c.myId);
     }
 
-    public override void Handle(GameServer s)
+
+    public override void Handle(GameServer c)
     {
-        throw new NotImplementedException("Méthode ne doit pas être appelée");
+        throw new NotImplementedException();
     }
+
 }

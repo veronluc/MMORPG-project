@@ -15,6 +15,7 @@ class Program
 
         GameServer s = new GameServer();
         s.Start(50, 26950);
+
     }
 
     private static void MainThread()
