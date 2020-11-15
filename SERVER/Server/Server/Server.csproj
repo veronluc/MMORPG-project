@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\CLIENT\mMORPG_AI12\Assets\Scripts\Network_Module\Packets\InitializationPacket.cs" Link="Network\Packets\InitializationPacket.cs" />
+    <Compile Include="..\..\..\CLIENT\mMORPG_AI12\Assets\Scripts\Network_Module\Packets\Packet.cs" Link="Network\Packets\Packet.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Network\Packets\" />
+  </ItemGroup>
+
+</Project>
