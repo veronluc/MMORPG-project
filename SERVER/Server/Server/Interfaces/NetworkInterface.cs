@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AI12_DataObjects;
 public interface NetworkInterface
 {
@@ -37,7 +38,7 @@ public interface NetworkInterface
     /// <param name="user">Destination User</param>
     /// <param name="action">Action to perform</param>
     /// <param name="player">Player of the world who is doing the action</param>
-    void SendActionToUser(User user, Action action, Player player);
+    void SendActionToUser(User user, AI12_DataObjects.Action action, Player player);
 
     /// <summary>
     /// Send a monster action to a client.
@@ -45,7 +46,7 @@ public interface NetworkInterface
     /// <param name="user">Destination user</param>
     /// <param name="action">Action to perform</param>
     /// <param name="monster">Monster who is doing the action</param>
-    void SendActionToUser(User user, Action action, Monster monster);
+    void SendActionToUser(User user, AI12_DataObjects.Action action, Monster monster);
 
     /// <summary>
     /// Send the result of a request about a user connexion to a world
