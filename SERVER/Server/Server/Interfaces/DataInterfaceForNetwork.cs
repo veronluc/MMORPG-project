@@ -24,7 +24,7 @@ public interface DataInterfaceForNetwork
     /// An action is performed on a client
     /// </summary>
     /// <param name="action">Action instance</param>
-    void ReceiveNewAction(Action action);
+    void ReceiveNewAction(AI12_DataObjects.Action action);
 
     /// <summary>
     /// A new World is created on a client
