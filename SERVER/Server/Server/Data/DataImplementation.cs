@@ -1,4 +1,5 @@
 ﻿using AI12_DataObjects;
+using Server.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,11 +18,33 @@ namespace Server
             network = n;
             Console.WriteLine("Démarrage du serveur effectué");
         }
-        public void ReceiveMessage(Message message)
+
+        public List<World> GetWorlds()
         {
-            throw new NotImplementedException();
+            return WorldsManager.GetOnlineWorlds();
         }
+
+        public void ReceiveNewWorld(World world)
+        {
+            WorldsManager.AddWorld(world);
+        }
+
         public void ReceiveUser(User user)
+        {
+            UsersManager.AddUser(user);
+        }
+
+        public List<User> GetUsers()
+        {
+            return UsersManager.GetConnectedUsers();
+        }
+
+        public void ReceiveConnexionUserToWorld(Player player, World world)
+        {
+            WorldsManager.AddPlayerToWorld(player, world);
+        }
+
+        public void ReceiveMessage(Message message)
         {
             throw new NotImplementedException();
         }
@@ -30,14 +53,6 @@ namespace Server
             throw new NotImplementedException();
         }
         public void ReceiveNewAction(AI12_DataObjects.Action action)
-        {
-            throw new NotImplementedException();
-        }
-        public void ReceiveNewWorld(World world)
-        {
-            throw new NotImplementedException();
-        }
-        public void ReceiveConnexionUserToWorld(User user, World world)
         {
             throw new NotImplementedException();
         }

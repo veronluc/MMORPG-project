@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public abstract class Entity
     {
-        public string name { get; set; }
-        public int level { get; set; }
-        public int vitalityMax { get; set; }
-        public int vitality { get; set; }
-        public int manaMax { get; set; }
-        public int mana { get; set; }
-        public int strength { get; set; }
-        public int intelligence { get; set; }
-        public int defense { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public int VitalityMax { get; set; }
+        public int Vitality { get; set; }
+        public int ManaMax { get; set; }
+        public int Mana { get; set; }
+        public int Strength { get; set; }
+        public int Intelligence { get; set; }
+        public int Defense { get; set; }
         public int PM { get; set; }
-        public Location location { get; set; }
-        public EntityClass entityClass { get; set; }
+        public Location Location { get; set; }
+        public EntityClass EntityClass { get; set; }
 
         public Entity()
         {

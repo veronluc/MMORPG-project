@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Network\Packets\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
