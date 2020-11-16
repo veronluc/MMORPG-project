@@ -39,7 +39,7 @@ namespace Server.Data
             // Check if the user is already in the list by looking at its ID
             onlineWorlds.ForEach(onlineWorld =>
             {
-                if (onlineWorld.Id == world.Id)
+                if (onlineWorld.id == world.id)
                 {
                     WorldManager.AddPlayerToWorld(world, newPlayer);
                 }
@@ -54,9 +54,9 @@ namespace Server.Data
         public static List<User> GetPlayersUsers(World world)
         {
             List<User> users = new List<User>();
-            world.Players.ForEach(player =>
+            world.players.ForEach(player =>
             {
-                users.Add(player.User);
+                users.Add(player.user);
             });
             return users;
         }
