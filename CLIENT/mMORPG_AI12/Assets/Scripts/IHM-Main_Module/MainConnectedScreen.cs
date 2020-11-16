@@ -64,8 +64,7 @@ public class MainConnectedScreen : MonoBehaviour
     public void ConnectToAServer(string ip, string port) {
         try
         {
-            //TODO: remove during integration
-            //dataInterface.ConnectSessionToServer(ip, port);
+            dataInterface.ConnectSessionToServer(ip, port);
         
         }
         catch (Exception e)
@@ -116,13 +115,13 @@ public class MainConnectedScreen : MonoBehaviour
     /// Request to join a specific world regarding its identifier
     /// </summary>
     /// <param name="idWorld">Identifier of the world to join</param>
-    public void JoinWorld(string idWorld) {
+    public void JoinWorld(Player player, string idWorld) {
         
         Debug.Log("Join World -> " + idWorld);
 
         try
         {
-            dataInterface.JoinWorld(idWorld);
+            dataInterface.JoinWorld(player, idWorld);
         }
         catch (Exception e)
         {
