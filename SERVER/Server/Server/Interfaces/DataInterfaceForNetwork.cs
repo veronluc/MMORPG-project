@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AI12_DataObjects;
 public interface DataInterfaceForNetwork
 {
@@ -35,9 +36,9 @@ public interface DataInterfaceForNetwork
     /// <summary>
     /// An User want to connect to a specified World
     /// </summary>
-    /// <param name="user">User instance</param>
+    /// <param name="player">Player instance</param>
     /// <param name="world">World instance</param>
-    void ReceiveConnexionUserToWorld(User user, World world);
+    void ReceiveConnexionUserToWorld(Player player, World world);
 
     /// <summary>
     /// An User wants to obtain the Worlds instance of the server
@@ -74,4 +75,20 @@ public interface DataInterfaceForNetwork
     /// </summary>
     /// <param name="user">User instance</param>
     void UserBrutalDisconnected(User user);
+
+    /// <summary>
+    /// List worlds on server
+    /// </summary>
+    /// <returns>
+    /// List of World instances
+    /// </returns>
+    List<World> GetWorlds();
+
+    /// <summary>
+    /// List users connected on server
+    /// </summary>
+    /// <returns>
+    /// List of User instances
+    /// </returns>
+    List<User> GetUsers();
 }
