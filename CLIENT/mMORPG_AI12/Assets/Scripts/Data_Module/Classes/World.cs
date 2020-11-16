@@ -14,6 +14,7 @@ namespace AI12_DataObjects
 
     public class World
     {
+        public string id { get; set; }
         public string Name { get; set; }
         public int SizeMap { get; set; }
         public GameMode Gamemode { get; set; }
