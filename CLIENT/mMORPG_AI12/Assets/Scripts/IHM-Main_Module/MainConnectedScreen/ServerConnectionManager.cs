@@ -52,8 +52,7 @@ public class ServerConnectionManager : MonoBehaviour
         Debug.Log(this.serverIp);
         Debug.Log(this.serverPort);
         //Call the MainConnectedScreen (script) function to discuss with other modules
-        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
-            .ConnectToAServer(serverIp, serverPort);
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>().ConnectToAServer(serverIp, serverPort);
 
     }
 }
