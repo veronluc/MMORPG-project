@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AI12_DataObjects;
 public interface DataInterfaceForNetwork
 {
@@ -74,4 +75,20 @@ public interface DataInterfaceForNetwork
     /// </summary>
     /// <param name="user">User instance</param>
     void UserBrutalDisconnected(User user);
+
+    /// <summary>
+    /// List worlds on server
+    /// </summary>
+    /// <returns>
+    /// List of World instances
+    /// </returns>
+    List<World> getWorlds();
+
+    /// <summary>
+    /// List users connected on server
+    /// </summary>
+    /// <returns>
+    /// List of User instances
+    /// </returns>
+    List<User> getUsers();
 }
