@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public enum GameMode
     {
         pvp,
         pve
     }
 
+    [Serializable()]
     public class World
     {
         public string name { get; set; }
@@ -39,6 +42,31 @@ namespace AI12_DataObjects
         public World()
         {
 
+        }
+
+        public void Print()
+        {
+            Debug.Log("name : " + name);
+            Debug.Log("sizeMap : " + sizeMap);
+            Debug.Log("gamemode : " + gamemode);
+            Debug.Log("realDeath : " + realDeath);
+            Debug.Log("difficulty : " + difficulty);
+            Debug.Log("roundTimeSec : " + roundTimeSec);
+            Debug.Log("nbMaxPlayer : " + nbMaxPlayer);
+            Debug.Log("nbMaxMonsters : " + nbMaxMonsters);
+            Debug.Log("nbShops : " + nbShops);
+            Debug.Log("hasCity : " + hasCity);
+            Debug.Log("hasPlain : " + hasPlain);
+            Debug.Log("hasSwamp : " + hasSwamp);
+            Debug.Log("hasRiver : " + hasRiver);
+            Debug.Log("hasForest : " + hasForest);
+            Debug.Log("hasRockyPlain : " + hasRockyPlain);
+            Debug.Log("hasMontain : " + hasMontain);
+            Debug.Log("hasSea : " + hasSea);
+            Debug.Log("players : " + players);
+            Debug.Log("monsters : " + monsters);
+            Debug.Log("creator : " + creator);
+            Debug.Log("gameState : " + gameState);
         }
     }
 }

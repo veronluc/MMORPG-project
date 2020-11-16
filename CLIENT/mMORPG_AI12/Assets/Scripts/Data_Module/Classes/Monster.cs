@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public class Monster: Entity
     {
         public int visionLength { get; set; }

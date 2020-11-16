@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace AI12_DataObjects
 {
 
+    [Serializable()]
     public enum entities
     {
         monster,
@@ -14,6 +15,7 @@ namespace AI12_DataObjects
         all
     }
 
+    [Serializable()]
     public class EntityClass
     {
         public string name { get; set; }
