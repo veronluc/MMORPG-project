@@ -10,6 +10,7 @@ namespace AI12_DataObjects
     {
         public int gold { get; set; }
         public int xp { get; set; }
+        public User user { get; set; }
 
         public Player()
         {
