@@ -14,10 +14,10 @@ namespace Server.Data
         public static void AddPlayerToWorld(World world, Player newPlayer)
         {
             bool exists = false;
-            world.Players.ForEach(player =>
+            world.players.ForEach(player =>
             {
                 // If the player is already in the world, update its information
-                if (player.User.Id == newPlayer.User.Id)
+                if (player.user.id == newPlayer.user.id)
                 {
                     player = newPlayer;
                     exists = true;
@@ -27,7 +27,7 @@ namespace Server.Data
             // If the player isn't already in the world, add it
             if (!exists)
             {
-                world.Players.Add(newPlayer);
+                world.players.Add(newPlayer);
             }
         }
     }

@@ -27,7 +27,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     public void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
     public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
     public string CreateUserSession(string pseudo, string password) { return null; }
-    public void ConnectSessionToServer(string worldId, string ipServer, string port) { } 
+    public void ConnectSessionToServer(string ipServer, string port) { } 
     
     public void GetWorldDetails(string worldId) { }
     public void GetUserDetails(string userId) { }
@@ -37,7 +37,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
-            string path = Application.persistentDataPath + "/" + world.Id + ".dat";
+            string path = Application.persistentDataPath + "/" + world.id + ".dat";
             if (File.Exists(path))
             {
                 File.Delete(path);
