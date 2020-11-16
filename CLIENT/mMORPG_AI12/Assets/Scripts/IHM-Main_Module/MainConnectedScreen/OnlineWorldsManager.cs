@@ -38,19 +38,19 @@ public class OnlineWorldsManager : MonoBehaviour
 		}
 
 		//add the new user list on the screen
-		addWorlds(worlds);
+		AddWorlds(worlds);
 	}
 
 	/// <summary>
 	/// Add the new list of worlds to the actual one
 	/// </summary>
 	/// <param name="worlds"></param>
-	public void addWorlds(List<World> worlds)
+	public void AddWorlds(List<World> worlds)
 	{
 		//add the new user list on the screen
 		foreach (World world in worlds)
 		{
-			addWorld(world);
+			AddWorld(world);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class OnlineWorldsManager : MonoBehaviour
 	/// Add only one world to the actual list
 	/// </summary>
 	/// <param name="world"></param>
-	public void addWorld(World world)
+	public void AddWorld(World world)
 	{
 		GameObject newObj;
 

@@ -40,19 +40,19 @@ public class OnlineUsersManager : MonoBehaviour
 		}
 
 		//add the new user list on the screen
-		addUsers(users);
+		AddUsers(users);
 	}
 
 	/// <summary>
 	/// Add the new list of users to the actual one
 	/// </summary>
 	/// <param name="users"></param>
-	public void addUsers(List<User> users)
+	public void AddUsers(List<User> users)
     {
 		//add the new user list on the screen
 		foreach (User user in users)
 		{
-			addUser(user);
+			AddUser(user);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class OnlineUsersManager : MonoBehaviour
 	/// Add only one user to the actual list
 	/// </summary>
 	/// <param name="user"></param>
-	public void addUser(User user)
+	public void AddUser(User user)
     {
 		GameObject newObj;
 

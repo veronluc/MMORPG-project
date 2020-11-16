@@ -13,7 +13,7 @@ public class WorldListItemManager : MonoBehaviour
     private Vector3 velocityV3;
     private Vector2 mainSizeTarget;
     private Vector3 detailsScale;
-    private Boolean reduced;
+    private Boolean isReduced;
 
     public GameObject details;
 
@@ -34,7 +34,7 @@ public class WorldListItemManager : MonoBehaviour
         velocityV3 = Vector3.zero;
         mainSizeTarget = GetComponent<RectTransform>().sizeDelta;
         detailsScale = details.GetComponent<RectTransform>().localScale;
-        reduced = true;
+        isReduced = true;
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class WorldListItemManager : MonoBehaviour
         Vector2 sizeShrink = new Vector2(GetComponent<RectTransform>().sizeDelta.x, 80);
         Vector2 scaleGrow = Vector3.one;
         Vector2 scaleShrink = Vector3.zero;
-        if (reduced)
+        if (isReduced)
         {
             //StartCoroutine(ShowHideInformation(sizeGrow, scaleGrow, true));
             mainSizeTarget = sizeGrow;
@@ -67,7 +67,7 @@ public class WorldListItemManager : MonoBehaviour
             detailsScale = scaleShrink;
             details.SetActive(false);
         }
-        reduced = !reduced;
+        isReduced = !isReduced;
     }
 
     IEnumerator ShowHideInformation(Vector2 size, Vector3 scale, Boolean activate)
