@@ -39,9 +39,9 @@ namespace Server
             return UsersManager.GetConnectedUsers();
         }
 
-        public void ReceiveConnexionUserToWorld(User user, World world)
+        public void ReceiveConnexionUserToWorld(Player player, World world)
         {
-            WorldsManager.AddUserToWorld(user, world);
+            WorldsManager.AddUserToWorld(player, world);
         }
 
         public void ReceiveMessage(Message message)

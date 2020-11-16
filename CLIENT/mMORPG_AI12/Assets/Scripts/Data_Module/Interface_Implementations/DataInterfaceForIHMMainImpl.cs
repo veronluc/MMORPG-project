@@ -15,9 +15,9 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         return new World(name, sizeMap, gameMode, realDeath, difficulty, roundTimeSec, nbMaxPlayer, nbMaxMonsters, nbShops, hasCity, hasPlain, hasSwamp, hasRiver, hasForest, hasRockyPlain, hasMontain, hasSea, players, monsters, creator, gameState);
     }
 
-    public void JoinWorld(string worldId)
+    public void JoinWorld(Player player, string worldId)
     {
-        DataModule.networkInterface.ConnectToWorld(worldId);
+        DataModule.networkInterface.ConnectToWorld(player, worldId);
     }
 
 

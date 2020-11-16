@@ -18,14 +18,14 @@ namespace Server.Data
             onlineWorlds.Add(world);
         }
 
-        public static void AddUserToWorld(User user, World world)
+        public static void AddUserToWorld(Player newPlayer, World world)
         {
             // Check if the user is already in the list by looking at its ID
             onlineWorlds.ForEach(onlineWorld =>
             {
                 onlineWorld.Players.ForEach(player =>
                 {
-                    if (player.name == user.id)
+                    if (player.name == newPlayer.name)
                     {
 
                     }

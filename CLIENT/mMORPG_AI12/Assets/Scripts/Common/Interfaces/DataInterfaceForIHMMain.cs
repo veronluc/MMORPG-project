@@ -56,8 +56,9 @@ public interface DataInterfaceForIHMMain
     /// <summary>
     /// Join a world on the current server
     /// </summary>
+    /// <param name="player">Player instance to join the World</param>
     /// <param name="worldId">World unique identifier</param>
-    void JoinWorld(string worldId);
+    void JoinWorld(Player player, string worldId);
 
     /// <summary>
     /// Get details of a world
