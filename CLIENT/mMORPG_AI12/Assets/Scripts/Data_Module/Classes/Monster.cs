@@ -9,9 +9,9 @@ namespace AI12_DataObjects
     [Serializable()]
     public class Monster: Entity
     {
-        public int VisionLength { get; set; }
-        public int DropGold { get; set; }
-        public int DropXp { get; set; }
+        public int visionLength { get; set; }
+        public int dropGold { get; set; }
+        public int dropXp { get; set; }
 
         public Monster()
         {

@@ -9,10 +9,10 @@ namespace AI12_DataObjects
     [Serializable()]
     public class Skill
     {
-        public int Zone { get; set; }
-        public int DamagePoints { get; set; }
-        public int CostMana { get; set; }
-        public Range Range { get; set; }
+        public int zone { get; set; }
+        public int damagePoints { get; set; }
+        public int costMana { get; set; }
+        public Range range { get; set; }
 
         public Skill()
         {
