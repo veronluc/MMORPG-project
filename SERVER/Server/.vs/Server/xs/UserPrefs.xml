@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{A2A4358C-E1D7-4534-9835-CEFBA5CA8143}|Default">
+  <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server/Data/WorldManager.cs">
+    <Files>
+      <File FileName="Server/Classes/Action.cs" Line="13" Column="1" />
+      <File FileName="Server/Classes/Entity.cs" />
+      <File FileName="Server/Classes/EntityClass.cs" />
+      <File FileName="Server/Classes/GameState.cs" />
+      <File FileName="Server/Classes/Location.cs" />
+      <File FileName="Server/Classes/Message.cs" />
+      <File FileName="Server/Classes/Monster.cs" />
+      <File FileName="Server/Classes/Player.cs" />
+      <File FileName="Server/Classes/Range.cs" />
+      <File FileName="Server/Classes/Skill.cs" />
+      <File FileName="Server/Classes/Tile.cs" />
+      <File FileName="Server/Classes/User.cs" Line="27" Column="1" />
+      <File FileName="Server/Classes/World.cs" Line="7" Column="1" />
+      <File FileName="Server/Data/WorldsManager.cs" Line="54" Column="62" />
+      <File FileName="Server/Data/WorldManager.cs" Line="17" Column="44" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Server" expanded="True">
+            <Node name="Server" expanded="True">
+              <Node name="Classes" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="WorldManager.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
