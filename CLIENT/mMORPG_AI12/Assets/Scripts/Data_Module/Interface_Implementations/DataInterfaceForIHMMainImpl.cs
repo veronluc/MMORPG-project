@@ -37,7 +37,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
-            string path = Application.persistentDataPath + "/" + world.name + ".dat";
+            string path = Application.persistentDataPath + "/" + world.Id + ".dat";
             if (File.Exists(path))
             {
                 File.Delete(path);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AI12_DataObjects
 {
     [Serializable()]
-    public enum shapes
+    public enum Shapes
     {
         cross,
         star,
@@ -16,8 +16,8 @@ namespace AI12_DataObjects
     [Serializable()]
     public class Range
     {
-        public shapes shape { get; set; }
-        public int distance { get; set; }
+        public Shapes Shape { get; set; }
+        public int Distance { get; set; }
 
         public Range()
         {

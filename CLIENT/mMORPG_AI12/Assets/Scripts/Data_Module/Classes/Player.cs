@@ -9,9 +9,9 @@ namespace AI12_DataObjects
     [Serializable()]
     public class Player: Entity
     {
-        public int gold { get; set; }
-        public int xp { get; set; }
-        public User user { get; set; }
+        public int Gold { get; set; }
+        public int Xp { get; set; }
+        public User User { get; set; }
 
         public Player()
         {

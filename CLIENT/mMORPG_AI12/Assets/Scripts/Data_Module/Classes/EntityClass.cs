@@ -8,7 +8,7 @@ namespace AI12_DataObjects
 {
 
     [Serializable()]
-    public enum entities
+    public enum Entities
     {
         monster,
         player,
@@ -18,15 +18,15 @@ namespace AI12_DataObjects
     [Serializable()]
     public class EntityClass
     {
-        public string name { get; set; }
-        public int baseVitality { get; set; }
-        public int baseMana { get; set; }
-        public int baseStrength { get; set; }
-        public int baseIntelligence { get; set; }
-        public int baseDefense { get; set; }
-        public int basePM { get; set; }
-        public entities exclusive { get; set; }
-        public List<Skill> skills { get; set; }
+        public string Name { get; set; }
+        public int BaseVitality { get; set; }
+        public int BaseMana { get; set; }
+        public int BaseStrength { get; set; }
+        public int BaseIntelligence { get; set; }
+        public int BaseDefense { get; set; }
+        public int BasePM { get; set; }
+        public Entities Exclusive { get; set; }
+        public List<Skill> Skills { get; set; }
 
         public EntityClass () 
         {

@@ -9,10 +9,10 @@ namespace AI12_DataObjects
     [Serializable()]
     public class GameState
     {
-        public int round { get; set; }
-        public int index { get; set; }
-        public List<Entity> turns { get; set; }
-        public Tile[,] map { get; set; }
+        public int Round { get; set; }
+        public int Index { get; set; }
+        public List<Entity> Turns { get; set; }
+        public Tile[,] Map { get; set; }
 
         public GameState()
         {
