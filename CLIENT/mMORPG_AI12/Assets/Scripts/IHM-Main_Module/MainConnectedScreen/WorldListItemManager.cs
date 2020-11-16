@@ -89,11 +89,11 @@ public class WorldListItemManager : MonoBehaviour
     {
         this.worldName.text = world.name;
 
-        this.ownerName.text = world.creator.name;
+        this.ownerName.text = world.creator.login;
 
         this.worldSize.text = world.sizeMap.ToString();
 
-        this.worldType.text = world.gamemode.ToString();
+        this.worldType.text = world.gameMode.ToString();
 
         this.worldTurnTime.text = world.roundTimeSec.ToString() + "s";
 
@@ -142,7 +142,7 @@ public class WorldListItemManager : MonoBehaviour
         player.strength = 25;
         player.intelligence = 20;
         player.defense = 12;
-        player.PM = 8;
+        player.pM = 8;
         player.location = new Location(0, 0);
         player.entityClass = new EntityClass();
         player.entityClass.name = "GUERRIER";
@@ -152,7 +152,7 @@ public class WorldListItemManager : MonoBehaviour
         player.entityClass.baseIntelligence = 2;
         player.entityClass.baseDefense = 12;
         player.entityClass.basePM = 8;
-        player.entityClass.exclusive = entities.player;
+        player.entityClass.exclusive = Entities.player;
         player.entityClass.skills = new List<Skill>();
         Skill skill = new Skill();
         skill.zone = 2;

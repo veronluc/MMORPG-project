@@ -151,7 +151,8 @@ public class MainConnectedScreen : MonoBehaviour
     
     
     // TESTS functions ---------
-    private World CreateTestWorld(string name)
+    //Use the new constructor for World object
+    /*private World CreateTestWorld(string name)
     {
         World newWorld = new World();
         newWorld.name = name;
@@ -177,7 +178,7 @@ public class MainConnectedScreen : MonoBehaviour
         newWorld.gameState = null;
 
         return newWorld;
-    }
+    }*/
 
 
 }
