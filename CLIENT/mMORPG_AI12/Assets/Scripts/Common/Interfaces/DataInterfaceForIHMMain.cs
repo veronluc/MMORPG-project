@@ -42,10 +42,9 @@ public interface DataInterfaceForIHMMain
     /// <summary>
     /// Connect the session to the server
     /// </summary>
-    /// <param name="worldId">Id of the world to be joined</param>
     /// <param name="ipServer">IP address of the server</param>
     /// <param name="port">Port of the server</param>
-    void ConnectSessionToServer(string worldId, string ipServer, string port);
+    void ConnectSessionToServer(string ipServer, string port);
 
     /// <summary>
     /// Load a local World instance to the server
