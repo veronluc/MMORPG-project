@@ -97,11 +97,12 @@ public class WorldListItemManager : MonoBehaviour
 
         this.worldTurnTime.text = world.roundTimeSec.ToString() + "s";
 
-        // TODO : Change worldName by worldId when available
-        this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
-            .JoinWorld(this.worldName.text));
+        // TODO : Uncomment when integration with new data interface
+        // this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+        //     .JoinWorld(world.uid));
     }
 
+    // TODO : remove during integration
     /// <summary>
     /// Only for test purpose
     /// </summary>
