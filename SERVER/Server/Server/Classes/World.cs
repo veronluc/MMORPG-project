@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public enum GameMode
     {
         pvp,
         pve
     }
 
+    [Serializable()]
     public class World
     {
-        public string id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public int SizeMap { get; set; }
         public GameMode Gamemode { get; set; }

@@ -17,7 +17,7 @@ namespace Server.Data
             world.Players.ForEach(player =>
             {
                 // If the player is already in the world, update its information
-                if (player.user.id == newPlayer.user.id)
+                if (player.User.Id == newPlayer.User.Id)
                 {
                     player = newPlayer;
                     exists = true;
