@@ -64,7 +64,8 @@ public class MainConnectedScreen : MonoBehaviour
     public void ConnectToAServer(string ip, string port) {
         try
         {
-            dataInterface.ConnectSessionToServer(ip, port);
+            //TODO: remove during integration
+            //dataInterface.ConnectSessionToServer(ip, port);
         
         }
         catch (Exception e)
@@ -136,7 +137,8 @@ public class MainConnectedScreen : MonoBehaviour
     {
         try
         {
-            dataInterface.LogOutServer();
+            //TODO: remove during integration
+            //dataInterface.LogOutServer();
         }
         catch (Exception e)
         {

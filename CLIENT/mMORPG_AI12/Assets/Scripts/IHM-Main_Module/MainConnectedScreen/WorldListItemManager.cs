@@ -97,8 +97,9 @@ public class WorldListItemManager : MonoBehaviour
 
         this.worldTurnTime.text = world.roundTimeSec.ToString() + "s";
 
-        this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
-            .JoinWorld(world.uid));
+        //TODO: remove during integration
+        /*this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+            .JoinWorld(world.uid));*/
     }
 
     /// <summary>
