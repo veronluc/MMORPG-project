@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
-    public class User
-    {
+	public class User
+	{
 		public string login { get; set; }
+		public string id { get; set; }
 		public string password { get; set; }
 		public string firstName { get; set; }
 		public string lastName { get; set; }
@@ -16,9 +17,9 @@ namespace AI12_DataObjects
 		public string imageRef { get; set; }
 		public List<Player> players { get; set; }
 
-		public User ()
-        {
+		public User()
+		{
 
-        }
+		}
 	}
 }
