@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public class Message
     {
         public World world { get; set; }

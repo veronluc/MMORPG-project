@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public class User
     {
 		public string login { get; set; }
