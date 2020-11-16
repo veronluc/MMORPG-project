@@ -50,7 +50,7 @@ public interface DataInterfaceForIHMMain
     /// Load a local World instance to the server
     /// </summary>
     /// <param name="world">World instance</param>
-    void LoadWorld(World world);
+    void LoadWorld(ref World world);
 
     /// <summary>
     /// Join a world on the current server
