@@ -9,7 +9,7 @@ public interface DataInterfaceForNetwork
     /// Receive a list of World instances (used for new or update)
     /// </summary>
     /// <param name="worlds">List of worlds</param>
-    void ReceiveListWorlds(ref List<World> worlds);
+    void ReceiveListWorlds(List<World> worlds);
 
     /// <summary>
     /// Receive a list of User instances (used for new or update)
@@ -48,7 +48,7 @@ public interface DataInterfaceForNetwork
     /// Receive a world instance
     /// </summary>
     /// <param name="world">World instance</param>
-    void ReceiveWorld(ref World world);
+    void ReceiveWorld(World world);
 
     /// <summary>
     /// Receive an user instance

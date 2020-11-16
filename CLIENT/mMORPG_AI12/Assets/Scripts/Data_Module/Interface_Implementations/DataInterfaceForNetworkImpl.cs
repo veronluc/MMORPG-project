@@ -5,12 +5,12 @@ using AI12_DataObjects;
 
 public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
 {
-    public void ReceiveListWorlds(ref List<World> worlds)
+    public void ReceiveListWorlds(List<World> worlds)
     {
         DataModule.ihmMainInterface.DisplayNewAvailableWorld(worlds);
     }
 
-    public void ReceiveWorld(ref World world)
+    public void ReceiveWorld(World world)
     {
         // TODO pas d'arguments ? Comment on transmet le monde ?
         DataModule.ihmGameInterface.LaunchGame();

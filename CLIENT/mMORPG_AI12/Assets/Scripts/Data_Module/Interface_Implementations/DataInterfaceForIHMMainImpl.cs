@@ -17,9 +17,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 
     public void JoinWorld(string worldId)
     {
-        // TODO int ou string pour l'id du monde ?
         DataModule.networkInterface.ConnectToWorld(worldId);
-        // TODO check la liste de mondes en local (ou pas, à voir en fonction de la fonction serveur), récupérer le token de l'utilisateur courant et faire l'appel au serveur
     }
 
 

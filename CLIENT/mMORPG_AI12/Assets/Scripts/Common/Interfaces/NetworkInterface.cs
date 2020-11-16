@@ -36,7 +36,7 @@ public interface NetworkInterface
     /// Connect the player to a world on the server.
     /// </summary>
     /// <param name="idWorld">The world the player has to connect to</param>
-    void ConnectToWorld(int idWorld);
+    void ConnectToWorld(string idWorld);
 
     /// <summary>
     /// Send a request to recieve the full list of users connected to the server

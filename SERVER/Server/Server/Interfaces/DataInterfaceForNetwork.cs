@@ -82,7 +82,7 @@ public interface DataInterfaceForNetwork
     /// <returns>
     /// List of World instances
     /// </returns>
-    List<World> getWorlds();
+    List<World> GetWorlds();
 
     /// <summary>
     /// List users connected on server
@@ -90,5 +90,5 @@ public interface DataInterfaceForNetwork
     /// <returns>
     /// List of User instances
     /// </returns>
-    List<User> getUsers();
+    List<User> GetUsers();
 }

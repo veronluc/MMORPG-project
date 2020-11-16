@@ -20,7 +20,7 @@ public class NetworkInterfaceImpl : NetworkInterface
         throw new System.NotImplementedException();
     }
 
-    public void ConnectToWorld(int idWorld)
+    public void ConnectToWorld(string idWorld)
     {
         throw new System.NotImplementedException();
     }
