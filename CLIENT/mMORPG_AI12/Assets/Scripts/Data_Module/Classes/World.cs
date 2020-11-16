@@ -14,7 +14,10 @@ namespace AI12_DataObjects
 
     public class World
     {
+<<<<<<< HEAD
         public string id { get; set; }
+=======
+>>>>>>> data-processing-develop-v1-GM1
         public string Name { get; set; }
         public int SizeMap { get; set; }
         public GameMode Gamemode { get; set; }
