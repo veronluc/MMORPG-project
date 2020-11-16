@@ -41,7 +41,7 @@ namespace Server
 
         public void ReceiveConnexionUserToWorld(Player player, World world)
         {
-            WorldsManager.AddUserToWorld(player, world);
+            WorldsManager.AddPlayerToWorld(player, world);
         }
 
         public void ReceiveMessage(Message message)
