@@ -34,10 +34,10 @@ namespace AI12_DataObjects
         public bool HasSea { get; set; }
         public List<Player> Players { get; set; }
         public List<Monster> MonstersList { get; set; }
-        public Player Creator { get; set; }
+        public User Creator { get; set; }
         public GameState GameState { get; set; }
 
-        public World(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, Player creator, GameState gameState)
+        public World(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState)
         {
             Name = name;
             SizeMap = sizeMap;
