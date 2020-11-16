@@ -18,12 +18,6 @@ public class MainConnectedScreen : MonoBehaviour
     private GameObject worldsManager;
     private GameObject serverInformation;
 
-    // Screens
-    // private ConnexionScreen connexionScreen; // TODO : develop class
-    // private ConnectToAServerScreen connectToAServerScreen; // TODO : develop class
-    // private ManageMyWorldsScreen manageMyWorldsScreen; // TODO : develop class
-    // private ManageMyCharactersScreen manageMyCharactersScreen; // TODO : develop class
-
     public void Awake()
     {
         this.ihmMainModule = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>();
@@ -70,21 +64,21 @@ public class MainConnectedScreen : MonoBehaviour
     public void ConnectToAServer(string ip, string port) {
         try
         {
-            // TODO: remove user when function signature will change
-            //dataInterface.ConnectSessionToServer(null, ip, port);
+            // TODO : uncomment during integration
+            //dataInterface.ConnectSessionToServer(ip, port);
         
         }
         catch (Exception e)
         {
-            // TODO : handle server connexion errors
+            // handle server connexion errors
         }
 
         // Set the new server information (ip and port) and close the connection pop-up
         serverInformation.GetComponent<TextMeshProUGUI>().SetText("IP = " + ip + " - Port = " + port);
         GameObject.FindGameObjectWithTag("ServerConnection").GetComponent<ServerConnectionManager>().OpenClosePopup();
         
-        // TODO: to remove when data is linked to our interfaces
-        // For tests purpose we populate users and worlds here
+        
+        // For tests purpose we populate users and worlds here (keep it for v1)
         
         // List<User> users = new List<User>();
         // users.Add(new User(){players = new List<Player>(), firstName = "Ines", lastName = "Ryder", login="iryder", birthDate = new DateTime(2000, 1, 1)});
@@ -128,29 +122,34 @@ public class MainConnectedScreen : MonoBehaviour
 
         try
         {
+            // TODO : uncomment during integration
             //dataInterface.JoinWorld(idWorld);
         }
         catch (Exception e)
         {
-            // TODO : handle join world errors
+            // handle join world errors
         }
     }
 
     /// <summary>
-    /// Log out for the server ? The authentication ? To review
+    /// Log out of the server
     /// </summary>
-    public void Logout()
+    public void LogOutServer()
     {
         // TODO : review
         try
         {
-            // dataInterface.LogOut();
+            // TODO : uncomment during integration
+            // dataInterface.LogOutServer();
         }
         catch (Exception e)
         {
-            // TODO : handle logout errors
+            // handle logout errors
         }
 
+        serverInformation.GetComponent<TextMeshProUGUI>().SetText("None");
+        UpdateListUsersDisplay(new List<User>());
+        UpdateListWorldsDisplay(new List<World>());
     }
     
     
