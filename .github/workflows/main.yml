@@ -3,7 +3,13 @@ name: Build and test
 on:
   pull_request:
     branches: 
-      - '*main*'
+      - main
+      - main-develop
+      - ihm-game-main
+      - ihm-main-main
+      - data-processing-main
+      - comm-main
+
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
