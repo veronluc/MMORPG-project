@@ -17,7 +17,7 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
     }
 
     public void ReceiveListUsers(List<User> users) {
-        // TODO -- Do nothing ? No DisplayListUser in IhmMainInterface
+        DataModule.ihmMainInterface.DisplayListUser(users);
     }
     public void ReceiveListUsersFromWorld(List<User> users, World world) { }
     public void ReceiveMessage(Message message) { }
