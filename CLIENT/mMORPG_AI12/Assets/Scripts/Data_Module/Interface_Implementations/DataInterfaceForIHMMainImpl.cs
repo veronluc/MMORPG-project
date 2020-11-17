@@ -31,7 +31,10 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     
     public void GetWorldDetails(string worldId) { }
     public void GetUserDetails(string userId) { }
-    public void LogOut() { }
+
+    public void LogOut() {
+        DataModule.networkInterface.DisconnectUserFromServer();
+    }
 
     public void SaveWorld(World world) {
         try
