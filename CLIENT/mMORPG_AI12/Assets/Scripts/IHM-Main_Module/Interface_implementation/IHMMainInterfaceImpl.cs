@@ -15,19 +15,37 @@ public class IHMMainInterfaceImpl : IHMMainInterface
         throw new System.NotImplementedException();
     }
 
+    /// <summary>
+    /// Ask for an updated of the displayed list of Users and of Worlds in the IHM
+    /// </summary>
+    /// <param name="usersList">The updated list of Users to display</param>
+    /// <param name="worldsList">The updated list of Worlds to display</param>
     public void DisplayListUsersWorlds(List<User> usersList, List<World> worldsList)
     {
-        throw new System.NotImplementedException();
+        //Retrieves the instance of MainConnectedScreen
+        MainConnectedScreen mainConnectedScreen = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>();
+
+        //Calls its update functions separately
+        mainConnectedScreen.UpdateListUsersDisplay(usersList);
+        mainConnectedScreen.UpdateListWorldsDisplay(worldsList);
     }
 
+    /// <summary>
+    /// Ask for an updated of the displayed list of Worlds in the IHM
+    /// </summary>
+    /// <param name="worlds">The updated list of Worlds to display</param>
     public void DisplayNewAvailableWorld(List<World> worlds)
     {
-        throw new System.NotImplementedException();
+        //Retrieves the instance of MainConnectedScreen and call its update function
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+            .UpdateListWorldsDisplay(worlds);
     }
 
-    public void DisplayNewConnectedUser(List<User> users)
+    public void DisplayListUser(List<User> users)
     {
-        throw new System.NotImplementedException();
+        //Retrieves the instance of MainConnectedScreen and calls its update functions separately
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+            .UpdateListUsersDisplay(users);
     }
 
     public void DisplayUserDetail(string token)
@@ -36,26 +54,6 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     }
 
     public void DisplayWorldDetail(World world)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void IHMLogOutConfirmation()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void DisplayOwnerDisconnected(User user)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void DisplayUserLogOut(User user)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void ServerStopped()
     {
         throw new System.NotImplementedException();
     }
