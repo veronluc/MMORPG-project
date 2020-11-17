@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AI12_DataObjects;
 
 public interface IHMGameInterface {
         /// <summary>
         /// Launch the game. Start the display of the game view
         /// </summary>
-        void LaunchGame();
+        void LaunchGame(User user, World world, GameState gameState, Player player);
 
         /// <summary>
         /// Diplays the message sent by the Data module in the chat
         /// </summary>
         /// <param name="message">New message to display</param>
-        void DisplayMessage();
+        void DisplayMessage(Message message);
 
         /// <summary>
         /// Update the display of the user. It will ask to Data module the new position of each entities and their caracteristics (life point, mana point...)
