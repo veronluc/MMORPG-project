@@ -8,7 +8,7 @@ using System.Text;
 
 public class GameServer
 {
-    DataImplementation data;
+    public DataImplementation data;
     NetworkImplementation network;
 
     private static TcpListener tcpListener;
@@ -63,8 +63,6 @@ public class GameServer
         Console.WriteLine("Initialized packets.");
     }
 
-
-
     //SERVER SEND ************************************************
     private void SendTCPData(int _toClient, Packet _packet)
     {
@@ -105,4 +103,10 @@ public class GameServer
         //************************************************************
 
     }
+
+    public void DisconnectClient(int id)
+    {
+        clients[id].Disconnect();
+    }
+
 }

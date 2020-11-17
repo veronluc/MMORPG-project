@@ -13,16 +13,13 @@ public class InitializationPacket : Packet
         clientID = pClientId;
     }
 
-    /*
-    protected override void RunHandle()
-    {
-        client.myId = clientID;
-        client.DebugIt("Received new id : " + clientID);
-    }*/
-
     public override void Handle(Client c)
     {
         c.myId = clientID;
+        c.currentUser.id = clientID.ToString();
+        //TO DO : Informer data (client) que connexion serveur reussie ou non
+        SendUserInfosPacket msg = new SendUserInfosPacket(c.currentUser);
+        c.SendData(msg);
     }
 
 

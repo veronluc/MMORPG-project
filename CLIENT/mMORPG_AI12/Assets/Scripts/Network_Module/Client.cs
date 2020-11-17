@@ -1,4 +1,5 @@
-﻿using Server.Network.Messages;
+﻿using AI12_DataObjects;
+using Server.Network.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,9 +12,14 @@ public class Client
     public static int dataBufferSize = 4096;
     bool isConnected = false;
 
+    public User currentUser { get; set; }
+
+
     public string ip = "127.0.0.1";
     public int port = 26950;
     public int myId = 0;
+
+    public DataInterfaceForNetwork data;
 
     public TcpClient socket;
 
@@ -28,16 +34,9 @@ public class Client
 
     public Client()
     {
-        ConnectToServer();
+        
     }
-    private void Start()
-    {
-#if UNITY_EDITOR
-        ip = "127.0.0.1";
-#endif
-        //TESTS
-        ConnectToServer();
-    }
+
     private void Update()
     {
         try
@@ -53,8 +52,11 @@ public class Client
     {
         Disconnect();
     }
-    public void ConnectToServer()
+    public void ConnectToServer(string ipAdress, int pPort)
     {
+        ip = ipAdress;
+        port = pPort;
+
         isConnected = true;
 
         socket = new TcpClient

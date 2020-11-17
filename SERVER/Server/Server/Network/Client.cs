@@ -8,6 +8,8 @@ namespace Server.Network
 {
     public class Client
     {
+        public DataInterfaceForNetwork data;
+
         public static int dataBufferSize = 4096;
         bool isConnected = false;
 
@@ -30,22 +32,7 @@ namespace Server.Network
         {
             ConnectToServer();
         }
-        private void Start()
-        {
-#if UNITY_EDITOR
-        ip = "127.0.0.1";
-#endif
-            //TESTS
-            ConnectToServer();
-        }
-        private void Update()
-        {
-           
-        }
-        private void OnApplicationQuit()
-        {
-           
-        }
+       
         public void ConnectToServer()
         {
            

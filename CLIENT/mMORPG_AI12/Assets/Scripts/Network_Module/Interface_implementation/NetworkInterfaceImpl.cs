@@ -5,9 +5,15 @@ using UnityEngine;
 
 public class NetworkInterfaceImpl : NetworkInterface
 {
+    Client client;
+    public NetworkInterfaceImpl(Client pClient)
+    {
+        client = pClient;
+    }
     public void AddNewWorld(World world)
     {
-        throw new System.NotImplementedException();
+        AddNewWorldPacket msg = new AddNewWorldPacket(world);
+        client.SendData(msg);
     }
 
     public void AskServerUserList()
@@ -22,22 +28,26 @@ public class NetworkInterfaceImpl : NetworkInterface
 
     public void ConnectToWorld(Player player, string idWorld)
     {
-        throw new System.NotImplementedException();
+        ConnectToWorldPacket msg = new ConnectToWorldPacket(player, idWorld);
+        client.SendData(msg);
     }
 
     public void ConnectUser(User user, string ipAdress, int port)
     {
-        throw new System.NotImplementedException();
+        client.currentUser = user;
+        client.ConnectToServer(ipAdress, port);
     }
 
     public void DisconnectUserFromServer()
     {
-        throw new System.NotImplementedException();
+        AskDisconnectServer msg = new AskDisconnectServer(client.currentUser);
+        client.SendData(msg);
     }
 
     public void DisconnectUserFromWorld()
     {
-        throw new System.NotImplementedException();
+        AskDisconnectWorld msg = new AskDisconnectWorld(client.currentUser);
+        client.SendData(msg);
     }
 
     public void RefreshUserInfos(User user)

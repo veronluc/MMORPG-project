@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Server
 {
-    class DataImplementation : DataInterfaceForNetwork
+    public class DataImplementation : DataInterfaceForNetwork
     {
         NetworkImplementation network;
         /// <summary>

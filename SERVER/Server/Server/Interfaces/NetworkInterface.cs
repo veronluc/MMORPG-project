@@ -76,4 +76,12 @@ public interface NetworkInterface
     /// <param name="userDisconnected">The disconnected user</param>
     /// <param name="userDestination">Destination User</param>
     void SendUserDisconnectedServer(User userDestination, User userDisconnected);
+
+    /// <summary>
+    /// Send Users and worlds to a specific user
+    /// </summary>
+    /// <param name="user">Destination user</param>
+    /// <param name="users">List of connected users</param>
+    /// <param name="worlds">List of worlds</param>
+    void SendListUsersWorlds(User user, List<User> users, List<World> worlds);
 }

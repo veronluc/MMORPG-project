@@ -5,16 +5,20 @@ using System.Text;
 
 namespace Server
 {
-    class NetworkImplementation : NetworkInterface
+    public class NetworkImplementation : NetworkInterface
     {
  
         public void SendWorldsList(User user, List<World> worlds)
         {
-            throw new NotImplementedException();
+            int id = Convert.ToInt32(user.id);
+            SendWorldsListPacket msg = new SendWorldsListPacket(worlds);
+            GameServer.clients[id].SendData(msg);
         }
         public void SendUsersList(User user, List<User> users)
         {
-            throw new NotImplementedException();
+            int id = Convert.ToInt32(user.id);
+            SendUsersListPacket msg = new SendUsersListPacket(users);
+            GameServer.clients[id].SendData(msg);
         }
         public void SendUsersListFromWorld(User user, List<User> users, World world)
         {
@@ -34,7 +38,9 @@ namespace Server
         }
         public void SendConfirmationUserConnectionToWorld(User user, World world, bool result, string message)
         {
-            throw new NotImplementedException();
+            int id = Convert.ToInt32(user.id);
+            ConfirmationUserConnectionToWorldPacket msg = new ConfirmationUserConnectionToWorldPacket(world, result, message); ;
+            GameServer.clients[id].SendData(msg);
         }
         public void SendStopServer(User user)
         {
@@ -47,6 +53,12 @@ namespace Server
         public void SendUserDisconnectedServer(User userDestination, User userDisconnected)
         {
             throw new NotImplementedException();
+        }
+        public void SendListUsersWorlds(User user, List<User> users, List<World> worlds)
+        {
+            int id = Convert.ToInt32(user.id);
+            SendUsersAndWorlds msg = new SendUsersAndWorlds(users, worlds);
+            GameServer.clients[id].SendData(msg);
         }
     }
 }

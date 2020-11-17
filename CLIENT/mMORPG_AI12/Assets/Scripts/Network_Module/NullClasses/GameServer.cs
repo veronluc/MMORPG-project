@@ -6,10 +6,11 @@ using System.Net.Sockets;
 using System.Text;
 public class GameServer
 {
+    public DataImplementation data;
     private static TcpListener tcpListener;
     public delegate void PacketHandler(int _fromClient, Packet _packet);
     public static Dictionary<int, PacketHandler> packetHandlers;
-    public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
+    //public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
     public static int MaxPlayers { get; private set; }
     public static int Port { get; private set; }
     public void Start(int _maxPlayers, int _port)
@@ -60,5 +61,9 @@ public class GameServer
     public void HandleClientMessage(int _fromClient, Packet _packet)
     {
 
+    }
+
+    public void DisconnectClient(int id)
+    {
     }
 }
