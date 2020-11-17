@@ -28,5 +28,23 @@ namespace Server.Data
         {
             connectedUsers.Add(user);
         }
+
+        /// <summary>
+        /// Add a User instance to the server (due to connection)
+        /// </summary>
+        /// <param name="user"></param>
+        public static void RemoveUser(User user)
+        {
+            User foundUser = connectedUsers.Find(
+                    u => u.id == user.id
+                );
+            if (foundUser != null)
+            {
+                connectedUsers.Remove(foundUser);
+            } else
+            {
+                throw new Exception("User not logged in");
+            }
+        }
     }
 }

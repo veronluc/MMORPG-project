@@ -39,9 +39,9 @@ namespace Server
             return UsersManager.GetConnectedUsers();
         }
 
-        public void ReceiveConnexionUserToWorld(Player player, World world)
+        public void ReceiveConnexionUserToWorld(Player player, string worldId)
         {
-            WorldsManager.AddPlayerToWorld(player, world);
+            WorldsManager.AddPlayerToWorld(player, worldId);
         }
 
         public void ReceiveMessage(Message message)
@@ -70,7 +70,7 @@ namespace Server
         }
         public void UserAskDisconnectFromWorld(User user)
         {
-            throw new NotImplementedException();
+            UsersManager.RemoveUser(user);
         }
         public void UserAskDisconnectFromServer(User user)
         {
