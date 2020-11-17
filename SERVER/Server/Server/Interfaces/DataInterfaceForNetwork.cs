@@ -38,7 +38,7 @@ public interface DataInterfaceForNetwork
     /// </summary>
     /// <param name="player">Player instance</param>
     /// <param name="world">World instance</param>
-    void ReceiveConnexionUserToWorld(Player player, World world);
+    void ReceiveConnexionUserToWorld(Player player, string worldId);
 
     /// <summary>
     /// An User wants to obtain the Worlds instance of the server
