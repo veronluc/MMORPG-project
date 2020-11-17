@@ -8,6 +8,10 @@ TagManager:
   - IHMGameModule
   - DataModule
   - NetworkModule
+  - OnlineUsers
+  - OnlineWorlds
+  - ServerConnection
+  - InfoConnectedServer
   layers:
   - Default
   - TransparentFX

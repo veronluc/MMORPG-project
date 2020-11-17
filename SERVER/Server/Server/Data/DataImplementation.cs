@@ -70,7 +70,7 @@ namespace Server
         }
         public void UserAskDisconnectFromWorld(User user)
         {
-            throw new NotImplementedException();
+            UsersManager.RemoveUser(user);
         }
         public void UserAskDisconnectFromServer(User user)
         {
