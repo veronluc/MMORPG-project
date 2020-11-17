@@ -39,7 +39,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
     
     public string CreateUserSession(string pseudo, string password) {
-        this.connectedUserManager.connectedUser = this.localUsersManager.connectUser(pseudo, password);
+        this.connectedUserManager.connectedUser = this.localUsersManager.ConnectUser(pseudo, password);
 
         // Check if user connexion was successful
         if (this.connectedUserManager.isConnected) {
@@ -60,7 +60,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     
     public void ConnectSessionToServer(string ipServer, string port) {
         this.connectedUserManager.serverInfo = new ServerInfo(ipServer, Int32.Parse(port));
-        this.connectedUserManager.saveServerInfo();
+        this.connectedUserManager.SaveServerInfo();
         DataModule.networkInterface.ConnectUser(
             this.connectedUserManager.connectedUser,
             this.connectedUserManager.serverInfo.server,

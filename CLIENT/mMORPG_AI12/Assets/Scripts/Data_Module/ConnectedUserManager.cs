@@ -16,10 +16,10 @@ public class ConnectedUserManager
 
     public ConnectedUserManager() {
         this.connectedUser = null;
-        retrieveServerInfo();
+        RetrieveServerInfo();
     }
 
-    public void saveServerInfo() {
+    public void SaveServerInfo() {
         try {
             BinaryFormatter bf = new BinaryFormatter();
             string path = Application.persistentDataPath + "/lastServerInfo.dat";
@@ -37,7 +37,7 @@ public class ConnectedUserManager
         }
     }
 
-    public void retrieveServerInfo() {
+    public void RetrieveServerInfo() {
         try {
             BinaryFormatter bf = new BinaryFormatter();
             string path = Application.persistentDataPath + "/lastServerInfo.dat";

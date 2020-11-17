@@ -10,10 +10,10 @@ public class LocalUsersManager
 
     public LocalUsersManager ()
     {
-        retrieveAndSetLocalUsers();
+        RetrieveAndSetLocalUsers();
     }
 
-    private void retrieveAndSetLocalUsers()
+    private void RetrieveAndSetLocalUsers()
     {
         // TODO Get local users from local storage
         // For the moment, we hardcode the local users
@@ -26,7 +26,7 @@ public class LocalUsersManager
         this.usersStorage = new List<User>{alex, celia};
     }
 
-    public User connectUser(string pseudo, string password) {
+    public User ConnectUser(string pseudo, string password) {
         foreach (User user in this.users)
         {
             if (user.login == pseudo && user.password == password) {
