@@ -16,7 +16,7 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     }
 
     /// <summary>
-    /// Ask for an updated of the displayed list of Users and of Worlds in the IHM
+    /// Ask for an update of the displayed lists of Users and Worlds in the IHM
     /// </summary>
     /// <param name="usersList">The updated list of Users to display</param>
     /// <param name="worldsList">The updated list of Worlds to display</param>
@@ -31,12 +31,12 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     }
 
     /// <summary>
-    /// Ask for an updated of the displayed list of Worlds in the IHM
+    /// Ask for an update of the displayed list of Worlds in the IHM
     /// </summary>
     /// <param name="worlds">The updated list of Worlds to display</param>
     public void DisplayNewAvailableWorld(List<World> worlds)
     {
-        //Retrieves the instance of MainConnectedScreen and call its update function
+        //Retrieves the instance of MainConnectedScreen and calls its update function
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
             .UpdateListWorldsDisplay(worlds);
     }
