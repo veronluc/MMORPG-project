@@ -20,6 +20,11 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
         DataModule.ihmMainInterface.DisplayListUser(users);
     }
     public void ReceiveListUsersFromWorld(List<User> users, World world) { }
+
+    public void ReceiveListUsersWorlds(List<User> users, List<World> worlds) {
+        DataModule.ihmMainInterface.DisplayListUsersWorlds(users, worlds);
+    }
+    
     public void ReceiveMessage(Message message) { }
     public void ReceiveAction(Action action, Player player) { }
     public void ReceiveAction(Action action, Monster monster) { }
