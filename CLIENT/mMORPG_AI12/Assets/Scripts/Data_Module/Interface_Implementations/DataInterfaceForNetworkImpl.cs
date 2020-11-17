@@ -13,7 +13,7 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
     public void ReceiveWorld(World world)
     {
         // TODO pas d'arguments ? Comment on transmet le monde ?
-        DataModule.ihmGameInterface.LaunchGame();
+        //DataModule.ihmGameInterface.LaunchGame();
     }
 
     public void ReceiveListUsers(List<User> users) {
