@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AI12_DataObjects;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <summary>
     /// Launch the game. Start the display of the game view
     /// </summary>
-    public void LaunchGame()
+    public void LaunchGame(User user, World world, GameState gameState, Player player)
     {
         throw new System.NotImplementedException();
     }
@@ -17,7 +18,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// Diplays the message sent by the Data module in the chat
     /// </summary>
     /// <param name="message">New message to display</param>
-    public void DisplayMessage()
+    public void DisplayMessage(Message message)
     {
         throw new System.NotImplementedException();
     }
