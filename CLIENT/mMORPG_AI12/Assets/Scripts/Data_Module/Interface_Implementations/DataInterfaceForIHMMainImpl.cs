@@ -8,6 +8,17 @@ using System;
 
 public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 {
+
+    private DataModule dataModule;
+    private LocalUsersManager localUsersManager;
+    private ConnectedUserManager connectedUserManager;
+
+    public DataInterfaceForIHMMainImpl() {
+        this.dataModule = GameObject.FindGameObjectWithTag("DataModule").GetComponent<DataModule>();
+        this.localUsersManager = dataModule.localUsersManager;
+        this.connectedUserManager = dataModule.connectedUserManager;
+    }
+
     public void LoadWorld(ref World world)
     {
         DataModule.networkInterface.AddNewWorld(world);
@@ -26,8 +37,36 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 
     public void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
     public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
-    public string CreateUserSession(string pseudo, string password) { return null; }
-    public void ConnectSessionToServer(string ipServer, string port) { } 
+    
+    public string CreateUserSession(string pseudo, string password) {
+        this.connectedUserManager.connectedUser = this.localUsersManager.connectUser(pseudo, password);
+
+        // Check if user connexion was successful
+        if (this.connectedUserManager.isConnected) {
+            // Check if server ip is known
+            if (this.connectedUserManager.serverInfo != null) {
+                DataModule.networkInterface.ConnectUser(
+                    this.connectedUserManager.connectedUser,
+                    this.connectedUserManager.serverInfo.server,
+                    this.connectedUserManager.serverInfo.port
+                );
+                return this.connectedUserManager.server + ":" + this.connectedUserManager.port;
+            }
+        }
+        
+        // User connection was unsuccesful or server ip was unknown
+        return null;
+    }
+    
+    public void ConnectSessionToServer(string ipServer, string port) {
+        this.connectedUserManager.serverInfo = new ServerInfo(ipServer, Int32.Parse(port));
+        this.connectedUserManager.saveServerInfo();
+        DataModule.networkInterface.ConnectUser(
+            this.connectedUserManager.connectedUser,
+            this.connectedUserManager.serverInfo.server,
+            this.connectedUserManager.serverInfo.port
+        );
+    } 
     
     public void GetWorldDetails(string worldId) { }
     public void GetUserDetails(string userId) { }
