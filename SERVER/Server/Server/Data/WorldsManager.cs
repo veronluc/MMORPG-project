@@ -34,14 +34,14 @@ namespace Server.Data
         /// </summary>
         /// <param name="newPlayer">Instance of the new Player</param>
         /// <param name="world">Instance of the World</param>
-        public static void AddPlayerToWorld(Player newPlayer, World world)
+        public static void AddPlayerToWorld(Player newPlayer, string worldId)
         {
             // Check if the user is already in the list by looking at its ID
             onlineWorlds.ForEach(onlineWorld =>
             {
-                if (onlineWorld.id == world.id)
+                if (onlineWorld.id == worldId)
                 {
-                    WorldManager.AddPlayerToWorld(world, newPlayer);
+                    WorldManager.AddPlayerToWorld(onlineWorld, newPlayer);
                 }
             });
         }
