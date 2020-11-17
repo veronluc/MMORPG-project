@@ -44,19 +44,20 @@ public interface DataInterfaceForIHMMain
     /// </summary>
     /// <param name="ipServer">IP address of the server</param>
     /// <param name="port">Port of the server</param>
-    void ConnectSessionToServer(User user, string ipServer, string port);
+    void ConnectSessionToServer(string ipServer, string port);
 
     /// <summary>
     /// Load a local World instance to the server
     /// </summary>
     /// <param name="world">World instance</param>
-    void LoadWorld(World world);
+    void LoadWorld(ref World world);
 
     /// <summary>
     /// Join a world on the current server
     /// </summary>
+    /// <param name="player">Player instance to join the World</param>
     /// <param name="worldId">World unique identifier</param>
-    void JoinWorld(string worldId);
+    void JoinWorld(Player player, string worldId);
 
     /// <summary>
     /// Get details of a world
@@ -129,7 +130,7 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// Created world instance
     /// </returns>
-    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, Player creator, GameState gameState);
+    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState);
 
     /// <summary>
     /// Get list of online Worlds instances

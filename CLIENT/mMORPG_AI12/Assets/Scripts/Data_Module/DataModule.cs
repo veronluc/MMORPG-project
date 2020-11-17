@@ -17,8 +17,8 @@ public class DataModule : MonoBehaviour
     private void Awake()
     {
         this.dataInterfaceForIHMMain = new DataInterfaceForIHMMainImpl();
-        this.dataInterfaceForIHMGame = null;
-        this.dataInterfaceForNetwork = null;
+        this.dataInterfaceForIHMGame = new DataInterfaceForIHMGameImpl();
+        this.dataInterfaceForNetwork = new DataInterfaceForNetworkImpl();
     }
 
     public DataInterfaceForIHMMain GetInterfaceForIHMMain()

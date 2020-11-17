@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 namespace AI12_DataObjects
 {
 
-    public enum entities
+    [Serializable()]
+    public enum Entities
     {
         monster,
         player,
         all
     }
 
+    [Serializable()]
     public class EntityClass
     {
         public string name { get; set; }
@@ -23,7 +25,7 @@ namespace AI12_DataObjects
         public int baseIntelligence { get; set; }
         public int baseDefense { get; set; }
         public int basePM { get; set; }
-        public entities exclusive { get; set; }
+        public Entities exclusive { get; set; }
         public List<Skill> skills { get; set; }
 
         public EntityClass () 

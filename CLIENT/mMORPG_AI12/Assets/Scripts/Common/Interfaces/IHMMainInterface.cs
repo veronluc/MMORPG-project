@@ -30,7 +30,7 @@ public interface IHMMainInterface
     /// Displays all users
     /// </summary>
     /// <param name="users">All users</param>
-    void DisplayNewConnectedUser(List<User> users);
+    void DisplayListUser(List<User> users);
 
     /// <summary>
     /// Diplays every user's details
@@ -43,26 +43,4 @@ public interface IHMMainInterface
     /// </summary>
     /// <param name="world"></param>
     void DisplayWorldDetail(World world);
-
-    /// <summary>
-    /// Diplays a log out confirmation
-    /// </summary>
-    void IHMLogOutConfirmation();
-
-    /// <summary>
-    /// Diplays the disconnected owner and stops the game
-    /// </summary>
-    /// <param name="user">The owner of the game</param>
-    void DisplayOwnerDisconnected(User user);
-
-    /// <summary>
-    /// Diplays the disconnected user
-    /// </summary>
-    /// <param name="user">The user who is disconnected</param>
-    void DisplayUserLogOut(User user);
-
-    /// <summary>
-    /// Notify that the server has been shut down
-    /// </summary>
-    void ServerStopped();
 }

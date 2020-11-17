@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public enum GameMode
     {
         pvp,
         pve
     }
 
+    [Serializable()]
     public class World
     {
+        public string id { get; set; }
         public string name { get; set; }
         public int sizeMap { get; set; }
-        public GameMode gamemode { get; set; }
+        public GameMode gameMode { get; set; }
         public bool realDeath { get; set; }
         public int difficulty { get; set; }
         public int roundTimeSec { get; set; }
@@ -32,13 +36,33 @@ namespace AI12_DataObjects
         public bool hasMontain { get; set; }
         public bool hasSea { get; set; }
         public List<Player> players { get; set; }
-        public List<Monster> monsters { get; set; }
-        public Player creator { get; set; }
+        public List<Monster> monstersList { get; set; }
+        public User creator { get; set; }
         public GameState gameState { get; set; }
 
-        public World()
+        public World(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState)
         {
-
+            this.name = name;
+            this.sizeMap = sizeMap;
+            this.gameMode = gameMode;
+            this.realDeath = realDeath;
+            this.difficulty = difficulty;
+            this.roundTimeSec = roundTimeSec;
+            this.nbMaxPlayer = nbMaxPlayer;
+            this.nbMaxMonsters = nbMaxMonsters;
+            this.nbShops = nbShops;
+            this.hasCity = hasCity;
+            this.hasPlain = hasPlain;
+            this.hasSwamp = hasSwamp;
+            this.hasRiver = hasRiver;
+            this.hasForest = hasForest;
+            this.hasRockyPlain = hasRockyPlain;
+            this.hasMontain = hasMontain;
+            this.hasSea = hasSea;
+            this.players = players;
+            this.monstersList = monsters;
+            this.creator = creator;
+            this.gameState = gameState;
         }
     }
 }

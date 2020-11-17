@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
+    [Serializable()]
     public abstract class Entity
     {
         public string name { get; set; }
@@ -17,7 +18,7 @@ namespace AI12_DataObjects
         public int strength { get; set; }
         public int intelligence { get; set; }
         public int defense { get; set; }
-        public int PM { get; set; }
+        public int pM { get; set; }
         public Location location { get; set; }
         public EntityClass entityClass { get; set; }
 

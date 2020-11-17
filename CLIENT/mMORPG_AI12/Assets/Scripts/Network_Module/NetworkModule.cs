@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class NetworkModule : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private NetworkInterface networkInterface;
+
+    private void Awake()
     {
-        
+        this.networkInterface = new NetworkInterfaceImpl();
     }
 
-    // Update is called once per frame
-    void Update()
+    public NetworkInterface GetNetworkInterface()
     {
-        
+        return this.networkInterface;
     }
 }
