@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AI12_DataObjects;
+using System;
 
 public interface DataInterfaceForIHMMain
 {
@@ -125,12 +126,21 @@ public interface DataInterfaceForIHMMain
     Player EditPlayer(Player editedPlayer);
 
     /// <summary>
+    /// OBSOLETE Create a world locally
+    /// </summary>
+    /// <returns>
+    /// Created world instance
+    /// </returns>
+    [Obsolete("Use the method definition under")]
+    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState);
+
+    /// <summary>
     /// Create a world locally
     /// </summary>
     /// <returns>
     /// Created world instance
     /// </returns>
-    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState);
+    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator);
 
     /// <summary>
     /// Get list of online Worlds instances

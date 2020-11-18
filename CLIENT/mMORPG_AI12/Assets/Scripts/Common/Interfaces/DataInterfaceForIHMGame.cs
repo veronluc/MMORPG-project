@@ -8,9 +8,8 @@ public interface DataInterfaceForIHMGame
     /// <summary>
     /// Send a message to the chat
     /// </summary>
-    /// <param name="idWorld">Identifier of the current world instance</param>
-    /// <param name="text">Message content</param>
-    void SendMessage(string idWorld, string text);
+    /// <param name="message">Message instance</param>
+    void SendMessage(Message message);
 
     /// <summary>
     /// Make an action
