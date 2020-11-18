@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AI12_DataObjects;
+using System;
+using Action = AI12_DataObjects.Action;
 
 public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
 {
@@ -10,10 +12,15 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
         DataModule.ihmMainInterface.DisplayNewAvailableWorld(worlds);
     }
 
+    [Obsolete("Use the othe ReceiveWorld method instead")]
     public void ReceiveWorld(World world)
     {
-        // TODO pas d'arguments ? Comment on transmet le monde ?
-        //DataModule.ihmGameInterface.LaunchGame();
+        // TODO DO NOT USE
+    }
+
+    public void ReceiveWorld(User user, World world, Player player)
+    {
+        DataModule.ihmGameInterface.LaunchGame(user, world, world.gameState, player);
     }
 
     public void ReceiveListUsers(List<User> users) {
