@@ -5,7 +5,9 @@ using AI12_DataObjects;
 
 public class DataInterfaceForIHMGameImpl : DataInterfaceForIHMGame
 {
-    public void SendMessage(Message message) { }
+    public void SendMessage(Message message) {
+        DataModule.networkInterface.SendChatMessage(message);
+    }
     public void MakeAction(Action action) { }
     public User GetCurrentUser() { return null; }
     public Player GetCurrentPlayer() { return null; }
