@@ -20,11 +20,12 @@ public class DataModule : MonoBehaviour
 
     private void Awake()
     {
+        this.connectedUserManager = new ConnectedUserManager();
+        this.localUsersManager = new LocalUsersManager();
+
         this.dataInterfaceForIHMMain = new DataInterfaceForIHMMainImpl();
         this.dataInterfaceForIHMGame = new DataInterfaceForIHMGameImpl();
         this.dataInterfaceForNetwork = new DataInterfaceForNetworkImpl();
-        this.localUsersManager = new LocalUsersManager();
-        this.connectedUserManager = new ConnectedUserManager();
     }
 
     public DataInterfaceForIHMMain GetInterfaceForIHMMain()
