@@ -41,6 +41,10 @@ public class IHMMainInterfaceImpl : IHMMainInterface
             .UpdateListWorldsDisplay(worlds);
     }
 
+    /// <summary>
+    /// Update the list of users displayed in the main screen
+    /// </summary>
+    /// <param name="users">New list of users</param>
     public void DisplayListUser(List<User> users)
     {
         //Retrieves the instance of MainConnectedScreen and calls its update functions separately

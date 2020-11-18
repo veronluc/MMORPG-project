@@ -13,15 +13,5 @@ public class IHMMainModule : MonoBehaviour
     {
         ihmMainInterface = new IHMMainInterfaceImpl();
     }
-
-    //test click on button
-    public void ClickOnButton()
-    {
-        // TODO - This method is not in the conception diagrams : is this an error ?
-        /* List<string> list = this.dataInterface.getListUserWorlds();
-        foreach (string r in list){
-            Debug.Log(r);
-        }
-        */
-    }
+    
 }
