@@ -1,8 +1,10 @@
 ﻿using AI12_DataObjects;
+using Server.Network;
 using Server.Network.Messages;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-
+[Serializable]
 public class SendWorldsListPacket : Packet
 {
     List<World> worlds;
@@ -13,6 +15,7 @@ public class SendWorldsListPacket : Packet
 
     public override void Handle(Client c)
     {
+
         c.data.ReceiveListWorlds(worlds);
     }
 

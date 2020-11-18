@@ -18,12 +18,14 @@ public class NetworkInterfaceImpl : NetworkInterface
 
     public void AskServerUserList()
     {
-        throw new System.NotImplementedException();
+        UserAskUserListsPacket msg = new UserAskUserListsPacket(client.currentUser);
+        client.SendData(msg);
     }
 
     public void AskServerWorldList()
     {
-        throw new System.NotImplementedException();
+        UserAsksWorldListPacket msg = new UserAsksWorldListPacket(client.currentUser);
+        client.SendData(msg);
     }
 
     public void ConnectToWorld(Player player, string idWorld)

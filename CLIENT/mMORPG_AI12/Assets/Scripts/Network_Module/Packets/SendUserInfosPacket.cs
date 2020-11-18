@@ -9,7 +9,6 @@ using System.Collections.Generic;
 public class SendUserInfosPacket : Packet
 {
     User user;
-
     public SendUserInfosPacket(User pUser)
     {
         user = pUser;

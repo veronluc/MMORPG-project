@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class InitializationPacket : Packet
 {
     private int clientID;
+
     public InitializationPacket(int pClientId)
     {
         clientID = pClientId;

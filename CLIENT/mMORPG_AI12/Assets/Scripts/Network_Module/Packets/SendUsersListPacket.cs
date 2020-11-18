@@ -1,8 +1,11 @@
 ﻿using AI12_DataObjects;
+using Server.Network;
 using Server.Network.Messages;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
+[Serializable]
 public class SendUsersListPacket : Packet
 {
     List<User> users;

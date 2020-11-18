@@ -2,9 +2,10 @@
 using AI12_DataObjects;
 using Server.Network;
 using Server.Network.Messages;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-
+[Serializable]
 public class ConfirmationUserConnectionToWorldPacket : Packet
 {
     World world;

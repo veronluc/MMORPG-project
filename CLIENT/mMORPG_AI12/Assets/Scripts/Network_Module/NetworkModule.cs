@@ -23,4 +23,9 @@ public class NetworkModule : MonoBehaviour
     {
 
     }
+
+    private void OnApplicationQuit()
+    {
+        client.Disconnect();
+    }
 }

@@ -6,12 +6,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using UnityEngine;
 
-public class Client
+public class Client : MonoBehaviour
 {
+    private BasePacket receivedData;
     public static int dataBufferSize = 4096;
     bool isConnected = false;
-
+    
     public User currentUser { get; set; }
 
 
@@ -37,21 +40,7 @@ public class Client
         
     }
 
-    private void Update()
-    {
-        try
-        {
-        }
-        catch
-        {
 
-        }
-
-    }
-    private void OnApplicationQuit()
-    {
-        Disconnect();
-    }
     public void ConnectToServer(string ipAdress, int pPort)
     {
         ip = ipAdress;
@@ -69,7 +58,6 @@ public class Client
         socket.BeginConnect(ip, port, ConnectCallback, socket);
     }
 
-
     private void ConnectCallback(IAsyncResult _result)
     {
         socket.EndConnect(_result);
@@ -80,10 +68,9 @@ public class Client
         }
 
         stream = socket.GetStream();
-
+        receivedData = new BasePacket();
         stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
     }
-
 
     private void ReceiveCallback(IAsyncResult _result)
     {
@@ -99,17 +86,29 @@ public class Client
             byte[] _data = new byte[_byteLength];
             Array.Copy(receiveBuffer, _data, _byteLength);
 
+            receivedData.Reset(HandleData(_data));
             stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
         }
-        catch
+        catch (Exception e)
         {
+            DebugIt(e.ToString());
             Disconnect();
         }
     }
 
     private bool HandleData(byte[] _data)
     {
-        ThreadManager.ExecuteOnMainThread(() =>
+        //DebugIt("Handle data size : " + _data.Length);
+        BinaryFormatter bf = new BinaryFormatter();
+        using (MemoryStream ms = new MemoryStream())
+        {
+            ms.Write(_data, 0, _data.Length);
+            ms.Seek(0, SeekOrigin.Begin);
+            Packet res = (Packet)bf.Deserialize(ms);
+            res.Handle(this);
+        }
+        
+        /*ThreadManager.ExecuteOnMainThread(() =>
         {
             BinaryFormatter bf = new BinaryFormatter();
             bf.Binder = new CustomizedBinder();
@@ -119,11 +118,13 @@ public class Client
                 ms.Seek(0, SeekOrigin.Begin);
                 Packet obj = (Packet)bf.Deserialize(ms);
                 obj.Handle(this);
+                Console.WriteLine("Object handled");
             }
-        });
+
+        });*/
         return true;
     }
-    private void Disconnect()
+    public void Disconnect()
     {
         if (isConnected)
         {
@@ -134,6 +135,7 @@ public class Client
         stream = null;
         receiveBuffer = null;
         socket = null;
+        receivedData = null;
     }
 
 
@@ -150,17 +152,17 @@ public class Client
                     bf.Serialize(ms, _packet);
                     stream.BeginWrite(ms.ToArray(), 0, ms.ToArray().Length, null, null);
                 }
+                
             }
         }
         catch (Exception _ex)
         {
-            Console.WriteLine("Exception " + _ex);
-            //Debug.Log($"Error sending data to server via TCP: {_ex}");
+            DebugIt($"Error sending data to server via TCP: {_ex}");
         }
     }
 
     public void DebugIt(string mes)
     {
-        //Debug.Log(mes);
+        Debug.Log(mes);
     }
 }

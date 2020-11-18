@@ -5,14 +5,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 [Serializable]
-public class AskDisconnectServer : Packet
+public class UserAskUserListsPacket : Packet
 {
-    public User currentUser;
-    public AskDisconnectServer(User u)
+    User CurrentUser;
+    public UserAskUserListsPacket(User u)
     {
-        currentUser = u;
+        CurrentUser = u;
     }
-
     public override void Handle(Client c)
     {
         throw new System.NotImplementedException();
@@ -20,6 +19,6 @@ public class AskDisconnectServer : Packet
 
     public override void Handle(GameServer s)
     {
-        s.data.UserAskDisconnectFromServer(currentUser);
+        s.data.UserAskUsersList(CurrentUser);
     }
 }
