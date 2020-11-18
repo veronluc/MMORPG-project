@@ -21,7 +21,7 @@ public class UserListItemManager : MonoBehaviour
     public Image image;
     public TextMeshProUGUI userName;
     public TextMeshProUGUI realName;
-    public TextMeshProUGUI birthdate;
+    public TextMeshProUGUI birthDate;
     public GameObject characterContainer;
 
     private void Awake()
@@ -74,8 +74,8 @@ public class UserListItemManager : MonoBehaviour
         }
         isReduced = !isReduced;
     }
-
-    IEnumerator ShowHideInformation(Vector2 size, Vector3 scale, Boolean activate)
+    
+    IEnumerator ShowHideInformation(Vector2 size, Vector3 scale, Boolean isActivate)
     {
         mainSizeTarget = size;
         detailsScale = scale;
@@ -83,7 +83,7 @@ public class UserListItemManager : MonoBehaviour
         {
             yield return new WaitUntil(() => details.GetComponent<RectTransform>().localScale.x <= 0.3);
         }
-        details.SetActive(activate);
+        details.SetActive(isActivate);
     }
 
     /// <summary>
@@ -99,7 +99,7 @@ public class UserListItemManager : MonoBehaviour
 
         this.realName.text = user.firstName + " " + user.lastName;
 
-        this.birthdate.text = user.birthDate.ToString();
+        this.birthDate.text = user.birthDate.ToString();
 
         //CREATE THE LIST OF CHARACTER ITEMS
 
@@ -126,7 +126,7 @@ public class UserListItemManager : MonoBehaviour
 
         this.realName.text = "Je suis ton père";
 
-        this.birthdate.text = "22/08/1902";
+        this.birthDate.text = "22/08/1902";
 
         //CREATE THE LIST OF CHARACTER ITEMS
 

@@ -66,8 +66,8 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
             this.connectedUserManager.serverInfo.server,
             this.connectedUserManager.serverInfo.port
         );
-    } 
-    
+    }
+
     public void GetWorldDetails(string worldId) { }
     public void GetUserDetails(string userId) { }
 

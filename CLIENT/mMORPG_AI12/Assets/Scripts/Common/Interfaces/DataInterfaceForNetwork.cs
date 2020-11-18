@@ -52,10 +52,19 @@ public interface DataInterfaceForNetwork
     void ReceiveAction(Action action, Monster monster);
 
     /// <summary>
-    /// Receive a world instance
+    /// Receive a world instance in order to launch the game
     /// </summary>
     /// <param name="world">World instance</param>
     void ReceiveWorld(World world);
+
+
+    /// <summary>
+    /// Receive a world instance in order to launch the game
+    /// </summary>
+    /// <param name="user">User instance</param>
+    /// <param name="world">World instance</param>
+    /// <param name="player">Player instance</param>
+    void ReceiveWorld(User user, World world, Player player);
 
     /// <summary>
     /// Receive an user instance
