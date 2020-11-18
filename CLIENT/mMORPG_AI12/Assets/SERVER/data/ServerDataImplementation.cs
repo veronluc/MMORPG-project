@@ -78,4 +78,16 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     {
         throw new NotImplementedException();
     }
+
+    public List<User> GetUsersFromWorld(World world)
+    {
+        return WorldsManager.GetPlayersUsers(world);
+    }
+
+    public List<User> GetUsersFromWorld(String idWorld)
+    {
+        World world = WorldsManager.getWorldFromId(idWorld);
+        if (world == null) throw new Exception("World is not online");
+        return GetUsersFromWorld(world);
+    }
 }

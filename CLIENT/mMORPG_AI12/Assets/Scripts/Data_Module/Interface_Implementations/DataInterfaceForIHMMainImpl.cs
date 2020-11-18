@@ -56,7 +56,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
                     this.connectedUserManager.serverInfo.server,
                     this.connectedUserManager.serverInfo.port
                 );
-                return this.connectedUserManager.server + ":" + this.connectedUserManager.port;
+                return this.connectedUserManager.serverInfo.server + ":" + this.connectedUserManager.serverInfo.port;
             }
         }
         
