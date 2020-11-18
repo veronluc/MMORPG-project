@@ -10,8 +10,6 @@ public class ConnectedUserManager
 {
     public User connectedUser {get; set;}
     public bool isConnected {get => connectedUser != null; }
-    public string server {get; set;}
-    public int port {get; set;}
     public ServerInfo serverInfo {get; set;}
 
     public ConnectedUserManager() {
