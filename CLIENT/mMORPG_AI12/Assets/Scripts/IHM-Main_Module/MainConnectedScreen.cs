@@ -136,7 +136,7 @@ public class MainConnectedScreen : MonoBehaviour
         try
         {
             //TODO: remove during integration
-            //dataInterface.LogOutServer();
+            dataInterface.LogOut();
         }
         catch (Exception e)
         {
