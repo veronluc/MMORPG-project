@@ -40,7 +40,9 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
         DataModule.ihmMainInterface.DisplayListUsersWorlds(users, worlds);
     }
     
-    public void ReceiveMessage(Message message) { }
+    public void ReceiveMessage(Message message) {
+        DataModule.ihmGameInterface.DisplayMessage(message);
+    }
     public void ReceiveAction(Action action, Player player) { }
     public void ReceiveAction(Action action, Monster monster) { }
     
