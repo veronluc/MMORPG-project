@@ -70,7 +70,7 @@ public class WorldListItemManager : MonoBehaviour
         isReduced = !isReduced;
     }
 
-    IEnumerator ShowHideInformation(Vector2 size, Vector3 scale, Boolean activate)
+    IEnumerator ShowHideInformation(Vector2 size, Vector3 scale, Boolean isActivate)
     {
         mainSizeTarget = size;
         detailsScale = scale;
@@ -78,7 +78,7 @@ public class WorldListItemManager : MonoBehaviour
         {
             yield return new WaitUntil(() => details.GetComponent<RectTransform>().localScale.x <= 0.3);
         }
-        details.SetActive(activate);
+        details.SetActive(isActivate);
     }
 
     /// <summary>

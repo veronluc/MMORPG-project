@@ -26,7 +26,7 @@ public class MainConnectedScreen : MonoBehaviour
 
     public void Start()
     {
-
+        this.dataInterface = ihmMainModule.dataInterface;
         usersManager = GameObject.FindGameObjectWithTag("OnlineUsers");
         worldsManager = GameObject.FindGameObjectWithTag("OnlineWorlds");
         serverInformation = GameObject.FindGameObjectWithTag("InfoConnectedServer");
@@ -65,7 +65,6 @@ public class MainConnectedScreen : MonoBehaviour
         try
         {
             dataInterface.ConnectSessionToServer(ip, port);
-        
         }
         catch (Exception e)
         {
@@ -136,8 +135,7 @@ public class MainConnectedScreen : MonoBehaviour
     {
         try
         {
-            //TODO: remove during integration
-            //dataInterface.LogOutServer();
+            dataInterface.LogOut();
         }
         catch (Exception e)
         {
