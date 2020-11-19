@@ -110,5 +110,5 @@ public interface ServerDataInterfaceForNetwork
     /// List of User instances with a player connected to the world
     /// </returns>
     /// <param name="idWorld">Identifier of the World</param>
-    List<User> GetUsersFromWorld(String idWorld);
+    List<User> GetUsersFromWorld(string idWorld);
 }
