@@ -84,7 +84,7 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
         return WorldsManager.GetPlayersUsers(world);
     }
 
-    public List<User> GetUsersFromWorld(String idWorld)
+    public List<User> GetUsersFromWorld(string idWorld)
     {
         World world = WorldsManager.getWorldFromId(idWorld);
         if (world == null) throw new Exception("World is not online");
