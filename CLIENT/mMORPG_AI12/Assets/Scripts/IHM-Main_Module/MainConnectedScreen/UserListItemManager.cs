@@ -99,7 +99,7 @@ public class UserListItemManager : MonoBehaviour
 
         this.realName.text = user.firstName + " " + user.lastName;
 
-        this.birthDate.text = user.birthDate.ToString();
+        //this.birthDate.text = user.birthDate.ToString();
 
         //CREATE THE LIST OF CHARACTER ITEMS
 

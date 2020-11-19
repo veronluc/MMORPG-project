@@ -18,7 +18,11 @@ public class InitializationModule : MonoBehaviour
 
         // Dispatch interfaces
         this.ihmMainModule.dataInterface = this.dataModule.GetInterfaceForIHMMain();
+        DataModule.ihmMainInterface = this.ihmMainModule.ihmMainInterface;
         DataModule.networkInterface = this.networkModule.GetNetworkInterface();
+        DataModule.ihmGameInterface = this.ihmGameModule.ihmGameInterface;
+        this.networkModule.dataInterfaceForNetwork = this.dataModule.GetInterfaceForNetwork();
+        this.ihmGameModule.dataInterface = this.dataModule.GetInterfaceForIHMGame();
     }
 
     // Update is called once per frame

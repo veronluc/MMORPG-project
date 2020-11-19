@@ -29,7 +29,13 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
 
     public void ReceiveUser(User user)
     {
+        network.SendListUsersWorlds(user, UsersManager.GetConnectedUsers(), WorldsManager.GetOnlineWorlds());
         UsersManager.AddUser(user);
+        foreach (User u in UsersManager.GetConnectedUsers())
+        {
+            if(u.id != user.id)
+                network.SendUsersList(u, UsersManager.GetConnectedUsers());
+        }
     }
 
     public List<User> GetUsers()

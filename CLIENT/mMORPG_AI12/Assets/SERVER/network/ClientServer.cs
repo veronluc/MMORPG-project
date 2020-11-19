@@ -10,7 +10,7 @@ public class ClientServer
 {
     public int id;
     public static int dataBufferSize = 4096;
-    public TcpClient socket;
+    public TcpClient socket { get; set; }
     private BasePacket receivedData;
     private NetworkStream stream;
     private byte[] receiveBuffer;
@@ -62,6 +62,7 @@ public class ClientServer
             int _byteLength = stream.EndRead(_result);
             if (_byteLength <= 0)
             {
+                Console.WriteLine($"ReceiveCallback error. Bytelength < 0 ... Disconnect client "+id);
                 GameServer.clients[id].Disconnect();
                 return;
             }
@@ -114,6 +115,7 @@ public class ClientServer
     }
     public void Disconnect()
     {
+        Console.WriteLine("Client " + id + " disconnect");
         socket.Close();
         stream = null;
         receiveBuffer = null;
