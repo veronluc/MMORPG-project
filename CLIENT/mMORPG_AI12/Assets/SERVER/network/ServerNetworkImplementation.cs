@@ -37,9 +37,9 @@ public class ServerNetworkImplementation : MonoBehaviour
     {
         throw new NotImplementedException();
     }
-    public void SendConfirmationUserConnectionToWorld(User user, World world, bool result, string message)
+    public void SendConfirmationUserConnectionToWorld(User user, World world, Player player, bool result, string message)
     {
-        ConfirmationUserConnectionToWorldPacket msg = new ConfirmationUserConnectionToWorldPacket(world, result, message); ;
+        ConfirmationUserConnectionToWorldPacket msg = new ConfirmationUserConnectionToWorldPacket(world, user, player, result, message);
         SendPacket(user.id, msg);
     }
     public void SendStopServer(User user)

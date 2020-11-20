@@ -9,12 +9,16 @@ using System.Collections.Generic;
 public class ConfirmationUserConnectionToWorldPacket : Packet
 {
     World world;
+    User user;
+    Player player;
     bool result;
     string message;
 
-    public ConfirmationUserConnectionToWorldPacket(World pWorld, bool pRes, string pMessage)
+    public ConfirmationUserConnectionToWorldPacket(World pWorld, User pUser, Player pPlayer, bool pRes, string pMessage)
     {
         world = pWorld;
+        user = pUser;
+        player = pPlayer;
         result = pRes;
         message = pMessage;
     }
@@ -22,7 +26,7 @@ public class ConfirmationUserConnectionToWorldPacket : Packet
     {
         //TO DO 
         //c.data.confirm...
-        c.data.ReceiveWorld(world);
+        c.data.ReceiveWorld(user, world, player);
     }
 
     public override void Handle(GameServer s)
