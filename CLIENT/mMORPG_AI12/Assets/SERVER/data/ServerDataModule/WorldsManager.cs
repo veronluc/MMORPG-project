@@ -33,16 +33,20 @@ public static class WorldsManager
     /// </summary>
     /// <param name="newPlayer">Instance of the new Player</param>
     /// <param name="world">Instance of the World</param>
-    public static void AddPlayerToWorld(Player newPlayer, string worldId)
+    /// <returns></returns>
+    public static World AddPlayerToWorld(Player newPlayer, string worldId)
     {
         // Check if the user is already in the list by looking at its ID
+        World w = null;
         onlineWorlds.ForEach(onlineWorld =>
         {
             if (onlineWorld.id == worldId)
             {
                 WorldManager.AddPlayerToWorld(onlineWorld, newPlayer);
+                w = onlineWorld;
             }
         });
+        return w;
     }
 
     /// <summary>

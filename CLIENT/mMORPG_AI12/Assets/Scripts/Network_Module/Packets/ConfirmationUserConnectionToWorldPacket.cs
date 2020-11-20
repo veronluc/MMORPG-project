@@ -22,6 +22,7 @@ public class ConfirmationUserConnectionToWorldPacket : Packet
     {
         //TO DO 
         //c.data.confirm...
+        c.data.ReceiveWorld(world);
     }
 
     public override void Handle(GameServer s)

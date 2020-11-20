@@ -52,7 +52,8 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     public void ReceiveConnexionUserToWorld(Player player, string worldId)
     {
         Console.WriteLine("Recieved connexion to world id : "+worldId);
-        WorldsManager.AddPlayerToWorld(player, worldId);
+        World w = WorldsManager.AddPlayerToWorld(player, worldId);
+        network.SendConfirmationUserConnectionToWorld(player.user, w, true, "Hello");
     }
 
     public void ReceiveMessage(Message message)
