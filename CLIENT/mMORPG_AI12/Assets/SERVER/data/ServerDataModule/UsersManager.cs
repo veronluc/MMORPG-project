@@ -30,7 +30,7 @@ public static class UsersManager
     }
 
     /// <summary>
-    /// Add a User instance to the server (due to connection)
+    /// Remove a User instance to the server (due to connection)
     /// </summary>
     /// <param name="user"></param>
     public static void RemoveUser(User user)
@@ -41,6 +41,8 @@ public static class UsersManager
         if (foundUser != null)
         {
             connectedUsers.Remove(foundUser);
+            // List<World> oldWorlds = WorldsManager.RemoveWorldOwnByUser(foundUser);
+            WorldsManager.RemoveWorldOwnByUser(foundUser);
         }
         else
         {

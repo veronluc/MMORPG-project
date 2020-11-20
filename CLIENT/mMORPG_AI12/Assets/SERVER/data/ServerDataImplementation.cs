@@ -74,11 +74,19 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     }
     public void UserAskDisconnectFromWorld(User user)
     {
-        UsersManager.RemoveUser(user);
+        World world = GetWorlds().Find(w => w.players != null && w.players.Exists(u => u.user.id == user.id));
+        if (world != null)
+        {
+            world.players.RemoveAll(u => u.user.id == user.id);
+        }
     }
     public void UserAskDisconnectFromServer(User user)
     {
-        throw new NotImplementedException();
+        UsersManager.RemoveUser(user);
+        foreach(User u in UsersManager.GetConnectedUsers())
+        {
+            network.SendListUsersWorlds(u, UsersManager.GetConnectedUsers(), GetWorlds());
+        }
     }
     public void UserBrutalDisconnected(User user)
     {

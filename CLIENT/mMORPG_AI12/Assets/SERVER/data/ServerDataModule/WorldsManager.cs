@@ -59,4 +59,27 @@ public static class WorldsManager
         });
         return users;
     }
+
+    /*
+    /// <summary>
+    /// Remove the world own by an user
+    /// </summary>
+    /// <param name="user">Owner</param>
+    /// <returns>Worlds erased</returns>
+    public static List<World> RemoveWorldOwnByUser(User user)
+    {
+        List<World> oldWorlds = onlineWorlds.FindAll(w => user.id == w.creator.id);
+        onlineWorlds.RemoveAll(w => user.id == w.creator.id);
+        return oldWorlds;
+    }
+    */
+
+    /// <summary>
+    /// Remove the world own by an user
+    /// </summary>
+    /// <param name="user">Owner</param>
+    public static void RemoveWorldOwnByUser(User user)
+    {
+        onlineWorlds.RemoveAll(w => user.id == w.creator.id);
+    }
 }
