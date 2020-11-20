@@ -104,14 +104,16 @@ public class UserListItemManager : MonoBehaviour
         //CREATE THE LIST OF CHARACTER ITEMS
 
         GameObject newObj;
-
-        foreach(Player player in user.players)
+        if(user.players != null)
         {
-            // Create new instances of our prefab
-            newObj = (GameObject)Instantiate(characterListItemPrefab, characterContainer.transform);
+            foreach (Player player in user.players)
+            {
+                // Create new instances of our prefab
+                newObj = (GameObject)Instantiate(characterListItemPrefab, characterContainer.transform);
 
-            // Call a method of the new gameObject to give it the player info.
-            newObj.GetComponentInChildren<CharacterListItemManager>().SetPlayerToGameObject(player);
+                // Call a method of the new gameObject to give it the player info.
+                newObj.GetComponentInChildren<CharacterListItemManager>().SetPlayerToGameObject(player);
+            }
         }
     }
 
