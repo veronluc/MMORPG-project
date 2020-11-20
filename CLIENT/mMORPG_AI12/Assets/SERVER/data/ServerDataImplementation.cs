@@ -17,6 +17,7 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
 
         //DEBUG
         World w = new World("DefaultWorld", 10, GameMode.pvp, true, 1, 10, 2, 2, 2, true, true, true, true, false, false, false, false, new List<Player>(), new List<Monster>(), new User(), new GameState());
+        w.id = "111";
         ReceiveNewWorld(w);
         Debug.Log("Demarrage du serveur effectue");
         
