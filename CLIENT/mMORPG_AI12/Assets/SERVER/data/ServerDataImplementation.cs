@@ -14,7 +14,12 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     public void SetupServer(ServerNetworkImplementation n)
     {
         network = n;
+
+        //DEBUG
+        World w = new World("DefaultWorld", 10, GameMode.pvp, true, 1, 10, 2, 2, 2, true, true, true, true, false, false, false, false, new List<Player>(), new List<Monster>(), new User(), new GameState());
+        ReceiveNewWorld(w);
         Debug.Log("Demarrage du serveur effectue");
+        
     }
 
     public List<World> GetWorlds()
@@ -24,6 +29,7 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
 
     public void ReceiveNewWorld(World world)
     {
+        Console.WriteLine("Recieved new world");
         WorldsManager.AddWorld(world);
     }
 
@@ -45,6 +51,7 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
 
     public void ReceiveConnexionUserToWorld(Player player, string worldId)
     {
+        Console.WriteLine("Recieved connexion to world id : "+worldId);
         WorldsManager.AddPlayerToWorld(player, worldId);
     }
 
