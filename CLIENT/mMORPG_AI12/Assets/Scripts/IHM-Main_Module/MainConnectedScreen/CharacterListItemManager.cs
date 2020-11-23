@@ -64,7 +64,7 @@ public class CharacterListItemManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Used to activate the interactibility of this item (used when the player have to choose between multiple players when joining a world)
+    /// Used to activate the interactibility of this item (used when the player have to choose between mulktiple players when joining a world)
     /// </summary>
     /// <param name="functionToLaunch">The function the item will call when it will be clicked</param>
     public void ActivateChoosableItem(Action<GameObject> functionToLaunch)

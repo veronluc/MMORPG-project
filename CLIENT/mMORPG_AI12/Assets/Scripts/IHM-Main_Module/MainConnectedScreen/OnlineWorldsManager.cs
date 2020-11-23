@@ -22,9 +22,9 @@ public class OnlineWorldsManager : MonoBehaviour
 	{
 		if (playerChoicePopup == null)
 		{
-			Debug.LogError("IHMMain Module - WorldListItemManager : This script could not find the playerChoicePopup GameObject");
+			Debug.LogError("IHMMain Module - WorldListeItemManager : This script counld not find the playerChoicePopup GameObject");
 		}
-		//Populate();
+		Populate();
 	}
 
 	/// <summary>

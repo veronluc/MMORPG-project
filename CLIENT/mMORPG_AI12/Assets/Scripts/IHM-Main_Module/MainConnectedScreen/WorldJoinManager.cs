@@ -23,30 +23,18 @@ public class WorldJoinManager : MonoBehaviour
     {
         characterListItemPrefab = (GameObject)Resources.Load("CharacterListItem");
         characterGameObjectList = new List<GameObject>();
-        this.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// When the gameObject is enabled, call this method.
-    /// It get the players created by the user and draw a list on the screen
-    /// </summary>
-    private void OnEnable()
+    // Start is called before the first frame update
+    void Start()
     {
+        this.gameObject.SetActive(false);
+        //TODO
         //Récupération du current User pour afficher ses Players
-        List<Player> players = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().GetCurrentUser().players;
-        //For test purpose
-        /**players = new List<Player>();
+        List<Player> players = new List<Player>();
         players.Add(TestCreatePlayer());
-        players.Add(TestCreatePlayer("JOUEUR2"));*/
-        if (players != null)
-        {
-            SetPlayerList(players);
-        }
-        else
-        {
-            MessagePopupManager.ShowInfoMessage("You don't have any created players");
-            ClosePopup();
-        }
+        players.Add(TestCreatePlayer("JOUEUR2"));
+        SetPlayerList(players);
     }
 
     /// <summary>
@@ -76,11 +64,11 @@ public class WorldJoinManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Function called by the "CONNECT" Button on the popup Screen (player choice)
+    /// Function called by the "CONNECT" Butoon on the popup Screen (player choice)
     /// </summary>
 	public void ConnectToAWorld()
     {
-        //Call the Function useful to connect to a world
+        //Call a the Function useful to connect to a world
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>().JoinWorld(this.selectedItem.GetComponent<CharacterListItemManager>().GetPlayer(), this.worldIdToJoin);
         Debug.Log("ID WORLD : " + this.worldIdToJoin);
         Debug.Log("PLAYER NAME : " + this.selectedItem.GetComponent<CharacterListItemManager>().GetPlayer().name);
@@ -94,7 +82,7 @@ public class WorldJoinManager : MonoBehaviour
 	public void SetPlayerList(List<Player> players)
 	{
 
-		//Destroy all players on the screen
+		//Destroy all worlds on the screen
 		if (this.characterGameObjectList.Count != 0)
 		{
 			foreach (GameObject obj in this.characterGameObjectList)
@@ -126,9 +114,9 @@ public class WorldJoinManager : MonoBehaviour
 	}
 
     /// <summary>
-    /// Function called when a click is performed on one of the Character items
+    /// Function called when a click is done one one of the Character items
     /// </summary>
-    /// <param name="playerItem">The GameObject item to save (in order to use it later when clicking on the "CONNECT" button)</param>
+    /// <param name="playerItem">The GameObject item to save (in order to use it later when clicking ont he "CONNECT" button)</param>
     public void SelectPlayerItem(GameObject playerItem)
     {
         if (this.selectedItem != null)
