@@ -12,6 +12,7 @@ TagManager:
   - OnlineWorlds
   - ServerConnection
   - InfoConnectedServer
+  - PlayerChoicePopup
   layers:
   - Default
   - TransparentFX
