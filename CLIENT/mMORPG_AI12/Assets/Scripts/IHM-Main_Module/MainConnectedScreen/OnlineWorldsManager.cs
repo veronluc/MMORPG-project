@@ -24,7 +24,7 @@ public class OnlineWorldsManager : MonoBehaviour
 		{
 			Debug.LogError("IHMMain Module - WorldListeItemManager : This script counld not find the playerChoicePopup GameObject");
 		}
-		Populate();
+		//Populate();
 	}
 
 	/// <summary>
