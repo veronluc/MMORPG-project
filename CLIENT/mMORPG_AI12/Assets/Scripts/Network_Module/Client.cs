@@ -12,7 +12,7 @@ using UnityEngine;
 public class Client : MonoBehaviour
 {
     private BasePacket receivedData;
-    public static int dataBufferSize = 4096;
+    public static int dataBufferSize = 32768;
     bool isConnected = false;
     
     public User currentUser { get; set; }
@@ -104,6 +104,7 @@ public class Client : MonoBehaviour
                 BinaryFormatter bf = new BinaryFormatter();
                 using (MemoryStream ms = new MemoryStream())
                 {
+                    ms.Position = 0;
                     ms.Write(_data, 0, _data.Length);
                     ms.Seek(0, SeekOrigin.Begin);
                     Packet res = (Packet)bf.Deserialize(ms);
@@ -153,6 +154,7 @@ public class Client : MonoBehaviour
                 BinaryFormatter bf = new BinaryFormatter();
                 using (MemoryStream ms = new MemoryStream())
                 {
+                    ms.Position = 0;
                     bf.Serialize(ms, _packet);
                     stream.BeginWrite(ms.ToArray(), 0, ms.ToArray().Length, null, null);
                 }

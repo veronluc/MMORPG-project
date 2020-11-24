@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class ClientServer
 {
     public int id;
-    public static int dataBufferSize = 4096;
+    public static int dataBufferSize = 32768;
     public TcpClient socket { get; set; }
     private BasePacket receivedData;
     private NetworkStream stream;
@@ -43,8 +43,10 @@ public class ClientServer
                 BinaryFormatter bf = new BinaryFormatter();
                 using (MemoryStream ms = new MemoryStream())
                 {
+                    ms.Position = 0;
                     bf.Serialize(ms, _packet);
                     stream.BeginWrite(ms.ToArray(), 0, ms.ToArray().Length, null, null);
+                    Console.WriteLine("Sended data : " + ms.ToArray().Length);
                 }
             }
         }
@@ -88,6 +90,7 @@ public class ClientServer
             //bf.Binder = new CustomizedBinder();
             using (MemoryStream ms = new MemoryStream())
             {
+                ms.Position = 0;
                 ms.Write(_data, 0, _data.Length);
                 ms.Seek(0, SeekOrigin.Begin);
                 Packet res = (Packet)bf.Deserialize(ms);

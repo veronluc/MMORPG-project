@@ -30,6 +30,14 @@ public class NetworkInterfaceImpl : NetworkInterface
 
     public void ConnectToWorld(Player player, string idWorld)
     {
+        if (player.user == null)
+        {
+            player.user = client.currentUser;
+        }
+        else if (player.user.id == null)
+        {
+            player.user.id = client.currentUser.id;
+        }
         ConnectToWorldPacket msg = new ConnectToWorldPacket(player, idWorld);
         client.SendData(msg);
     }

@@ -39,6 +39,7 @@ public class ServerNetworkImplementation : MonoBehaviour
     }
     public void SendConfirmationUserConnectionToWorld(User user, World world, Player player, bool result, string message)
     {
+        Console.WriteLine("User dest : " + user + "; World : " + world + "; Player : " + player);
         ConfirmationUserConnectionToWorldPacket msg = new ConfirmationUserConnectionToWorldPacket(world, user, player, result, message);
         SendPacket(user.id, msg);
     }
