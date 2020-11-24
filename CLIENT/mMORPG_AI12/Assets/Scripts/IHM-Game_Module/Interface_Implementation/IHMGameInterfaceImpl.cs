@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IHMGameInterfaceImpl : IHMGameInterface
 {
@@ -11,7 +12,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// </summary>
     public void LaunchGame(User user, World world, GameState gameState, Player player)
     {
-        throw new System.NotImplementedException();
+        SceneManager.LoadScene("IHMGame");
     }
 
     /// <summary>
