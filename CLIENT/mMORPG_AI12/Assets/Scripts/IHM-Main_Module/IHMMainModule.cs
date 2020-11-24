@@ -7,19 +7,11 @@ public class IHMMainModule : MonoBehaviour
     public DataInterfaceForIHMMain dataInterface { get; set; }
 
     // Instanciated interface for the other module(s)
-    private IHMMainInterface ihmMainInterface;
+    public IHMMainInterface ihmMainInterface { get; set; }
 
     private void Awake()
     {
         ihmMainInterface = new IHMMainInterfaceImpl();
     }
-
-    //test click on button
-    public void ClickOnButton()
-    {
-        List<string> list = this.dataInterface.getListUserWorlds();
-        foreach (string r in list){
-            Debug.Log(r);
-        }
-    }
+    
 }

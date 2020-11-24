@@ -70,4 +70,8 @@
 /CLIENT/mMORPG_AI12/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /CLIENT/mMORPG_AI12/[Aa]ssets/[Ss]treamingAssets/aa/*
 
+/CLIENT/mMORPG_AI12/.idea/*
+
 .DS_Store
+/.vs
+/.idea

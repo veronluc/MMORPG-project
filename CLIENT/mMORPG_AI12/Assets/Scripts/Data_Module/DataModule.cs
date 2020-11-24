@@ -5,20 +5,27 @@ using UnityEngine;
 public class DataModule : MonoBehaviour
 {
     // Usable for inter-module communication
-    public static IHMMainInterface ihmMainInterface;
-    public static IHMGameInterface ihmGameInterface;
-    public static NetworkInterface networkInterface;
+    public static IHMMainInterface ihmMainInterface { get; set; }
+    public static IHMGameInterface ihmGameInterface { get; set; }
+    public static NetworkInterface networkInterface { get; set; }
 
     // Instanciated interface for the other module(s)
     private DataInterfaceForIHMMain dataInterfaceForIHMMain;
     private DataInterfaceForIHMGame dataInterfaceForIHMGame;
     private DataInterfaceForNetwork dataInterfaceForNetwork;
 
+    // Managers
+    public LocalUsersManager localUsersManager;
+    public ConnectedUserManager connectedUserManager;
+
     private void Awake()
     {
+        this.connectedUserManager = new ConnectedUserManager();
+        this.localUsersManager = new LocalUsersManager();
+
         this.dataInterfaceForIHMMain = new DataInterfaceForIHMMainImpl();
-        this.dataInterfaceForIHMGame = null;
-        this.dataInterfaceForNetwork = null;
+        this.dataInterfaceForIHMGame = new DataInterfaceForIHMGameImpl();
+        this.dataInterfaceForNetwork = new DataInterfaceForNetworkImpl();
     }
 
     public DataInterfaceForIHMMain GetInterfaceForIHMMain()

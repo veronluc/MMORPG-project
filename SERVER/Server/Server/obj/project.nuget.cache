@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ClugKqWiAySrFVZ+dvPStYTqRJNIVB4cuiOG8OGcaudVPDdi1vumv0D+7r2yO41/JkpKSUc62Fb1fh8/bdVOSA==",
+  "success": true,
+  "projectFilePath": "/Users/etiennerols/Desktop/UTC/AI12/Projet-AI12/SERVER/Server/Server/Server.csproj",
+  "expectedPackageFiles": [
+    "/Users/etiennerols/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.8/microsoft.aspnetcore.app.ref.3.1.8.nupkg.sha512"
+  ],
+  "logs": []
+}
