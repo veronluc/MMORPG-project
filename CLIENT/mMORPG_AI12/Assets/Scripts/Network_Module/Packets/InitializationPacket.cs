@@ -16,7 +16,7 @@ public class InitializationPacket : Packet
 
     public override void Handle(Client c)
     {
-        c.myId = clientID;
+        c.DebugIt(c.ToString());
         c.currentUser.id = clientID.ToString();
         //TO DO : Informer data (client) que connexion serveur reussie ou non
         SendUserInfosPacket msg = new SendUserInfosPacket(c.currentUser);

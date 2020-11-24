@@ -5,9 +5,9 @@ using UnityEngine;
 public class DataModule : MonoBehaviour
 {
     // Usable for inter-module communication
-    public static IHMMainInterface ihmMainInterface;
-    public static IHMGameInterface ihmGameInterface;
-    public static NetworkInterface networkInterface;
+    public static IHMMainInterface ihmMainInterface { get; set; }
+    public static IHMGameInterface ihmGameInterface { get; set; }
+    public static NetworkInterface networkInterface { get; set; }
 
     // Instanciated interface for the other module(s)
     private DataInterfaceForIHMMain dataInterfaceForIHMMain;

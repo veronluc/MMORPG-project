@@ -99,19 +99,21 @@ public class UserListItemManager : MonoBehaviour
 
         this.realName.text = user.firstName + " " + user.lastName;
 
-        this.birthDate.text = user.birthDate.ToString();
+        //this.birthDate.text = user.birthDate.ToString();
 
         //CREATE THE LIST OF CHARACTER ITEMS
 
         GameObject newObj;
-
-        foreach(Player player in user.players)
+        if(user.players != null)
         {
-            // Create new instances of our prefab
-            newObj = (GameObject)Instantiate(characterListItemPrefab, characterContainer.transform);
+            foreach (Player player in user.players)
+            {
+                // Create new instances of our prefab
+                newObj = (GameObject)Instantiate(characterListItemPrefab, characterContainer.transform);
 
-            // Call a method of the new gameObject to give it the player info.
-            newObj.GetComponentInChildren<CharacterListItemManager>().SetPlayerToGameObject(player);
+                // Call a method of the new gameObject to give it the player info.
+                newObj.GetComponentInChildren<CharacterListItemManager>().SetPlayerToGameObject(player);
+            }
         }
     }
 

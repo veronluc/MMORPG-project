@@ -7,7 +7,7 @@ public class IHMMainModule : MonoBehaviour
     public DataInterfaceForIHMMain dataInterface { get; set; }
 
     // Instanciated interface for the other module(s)
-    private IHMMainInterface ihmMainInterface;
+    public IHMMainInterface ihmMainInterface { get; set; }
 
     private void Awake()
     {

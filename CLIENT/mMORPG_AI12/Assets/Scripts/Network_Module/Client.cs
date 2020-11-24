@@ -12,7 +12,7 @@ using UnityEngine;
 public class Client : MonoBehaviour
 {
     private BasePacket receivedData;
-    public static int dataBufferSize = 4096;
+    public static int dataBufferSize = 32768;
     bool isConnected = false;
     
     public User currentUser { get; set; }
@@ -20,7 +20,6 @@ public class Client : MonoBehaviour
 
     public string ip = "127.0.0.1";
     public int port = 26950;
-    public int myId = 0;
 
     public DataInterfaceForNetwork data;
 
@@ -99,15 +98,21 @@ public class Client : MonoBehaviour
     private bool HandleData(byte[] _data)
     {
         //DebugIt("Handle data size : " + _data.Length);
-        BinaryFormatter bf = new BinaryFormatter();
-        using (MemoryStream ms = new MemoryStream())
-        {
-            ms.Write(_data, 0, _data.Length);
-            ms.Seek(0, SeekOrigin.Begin);
-            Packet res = (Packet)bf.Deserialize(ms);
-            res.Handle(this);
-        }
-        
+        //ThreadManager.ExecuteOnMainThread(() =>{
+        Dispatcher.RunOnMainThread(
+            () => {
+                BinaryFormatter bf = new BinaryFormatter();
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    ms.Position = 0;
+                    ms.Write(_data, 0, _data.Length);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    Packet res = (Packet)bf.Deserialize(ms);
+                    res.Handle(this);
+                }
+            }
+            );
+        //});
         /*ThreadManager.ExecuteOnMainThread(() =>
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -149,6 +154,7 @@ public class Client : MonoBehaviour
                 BinaryFormatter bf = new BinaryFormatter();
                 using (MemoryStream ms = new MemoryStream())
                 {
+                    ms.Position = 0;
                     bf.Serialize(ms, _packet);
                     stream.BeginWrite(ms.ToArray(), 0, ms.ToArray().Length, null, null);
                 }
