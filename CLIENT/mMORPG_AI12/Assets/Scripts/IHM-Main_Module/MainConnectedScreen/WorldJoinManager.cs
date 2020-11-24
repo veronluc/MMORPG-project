@@ -64,11 +64,11 @@ public class WorldJoinManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Function called by the "CONNECT" Butoon on the popup Screen (player choice)
+    /// Function called by the "CONNECT" Button on the popup Screen (player choice)
     /// </summary>
 	public void ConnectToAWorld()
     {
-        //Call a the Function useful to connect to a world
+        //Call the Function useful to connect to a world
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>().JoinWorld(this.selectedItem.GetComponent<CharacterListItemManager>().GetPlayer(), this.worldIdToJoin);
         Debug.Log("ID WORLD : " + this.worldIdToJoin);
         Debug.Log("PLAYER NAME : " + this.selectedItem.GetComponent<CharacterListItemManager>().GetPlayer().name);
@@ -82,7 +82,7 @@ public class WorldJoinManager : MonoBehaviour
 	public void SetPlayerList(List<Player> players)
 	{
 
-		//Destroy all worlds on the screen
+		//Destroy all players on the screen
 		if (this.characterGameObjectList.Count != 0)
 		{
 			foreach (GameObject obj in this.characterGameObjectList)
@@ -114,9 +114,9 @@ public class WorldJoinManager : MonoBehaviour
 	}
 
     /// <summary>
-    /// Function called when a click is done one one of the Character items
+    /// Function called when a click is performed on one of the Character items
     /// </summary>
-    /// <param name="playerItem">The GameObject item to save (in order to use it later when clicking ont he "CONNECT" button)</param>
+    /// <param name="playerItem">The GameObject item to save (in order to use it later when clicking on the "CONNECT" button)</param>
     public void SelectPlayerItem(GameObject playerItem)
     {
         if (this.selectedItem != null)
