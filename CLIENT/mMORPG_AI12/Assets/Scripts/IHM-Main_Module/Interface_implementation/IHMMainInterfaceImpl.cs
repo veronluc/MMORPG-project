@@ -57,7 +57,7 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     /// Give IHM Main the current logged-in user
     /// </summary>
     /// <param name="user">Current logged-in user</param>
-    public void GiveUser(User user)
+    public void giveUser(User user)
     {
         //Set the curent user attribute in the IHM Main module
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>()
@@ -70,7 +70,7 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     /// </summary>
     /// <param name="ip">Ip address of the last server connection</param>
     /// <param name="port">Port of the last server connection</param>
-    public void GiveLastConnection(String ip, String port)
+    public void giveLastConnection(String ip, String port)
     {
         //Update ip and port display 
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
