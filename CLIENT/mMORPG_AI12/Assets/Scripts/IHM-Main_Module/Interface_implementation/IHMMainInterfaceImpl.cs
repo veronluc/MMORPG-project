@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -51,15 +52,29 @@ public class IHMMainInterfaceImpl : IHMMainInterface
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
             .UpdateListUsersDisplay(users);
     }
-
-    public void DisplayUserDetail(string token)
+    
+    /// <summary>
+    /// Give IHM Main the current logged-in user
+    /// </summary>
+    /// <param name="user">Current logged-in user</param>
+    public void giveUser(User user)
     {
-        throw new System.NotImplementedException();
+        //Set the curent user attribute in the IHM Main module
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>()
+            .SetCurrentUser(user);
+
     }
 
-    public void DisplayWorldDetail(World world)
+    /// <summary>
+    /// Give IHM Main the last server connection of the logged-in user
+    /// </summary>
+    /// <param name="ip">Ip address of the last server connection</param>
+    /// <param name="port">Port of the last server connection</param>
+    public void giveLastConnection(String ip, String port)
     {
-        throw new System.NotImplementedException();
+        //Update ip and port display 
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+            .UpdateIpandPortDisplay(ip, port);
     }
 
     public void GiveLocalUser(LocalUser localUser)
