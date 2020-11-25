@@ -27,7 +27,12 @@ public class ServerNetworkImplementation : MonoBehaviour
     }
     public void SendMessageToUser(User user, Message message)
     {
-        throw new NotImplementedException();
+        if (message == null)
+            throw new ArgumentNullException("Message to send to user is null");
+        if (user == null)
+            throw new ArgumentNullException("User to send message is null");
+        SendMessage msg = new SendMessage(message);
+        this.SendPacket(user.id,msg);
     }
     public void SendActionToUser(User user, AI12_DataObjects.Action action, Player player)
     {
