@@ -20,7 +20,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
 
     public void Start()
     {
-        this.currentUser = ihmMainModule.getCurrentUser(); 
+        this.currentUser = ihmMainModule.GetCurrentUser(); 
         this.dataInterface = ihmMainModule.dataInterface;
         localWordlsManager = GameObject.FindGameObjectWithTag("LocalWorlds");
 
