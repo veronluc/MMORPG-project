@@ -37,12 +37,12 @@ public interface IHMMainInterface
     /// Give IHM Main the current logged-in user
     /// </summary>
     /// <param name="user">Current logged-in user</param>
-    void giveUser(User user);
+    void GiveUser(User user);
 
     /// <summary>
     /// Give IHM Main the last server connection of the logged-in user
     /// </summary>
     /// <param name="ip">Ip address of the last server connection</param>
     /// <param name="port">Port of the last server connection</param>
-    void giveLastConnection(String ip, String port);
+    void GiveLastConnection(String ip, String port);
 }
