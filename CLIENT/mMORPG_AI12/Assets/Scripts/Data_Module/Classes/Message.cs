@@ -1,9 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace AI12_DataObjects
 {
@@ -15,9 +10,12 @@ namespace AI12_DataObjects
         public string text { get; set; }
         public DateTime time { get; set; }
 
-        public Message()
+        public Message(World world, User creator, string text, DateTime time)
         {
-
+            this.world = world;
+            this.creator = creator;
+            this.text = text;
+            this.time = time;
         }
     }
 }

@@ -16,12 +16,13 @@ namespace AI12_DataObjects
     [Serializable()]
     public class Range
     {
+        public Range(shapes shape, int distance)
+        {
+            this.shape = shape;
+            this.distance = distance;
+        }
+
         public shapes shape { get; set; }
         public int distance { get; set; }
-
-        public Range()
-        {
-
-        }
     }
 }
