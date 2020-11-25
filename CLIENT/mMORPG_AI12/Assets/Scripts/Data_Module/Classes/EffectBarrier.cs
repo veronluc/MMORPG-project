@@ -8,6 +8,11 @@ namespace AI12_DataObjects
         public int PMrequired { get; set; }
         public bool passable { get; set; }
 
+        public EffectBarrier()
+        {
+
+        }
+
         public EffectBarrier(int PMrequired, bool passable)
         {
             this.PMrequired = PMrequired;

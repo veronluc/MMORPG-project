@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
@@ -27,6 +24,11 @@ namespace AI12_DataObjects
         public int basePM { get; set; }
         public Entities exclusive { get; set; }
         public List<Skill> skills { get; set; }
+
+        public EntityClass()
+        {
+
+        }
 
         public EntityClass (string name, int baseVitality, int baseMana, int baseStrength, int baseIntelligence, int baseDefense, int basePM, Entities exclusive, List<Skill> skills) 
         {

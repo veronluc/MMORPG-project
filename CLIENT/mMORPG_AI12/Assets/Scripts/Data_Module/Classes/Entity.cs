@@ -18,6 +18,11 @@ namespace AI12_DataObjects
         public Location location { get; set; }
         public EntityClass entityClass { get; set; }
 
+        public Entity()
+        {
+
+        }
+
         public Entity(string name, int level, int vitalityMax, int vitality, int manaMax, int mana, int strength, int intelligence, int defense, int PM, Location location, EntityClass entityClass)
         {
             this.name = name;

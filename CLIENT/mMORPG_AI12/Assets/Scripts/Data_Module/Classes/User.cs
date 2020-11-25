@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
@@ -18,6 +15,11 @@ namespace AI12_DataObjects
 		public string imageRef { get; set; }
 		public List<Player> players { get; set; }
 		public List<World> worlds { get; set; }
+
+        public User()
+        {
+
+        }
 
         public User(string login, string id, string password, string firstName, string lastName, DateTime birthDate, string imageRef, List<Player> players, List<World> worlds)
         {

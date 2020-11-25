@@ -12,6 +12,11 @@ namespace AI12_DataObjects
         public string server { get; set; }
         public int port { get; set; }
 
+        public ServerInfo()
+        {
+
+        }
+
         public ServerInfo(string server, int port) {
             this.server = server;
             this.port = port;

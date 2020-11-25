@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 namespace AI12_DataObjects
 {
@@ -39,6 +35,11 @@ namespace AI12_DataObjects
         public List<Monster> monstersList { get; set; }
         public User creator { get; set; }
         public GameState gameState { get; set; }
+
+        public World()
+        {
+
+        }
 
         public World(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator)
         {

@@ -7,6 +7,11 @@ namespace AI12_DataObjects
     {
         public Skill skill { get; set; }
 
+        public ActionSkill()
+        {
+
+        }
+
         public ActionSkill(Player player, World world, Skill skill)
         {
             this.player = player;

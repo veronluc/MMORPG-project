@@ -14,6 +14,11 @@ namespace AI12_DataObjects
         public int costMana { get; set; }
         public Range range { get; set; }
 
+        public Skill()
+        {
+
+        }
+
         public Skill(int zone, int damagePoints, int costMana, Range range)
         {
             this.zone = zone;

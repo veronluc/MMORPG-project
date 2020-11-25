@@ -142,7 +142,7 @@ public class WorldListItemManager : MonoBehaviour
         player.strength = 25;
         player.intelligence = 20;
         player.defense = 12;
-        player.pM = 8;
+        player.PM = 8;
         player.location = new Location(0, 0);
         player.entityClass = new EntityClass();
         player.entityClass.name = "GUERRIER";
