@@ -6,6 +6,9 @@ namespace AI12_DataObjects {
     [Serializable()]
     public class Action
     {
-        // TODO - Implement
+        public Player player { get; set; }
+        public World world { get; set; }
+
+        //TODO Finir
     }
 }
