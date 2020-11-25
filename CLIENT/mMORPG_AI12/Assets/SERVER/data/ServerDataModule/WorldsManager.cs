@@ -33,16 +33,20 @@ public static class WorldsManager
     /// </summary>
     /// <param name="newPlayer">Instance of the new Player</param>
     /// <param name="world">Instance of the World</param>
-    public static void AddPlayerToWorld(Player newPlayer, string worldId)
+    /// <returns></returns>
+    public static World AddPlayerToWorld(Player newPlayer, string worldId)
     {
         // Check if the user is already in the list by looking at its ID
+        World w = null;
         onlineWorlds.ForEach(onlineWorld =>
         {
             if (onlineWorld.id == worldId)
             {
                 WorldManager.AddPlayerToWorld(onlineWorld, newPlayer);
+                w = onlineWorld;
             }
         });
+        return w;
     }
 
     /// <summary>
@@ -58,5 +62,28 @@ public static class WorldsManager
             users.Add(player.user);
         });
         return users;
+    }
+
+    /*
+    /// <summary>
+    /// Remove the world own by an user
+    /// </summary>
+    /// <param name="user">Owner</param>
+    /// <returns>Worlds erased</returns>
+    public static List<World> RemoveWorldOwnByUser(User user)
+    {
+        List<World> oldWorlds = onlineWorlds.FindAll(w => user.id == w.creator.id);
+        onlineWorlds.RemoveAll(w => user.id == w.creator.id);
+        return oldWorlds;
+    }
+    */
+
+    /// <summary>
+    /// Remove the world own by an user
+    /// </summary>
+    /// <param name="user">Owner</param>
+    public static void RemoveWorldOwnByUser(User user)
+    {
+        onlineWorlds.RemoveAll(w => user.id == w.creator.id);
     }
 }

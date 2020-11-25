@@ -68,6 +68,7 @@ public class MainConnectedScreen : MonoBehaviour
         }
         catch (Exception e)
         {
+            Debug.Log("Exception : " + e);
             // handle server connexion errors
         }
 
@@ -124,6 +125,7 @@ public class MainConnectedScreen : MonoBehaviour
         }
         catch (Exception e)
         {
+            Debug.Log("Exception : " + e);
             // handle join world errors
         }
     }
@@ -139,6 +141,7 @@ public class MainConnectedScreen : MonoBehaviour
         }
         catch (Exception e)
         {
+            Debug.Log("Exception : " + e);
             // handle logout errors
         }
 

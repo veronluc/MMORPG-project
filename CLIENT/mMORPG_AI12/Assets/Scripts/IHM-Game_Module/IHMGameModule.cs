@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class IHMGameModule : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Usable for inter-module communication
+    public DataInterfaceForIHMGame dataInterface { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    // Instanciated interface for the other module(s)
+    public IHMGameInterface ihmGameInterface { get; set; }
+
+    private void Awake()
     {
-        
+        ihmGameInterface = new IHMGameInterfaceImpl();
     }
 }

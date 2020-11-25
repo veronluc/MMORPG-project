@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{A2A4358C-E1D7-4534-9835-CEFBA5CA8143}|Default">
+  <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server/Network/GameServer.cs">
+    <Files>
+      <File FileName="Server/Interfaces/DataInterfaceForNetwork.cs" Line="1" Column="1" />
+      <File FileName="Server/Interfaces/NetworkInterface.cs" />
+      <File FileName="Server/Data/DataImplementation.cs" />
+      <File FileName="Server/Data/UsersManager.cs" Line="22" Column="1" />
+      <File FileName="Server/Data/WorldManager.cs" />
+      <File FileName="Server/Data/WorldsManager.cs" />
+      <File FileName="Server/Program.cs" Line="17" Column="26" />
+      <File FileName="Server/Network/GameServer.cs" Line="35" Column="6" />
+      <File FileName="Server/NetworkImplementation.cs" Line="1" Column="1" />
+      <File FileName="Server/Network/ThreadManager.cs" Line="1" Column="1" />
+      <File FileName="../../CLIENT/mMORPG_AI12/Assets/Scripts/IHM-Main_Module/MainConnectedScreen/ServerConnectionManager.cs" Line="55" Column="91" />
+      <File FileName="../../CLIENT/mMORPG_AI12/Assets/Scripts/IHM-Main_Module/Interface_implementation/IHMMainInterfaceImpl.cs" Line="1" Column="1" />
+      <File FileName="../../CLIENT/mMORPG_AI12/Assets/Scripts/IHM-Main_Module/IHMMainModule.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Server" expanded="True">
+            <Node name="Server" expanded="True">
+              <Node name="Data" expanded="True" />
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="GameServer.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Debugger.DebugSourceFolders />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

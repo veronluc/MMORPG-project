@@ -35,6 +35,7 @@ public class GameServer : MonoBehaviour
     }
     private void TCPConnectCallback(IAsyncResult _result)
     {
+        Console.WriteLine("TCPConnectCallBack - socket client 1 : " + clients[1].socket);
         TcpClient _client = tcpListener.EndAcceptTcpClient(_result);
         tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
         Console.WriteLine($"Incoming connection from {_client.Client.RemoteEndPoint}...");
@@ -43,12 +44,13 @@ public class GameServer : MonoBehaviour
         {
             if (clients[i].socket == null)
             {
+                Debug.Log("Client " + i + " is null");
                 clients[i].Connect(_client);
-
                 SendInitialisation(clients[i].id);
                 //Debug("Ok");
 
                 Console.WriteLine("Sended Initialization to client id : " + clients[i].id);
+                Console.WriteLine("socket client 1 : "+ clients[i].socket);
                 return;
             }
         }
