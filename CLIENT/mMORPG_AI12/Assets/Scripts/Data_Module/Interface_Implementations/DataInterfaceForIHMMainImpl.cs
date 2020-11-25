@@ -35,11 +35,20 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         return new World(name, sizeMap, gameMode, realDeath, difficulty, roundTimeSec, nbMaxPlayer, nbMaxMonsters, nbShops, hasCity, hasPlain, hasSwamp, hasRiver, hasForest, hasRockyPlain, hasMontain, hasSea, creator);
     }
 
+    public void DeleteWorld(World world)
+    {
+        //TODO supprimer le world en local
+    }
+
+    public void UpdateWorld(World world)
+    {
+        //TODO mettre à jour le world en local
+    }
+
     public void JoinWorld(Player player, string worldId)
     {
         DataModule.networkInterface.ConnectToWorld(player, worldId);
     }
-
 
     public void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
     public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
@@ -126,10 +135,6 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     public List<Player> ListPlayers() { return null; }
     public void DeletePlayer(Player player) { }
     public Player EditPlayer(Player editedPlayer) { return null; }
-
-
-    
-
 
     public void GetWorlds() { }
 }

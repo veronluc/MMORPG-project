@@ -7,6 +7,13 @@ using Action = AI12_DataObjects.Action;
 
 public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
 {
+    private DataModule dataModule;
+
+    public DataInterfaceForNetworkImpl()
+    {
+        this.dataModule = GameObject.FindGameObjectWithTag("DataModule").GetComponent<DataModule>();
+    }
+
     public void ReceiveListWorlds(List<World> worlds)
     {
         DataModule.ihmMainInterface.DisplayNewAvailableWorld(worlds);
@@ -16,6 +23,16 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
     public void ReceiveWorld(World world)
     {
         // TODO DO NOT USE
+    }
+
+    public User GetUser()
+    {
+        return dataModule.connectedUserManager.connectedUser;
+    }
+
+    public void setUserId(string userId)
+    {
+        dataModule.connectedUserManager.connectedUser.id = userId;
     }
 
     public void ReceiveWorld(User user, World world, Player player)

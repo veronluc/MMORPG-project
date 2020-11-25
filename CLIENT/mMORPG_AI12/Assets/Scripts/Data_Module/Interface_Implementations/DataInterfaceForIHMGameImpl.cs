@@ -9,13 +9,9 @@ public class DataInterfaceForIHMGameImpl : DataInterfaceForIHMGame
     {
     }
 
-<<<<<<< HEAD
     public void SendMessage(Message message) {
         DataModule.networkInterface.SendChatMessage(message);
     }
-=======
-    public void SendMessage(Message message) { }
->>>>>>> data-processing-develop-classes-refactor
 
     public void MakeAction(Action action) {
         DataModule.networkInterface.SendAction(action.player, action);

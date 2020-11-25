@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using AI12_DataObjects;
+﻿using AI12_DataObjects;
 
 public interface DataInterfaceForIHMGame
 {

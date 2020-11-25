@@ -5,8 +5,8 @@ namespace AI12_DataObjects
     [Serializable()]
     public class Message
     {
-        public World world { get; set; }
-        public User creator { get; set; }
+        public string worldId { get; set; }
+        public string creatorId { get; set; }
         public string text { get; set; }
         public DateTime time { get; set; }
 
@@ -15,10 +15,10 @@ namespace AI12_DataObjects
 
         }
 
-        public Message(World world, User creator, string text, DateTime time)
+        public Message(string world, string creator, string text, DateTime time)
         {
-            this.world = world;
-            this.creator = creator;
+            this.worldId = world;
+            this.creatorId = creator;
             this.text = text;
             this.time = time;
         }
