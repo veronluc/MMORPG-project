@@ -81,6 +81,11 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         DataModule.networkInterface.DisconnectUserFromServer();
     }
 
+    public void LogOutServer()
+    {
+        DataModule.networkInterface.DisconnectUserFromServer();
+    }
+
     public void SaveWorld(World world) {
         try
         {
