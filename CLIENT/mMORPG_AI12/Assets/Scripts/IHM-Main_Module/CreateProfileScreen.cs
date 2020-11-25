@@ -20,7 +20,7 @@ public class CreateProfileScreen : MonoBehaviour
     }
 
     /// <summary>
-    /// Create an user locally and control input
+    /// Create a user locally and control input
     /// </summary>
     /// <param name="login">Login identifier</param>
     /// <param name="password">Password</param>
