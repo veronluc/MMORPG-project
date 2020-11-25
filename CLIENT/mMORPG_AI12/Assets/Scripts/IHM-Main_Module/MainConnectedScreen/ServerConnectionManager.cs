@@ -6,7 +6,7 @@ public class ServerConnectionManager : MonoBehaviour
 {
 
     private string serverIp;
-    public string serverPort;
+    private string serverPort;
 
     private void Awake()
     {
