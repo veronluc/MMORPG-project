@@ -5,8 +5,16 @@ using AI12_DataObjects;
 
 public class DataInterfaceForIHMGameImpl : DataInterfaceForIHMGame
 {
+    public DataInterfaceForIHMGameImpl()
+    {
+    }
+
     public void SendMessage(Message message) { }
-    public void MakeAction(Action action) { }
+
+    public void MakeAction(Action action) {
+        DataModule.networkInterface.SendAction(action.player, action);
+    }
+
     public User GetCurrentUser() { return null; }
     public Player GetCurrentPlayer() { return null; }
     public World GetCurrentWorld() { return null; }
