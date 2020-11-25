@@ -2,7 +2,7 @@
 using AI12_DataObjects;
 using UnityEngine;
 
-public class CreateProfileScreen
+public class CreateProfileScreen : MonoBehaviour
 {
     // Properties
     private IHMMainModule ihmMainModule;
