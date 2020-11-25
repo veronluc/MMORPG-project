@@ -14,38 +14,27 @@ public class LocalAuthenticationManager : MonoBehaviour
         this.password = "";
     }
 
-    /// <summary>
-    /// Set the login
-    /// Called by a Unity Component when the user fill in the "LOGIN" field
-    /// </summary>
-    /// <param name="login"></param>
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     public void SetLogin(string login)
     {
         this.login = login;
     }
 
-    /// <summary>
-    /// Set the password
-    /// Called by a Unity Component when the user fill in the "PASSWORD" field
-    /// </summary>
-    /// <param name="password"></param>
     public void SetPassword(string password)
     {
         this.password = password;
     }
 
-
-    /// <summary>
-    /// Called when the user click on the "LOG IN" button
-    /// </summary>
     public void ClickOnLogIn()
     {
         Debug.Log(this.login);
         Debug.Log(this.password);
         //Call the AuthenticationScreen (script) function to discuss with other modules
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<AuthenticationScreen>().UserLogIn(login,password);
-
-        //For test purpose
-        //ScreensManager.ShowMainConnectedScreen();
     }
 }
