@@ -7,10 +7,10 @@ using UnityEngine;
 public class ManageMyWorldsScreen : MonoBehaviour
 {
     // Properties
-    private User currentUser;
+    private User currentUser; 
     private IHMMainModule ihmMainModule;
     private DataInterfaceForIHMMain dataInterface;
-    private GameObject localWorldsManager;
+    private GameObject localWordlsManager; 
 
     public void Awake()
     {
@@ -20,9 +20,9 @@ public class ManageMyWorldsScreen : MonoBehaviour
 
     public void Start()
     {
-        this.currentUser = ihmMainModule.GetCurrentUser();
+        this.currentUser = ihmMainModule.getCurrentUser(); 
         this.dataInterface = ihmMainModule.dataInterface;
-        localWorldsManager = GameObject.FindGameObjectWithTag("LocalWorlds");
+        localWordlsManager = GameObject.FindGameObjectWithTag("LocalWorlds");
 
         UpdateListWorldsDisplay();
     }
@@ -34,9 +34,10 @@ public class ManageMyWorldsScreen : MonoBehaviour
     public void UpdateListWorldsDisplay()
     {
         //TODO : DATA need to update their User object to add a List<wolrd> worlds 
-        //localWorldsManager.GetComponent<UserWorldsManager>().SetUserWorldsList(this.currentUser.worlds);
+        //TODO : IMH MAIN Need to creat IHM and component LocalWorlds Manager
+        //localWordlsManager.GetComponent<LocalWorldsManager>().SetWorldList(this.currentUser.worlds);
     }
-
+    
     /// <summary>
     /// Create a local world
     /// </summary>
@@ -57,9 +58,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
     /// <param name="hasRockyPlain"></param>
     /// <param name="hasMontain"></param>
     /// <param name="hasSea"></param>
-    public void CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty,
-        int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp,
-        bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea)
+    public void createWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea)
     {
         try
         {
@@ -85,14 +84,13 @@ public class ManageMyWorldsScreen : MonoBehaviour
             // handle world creation errors
         }
     }
-
+    
     /// <summary>
     /// request to load a local world on server and join this world 
     /// </summary>
     /// <param name="player"></param>
     /// <param name="idWorld"></param>
-    public void LoadWorld(Player player, string idWorld)
-    {
+    public void LoadWorld(Player player, string idWorld) {
         try
         {
             if (player != null && idWorld != null)
@@ -102,9 +100,9 @@ public class ManageMyWorldsScreen : MonoBehaviour
             }
             else
             {
-                MessagePopupManager.ShowErrorMessage(
-                    "Le monde ou le personnage selectionné n'ont pas été trouvé, veuillez réessayer");
+                MessagePopupManager.ShowErrorMessage("Le monde ou le personnage selectionné n'ont pas été trouvé, veillez réesayer");
             }
+
         }
         catch (Exception e)
         {
@@ -114,10 +112,10 @@ public class ManageMyWorldsScreen : MonoBehaviour
     }
 
     /// <summary>
-    /// update a local world settings
+    /// update a world local world settings
     /// </summary>
     /// <param name="updatedWorld"></param>
-    public void UpdateWorld(World updatedWorld)
+    public void updateWorld(World updatedWorld)
     {
         try
         {
@@ -128,8 +126,9 @@ public class ManageMyWorldsScreen : MonoBehaviour
             }
             else
             {
-                MessagePopupManager.ShowErrorMessage("Le monde modifié n'a pas été trouvé,  veuillez réessayer");
+                MessagePopupManager.ShowErrorMessage("Le monde modifié n'a pas été trouvé,  veillez réesayer");
             }
+
         }
         catch (Exception e)
         {
@@ -142,7 +141,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
     /// delete a local world 
     /// </summary>
     /// <param name="deletedWorld"></param>
-    public void DeleteWorld(World deletedWorld)
+    public void deleteWorld(World deletedWorld)
     {
         try
         {
@@ -154,7 +153,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
             }
             else
             {
-                MessagePopupManager.ShowErrorMessage("Le monde supprimé n'a pas été trouvé,  veuillez réessayer");
+                MessagePopupManager.ShowErrorMessage("Le monde supprimé n'a pas été trouvé,  veillez réesayer");
             }
         }
         catch (Exception e)

@@ -10,7 +10,7 @@ public class IHMMainModule : MonoBehaviour
     // Instanciated interface for the other module(s)
     public IHMMainInterface ihmMainInterface { get; set; }
     
-    // Intern variable needed in all IHMMAIN module 
+    // Intern variable need in all IHMMAIN module 
     private User currentUser = new User();
 
     private void Awake()
@@ -22,7 +22,7 @@ public class IHMMainModule : MonoBehaviour
     /// getter for currentUser
     /// </summary>
     /// <returns></returns>
-    public User GetCurrentUser()
+    public User getCurrentUser()
     {
         return currentUser;
     }
@@ -31,7 +31,7 @@ public class IHMMainModule : MonoBehaviour
     /// setter for currentUser 
     /// </summary>
     /// <param name="user"></param>
-    public void SetCurrentUser(User user)
+    public void setCurrentUser(User user)
     {
         this.currentUser = user; 
     }
