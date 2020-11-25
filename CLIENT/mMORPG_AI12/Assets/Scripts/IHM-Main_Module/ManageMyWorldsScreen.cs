@@ -100,7 +100,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
             }
             else
             {
-                MessagePopupManager.ShowErrorMessage("Le monde ou le personnage selectionné n'ont pas été trouvé, veillez réesayer");
+                MessagePopupManager.ShowErrorMessage("Le monde ou le personnage selectionné n'ont pas été trouvé, veuillez réessayer");
             }
 
         }
@@ -112,7 +112,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
     }
 
     /// <summary>
-    /// update a world local world settings
+    /// update a local world settings
     /// </summary>
     /// <param name="updatedWorld"></param>
     public void updateWorld(World updatedWorld)
@@ -126,7 +126,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
             }
             else
             {
-                MessagePopupManager.ShowErrorMessage("Le monde modifié n'a pas été trouvé,  veillez réesayer");
+                MessagePopupManager.ShowErrorMessage("Le monde modifié n'a pas été trouvé,  veuillez réessayer");
             }
 
         }
@@ -153,7 +153,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
             }
             else
             {
-                MessagePopupManager.ShowErrorMessage("Le monde supprimé n'a pas été trouvé,  veillez réesayer");
+                MessagePopupManager.ShowErrorMessage("Le monde supprimé n'a pas été trouvé,  veuillez réessayer");
             }
         }
         catch (Exception e)
