@@ -18,10 +18,8 @@ public class SendUsersAndWorlds : Packet
 
     public override void Handle(Client c)
     {
-        c.DebugIt("Starting receive users and worlds");
         c.data.ReceiveListUsers(users);
         c.data.ReceiveListWorlds(worlds);
-        c.DebugIt("Ending receive users and worlds");
     }
 
     public override void Handle(GameServer s)

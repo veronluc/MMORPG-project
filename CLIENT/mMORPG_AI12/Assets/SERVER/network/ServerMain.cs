@@ -9,7 +9,7 @@ public class ServerMain : MonoBehaviour
     private static bool isRunning = false;
     private void Start()
     {
-        Debug.Log("Starting program...");
+        Console.WriteLine("Starting program...");
         isRunning = true;
 
         Thread mainThread = new Thread(new ThreadStart(MainThread));
@@ -20,7 +20,7 @@ public class ServerMain : MonoBehaviour
     }
     private static void MainThread()
     {
-        Debug.Log($"Main thread started. Running at {Constants.TICKS_PER_SEC} ticks per second.");
+        Console.WriteLine($"Main thread started. Running at {Constants.TICKS_PER_SEC} ticks per second.");
         DateTime _nextLoop = DateTime.Now;
 
         while (isRunning)

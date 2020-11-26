@@ -79,6 +79,7 @@ public class Client : MonoBehaviour
             if (_byteLength <= 0)
             {
                 Disconnect();
+                data.DisconnectServerError();
                 return;
             }
 
@@ -90,7 +91,7 @@ public class Client : MonoBehaviour
         }
         catch (Exception e)
         {
-            DebugIt(e.ToString());
+            data.DisconnectServerError();
             Disconnect();
         }
     }
@@ -135,7 +136,7 @@ public class Client : MonoBehaviour
         {
             isConnected = false;
             socket.Close();
-            //Debug.Log("Disconnected from server.");
+            Debug.Log("Disconnected from server.");
         }
         stream = null;
         receiveBuffer = null;
@@ -169,6 +170,6 @@ public class Client : MonoBehaviour
 
     public void DebugIt(string mes)
     {
-        Debug.Log(mes);
+        Debug.Log(mes.ToString());
     }
 }

@@ -25,7 +25,6 @@ public class ThreadManager : MonoBehaviour
 
         lock (executeOnMainThread)
         {
-            Debug.Log("Executing Action in Lock");
             executeOnMainThread.Add(_action);
             actionToExecuteOnMainThread = true;
         }
