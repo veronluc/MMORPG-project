@@ -31,11 +31,13 @@ public class ServerNetworkImplementation : MonoBehaviour
     }
     public void SendActionToUser(User user, AI12_DataObjects.Action action, Player player)
     {
-        throw new NotImplementedException();
+        SendActionPlayerToClient msg = new SendActionPlayerToClient(player, action);
+        SendPacket(user.id, msg);
     }
     public void SendActionToUser(User user, AI12_DataObjects.Action action, Monster monster)
     {
-        throw new NotImplementedException();
+        SendActionMonsterToClient msg = new SendActionMonsterToClient(monster, action);
+        SendPacket(user.id, msg);
     }
     public void SendConfirmationUserConnectionToWorld(User user, World world, Player player, bool result, string message)
     {
