@@ -76,7 +76,8 @@ public class NetworkInterfaceImpl : NetworkInterface
 
     public void SendAction(Player player, Action action)
     {
-        throw new System.NotImplementedException();
+        SendActionToServerPacket msg = new SendActionToServerPacket(action, client.currentUser);
+        client.SendData(msg);
     }
 
     public void SendChatMessage(Message message)
