@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -33,14 +34,15 @@ public interface IHMMainInterface
     void DisplayListUser(List<User> users);
 
     /// <summary>
-    /// Diplays every user's details
+    /// Give IHM Main the current logged-in user
     /// </summary>
-    /// <param name="token">The user's token</param>
-    void DisplayUserDetail(string token);
+    /// <param name="user">Current logged-in user</param>
+    void GiveUser(User user);
 
     /// <summary>
-    /// Displays every information about the world specified in parameter
+    /// Give IHM Main the last server connection of the logged-in user
     /// </summary>
-    /// <param name="world"></param>
-    void DisplayWorldDetail(World world);
+    /// <param name="ip">Ip address of the last server connection</param>
+    /// <param name="port">Port of the last server connection</param>
+    void GiveLastConnection(String ip, String port);
 }
