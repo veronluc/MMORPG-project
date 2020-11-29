@@ -7,11 +7,6 @@ namespace AI12_DataObjects
     {
         public int PM { get; set; }
 
-        public ActionRest()
-        {
-
-        }
-
         public ActionRest(Player player, World world, int pm)
         {
             this.player = player;

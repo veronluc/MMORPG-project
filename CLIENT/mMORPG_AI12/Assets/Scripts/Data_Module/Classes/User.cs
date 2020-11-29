@@ -16,11 +16,6 @@ namespace AI12_DataObjects
 		public List<Player> players { get; set; }
 		public List<World> worlds { get; set; }
 
-        public User()
-        {
-
-        }
-
         public User(string login, string id, string password, string firstName, string lastName, DateTime birthDate, string imageRef, List<Player> players, List<World> worlds)
         {
             this.login = login;

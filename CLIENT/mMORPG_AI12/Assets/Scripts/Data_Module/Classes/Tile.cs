@@ -12,11 +12,6 @@ namespace AI12_DataObjects {
         public List<Entities> entities { get; set; }
         public List<TileEffect> effects { get; set; }
 
-        public Tile()
-        {
-
-        }
-
         public Tile(string name, Location location, string sprite, List<Entities> entities, List<TileEffect> effects)
         {
             this.name = name;

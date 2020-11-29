@@ -36,11 +36,6 @@ namespace AI12_DataObjects
         public User creator { get; set; }
         public GameState gameState { get; set; }
 
-        public World()
-        {
-
-        }
-
         public World(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator)
         {
             this.name = name;

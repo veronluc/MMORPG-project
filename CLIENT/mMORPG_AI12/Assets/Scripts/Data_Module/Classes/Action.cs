@@ -6,10 +6,5 @@ namespace AI12_DataObjects {
     {
         public Player player { get; set; }
         public World world { get; set; }
-
-        public Action ()
-        {
-
-        }
     }
 }

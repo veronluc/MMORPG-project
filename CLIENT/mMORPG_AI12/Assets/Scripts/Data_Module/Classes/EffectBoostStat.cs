@@ -9,11 +9,6 @@ namespace AI12_DataObjects
         public int boostIntelligence { get; set; }
         public int boostDefense { get; set; }
 
-        public EffectBoostStat()
-        {
-
-        }
-
         public EffectBoostStat(int boostStrength, int boostIntelligence, int boostDefense)
         {
             this.boostStrength = boostStrength;

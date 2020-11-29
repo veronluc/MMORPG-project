@@ -9,11 +9,6 @@ namespace AI12_DataObjects
         public int rateRegenMana { get; set; }
         public int goldCost { get; set; }
 
-        public EffectRegen()
-        {
-
-        }
-
         public EffectRegen(int rateRegenVitality, int rateRegenMana, int goldCost)
         {
             this.rateRegenVitality = rateRegenVitality;

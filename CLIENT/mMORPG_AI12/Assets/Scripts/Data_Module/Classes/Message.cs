@@ -10,11 +10,6 @@ namespace AI12_DataObjects
         public string text { get; set; }
         public DateTime time { get; set; }
 
-        public Message()
-        {
-
-        }
-
         public Message(string world, string creator, string text, DateTime time)
         {
             this.worldId = world;
