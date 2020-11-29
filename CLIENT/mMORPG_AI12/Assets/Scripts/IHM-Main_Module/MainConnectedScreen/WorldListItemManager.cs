@@ -130,7 +130,10 @@ public class WorldListItemManager : MonoBehaviour
     private Player TestCreatePlayer()
     {
         // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
-        Player player = new Player();
+        //TODO change this constructor
+        
+        Player player = new Player("JOUEUR 1", 0, 100, 100, 100, 100, 25, 20, 12, 8, new Location(0,0), new EntityClass("todo", 0, 0, 0, 0, 0, 0, Entities.all, new List<Skill>()), 0, 0, new User("",""));
+        /*
         player.gold = 0;
         player.xp = 0;
         player.name = "JOUEUR1";
@@ -171,6 +174,8 @@ public class WorldListItemManager : MonoBehaviour
         user.players = new List<Player>();
         user.players.Add(player);
         player.user = user;
+
+        */
         return player;
     }
 }

@@ -28,5 +28,20 @@ namespace AI12_DataObjects
             this.players = players;
             this.worlds = worlds;
         }
+
+        public User(string login, string password, string firstName, string lastName, DateTime birthDate)
+        {
+            this.login = login;
+            this.password = password;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.birthDate = birthDate;
+        }
+
+        public User(string login, string password)
+        {
+            this.login = login;
+            this.password = password;
+        }
     }
 }

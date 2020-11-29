@@ -15,12 +15,8 @@ public class LocalUsersManager
     {
         // TODO Get local users from local storage
         // For the moment, we hardcode the local users
-        User alex = new User();
-        alex.login = "alex";
-        alex.password = "alex123";
-        User celia = new User();
-        celia.login = "celia";
-        celia.password = "celia123";
+        User alex = new User("alex", "alex123");
+        User celia = new User("celia", "celia123");
         this.usersStorage = new List<User>{alex, celia};
     }
 

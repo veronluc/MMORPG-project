@@ -16,11 +16,10 @@ public class ClientWrapper : MonoBehaviour
 
 
 
-        User u = new User();
-        u.firstName = "Theo";
-        u.lastName = "Duc";
-        Player p = new Player();
-        Player p2 = new Player();
+        User u = new User("Theo", "Duc");
+        //TODO change these constructors
+        //Player p = new Player();
+        //Player p2 = new Player();
         client.currentUser = u;
     }
     void Start()
