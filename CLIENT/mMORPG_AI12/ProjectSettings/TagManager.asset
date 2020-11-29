@@ -13,6 +13,8 @@ TagManager:
   - ServerConnection
   - InfoConnectedServer
   - PlayerChoicePopup
+  - UserWorldsContainer
+  - EditWorldContainer
   layers:
   - Default
   - TransparentFX
