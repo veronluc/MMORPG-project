@@ -27,12 +27,12 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
 
     public User GetUser()
     {
-        return dataModule.connectedUserManager.connectedUser;
+        return dataModule.connectedUserManager.connectedUser.user;
     }
 
     public void setUserId(string userId)
     {
-        dataModule.connectedUserManager.connectedUser.id = userId;
+        dataModule.connectedUserManager.connectedUser.user.id = userId;
     }
 
     public void ReceiveWorld(User user, World world, Player player)

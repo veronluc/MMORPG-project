@@ -121,7 +121,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
                 FileStream file = File.Open(path, FileMode.Open);
                 World data = (World)bf.Deserialize(file);
                 file.Close();
-                if (connectedUserManager.isConnected && data.creator.id.Equals(connectedUserManager.connectedUser.id))
+                if (connectedUserManager.isConnected && data.creator.id.Equals(connectedUserManager.connectedUser.user.id))
                     return data;
                 return null;
             }
