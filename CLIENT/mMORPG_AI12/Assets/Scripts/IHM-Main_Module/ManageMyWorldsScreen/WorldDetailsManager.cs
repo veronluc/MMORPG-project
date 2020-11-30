@@ -1,4 +1,5 @@
-﻿using AI12_DataObjects;
+﻿using System.Collections.Generic;
+using AI12_DataObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +13,9 @@ public class WorldDetailsManager : MonoBehaviour
     public GameObject deleteButton; // Button to delete an existing world
 
     public TMP_InputField nameInput;
-    public GameObject sizeInput;
-    public GameObject gameTypeModeInput;
-    public GameObject difficultyInput;
+    public TMP_Dropdown sizeInput;
+    public TMP_Dropdown gameTypeModeInput;
+    public TMP_Dropdown difficultyInput;
     public TMP_InputField timeInput;
     public GameObject realDeathInput;
     public TMP_InputField nbPlayersInput;
@@ -81,6 +82,9 @@ public class WorldDetailsManager : MonoBehaviour
 
         this.world = worldToDisplay;
         this.nameInput.text = worldToDisplay.name;
+        this.sizeInput.value = worldToDisplay.sizeMap;
+        this.gameTypeModeInput.value = worldToDisplay.gameMode == GameMode.pve ? 0 : 1;
+        this.difficultyInput.value = worldToDisplay.difficulty;
         this.timeInput.text = worldToDisplay.roundTimeSec.ToString();
         this.nbPlayersInput.text = worldToDisplay.nbMaxPlayer.ToString();
         this.nbMonstersInput.text = worldToDisplay.nbMaxMonsters.ToString();
@@ -127,6 +131,33 @@ public class WorldDetailsManager : MonoBehaviour
     public void SetName(string name)
     {
         this.world.name = name;
+    }
+
+    /// <summary>
+    /// Set the size of the world
+    /// </summary>
+    /// <param name="size">The dropdown list index representing the new size of the world</param>
+    public void SetMapSize(int size)
+    {
+        this.world.sizeMap = size;
+    }
+
+    /// <summary>
+    /// Set the game mode type for the world (pve or pvp)
+    /// </summary>
+    /// <param name="type">The dropdown list index representing the new game mode type of the world</param>
+    public void SetType(int type)
+    {
+        this.world.gameMode = type == 0 ? GameMode.pve : GameMode.pvp;
+    }
+
+    /// <summary>
+    /// Set the difficulty of the world
+    /// </summary>
+    /// <param name="difficulty">The dropdown list index representing the new difficulty of the world</param>
+    public void SetDifficulty(int difficulty)
+    {
+        this.world.difficulty = difficulty;
     }
 
     /// <summary>
