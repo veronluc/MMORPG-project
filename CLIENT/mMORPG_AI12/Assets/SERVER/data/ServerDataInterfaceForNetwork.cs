@@ -21,13 +21,13 @@ public interface ServerDataInterfaceForNetwork
     /// Get next Player on the game
     /// </summary>
     /// <param name="world">World instance</param>
-    void ReceiveNewAction(World world);
+    Entity ReceiveNewAction(World world);
 
     /// <summary>
     /// An action is performed on a client
     /// </summary>
     /// <param name="action">Action instance</param>
-    void ReceiveNewAction(AI12_DataObjects.Action action);
+    GameState ReceiveNewAction(AI12_DataObjects.Action action);
 
     /// <summary>
     /// A new World is created on a client

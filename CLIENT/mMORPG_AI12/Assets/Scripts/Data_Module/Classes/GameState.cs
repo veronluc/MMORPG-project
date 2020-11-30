@@ -21,5 +21,20 @@ namespace AI12_DataObjects
             this.turns = turns;
             this.map = map;
         }
+
+        public Entity nextPlayerEntity()
+        {
+            return turns[nextIndex()];
+        }
+
+        public int nextIndex()
+        {
+            return (this.index + 1) % turns.Count;
+        }
+
+        public void incrementIndex()
+        {
+            this.index = nextIndex();
+        }
     }
 }
