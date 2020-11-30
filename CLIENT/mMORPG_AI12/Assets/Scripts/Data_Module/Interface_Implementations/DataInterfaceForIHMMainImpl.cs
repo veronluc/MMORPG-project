@@ -96,7 +96,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
             this.localUsersManager.Save();
         }
     }
-    /*
+    
     public World RestoreWorld(string name) {
         try
         {
@@ -119,7 +119,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
             throw e;
         }
     }
-    */
+    
     public Player CreatePlayer(EntityClass entityClass, string name) { return null; }
     public List<Player> ListPlayers() { return null; }
     public void DeletePlayer(Player player) { }
