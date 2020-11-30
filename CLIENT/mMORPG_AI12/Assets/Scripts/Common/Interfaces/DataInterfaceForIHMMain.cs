@@ -75,7 +75,13 @@ public interface DataInterfaceForIHMMain
     /// <summary>
     /// Log out the current user and end the session
     /// </summary>
+    [Obsolete("Use LogOutServer")]
     void LogOut();
+
+    /// <summary>
+    /// Log out the current user and end the session
+    /// </summary>
+    void LogOutServer();
 
     /// <summary>
     /// Save locally a world instance
