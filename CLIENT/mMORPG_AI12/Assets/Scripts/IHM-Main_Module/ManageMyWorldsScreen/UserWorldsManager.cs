@@ -71,8 +71,12 @@ public class UserWorldsManager : MonoBehaviour
     /// </summary>
     public void OnClickCreateNewWorld()
     {
-        // TODO : send default world and add gameobject in the list ?
-        worldDetailsContainer.GetComponent<WorldDetailsManager>().CreateNewWorld();
+        World defaultNewWorld = new World("New World", 0, GameMode.pve, false, 0, 30, 1, 50, 0, false, false, false,
+            false, false, false, false, false, null, null, null, null);
+
+        // Add a new object in the user worlds list
+        AddUserWorld(defaultNewWorld);
+        worldDetailsContainer.GetComponent<WorldDetailsManager>().CreateNewWorld(defaultNewWorld);
     }
 
     /// <summary>
