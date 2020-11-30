@@ -8,29 +8,33 @@ public class WorldDetailsManager : MonoBehaviour
 {
     private World world; // The new default world created or the world to modify
 
+    // Buttons
     public GameObject saveButton; // Button to save modifications on an existing world
     public GameObject createButton; // Button to ask for the creation of a new world
     public GameObject deleteButton; // Button to delete an existing world
 
-    public TMP_InputField nameInput;
+    // Dropdown lists
     public TMP_Dropdown sizeInput;
     public TMP_Dropdown gameTypeModeInput;
     public TMP_Dropdown difficultyInput;
+    public TMP_Dropdown realDeathInput;
+
+    // Input fields
+    public TMP_InputField nameInput;
     public TMP_InputField timeInput;
-    public GameObject realDeathInput;
     public TMP_InputField nbPlayersInput;
     public TMP_InputField nbMonstersInput;
     public TMP_InputField nbShopsInput;
 
-    // TODO : Add gameobjects
-    private bool hasCity;
-    private bool hasPlain;
-    private bool hasSwamp;
-    private bool hasRiver;
-    private bool hasForest;
-    private bool hasRockyPlain;
-    private bool hasMountain;
-    private bool hasSea;
+    // Toggles
+    public Toggle hasCityToggle;
+    public Toggle hasPlainToggle;
+    public Toggle hasSwampToggle;
+    public Toggle hasRiverToggle;
+    public Toggle hasForestToggle;
+    public Toggle hasRockyPlainToggle;
+    public Toggle hasMountainToggle;
+    public Toggle hasSeaToggle;
 
     private void Awake()
     {
@@ -80,16 +84,33 @@ public class WorldDetailsManager : MonoBehaviour
             this.saveButton.SetActive(true);
         }
 
-        this.world = worldToDisplay;
-        this.nameInput.text = worldToDisplay.name;
+        this.world = worldToDisplay; // Save the current world
+
+        // Initiate the current values on the dropdown lists (default or previous ones)
         this.sizeInput.value = worldToDisplay.sizeMap;
         this.gameTypeModeInput.value = worldToDisplay.gameMode == GameMode.pve ? 0 : 1;
         this.difficultyInput.value = worldToDisplay.difficulty;
+        this.realDeathInput.value = worldToDisplay.realDeath ? 0 : 1;
+
+        // Initiate the current values on the input fields (default or previous ones)
+        this.nameInput.text = worldToDisplay.name;
         this.timeInput.text = worldToDisplay.roundTimeSec.ToString();
         this.nbPlayersInput.text = worldToDisplay.nbMaxPlayer.ToString();
         this.nbMonstersInput.text = worldToDisplay.nbMaxMonsters.ToString();
         this.nbShopsInput.text = worldToDisplay.nbShops.ToString();
+
+        // Initiate the current values on the toggle elements (default or previous ones)
+        this.hasCityToggle.isOn = worldToDisplay.hasCity;
+        this.hasPlainToggle.isOn = worldToDisplay.hasPlain;
+        this.hasSwampToggle.isOn = worldToDisplay.hasSwamp;
+        this.hasRiverToggle.isOn = worldToDisplay.hasRiver;
+        this.hasForestToggle.isOn = worldToDisplay.hasForest;
+        this.hasRockyPlainToggle.isOn = worldToDisplay.hasRockyPlain;
+        this.hasMountainToggle.isOn = worldToDisplay.hasMontain;
+        this.hasSeaToggle.isOn = worldToDisplay.hasSea;
     }
+
+    // ON CLICKS METHODS --------------------------------------------------------------------------
 
     /// <summary>
     /// Called when the user clicks on the "DELETE" button
@@ -170,6 +191,17 @@ public class WorldDetailsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Set the permanent death rule for the world
+    /// </summary>
+    /// <param name="realDeath">The dropdown list index representing if permanent death is activate for the world</param>
+    public void SetRealDeath(int realDeath)
+    {
+        Debug.Log(realDeath);
+        // If the index is 0, the user selected a real death rule
+        this.world.realDeath = realDeath == 0;
+    }
+
+    /// <summary>
     /// Set the maximum number of players for the world
     /// </summary>
     /// <param name="maxPlayers">The new max number of players</param>
@@ -194,5 +226,77 @@ public class WorldDetailsManager : MonoBehaviour
     public void SetNbShops(string nbShops)
     {
         this.world.nbShops = int.Parse(nbShops);
+    }
+
+    /// <summary>
+    /// Set the use of city tiles for the map of the world
+    /// </summary>
+    /// <param name="hasCity">Boolean to indicate if the world's map can contain city tiles</param>
+    public void SetHasCity(bool hasCity)
+    {
+        this.world.hasCity = hasCity;
+    }
+
+    /// <summary>
+    /// Set the use of plain tiles for the map of the world
+    /// </summary>
+    /// <param name="hasPlain">Boolean to indicate if the world's map can contain plain tiles</param>
+    public void SetHasPlain(bool hasPlain)
+    {
+        this.world.hasPlain = hasPlain;
+    }
+
+    /// <summary>
+    /// Set the use of swamp tiles for the map of the world
+    /// </summary>
+    /// <param name="hasSwamp">Boolean to indicate if the world's map can contain swamp tiles</param>
+    public void SetHasSwamp(bool hasSwamp)
+    {
+        this.world.hasSwamp = hasSwamp;
+    }
+
+    /// <summary>
+    /// Set the use of river tiles for the map of the world
+    /// </summary>
+    /// <param name="hasRiver">Boolean to indicate if the world's map can contain river tiles</param>
+    public void SetHasRiver(bool hasRiver)
+    {
+        this.world.hasRiver = hasRiver;
+    }
+
+    /// <summary>
+    /// Set the use of forest tiles for the map of the world
+    /// </summary>
+    /// <param name="hasForest">Boolean to indicate if the world's map can contain forest tiles</param>
+    public void SetHasForest(bool hasForest)
+    {
+        this.world.hasForest = hasForest;
+    }
+
+    /// <summary>
+    /// Set the use of rocky plain tiles for the map of the world
+    /// </summary>
+    /// <param name="hasRockyPlain">Boolean to indicate if the world's map can contain rocky plain tiles</param>
+    public void SetHasRockyPlain(bool hasRockyPlain)
+    {
+        this.world.hasRockyPlain = hasRockyPlain;
+    }
+
+    /// <summary>
+    /// Set the use of mountain tiles for the map of the world
+    /// </summary>
+    /// <param name="hasMountain">Boolean to indicate if the world's map can contain mountain tiles</param>
+    public void SetHasMountain(bool hasMountain)
+    {
+        this.world.hasMontain = hasMountain;
+    }
+
+    /// <summary>
+    /// Set the use of sea tiles for the map of the world
+    /// </summary>
+    /// <param name="hasSea">Boolean to indicate if the world's map can contain sea tiles</param>
+    public void SetHasSea(bool hasSea)
+    {
+        this.world.hasSea = hasSea;
     }
 }
