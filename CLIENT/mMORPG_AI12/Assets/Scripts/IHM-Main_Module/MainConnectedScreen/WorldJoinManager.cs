@@ -23,18 +23,30 @@ public class WorldJoinManager : MonoBehaviour
     {
         characterListItemPrefab = (GameObject)Resources.Load("CharacterListItem");
         characterGameObjectList = new List<GameObject>();
+        this.gameObject.SetActive(false);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// When the gameObject is enabled, call this method.
+    /// It get the players created by the user and draw a list on the screen
+    /// </summary>
+    private void OnEnable()
     {
-        this.gameObject.SetActive(false);
-        //TODO
         //Récupération du current User pour afficher ses Players
-        List<Player> players = new List<Player>();
+        List<Player> players = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().GetCurrentUser().players;
+        //For test purpose
+        /**players = new List<Player>();
         players.Add(TestCreatePlayer());
-        players.Add(TestCreatePlayer("JOUEUR2"));
-        SetPlayerList(players);
+        players.Add(TestCreatePlayer("JOUEUR2"));*/
+        if (players != null)
+        {
+            SetPlayerList(players);
+        }
+        else
+        {
+            MessagePopupManager.ShowInfoMessage("You don't have any created players");
+            ClosePopup();
+        }
     }
 
     /// <summary>
