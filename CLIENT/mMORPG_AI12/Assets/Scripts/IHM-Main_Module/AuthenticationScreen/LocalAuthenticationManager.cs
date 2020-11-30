@@ -44,5 +44,8 @@ public class LocalAuthenticationManager : MonoBehaviour
         Debug.Log(this.password);
         //Call the AuthenticationScreen (script) function to discuss with other modules
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<AuthenticationScreen>().UserLogIn(login,password);
+
+        //For test purpose
+        //ScreensManager.ShowMainConnectedScreen();
     }
 }
