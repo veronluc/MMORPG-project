@@ -90,7 +90,7 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// World instance
     /// </returns>
-    World RestoreWorld(string name);
+    // World RestoreWorld(string name);
 
     /// <summary>
     /// Create a player profile locally
