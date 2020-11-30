@@ -28,7 +28,7 @@ public class UserWorldItemManager : MonoBehaviour
         this.worldType.text = world.gameMode.ToString().ToUpper();
 
         this.detailsButton.onClick.AddListener(() =>
-            worldDetailsManager.SetWorldDetails(world));
+            worldDetailsManager.ModifyWorld(world));
     }
 
     /// <summary>
@@ -48,6 +48,6 @@ public class UserWorldItemManager : MonoBehaviour
         this.worldType.text = world.gameMode.ToString().ToUpper();
 
         this.detailsButton.onClick.AddListener(() =>
-            worldDetailsManager.SetWorldDetails(world));
+            worldDetailsManager.ModifyWorld(world));
     }
 }
