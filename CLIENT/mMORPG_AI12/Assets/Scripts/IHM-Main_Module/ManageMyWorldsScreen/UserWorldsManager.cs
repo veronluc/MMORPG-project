@@ -71,6 +71,7 @@ public class UserWorldsManager : MonoBehaviour
     /// </summary>
     public void OnClickCreateNewWorld()
     {
+        // TODO : send default world and add gameobject in the list ?
         worldDetailsContainer.GetComponent<WorldDetailsManager>().CreateNewWorld();
     }
 
@@ -79,7 +80,7 @@ public class UserWorldsManager : MonoBehaviour
     /// </summary>
     public void OnClickBackButton()
     {
-        // TODO : change screen for manageMyWorldsScreen
+        // TODO : change screen for Main Connected Screen
     }
 
     /// <summary>
