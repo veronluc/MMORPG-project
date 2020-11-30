@@ -71,7 +71,7 @@ public class UserWorldsManager : MonoBehaviour
     /// </summary>
     public void OnClickCreateNewWorld()
     {
-        World defaultNewWorld = new World("New World", 0, GameMode.pve, false, 0, 30, 1, 50, 0, false, false, false,
+        World defaultNewWorld = new World("New World", 0, GameMode.pve, true, 0, 30, 1, 50, 0, false, false, false,
             false, false, false, false, false, null, null, null, null);
 
         // Add a new object in the user worlds list
