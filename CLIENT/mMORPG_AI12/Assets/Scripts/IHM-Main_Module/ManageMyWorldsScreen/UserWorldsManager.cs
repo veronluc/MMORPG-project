@@ -12,7 +12,6 @@ public class UserWorldsManager : MonoBehaviour
     public Button backButton;
 
     private List<GameObject> userWorldsGameObjectList;
-    // TODO : get the 2 buttons back and create new world (+ add function to create new world with default values)
 
     private void Awake()
     {
