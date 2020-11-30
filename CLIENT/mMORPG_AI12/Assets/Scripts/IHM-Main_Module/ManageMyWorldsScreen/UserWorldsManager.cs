@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using AI12_DataObjects;
+using UnityEngine.UI;
 
 public class UserWorldsManager : MonoBehaviour
 {
     private GameObject userWorldsListItemPrefab;
     public GameObject userWorldsContainer;
+    public GameObject worldDetailsContainer;
+    public Button createNewWorldButton;
+    public Button backButton;
+
     private List<GameObject> userWorldsGameObjectList;
+    // TODO : get the 2 buttons back and create new world (+ add function to create new world with default values)
 
     private void Awake()
     {
@@ -23,7 +29,7 @@ public class UserWorldsManager : MonoBehaviour
     /// Delete the actual user worlds list and add a new one
     /// </summary>
     /// <param name="userWorlds">List of worlds that belongs to the user</param>
-    public void SetUserList(List<World> userWorlds)
+    public void SetUserWorldsList(List<World> userWorlds)
     {
         // Destroy all worlds on the screen
         if (this.userWorldsGameObjectList.Count != 0)
@@ -56,9 +62,26 @@ public class UserWorldsManager : MonoBehaviour
         this.userWorldsGameObjectList.Add(newObj);
 
         // Add the world to the gameObject to show its info. on the screen
-        newObj.GetComponent<UserWorldItemManager>().SetWorldInfoToGameObject(world);
+        newObj.GetComponent<UserWorldItemManager>()
+            .SetWorldInfoToGameObject(world, worldDetailsContainer.GetComponent<WorldDetailsManager>());
     }
-    
+
+    /// <summary>
+    /// Called when the user clicks on the "NEW WORLD" button
+    /// </summary>
+    public void OnClickCreateNewWorld()
+    {
+        worldDetailsContainer.GetComponent<WorldDetailsManager>().CreateNewWorld();
+    }
+
+    /// <summary>
+    /// Called when the user clicks on the "BACK" button
+    /// </summary>
+    public void OnClickBackButton()
+    {
+        // TODO : change screen for manageMyWorldsScreen
+    }
+
     /// <summary>
     /// Only for Test purpose
     /// </summary>
@@ -68,7 +91,8 @@ public class UserWorldsManager : MonoBehaviour
 
         if (this.userWorldsGameObjectList.Count != 0)
         {
-            foreach (GameObject obj in this.userWorldsGameObjectList){
+            foreach (GameObject obj in this.userWorldsGameObjectList)
+            {
                 Destroy(obj);
             }
         }
@@ -76,14 +100,14 @@ public class UserWorldsManager : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             // Create new instances of our prefab until we've created as many as we specified
-            newObj = (GameObject)Instantiate(userWorldsListItemPrefab, userWorldsContainer.transform);
+            newObj = (GameObject) Instantiate(userWorldsListItemPrefab, userWorldsContainer.transform);
 
             //Add this new GameObject in the list to delete it later if needed
             this.userWorldsGameObjectList.Add(newObj);
 
             // Randomize the color of our image
-            newObj.GetComponentInChildren<UserWorldItemManager>().SetRandomInfoToGameObject();
+            newObj.GetComponentInChildren<UserWorldItemManager>()
+                .SetRandomInfoToGameObject(worldDetailsContainer.GetComponent<WorldDetailsManager>());
         }
-
     }
 }
