@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UserWorldItemManager : MonoBehaviour
 {
+    private List<string> sizeLabels = new List<string>() {"SMALL", "MEDIUM", "LARGE"};
     public TextMeshProUGUI worldName;
     public TextMeshProUGUI worldSize;
     public TextMeshProUGUI worldType;
@@ -23,7 +24,7 @@ public class UserWorldItemManager : MonoBehaviour
     {
         this.worldName.text = world.name;
 
-        this.worldSize.text = world.sizeMap.ToString();
+        this.worldSize.text = sizeLabels[world.sizeMap]; // Retrieve the label corresponding to the index number given
 
         this.worldType.text = world.gameMode.ToString().ToUpper();
 
@@ -43,7 +44,7 @@ public class UserWorldItemManager : MonoBehaviour
 
         this.worldName.text = world.name;
 
-        this.worldSize.text = world.sizeMap.ToString();
+        this.worldSize.text = sizeLabels[world.sizeMap];
 
         this.worldType.text = world.gameMode.ToString().ToUpper();
 
