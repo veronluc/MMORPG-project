@@ -5,24 +5,21 @@ using UnityEngine.UI;
 
 public class WorldDetailsManager : MonoBehaviour
 {
-    private string name;
+    private World world; // The new default world created or the world to modify
+
+    public GameObject saveButton; // Button to save modifications on an existing world
+    public GameObject createButton; // Button to ask for the creation of a new world
+    public GameObject deleteButton; // Button to delete an existing world
+
     public TMP_InputField nameInput;
-    private int size;
     public GameObject sizeInput;
-    private GameMode gameTypeMode;
     public GameObject gameTypeModeInput;
-    private int difficulty;
     public GameObject difficultyInput;
-    private int roundTimeSec;
-    public GameObject timeInput;
-    private bool realDeath;
+    public TMP_InputField timeInput;
     public GameObject realDeathInput;
-    private int nbMaxPlayers;
-    public GameObject nbPlayersInput;
-    private int nbMaxMonsters;
-    public GameObject nbMonstersInput;
-    private int nbShops;
-    public GameObject nbShopsInput;
+    public TMP_InputField nbPlayersInput;
+    public TMP_InputField nbMonstersInput;
+    public TMP_InputField nbShopsInput;
 
     // TODO : Add gameobjects
     private bool hasCity;
@@ -37,63 +34,57 @@ public class WorldDetailsManager : MonoBehaviour
     private void Awake()
     {
         this.gameObject.SetActive(false);
-        this.name = "";
-        this.size = 0;
-        this.gameTypeMode = GameMode.pvp;
-        this.difficulty = 0;
-        this.roundTimeSec = 0;
-        this.realDeath = false;
-        this.nbMaxPlayers = 0;
-        this.nbMaxMonsters = 0;
-        this.nbShops = 0;
-        this.hasCity = false;
-        this.hasPlain = false;
-        this.hasSwamp = false;
-        this.hasRiver = false;
-        this.hasForest = false;
-        this.hasRockyPlain = false;
-        this.hasMountain = false;
-        this.hasSea = false;
     }
 
     /// <summary>
-    /// Display a new default world
+    /// Ask to display a new default world
     /// </summary>
-    public void CreateNewWorld()
+    /// <param name="defaultWorld">The default world created that has to be displayed</param>
+    public void CreateNewWorld(World defaultWorld)
     {
-        // TODO : add new gameobject in UserWorldsManager ?
-        // TODO : create default world values
-        // TODO : call setWorldDetails with the default world created
+        SetWorldDetails(defaultWorld, true);
+    }
+
+    /// <summary>
+    /// Ask to display an existing world
+    /// </summary>
+    /// <param name="worldToModify">The existing world that has to be displayed</param>
+    public void ModifyWorld(World worldToModify)
+    {
+        SetWorldDetails(worldToModify, false);
     }
 
     /// <summary>
     /// Active the gameobject and set all the values to display the world information
     /// </summary>
     /// <param name="world">The world that contains information to display in the screen</param>
-    public void SetWorldDetails(World world)
+    /// <param name="isNewWorld">Boolean to display appropriate action buttons regarding if it is a world creation or modification</param>
+    public void SetWorldDetails(World worldToDisplay, bool isNewWorld)
     {
         // Active the container that will display the world information
         this.gameObject.SetActive(true);
-        SetName(world.name);
-    }
 
-    /// <summary>
-    /// Set the name of the world and the name input value to display
-    /// </summary>
-    /// <param name="name">The name of the world</param>
-    public void SetName(string name)
-    {
-        this.name = name;
-        this.nameInput.text = name;
-    }
+        // If this is a creation only create action is available
+        if (isNewWorld)
+        {
+            this.createButton.SetActive(true);
+            this.deleteButton.SetActive(false);
+            this.saveButton.SetActive(false);
+        }
+        // Else if it is an existing world, the user can delete it or save modifications
+        else
+        {
+            this.createButton.SetActive(false);
+            this.deleteButton.SetActive(true);
+            this.saveButton.SetActive(true);
+        }
 
-    /// <summary>
-    /// Handle the change of the name input value
-    /// </summary>
-    /// <param name="name">New entered name to save</param>
-    public void HandleChangeName(string name)
-    {
-        this.name = name;
+        this.world = worldToDisplay;
+        this.nameInput.text = worldToDisplay.name;
+        this.timeInput.text = worldToDisplay.roundTimeSec.ToString();
+        this.nbPlayersInput.text = worldToDisplay.nbMaxPlayer.ToString();
+        this.nbMonstersInput.text = worldToDisplay.nbMaxMonsters.ToString();
+        this.nbShopsInput.text = worldToDisplay.nbShops.ToString();
     }
 
     /// <summary>
@@ -101,18 +92,76 @@ public class WorldDetailsManager : MonoBehaviour
     /// </summary>
     public void OnClickDeleteWorld()
     {
-        // TODO
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
+            .DeleteWorld(world);
     }
 
-
     /// <summary>
-    /// Called when the user clicks on the "CREATE" button
+    /// Called when the user clicks on the "SAVE" button
     /// </summary>
     public void OnClickSaveWorld()
     {
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
-            .CreateWorld(name, size, gameTypeMode, realDeath, difficulty, roundTimeSec, nbMaxPlayers, nbMaxMonsters,
-                nbShops, hasCity, hasPlain, hasSwamp, hasRiver, hasForest, hasRockyPlain, hasMountain, hasSea);
+            .UpdateWorld(world);
     }
-    
+
+    /// <summary>
+    /// Called when the user clicks on the "CREATE" button
+    /// </summary>
+    public void OnClickCreateWorld()
+    {
+        Debug.Log(world);
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
+            .CreateWorld(world.name, world.sizeMap, world.gameMode, world.realDeath, world.difficulty,
+                world.roundTimeSec, world.nbMaxPlayer, world.nbMaxMonsters,
+                world.nbShops, world.hasCity, world.hasPlain, world.hasSwamp, world.hasRiver, world.hasForest,
+                world.hasRockyPlain, world.hasMontain, world.hasSea);
+    }
+
+    // SETTERS -----------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Set the name of the world
+    /// </summary>
+    /// <param name="name">The new name of the world</param>
+    public void SetName(string name)
+    {
+        this.world.name = name;
+    }
+
+    /// <summary>
+    /// Set the round time of the world
+    /// </summary>
+    /// <param name="roundTime">The new round time in seconds</param>
+    public void SetRoundTime(string roundTime)
+    {
+        this.world.roundTimeSec = int.Parse(roundTime);
+    }
+
+    /// <summary>
+    /// Set the maximum number of players for the world
+    /// </summary>
+    /// <param name="maxPlayers">The new max number of players</param>
+    public void SetMaxPlayers(string maxPlayers)
+    {
+        this.world.nbMaxPlayer = int.Parse(maxPlayers);
+    }
+
+    /// <summary>
+    /// Set the maximum number of monsters for the world
+    /// </summary>
+    /// <param name="maxMonsters">The new max number of monsters</param>
+    public void SetMaxMonsters(string maxMonsters)
+    {
+        this.world.nbMaxMonsters = int.Parse(maxMonsters);
+    }
+
+    /// <summary>
+    /// Set the number of shops for the world
+    /// </summary>
+    /// <param name="nbShops">The new number of shops</param>
+    public void SetNbShops(string nbShops)
+    {
+        this.world.nbShops = int.Parse(nbShops);
+    }
 }
