@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AI12_DataObjects
 {
@@ -19,9 +15,10 @@ namespace AI12_DataObjects
         public shapes shape { get; set; }
         public int distance { get; set; }
 
-        public Range()
+        public Range(shapes shape, int distance)
         {
-
+            this.shape = shape;
+            this.distance = distance;
         }
     }
 }

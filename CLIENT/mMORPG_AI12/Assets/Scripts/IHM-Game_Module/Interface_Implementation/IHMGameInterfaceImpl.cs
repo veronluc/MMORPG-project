@@ -27,7 +27,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <summary>
     /// Update the display of the user. It will ask to Data module the new position of each entities and their caracteristics (life point, mana point...)
     /// </summary>
-    public void UpdateDisplay()
+    public void UpdateDisplay(GameState gameState)
     {
         throw new System.NotImplementedException();
     }

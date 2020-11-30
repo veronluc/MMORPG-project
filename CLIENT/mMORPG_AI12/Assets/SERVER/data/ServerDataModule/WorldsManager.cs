@@ -56,12 +56,29 @@ public static class WorldsManager
     /// <returns></returns>
     public static List<User> GetPlayersUsers(World world)
     {
+
         List<User> users = new List<User>();
-        world.players.ForEach(player =>
+        if (world.players != null)
         {
-            users.Add(player.user);
-        });
+            world.players.ForEach(player =>
+            {
+                users.Add(player.user);
+            });
+        }
         return users;
+        
+    }
+
+    public static World getWorldFromId(string idWorld)
+    {
+        foreach(World world in onlineWorlds)
+        {
+            if (world.id == idWorld)
+            {
+                return world;
+            }
+        }
+        return null;
     }
 
     /*
