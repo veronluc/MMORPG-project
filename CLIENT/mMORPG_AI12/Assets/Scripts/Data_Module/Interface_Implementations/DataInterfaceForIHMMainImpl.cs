@@ -58,10 +58,11 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 
         // Check if user connexion was successful
         if (this.connectedUserManager.isConnected) {
+            DataModule.ihmMainInterface.GiveLocalUser(this.connectedUserManager.connectedUser);
             // Check if server ip is known
             if (this.connectedUserManager.serverInfo != null) {
                 DataModule.networkInterface.ConnectUser(
-                    this.connectedUserManager.connectedUser,
+                    this.connectedUserManager.connectedUser.user,
                     this.connectedUserManager.serverInfo.server,
                     this.connectedUserManager.serverInfo.port
                 );
@@ -75,9 +76,9 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     
     public void ConnectSessionToServer(string ipServer, string port) {
         this.connectedUserManager.serverInfo = new ServerInfo(ipServer, Int32.Parse(port));
-        this.connectedUserManager.SaveServerInfo();
+        this.localUsersManager.Save();
         DataModule.networkInterface.ConnectUser(
-            this.connectedUserManager.connectedUser,
+            this.connectedUserManager.connectedUser.user,
             this.connectedUserManager.serverInfo.server,
             this.connectedUserManager.serverInfo.port
         );
@@ -90,26 +91,26 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         DataModule.networkInterface.DisconnectUserFromServer();
     }
 
-    public void SaveWorld(World world) {
-        try
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            string path = Application.persistentDataPath + "/" + world.id + ".dat";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            FileStream file = File.Create(path);
-            bf.Serialize(file, world);
-            file.Close();
-            Debug.Log("Saved !");
-        } catch(Exception e)
-        {
-            Debug.LogError(e);
-            throw e;
-        }
+    public void LogOutServer()
+    {
+        DataModule.networkInterface.DisconnectUserFromServer();
     }
 
+    public void SaveWorld(World world) {
+        if (world.id != null)
+        {
+            World backup = this.connectedUserManager.connectedUser.worlds.Find(w => w.id == world.id);
+            if (backup != null)
+            {
+                backup = world;
+            } else
+            {
+                this.connectedUserManager.connectedUser.worlds.Add(world);
+            }
+            this.localUsersManager.Save();
+        }
+    }
+    
     public World RestoreWorld(string name) {
         try
         {
@@ -120,7 +121,9 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
                 FileStream file = File.Open(path, FileMode.Open);
                 World data = (World)bf.Deserialize(file);
                 file.Close();
-                return data;
+                if (connectedUserManager.isConnected && data.creator.id.Equals(connectedUserManager.connectedUser.id))
+                    return data;
+                return null;
             }
             return null;
         }
@@ -130,7 +133,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
             throw e;
         }
     }
-
+    
     public Player CreatePlayer(EntityClass entityClass, string name) { return null; }
     public List<Player> ListPlayers() { return null; }
     public void DeletePlayer(Player player) { }

@@ -36,18 +36,10 @@ public interface DataInterfaceForNetwork
     void ReceiveMessage(Message message);
 
     /// <summary>
-    /// Receive an action (player)
+    /// Receive the new game state following an action
     /// </summary>
-    /// <param name="action">Action to perform</param>
-    /// <param name="player">Player impacted by the action</param>
-    void ReceiveAction(Action action, Player player);
-
-    /// <summary>
-    /// Receive an action (monster)
-    /// </summary>
-    /// <param name="action">Action to perform</param>
-    /// <param name="monster">Monster impacted by the action</param>
-    void ReceiveAction(Action action, Monster monster);
+    /// <param name="newGameState">The new GameState</param>
+    void ReceiveAction(GameState newGameState);
 
     /// <summary>
     /// Receive a world instance in order to launch the game

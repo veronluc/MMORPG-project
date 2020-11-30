@@ -18,7 +18,7 @@ public interface IHMGameInterface {
         /// <summary>
         /// Update the display of the user. It will ask to Data module the new position of each entities and their caracteristics (life point, mana point...)
         /// </summary>
-        void UpdateDisplay();
+        void UpdateDisplay(GameState gameState);
 
         /// <summary>
         /// Notifies the actual user that it can do an action. It means he can use a skill (if he has not already do it) or move (if he still have movement point)

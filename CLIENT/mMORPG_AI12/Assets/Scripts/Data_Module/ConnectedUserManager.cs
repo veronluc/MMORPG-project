@@ -8,15 +8,15 @@ using System;
 
 public class ConnectedUserManager
 {
-    public User connectedUser {get; set;}
+    public LocalUser connectedUser { get => connectedUser; set { connectedUser = value; serverInfo = value.lastServerConnection; } }
     public bool isConnected {get => connectedUser != null; }
-    public ServerInfo serverInfo {get; set;}
+    public ServerInfo serverInfo {get => serverInfo; set { serverInfo = value; connectedUser.lastServerConnection = value; } }
 
     public ConnectedUserManager() {
         this.connectedUser = null;
-        RetrieveServerInfo();
+        // RetrieveServerInfo();
     }
-
+    /*
     public void SaveServerInfo() {
         try {
             BinaryFormatter bf = new BinaryFormatter();
@@ -53,4 +53,5 @@ public class ConnectedUserManager
             throw e;
         }
     }
+    */
 }
