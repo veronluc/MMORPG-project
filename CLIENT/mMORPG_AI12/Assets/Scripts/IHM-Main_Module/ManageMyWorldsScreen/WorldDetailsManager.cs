@@ -61,7 +61,7 @@ public class WorldDetailsManager : MonoBehaviour
     /// </summary>
     public void CreateNewWorld()
     {
-        // TODO : add new gameobject in UserWorldsManager
+        // TODO : add new gameobject in UserWorldsManager ?
         // TODO : create default world values
         // TODO : call setWorldDetails with the default world created
     }
@@ -80,7 +80,7 @@ public class WorldDetailsManager : MonoBehaviour
     /// <summary>
     /// Set the name of the world and the name input value to display
     /// </summary>
-    /// <param name="name">The new name of the world</param>
+    /// <param name="name">The name of the world</param>
     public void SetName(string name)
     {
         this.name = name;
