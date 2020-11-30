@@ -15,6 +15,7 @@ TagManager:
   - PlayerChoicePopup
   - UserWorldsContainer
   - EditWorldContainer
+  - LocalWorlds
   layers:
   - Default
   - TransparentFX
