@@ -14,9 +14,27 @@ namespace AI12_DataObjects
         public List<Entity> turns { get; set; }
         public Tile[,] map { get; set; }
 
-        public GameState()
+        public GameState(int round, int index, List<Entity> turns, Tile[,] map)
         {
+            this.round = round;
+            this.index = index;
+            this.turns = turns;
+            this.map = map;
+        }
 
+        public Entity nextPlayerEntity()
+        {
+            return turns[nextIndex()];
+        }
+
+        public int nextIndex()
+        {
+            return (this.index + 1) % turns.Count;
+        }
+
+        public void incrementIndex()
+        {
+            this.index = nextIndex();
         }
     }
 }

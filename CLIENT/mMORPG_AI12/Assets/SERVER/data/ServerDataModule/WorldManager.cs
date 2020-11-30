@@ -12,21 +12,28 @@ public static class WorldManager
     /// <param name="newPlayer"></param>
     public static void AddPlayerToWorld(World world, Player newPlayer)
     {
-        bool exists = false;
-        world.players.ForEach(player =>
+        // If no players, create the player list with the new Player
+        if (world.players == null)
         {
-            // If the player is already in the world, update its information
-            if (player.user.id == newPlayer.user.id)
+            world.players = new List<Player> { newPlayer };
+        } else
+        {
+            bool exists = false;
+            world.players.ForEach(player =>
             {
-                player = newPlayer;
-                exists = true;
-            }
-        });
+                // If the player is already in the world, update its information
+                if (player.user.id == newPlayer.user.id)
+                {
+                    player = newPlayer;
+                    exists = true;
+                }
+            });
 
-        // If the player isn't already in the world, add it
-        if (!exists)
-        {
-            world.players.Add(newPlayer);
+            // If the player isn't already in the world, add it
+            if (!exists)
+            {
+                world.players.Add(newPlayer);
+            }
         }
     }
 }

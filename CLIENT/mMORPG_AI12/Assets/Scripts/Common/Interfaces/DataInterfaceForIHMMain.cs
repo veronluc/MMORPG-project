@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AI12_DataObjects;
+using System;
 
 public interface DataInterfaceForIHMMain
 {
@@ -74,7 +75,13 @@ public interface DataInterfaceForIHMMain
     /// <summary>
     /// Log out the current user and end the session
     /// </summary>
+    [Obsolete("Use LogOutServer")]
     void LogOut();
+
+    /// <summary>
+    /// Log out the current user and end the session
+    /// </summary>
+    void LogOutServer();
 
     /// <summary>
     /// Save locally a world instance
@@ -89,6 +96,7 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// World instance
     /// </returns>
+    [Obsolete("Go through the local users instead")]
     World RestoreWorld(string name);
 
     /// <summary>
@@ -125,15 +133,40 @@ public interface DataInterfaceForIHMMain
     Player EditPlayer(Player editedPlayer);
 
     /// <summary>
+    /// OBSOLETE Create a world locally
+    /// </summary>
+    /// <returns>
+    /// Created world instance
+    /// </returns>
+    [Obsolete("Use the method definition under")]
+    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState);
+
+    /// <summary>
     /// Create a world locally
     /// </summary>
     /// <returns>
     /// Created world instance
     /// </returns>
-    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState);
+    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator);
 
     /// <summary>
     /// Get list of online Worlds instances
     /// </summary>
     void GetWorlds();
+
+    /// <summary>
+    /// Delete a world locally
+    /// </summary>
+    /// <returns>
+    /// World instance to delete
+    /// </returns>
+    void DeleteWorld(World world);
+
+    /// <summary>
+    /// Update a world locally
+    /// </summary>
+    /// <returns>
+    /// World instance to update
+    /// </returns>
+    void UpdateWorld(World world);
 }
