@@ -20,6 +20,7 @@ public class ProfileCreationManager : MonoBehaviour
         this.birthdate = "";
         this.password = "";
         this.passwordConf = "";
+        OpenClosePopup();
     }
 
     /// <summary>
@@ -109,6 +110,7 @@ public class ProfileCreationManager : MonoBehaviour
         Debug.Log("Birthdate : " + birthdate);
         Debug.Log("Password : " + password);
         Debug.Log("Password Conf. : " + passwordConf);
-        //TODO : Envoyer les données à AuthenticationScreen.cs
+        //TODO : Envoyer le bon chemin de l'image utilisateur
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<AuthenticationScreen>().CreateProfile(login,firstname,lastname,birthdate,password,passwordConf,"None");
     }
 }
