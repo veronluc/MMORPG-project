@@ -96,6 +96,7 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// World instance
     /// </returns>
+    [Obsolete("Go through the local users instead")]
     World RestoreWorld(string name);
 
     /// <summary>
