@@ -153,4 +153,20 @@ public interface DataInterfaceForIHMMain
     /// Get list of online Worlds instances
     /// </summary>
     void GetWorlds();
+
+    /// <summary>
+    /// Delete a world locally
+    /// </summary>
+    /// <returns>
+    /// World instance to delete
+    /// </returns>
+    void DeleteWorld(World world);
+
+    /// <summary>
+    /// Update a world locally
+    /// </summary>
+    /// <returns>
+    /// World instance to update
+    /// </returns>
+    void UpdateWorld(World world);
 }
