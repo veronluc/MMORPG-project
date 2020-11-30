@@ -14,7 +14,7 @@ public class DataInterfaceForIHMGameImpl : DataInterfaceForIHMGame
     }
 
     public void MakeAction(Action action) {
-        DataModule.networkInterface.SendAction(action.player, action);
+        DataModule.networkInterface.SendAction((Player) action.entity, action);
     }
 
     public User GetCurrentUser() { return null; }

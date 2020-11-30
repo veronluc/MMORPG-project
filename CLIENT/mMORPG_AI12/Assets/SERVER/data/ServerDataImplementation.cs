@@ -61,12 +61,13 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     {
         throw new NotImplementedException();
     }
-    public void ReceiveNewAction(World world)
+    public Entity ReceiveNewAction(World world)
     {
-        throw new NotImplementedException();
+        return world.gameState.nextPlayerEntity();
     }
-    public void ReceiveNewAction(AI12_DataObjects.Action action)
+    public GameState ReceiveNewAction(AI12_DataObjects.Action action)
     {
+        // G2
         throw new NotImplementedException();
     }
     public void UserAskWorldList(User user)
