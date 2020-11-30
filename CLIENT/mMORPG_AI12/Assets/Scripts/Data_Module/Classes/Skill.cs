@@ -16,7 +16,7 @@ namespace AI12_DataObjects
         public Range range { get; set; }
         public bool healing { get; set; }
 
-        // [Obsolete("Skill should now be initialized with the new constructor")]
+        [Obsolete("Skill should now be initialized with the new constructor")]
         public Skill()
         {
             this.name = "";
