@@ -10,6 +10,8 @@ public class ScreensManager : MonoBehaviour
     
     public GameObject mainConnectedScreen;
 
+    public GameObject worldsManagerScreen;
+
     private void Awake()
     {
         instance = this;
@@ -44,6 +46,7 @@ public class ScreensManager : MonoBehaviour
         {
             instance.authenticationMenu.SetActive(false);
             instance.mainConnectedScreen.SetActive(false);
+            instance.worldsManagerScreen.SetActive(false);
         }
         
     }
@@ -70,6 +73,15 @@ public class ScreensManager : MonoBehaviour
         {
             HideAllScreens();
             instance.mainConnectedScreen.SetActive(true);
+        }
+    }
+
+    public static void ShowWorldsManagerScreen()
+    {
+        if (IsInstanciated())
+        {
+            HideAllScreens();
+            instance.worldsManagerScreen.SetActive(true);
         }
     }
 }
