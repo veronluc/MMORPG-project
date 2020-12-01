@@ -17,11 +17,20 @@ public class UserWorldsManager : MonoBehaviour
     {
         userWorldsListItemPrefab = (GameObject) Resources.Load("UserWorldListItem");
         userWorldsGameObjectList = new List<GameObject>();
+        gameObject.SetActive(false);
     }
 
     private void Start()
     {
-        Populate(); // TODO : delete when connection is done with scripts
+        //Populate();
+    }
+
+    private void OnEnable()
+    {
+        // TODO : Modify those lines
+        //List<World> worlds = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().GetLocalUser().worlds;
+        //SetUserWorldsList(worlds);
+        Debug.Log("load the user worlds");
     }
 
     /// <summary>
@@ -84,6 +93,7 @@ public class UserWorldsManager : MonoBehaviour
     public void OnClickBackButton()
     {
         // TODO : change screen for Main Connected Screen
+        ScreensManager.ShowMainConnectedScreen();
     }
 
     /// <summary>
