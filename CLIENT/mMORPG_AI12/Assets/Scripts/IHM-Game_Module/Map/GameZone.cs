@@ -5,15 +5,15 @@ using UnityEngine.Tilemaps;
 
 public class GameZone : MonoBehaviour
 {
-    private const float CameraPositionModifier = 0.5f;
-    private const float CameraSizeModifier = 1.2f;
+    //private const float CameraPositionModifier = 0.5f;
+    //private const float CameraSizeModifier = 1.2f;
 
     private Tilemap _gameZoneTilemap;
     private TilesHolder _tilesHolder;
 
     private GameData _gameData;
 
-    private Camera _camera;
+    // private Camera _camera;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class GameZone : MonoBehaviour
         _tilesHolder = GetComponent<TilesHolder>();
         _gameData = FindObjectOfType<GameData>();
 
-        _camera = Camera.main;
+        //_camera = Camera.main;
     }
 
     private void Start()
@@ -45,10 +45,10 @@ public class GameZone : MonoBehaviour
             currentCellPosition = new Vector3Int(origin.x, (int)(cellSize.y + currentCellPosition.y), origin.z);
         }
         _gameZoneTilemap.CompressBounds();
-        ModifyCamera(width);
+        //ModifyCamera(width);
     }
 
-    private void ModifyCamera(int width)
+    /*private void ModifyCamera(int width)
     {
         var modifier = (width - 4) * CameraPositionModifier;
         _camera.transform.position = new Vector3(
@@ -57,5 +57,5 @@ public class GameZone : MonoBehaviour
             _camera.transform.position.z
         );
         _camera.orthographicSize = Mathf.Pow(CameraSizeModifier, (width - 4)) * _camera.orthographicSize;
-    }
+    }*/
 }

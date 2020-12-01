@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour
 {
-    public string Size = "7x6"; 
+    public string Size = "15x15"; 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
