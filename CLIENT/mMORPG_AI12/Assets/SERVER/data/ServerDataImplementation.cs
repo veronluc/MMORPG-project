@@ -31,6 +31,7 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     public void ReceiveNewWorld(World world)
     {
         Console.WriteLine("Recieved new world");
+        world.gameState = WorldManager.GenerateGameState(world);
         WorldsManager.AddWorld(world);
     }
 
