@@ -3,6 +3,7 @@ using AI12_DataObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class WorldDetailsManager : MonoBehaviour
 {
@@ -122,8 +123,7 @@ public class WorldDetailsManager : MonoBehaviour
     public void OnClickLoadWorld()
     {
         // TODO : call the character popup and choose a real player from user players list
-        Player player = GameObject.FindGameObjectWithTag("PlayerChoicePopup").GetComponent<WorldJoinManager>()
-            .TestCreatePlayer();
+        Player player = TestCreatePlayer();
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
             .LoadWorld(player, world.id);
     }
@@ -296,5 +296,27 @@ public class WorldDetailsManager : MonoBehaviour
     public void SetHasSea(bool hasSea)
     {
         this.world.hasSea = hasSea;
+    }
+
+    /// <summary>
+    /// Only for test purpose
+    /// </summary>
+    /// <returns>a player</returns>
+    public Player TestCreatePlayer(string name = "JOUEUR")
+    {
+        // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
+        Skill skill = new Skill();
+        skill.zone = 2;
+        skill.damagePoints = 4;
+        skill.costMana = 2;
+        skill.range = new Range(shapes.star, 10);
+        List<Skill> skills = new List<Skill>() { skill };
+        EntityClass entity = new EntityClass("GUERRIER", 100, 100, 25, 2, 12, 8, Entities.player, skills);
+        Player player = new Player(name, 0, 100, 100, 100, 100, 25, 20, 12, 8, new Location(0, 0), entity, 0, 0, null);
+        User user = new User("Jean Né marre", "idididid", "Des classes sans constructeur", "Créer un player prend",
+            "Créer un player prend", new DateTime(2020, 11, 16), "/C/vide", new List<Player>(), new List<World>());
+        user.players.Add(player);
+        player.user = user;
+        return player;
     }
 }

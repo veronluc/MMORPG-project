@@ -87,7 +87,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
             if (player != null && idWorld != null)
             {
                 //TODO : Data doit pouvoir ajouter le playerid dans leur interface 
-                //dataInterface.LoadWorld(player, idWorld);
+                dataInterface.LoadWorld(idWorld, player.id);
             }
             else
             {
@@ -136,7 +136,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
         {
             if (deletedWorld != null)
             {
-                dataInterface.DeleteWorld(deletedWorld);
+                dataInterface.DeleteWorld(deletedWorld.id);
             }
             else
             {
