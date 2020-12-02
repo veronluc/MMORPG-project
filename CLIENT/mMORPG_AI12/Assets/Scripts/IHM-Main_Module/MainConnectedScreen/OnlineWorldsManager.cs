@@ -10,6 +10,8 @@ public class OnlineWorldsManager : MonoBehaviour
 
 	private List<GameObject> worldGameObjectList;
 
+	public GameObject playerChoicePopup;
+
 	private void Awake()
 	{
 		worldListItemPrefab = (GameObject)Resources.Load("WorldListItem");
@@ -18,6 +20,10 @@ public class OnlineWorldsManager : MonoBehaviour
 
 	private void Start()
 	{
+		if (playerChoicePopup == null)
+		{
+			Debug.LogError("IHMMain Module - WorldListItemManager : This script could not find the playerChoicePopup GameObject");
+		}
 		//Populate();
 	}
 
@@ -69,7 +75,7 @@ public class OnlineWorldsManager : MonoBehaviour
 		this.worldGameObjectList.Add(newObj);
 
 		//add the user to the gameObject to show its info. on the screen
-		newObj.GetComponent<WorldListItemManager>().SetWorldToGameObject(world);
+		newObj.GetComponent<WorldListItemManager>().SetWorldToGameObject(world, this);
 	}
 
 	/// <summary>
@@ -97,7 +103,7 @@ public class OnlineWorldsManager : MonoBehaviour
 			this.worldGameObjectList.Add(newObj);
 
 			// Randomize the color of our image
-			newObj.GetComponentInChildren<WorldListItemManager>().SetRandomInfoToGameObject();
+			newObj.GetComponentInChildren<WorldListItemManager>().SetRandomInfoToGameObject(this);
 		}
 
 	}

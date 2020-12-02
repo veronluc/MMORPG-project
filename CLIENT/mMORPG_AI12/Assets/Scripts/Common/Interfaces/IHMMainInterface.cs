@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -33,20 +34,13 @@ public interface IHMMainInterface
     void DisplayListUser(List<User> users);
 
     /// <summary>
-    /// Diplays every user's details
+    /// Gives IHM Main the user currently logged in, his last connection to the server, and his lists of players and worlds.
     /// </summary>
-    /// <param name="token">The user's token</param>
-    void DisplayUserDetail(string token);
-
-    /// <summary>
-    /// Displays every information about the world specified in parameter
-    /// </summary>
-    /// <param name="world"></param>
-    void DisplayWorldDetail(World world);
-
-    /// <summary>
-    /// Transmit the local data relative to locally authentificated user
-    /// </summary>
-    /// <param name="localUser"></param>
+    /// <param name="localUser">Last connection of the user to the server, contains :
+    ///  - user credentials, 
+    ///  - server credentials, 
+    ///  - a list of the user's players, 
+    ///  - and a list of the user's worlds.
+    /// </param>
     void GiveLocalUser(LocalUser localUser);
 }
