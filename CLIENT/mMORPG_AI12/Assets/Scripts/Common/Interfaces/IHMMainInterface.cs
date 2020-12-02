@@ -34,15 +34,13 @@ public interface IHMMainInterface
     void DisplayListUser(List<User> users);
 
     /// <summary>
-    /// Give IHM Main the current logged-in user
+    /// Gives IHM Main the user currently logged in, his last connection to the server, and his lists of players and worlds.
     /// </summary>
-    /// <param name="user">Current logged-in user</param>
-    void GiveUser(User user);
-
-    /// <summary>
-    /// Give IHM Main the last server connection of the logged-in user
-    /// </summary>
-    /// <param name="ip">Ip address of the last server connection</param>
-    /// <param name="port">Port of the last server connection</param>
-    void GiveLastConnection(String ip, String port);
+    /// <param name="localUser">Last connection of the user to the server, contains :
+    ///  - user credentials, 
+    ///  - server credentials, 
+    ///  - a list of the user's players, 
+    ///  - and a list of the user's worlds.
+    /// </param>
+    void GiveLocalUser(LocalUser localUser);
 }

@@ -9,8 +9,6 @@ using AI12_DataObjects;
 public class IHMMainInterfaceImpl : IHMMainInterface
 {
 
-    //TO DO: Implement functions
-
     public void LoadMainScene()
     {
         throw new System.NotImplementedException();
@@ -52,33 +50,35 @@ public class IHMMainInterfaceImpl : IHMMainInterface
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
             .UpdateListUsersDisplay(users);
     }
-    
-    /// <summary>
-    /// Give IHM Main the current logged-in user
-    /// </summary>
-    /// <param name="user">Current logged-in user</param>
-    public void GiveUser(User user)
-    {
-        //Set the curent user attribute in the IHM Main module
-        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>()
-            .SetCurrentUser(user);
-
-    }
 
     /// <summary>
-    /// Give IHM Main the last server connection of the logged-in user
+    /// Gives IHM Main the user currently logged in, his last connection to the server, and his lists of players and worlds.
     /// </summary>
-    /// <param name="ip">Ip address of the last server connection</param>
-    /// <param name="port">Port of the last server connection</param>
-    public void GiveLastConnection(String ip, String port)
-    {
-        //Update ip and port display 
-        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
-            .UpdateIpandPortDisplay(ip, port);
-    }
-
+    /// <param name="localUser">Last connection of the user to the server, contains :
+    ///  - user credentials, 
+    ///  - server credentials, 
+    ///  - a list of the user's players, 
+    ///  - and a list of the user's worlds.
+    /// </param>
     public void GiveLocalUser(LocalUser localUser)
     {
-        // TODO
+        //Retrieves the game object IHMMainModule
+        GameObject iHMMainGameObject = GameObject.FindGameObjectWithTag("IHMMainModule");
+
+        //Updates the server credentials in MainConnectedScreen
+        //Class ServerInfo contains string "server" (Ip) and int "port"
+        iHMMainGameObject.GetComponent<MainConnectedScreen>().UpdateIpandPortDisplay(
+            localUser.lastServerConnection.server, localUser.lastServerConnection.port.ToString());
+
+        //Set the current user credentials in IHMMainModule
+        iHMMainGameObject.GetComponent<IHMMainModule>().SetCurrentUser(localUser.user);
+
+        //TODO V2
+        //Updates the list of user worlds in ManageMyWorldScreen
+        //iHMMainGameObject.GetComponent<ManageMyWorldsScreen>().UpdateListWorldsDisplay(localUser.worlds);
+
+        // TODO V3
+        //Updates the list of user players in ManageMyPlayersScreen (Not yet implemented)
+        //iHMMainGameObject.GetComponent<ManageMyPlayersScreen>().UpdateListWorldsDisplay(localUser.players);
     }
 }
