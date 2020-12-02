@@ -38,8 +38,7 @@ public class UserWorldItemManager : MonoBehaviour
     public void SetRandomInfoToGameObject(WorldDetailsManager worldDetailsManager)
     {
         World world = new World(UnityEngine.Random.value.ToString(), 0, GameMode.pvp, true, 2, 30, 10, 42, 5, false,
-            true, true, false, true, true, true, true, new List<Player>(), new List<Monster>(), new User(),
-            new GameState());
+            true, true, false, true, true, true, true, null);
         world.id = "TestID";
 
         this.worldName.text = world.name;
