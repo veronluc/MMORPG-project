@@ -9,6 +9,7 @@ public class WorldDetailsManager : MonoBehaviour
     private World world; // The new default world created or the world to modify
 
     // Buttons
+    public GameObject loadButton; // Button to load a local world on the server and make the user join it
     public GameObject saveButton; // Button to save modifications on an existing world
     public GameObject createButton; // Button to ask for the creation of a new world
     public GameObject deleteButton; // Button to delete an existing world
@@ -42,43 +43,28 @@ public class WorldDetailsManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Ask to display a new default world
-    /// </summary>
-    /// <param name="defaultWorld">The default world created that has to be displayed</param>
-    public void CreateNewWorld(World defaultWorld)
-    {
-        SetWorldDetails(defaultWorld, true);
-    }
-
-    /// <summary>
-    /// Ask to display an existing world
-    /// </summary>
-    /// <param name="worldToModify">The existing world that has to be displayed</param>
-    public void ModifyWorld(World worldToModify)
-    {
-        SetWorldDetails(worldToModify, false);
-    }
-
-    /// <summary>
     /// Active the gameobject and set all the values to display the world information
     /// </summary>
-    /// <param name="world">The world that contains information to display in the screen</param>
-    /// <param name="isNewWorld">Boolean to display appropriate action buttons regarding if it is a world creation or modification</param>
-    public void SetWorldDetails(World worldToDisplay, bool isNewWorld)
+    /// <param name="worldToDisplay">The world that contains information to display on the screen</param>
+    public void SetWorldDetails(World worldToDisplay)
     {
         // Active the container that will display the world information
         this.gameObject.SetActive(true);
+        bool isNewWorld =
+            worldToDisplay.id == null; // world.id is null when the world is just created and not saved yet
 
         // If this is a creation only create action is available
         if (isNewWorld)
         {
+            this.loadButton.SetActive(false);
             this.createButton.SetActive(true);
             this.deleteButton.SetActive(false);
             this.saveButton.SetActive(false);
         }
-        // Else if it is an existing world, the user can delete it or save modifications
+        // Else if it is an existing world, the user can delete it, load it or save modifications
         else
         {
+            this.loadButton.SetActive(true);
             this.createButton.SetActive(false);
             this.deleteButton.SetActive(true);
             this.saveButton.SetActive(true);
@@ -128,6 +114,17 @@ public class WorldDetailsManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
             .UpdateWorld(world);
+    }
+
+    /// <summary>
+    /// Called when the user clicks on the "LOAD" button
+    /// </summary>
+    public void OnClickLoadWorld()
+    {
+        // TODO : call the character popup and choose a real player from user players list
+        Player player = GameObject.FindGameObjectWithTag("PlayerChoicePopup").GetComponent<WorldJoinManager>().TestCreatePlayer();
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
+            .LoadWorld(player, world.id);
     }
 
     /// <summary>
