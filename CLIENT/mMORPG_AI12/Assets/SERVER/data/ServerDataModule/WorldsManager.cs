@@ -103,4 +103,15 @@ public static class WorldsManager
     {
         onlineWorlds.RemoveAll(w => user.id == w.creator.id);
     }
+
+    public static void UpdateWorldFromId(string idWorld, GameState game)
+    {
+        foreach (World world in onlineWorlds)
+        {
+            if (world.id == idWorld)
+            {
+                world.gameState = game;
+            }
+        }
+    }
 }

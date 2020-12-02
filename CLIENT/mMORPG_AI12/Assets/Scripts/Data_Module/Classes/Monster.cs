@@ -16,11 +16,23 @@ namespace AI12_DataObjects
         public int dropGold { get; set; }
         public int dropXp { get; set; }
 
+        public Monster(string name, int level, int vitalityMax, int vitality, int manaMax, int mana, int strength, int intelligence, int defense, int PM, Location location, EntityClass entityClass, int visionLength, int dropGold, int dropXp) : base(name, level, vitalityMax, vitality, manaMax, mana, strength, intelligence, defense, PM, location, entityClass)
+        {
+            this.visionLength = visionLength;
+            this.dropGold = dropGold;
+            this.dropXp = dropXp;
+        }
+
         public Monster(string id, string name, int level, int vitalityMax, int vitality, int manaMax, int mana, int strength, int intelligence, int defense, int PM, Location location, EntityClass entityClass, int visionLength, int dropGold, int dropXp) : base(id, name, level, vitalityMax, vitality, manaMax, mana, strength, intelligence, defense, PM, location, entityClass)
         {
             this.visionLength = visionLength;
             this.dropGold = dropGold;
             this.dropXp = dropXp;
+        }
+
+        public override bool isMonster()
+        {
+            return true;
         }
 
         public static Monster GetMonsterFromType(MonsterTypes type, string name, Location location)
@@ -31,7 +43,6 @@ namespace AI12_DataObjects
             {
                 case MonsterTypes.Goblin:
                     m = new Monster(
-                        "gob1",
                         "Goblin " + name,
                         1, // level
                         5, // vitalityMax
@@ -69,7 +80,6 @@ namespace AI12_DataObjects
                     break;
                 case MonsterTypes.Sorcerer:
                     m = new Monster(
-                        "sor1",
                         "Sorcerer " + name,
                         1, // level
                         5, // vitalityMax
@@ -110,6 +120,6 @@ namespace AI12_DataObjects
                     break;
             }
             return m;
-        }
+        }        
     }
 }

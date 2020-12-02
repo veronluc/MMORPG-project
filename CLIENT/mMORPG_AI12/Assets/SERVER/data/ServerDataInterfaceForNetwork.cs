@@ -6,6 +6,12 @@ using UnityEngine;
 public interface ServerDataInterfaceForNetwork
 {
     /// <summary>
+    /// Will make the current entity play if it is a monster
+    /// </summary>
+    /// <param name="world">Instance of a world</param>
+    GameState makeMonsterTurn(World world);
+
+    /// <summary>
     /// Receive a message from a client
     /// </summary>
     /// <param name="message">Received Message instance</param>
