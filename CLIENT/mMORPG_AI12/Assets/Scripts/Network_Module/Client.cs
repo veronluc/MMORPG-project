@@ -9,37 +9,72 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// Global client which manage the connection to the server and receive/send messages
+/// </summary>
 public class Client : MonoBehaviour
 {
+    /// <summary>
+    /// Wrapper to read bytes
+    /// </summary>
     private BasePacket receivedData;
+    /// <summary>
+    /// Data buffer size, can be changed 
+    /// </summary>
     public static int dataBufferSize = 32768;
+
+    /// <summary>
+    /// Intern connection verification
+    /// </summary>
     bool isConnected = false;
     
+    /// <summary>
+    /// Reference of the current user (client)
+    /// </summary>
     public User currentUser { get; set; }
 
-
+    /// <summary>
+    /// Server adress ip
+    /// </summary>
     public string ip = "127.0.0.1";
+
+    /// <summary>
+    /// Server Port
+    /// </summary>
     public int port = 26950;
 
+    /// <summary>
+    /// Reference to the data implementation for packets
+    /// </summary>
     public DataInterfaceForNetwork data;
 
+    /// <summary>
+    /// Current socket connected to the server
+    /// </summary>
     public TcpClient socket;
 
+    /// <summary>
+    /// Stream used in the socket
+    /// </summary>
     private NetworkStream stream;
+
+    /// <summary>
+    /// Buffer used to read messaged
+    /// </summary>
     private byte[] receiveBuffer;
-
-    void UpdateLog(int id, string msg)
-    {
-        //Debug.Log("\n(" + id + ") sended : <i>" + msg + "</i>.");
-        //Log.text += "OK";
-    }
-
+    /// <summary>
+    /// Client constructor
+    /// </summary>
     public Client()
     {
         
     }
 
-
+    /// <summary>
+    /// Connect the client to the server
+    /// </summary>
+    /// <param name="ipAdress">Server ip adress</param>
+    /// <param name="pPort">Server opened port</param>
     public void ConnectToServer(string ipAdress, int pPort)
     {
         ip = ipAdress;
@@ -57,6 +92,10 @@ public class Client : MonoBehaviour
         socket.BeginConnect(ip, port, ConnectCallback, socket);
     }
 
+    /// <summary>
+    /// Method called by the socket when connection is established
+    /// </summary>
+    /// <param name="_result"><Result from the socket/param>
     private void ConnectCallback(IAsyncResult _result)
     {
         socket.EndConnect(_result);
@@ -71,6 +110,10 @@ public class Client : MonoBehaviour
         stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
     }
 
+    /// <summary>
+    /// Method called by the socket when he received data
+    /// </summary>
+    /// <param name="_result">Data received by the socket</param>
     private void ReceiveCallback(IAsyncResult _result)
     {
         try
@@ -96,6 +139,11 @@ public class Client : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Manage received data to a packet
+    /// </summary>
+    /// <param name="_data">Data received</param>
+    /// <returns>Message correctly received</returns>
     private bool HandleData(byte[] _data)
     {
         //DebugIt("Handle data size : " + _data.Length);
@@ -130,6 +178,9 @@ public class Client : MonoBehaviour
         });*/
         return true;
     }
+    /// <summary>
+    /// Disconnection from the server
+    /// </summary>
     public void Disconnect()
     {
         if (isConnected)
