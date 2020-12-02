@@ -33,5 +33,35 @@ namespace AI12_DataObjects
             this.location = location;
             this.entityClass = entityClass;
         }
+
+        public int getAttackBase()
+        {
+            // TODO return points according to class (strength based, intelligence based ...)
+            return this.strength;
+        }
+
+        public void damageEntity(int damage)
+        {
+            int damageDone = damage - this.defense;
+            if (damageDone > 0)
+            {
+                this.vitality = this.vitality - damageDone;
+            }
+        }
+
+        public void healEntity(int healing)
+        {
+            // More heal than max vitality
+            if (healing > vitalityMax - vitality)
+            {
+                this.vitality = this.vitalityMax;
+            } 
+            
+            // Healing
+            else
+            {
+                this.vitality = this.vitality + healing;
+            }
+        }
     }
 }

@@ -20,8 +20,9 @@ namespace AI12_DataObjects
         /// </returns>
         public override bool IsLegal()
         {
-            // TODO Implement - Team Data
-            return true;
+            // TODO - V2A Always not legal ! (no shop tiles)
+            // TODO Implement for V2B
+            return false;
         }
 
         /// <summary>
@@ -37,8 +38,8 @@ namespace AI12_DataObjects
                 return null;
             }
 
-            // TODO Implement - Team Data
-            // Rest the entity
+            // TODO - V2A Always not legal ! (no shop tiles)
+            // TODO Implement for V2B
             return null;
         }
     }

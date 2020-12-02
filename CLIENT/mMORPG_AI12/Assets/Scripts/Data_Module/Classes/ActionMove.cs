@@ -28,12 +28,15 @@ namespace AI12_DataObjects
         {
             double distance = entity.location.distance(tile.location);
 
-            // ActionMove isn't legal
+            // Distance is null
             if (distance == 0)
             {
                 Debug.Log("Action Move : the entity doesn't need to move (distance = 0)");
                 return false;
-            } else if (distance > entity.PM)
+            }
+            
+            // Distance is bigger than PMs
+            if (distance > entity.PM)
             {
                 Debug.Log("Action Move : the entity doesn't have enough PM");
                 return false;
@@ -61,12 +64,17 @@ namespace AI12_DataObjects
             entity.location = new Location(tile.location.x, tile.location.y);
             // Take out from current tile
             world.gameState
-                .map[tile.location.x, tile.location.y]
+                .map[entity.location.x, entity.location.y]
                 .entities
                 .Remove(entity);
             // Put into new tile
+            world.gameState
+                .map[tile.location.x, tile.location.y]
+                .entities
+                .Add(entity);
 
-            return null;
+            // Return new gameState
+            return world.gameState;
         }
     }
 }
