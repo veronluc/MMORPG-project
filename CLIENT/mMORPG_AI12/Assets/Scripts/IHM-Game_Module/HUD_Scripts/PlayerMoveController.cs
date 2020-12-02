@@ -12,7 +12,7 @@ public class PlayerMoveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCaracteristics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCaracteristics>();
+        playerCaracteristics = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerCaracteristics>();
         textMove.text = playerCaracteristics.move.ToString();
     }
 }

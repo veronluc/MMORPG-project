@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class IHMGameInterfaceImpl : IHMGameInterface
 {
+    public GameManager gameManager { get; set; }
 
     /// <summary>
     /// Launch the game. Start the display of the game view
@@ -21,7 +22,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <param name="message">New message to display</param>
     public void DisplayMessage(Message message)
     {
-        throw new System.NotImplementedException();
+        gameManager.SendMessageToChat(message, ChatMessage.MessageType.playerMessage);
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ TagManager:
   - OnlineWorlds
   - ServerConnection
   - InfoConnectedServer
+  - MovePlate
   - PlayerChoicePopup
   - UserWorldsContainer
   - EditWorldContainer
