@@ -191,7 +191,10 @@ public class Client : MonoBehaviour
     }
 
 
-    //Packets
+    /// <summary>
+    /// Sends data (Packet) to the server in the socket
+    /// </summary>
+    /// <param name="_packet">The packet to send</param>
     public void SendData(Packet _packet)
     {
         try
@@ -214,6 +217,10 @@ public class Client : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// For debugging puropose only to debug on the console
+    /// </summary>
+    /// <param name="mes">The string message</param>
     public void DebugIt(string mes)
     {
         Debug.Log(mes.ToString());
