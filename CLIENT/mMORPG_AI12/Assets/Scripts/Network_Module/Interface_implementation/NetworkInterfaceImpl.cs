@@ -18,13 +18,13 @@ public class NetworkInterfaceImpl : NetworkInterface
 
     public void AskServerUserList()
     {
-        UserAskUserListsPacket msg = new UserAskUserListsPacket(client.currentUser);
+        UserAskUserListsPacket msg = new UserAskUserListsPacket(client.data.GetUser());
         client.SendData(msg);
     }
 
     public void AskServerWorldList()
     {
-        UserAsksWorldListPacket msg = new UserAsksWorldListPacket(client.currentUser);
+        UserAsksWorldListPacket msg = new UserAsksWorldListPacket(client.data.GetUser());
         client.SendData(msg);
     }
 
@@ -32,11 +32,11 @@ public class NetworkInterfaceImpl : NetworkInterface
     {
         if (player.user == null)
         {
-            player.user = client.currentUser;
+            player.user = client.data.GetUser();
         }
         else if (player.user.id == null)
         {
-            player.user.id = client.currentUser.id;
+            player.user.id = client.data.GetUser().id;
         }
         ConnectToWorldPacket msg = new ConnectToWorldPacket(player, idWorld);
         client.SendData(msg);
@@ -46,22 +46,21 @@ public class NetworkInterfaceImpl : NetworkInterface
     {
         if(user == null)
         {
-            Debug.LogWarning("Attention : Data se connecte au serveur sans passer de user à network. Un user par défaut est créé par network.");
-            user = new User("DefaultLogin", "default", "DefaultUser", "DefaultName", new System.DateTime(1998, 01, 01));
+            Debug.LogError("Attention : Data se connecte au serveur sans passer de user à network. Un user par défaut est créé par network.");
+            
         }
-        client.currentUser = user;
         client.ConnectToServer(ipAdress, port);
     }
 
     public void DisconnectUserFromServer()
     {
-        AskDisconnectServer msg = new AskDisconnectServer(client.currentUser);
+        AskDisconnectServer msg = new AskDisconnectServer(client.data.GetUser());
         client.SendData(msg);
     }
 
     public void DisconnectUserFromWorld()
     {
-        AskDisconnectWorld msg = new AskDisconnectWorld(client.currentUser);
+        AskDisconnectWorld msg = new AskDisconnectWorld(client.data.GetUser());
         client.SendData(msg);
     }
 
@@ -72,7 +71,7 @@ public class NetworkInterfaceImpl : NetworkInterface
 
     public void SendAction(Player player, Action action)
     {
-        SendActionToServerPacket msg = new SendActionToServerPacket(action, client.currentUser);
+        SendActionToServerPacket msg = new SendActionToServerPacket(action, client.data.GetUser());
         client.SendData(msg);
     }
 

@@ -13,19 +13,11 @@ public class ClientWrapper : MonoBehaviour
         client = new Client();
         //client.wrapper = this;
         client.data = new DataInterfaceForNetworkImpl();
-
-
-
-        User u = new User("Theo", "Duc");
-        //TODO change these constructors
-        //Player p = new Player();
-        //Player p2 = new Player();
-        client.currentUser = u;
     }
     void Start()
     {
         client.ConnectToServer("127.0.0.1", 26950);
-        SendUserInfosPacket msg = new SendUserInfosPacket(client.currentUser);
+        SendUserInfosPacket msg = new SendUserInfosPacket(client.data.GetUser());
     }
 
     // Update is called once per frame

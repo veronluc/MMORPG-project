@@ -27,11 +27,6 @@ public class Client : MonoBehaviour
     /// Intern connection verification
     /// </summary>
     bool isConnected = false;
-    
-    /// <summary>
-    /// Reference of the current user (client)
-    /// </summary>
-    public User currentUser { get; set; }
 
     /// <summary>
     /// Server adress ip
