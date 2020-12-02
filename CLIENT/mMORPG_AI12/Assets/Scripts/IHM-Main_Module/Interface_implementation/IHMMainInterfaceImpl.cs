@@ -71,11 +71,10 @@ public class IHMMainInterfaceImpl : IHMMainInterface
             localUser.lastServerConnection.server, localUser.lastServerConnection.port.ToString());
 
         //Set the current user credentials in IHMMainModule
-        iHMMainGameObject.GetComponent<IHMMainModule>().SetCurrentUser(localUser.user);
+        iHMMainGameObject.GetComponent<IHMMainModule>().localUser = localUser; 
 
-        //TODO V2
         //Updates the list of user worlds in ManageMyWorldScreen
-        //iHMMainGameObject.GetComponent<ManageMyWorldsScreen>().UpdateListWorldsDisplay(localUser.worlds);
+        iHMMainGameObject.GetComponent<ManageMyWorldsScreen>().UpdateListWorldsDisplay(localUser.worlds);
 
         // TODO V3
         //Updates the list of user players in ManageMyPlayersScreen (Not yet implemented)

@@ -57,8 +57,7 @@ public class AuthenticationScreen : MonoBehaviour
         {
             try
             {
-                if (!login.Equals("") && !firstName.Equals("") && !lastName.Equals("") && !birthDate.Equals("") && !password.Equals("") && !passwordConfirmation.Equals("") &&
-                    !image.Equals(""))
+                if (!login.Equals("") && !password.Equals("") && !passwordConfirmation.Equals(""))
                 {
                     if (password.Equals(passwordConfirmation))
                     {
