@@ -6,6 +6,7 @@ namespace AI12_DataObjects
     [Serializable()]
     public class Entity
     {
+        public string id { get; set; }
         public string name { get; set; }
         public int level { get; set; }
         public int vitalityMax { get; set; }
@@ -19,8 +20,9 @@ namespace AI12_DataObjects
         public Location location { get; set; }
         public EntityClass entityClass { get; set; }
 
-        public Entity(string name, int level, int vitalityMax, int vitality, int manaMax, int mana, int strength, int intelligence, int defense, int PM, Location location, EntityClass entityClass)
+        public Entity(string id, string name, int level, int vitalityMax, int vitality, int manaMax, int mana, int strength, int intelligence, int defense, int PM, Location location, EntityClass entityClass)
         {
+            this.id = id;
             this.name = name;
             this.level = level;
             this.vitalityMax = vitalityMax;

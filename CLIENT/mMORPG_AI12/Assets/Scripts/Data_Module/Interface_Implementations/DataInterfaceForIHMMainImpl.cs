@@ -13,15 +13,20 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     private LocalUsersManager localUsersManager;
     private ConnectedUserManager connectedUserManager;
 
-    public DataInterfaceForIHMMainImpl() {
+    public DataInterfaceForIHMMainImpl()
+    {
         this.dataModule = GameObject.FindGameObjectWithTag("DataModule").GetComponent<DataModule>();
         this.localUsersManager = dataModule.localUsersManager;
         this.connectedUserManager = dataModule.connectedUserManager;
     }
 
-    public void LoadWorld(ref World world)
+    [Obsolete("Please use the new method LoadWorld, directly below")]
+    public void LoadWorld(ref World world) { }
+
+    public void LoadWorld(string worldId, string playerId)
     {
-        DataModule.networkInterface.AddNewWorld(world);
+        DataModule.networkInterface.AddNewWorld(connectedUserManager.GetWorld(worldId));
+        JoinWorld(playerId, worldId);
     }
 
     [Obsolete("Please use the new method CreateWorld, directly below")]
@@ -30,37 +35,49 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         throw new NotImplementedException();
     }
 
-    public World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator)
+    public void CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator)
     {
-        return new World(name, sizeMap, gameMode, realDeath, difficulty, roundTimeSec, nbMaxPlayer, nbMaxMonsters, nbShops, hasCity, hasPlain, hasSwamp, hasRiver, hasForest, hasRockyPlain, hasMontain, hasSea, creator);
+        connectedUserManager.AddWorld(new World(name, sizeMap, gameMode, realDeath, difficulty, roundTimeSec, nbMaxPlayer, nbMaxMonsters, nbShops, hasCity, hasPlain, hasSwamp, hasRiver, hasForest, hasRockyPlain, hasMontain, hasSea, creator));
+        DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
     }
 
-    public void DeleteWorld(World world)
+    public void DeleteWorld(string worldId)
     {
-        //TODO supprimer le world en local
+        connectedUserManager.RemoveWorld(worldId);
+        DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
     }
 
     public void UpdateWorld(World world)
     {
-        //TODO mettre à jour le world en local
+        connectedUserManager.UpdateWorld(world);
+        DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
     }
 
+    [Obsolete("Use method below")]
     public void JoinWorld(Player player, string worldId)
     {
         DataModule.networkInterface.ConnectToWorld(player, worldId);
     }
 
+    public void JoinWorld(string playerId, string worldId)
+    {
+        DataModule.networkInterface.ConnectToWorld(connectedUserManager.GetPlayer(playerId), worldId);
+    }
+
     public void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
     public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
-    
-    public string CreateUserSession(string pseudo, string password) {
+
+    public string CreateUserSession(string pseudo, string password)
+    {
         this.connectedUserManager.connectedUser = this.localUsersManager.ConnectUser(pseudo, password);
 
         // Check if user connexion was successful
-        if (this.connectedUserManager.isConnected) {
+        if (this.connectedUserManager.isConnected)
+        {
             DataModule.ihmMainInterface.GiveLocalUser(this.connectedUserManager.connectedUser);
             // Check if server ip is known
-            if (this.connectedUserManager.serverInfo != null) {
+            if (this.connectedUserManager.serverInfo != null)
+            {
                 DataModule.networkInterface.ConnectUser(
                     this.connectedUserManager.connectedUser.user,
                     this.connectedUserManager.serverInfo.server,
@@ -69,12 +86,13 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
                 return this.connectedUserManager.serverInfo.server + ":" + this.connectedUserManager.serverInfo.port;
             }
         }
-        
+
         // User connection was unsuccesful or server ip was unknown
         return null;
     }
-    
-    public void ConnectSessionToServer(string ipServer, string port) {
+
+    public void ConnectSessionToServer(string ipServer, string port)
+    {
         this.connectedUserManager.serverInfo = new ServerInfo(ipServer, Int32.Parse(port));
         this.localUsersManager.Save();
         DataModule.networkInterface.ConnectUser(
@@ -87,7 +105,8 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
     public void GetWorldDetails(string worldId) { }
     public void GetUserDetails(string userId) { }
 
-    public void LogOut() {
+    public void LogOut()
+    {
         DataModule.networkInterface.DisconnectUserFromServer();
     }
 
@@ -96,22 +115,25 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         DataModule.networkInterface.DisconnectUserFromServer();
     }
 
-    public void SaveWorld(World world) {
+    public void SaveWorld(World world)
+    {
         if (world.id != null)
         {
             World backup = this.connectedUserManager.connectedUser.worlds.Find(w => w.id == world.id);
             if (backup != null)
             {
                 backup = world;
-            } else
+            }
+            else
             {
                 this.connectedUserManager.connectedUser.worlds.Add(world);
             }
             this.localUsersManager.Save();
         }
     }
-    
-    public World RestoreWorld(string name) {
+
+    public World RestoreWorld(string name)
+    {
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -133,11 +155,37 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
             throw e;
         }
     }
-    
-    public Player CreatePlayer(EntityClass entityClass, string name) { return null; }
-    public List<Player> ListPlayers() { return null; }
-    public void DeletePlayer(Player player) { }
-    public Player EditPlayer(Player editedPlayer) { return null; }
 
+    [Obsolete("Use AddPlayer(Player player) instead")]
+    public Player CreatePlayer(EntityClass entityClass, string name) { return null; }
+
+    public void AddPlayer(Player player)
+    {
+        connectedUserManager.AddPlayer(player);
+        DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
+    }
+
+    [Obsolete("Use DeletePlayer(string playerId) instead")]
+    public void DeletePlayer(Player player)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DeletePlayer(string playerId)
+    {
+        connectedUserManager.RemovePlayer(playerId);
+        DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
+    }
+
+    public void ModifyPlayer(Player player)
+    {
+        connectedUserManager.ModifyPlayer(player);
+        DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
+    }
+
+    [Obsolete("Use ModifyPlayer instead")]
+    public Player EditPlayer(Player editedPlayer) { return null; }
     public void GetWorlds() { }
+    [Obsolete("GiveLocalUser give players")]
+    public List<Player> ListPlayers() { return null; }
 }
