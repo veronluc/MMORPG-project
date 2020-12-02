@@ -34,14 +34,10 @@ public class ServerNetworkImplementation : MonoBehaviour
         SendMessage msg = new SendMessage(message);
         this.SendPacket(user.id,msg);
     }
-    public void SendActionToUser(User user, AI12_DataObjects.Action action, Player player)
+  
+    public void SendActionToUser(User user, GameState gameState)
     {
-        SendActionPlayerToClient msg = new SendActionPlayerToClient(player, action);
-        SendPacket(user.id, msg);
-    }
-    public void SendActionToUser(User user, AI12_DataObjects.Action action, Monster monster)
-    {
-        SendActionMonsterToClient msg = new SendActionMonsterToClient(monster, action);
+        SendActionToClient msg = new SendActionToClient(gameState);
         SendPacket(user.id, msg);
     }
     public void SendConfirmationUserConnectionToWorld(User user, World world, Player player, bool result, string message)
