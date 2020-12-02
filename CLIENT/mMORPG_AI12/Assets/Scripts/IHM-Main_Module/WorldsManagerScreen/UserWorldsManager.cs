@@ -84,7 +84,7 @@ public class UserWorldsManager : MonoBehaviour
 
         // Add a new object in the user worlds list
         AddUserWorld(defaultNewWorld);
-        worldDetailsContainer.GetComponent<WorldDetailsManager>().CreateNewWorld(defaultNewWorld);
+        worldDetailsContainer.GetComponent<WorldDetailsManager>().SetWorldDetails(defaultNewWorld);
     }
 
     /// <summary>
