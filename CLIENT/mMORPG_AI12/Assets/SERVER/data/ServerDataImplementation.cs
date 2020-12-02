@@ -14,13 +14,9 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     public void SetupServer(ServerNetworkImplementation n)
     {
         network = n;
-
-        //DEBUG
-        //World w = new World("DefaultWorld", 10, GameMode.pvp, true, 1, 10, 2, 2, 2, true, true, true, true, false, false, false, false, new List<Player>(), new List<Monster>(), new User(), new GameState());
-        //w.id = "111";
-        //ReceiveNewWorld(w);
-        Debug.Log("Demarrage du serveur effectue");
-        
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Demarrage du serveur effectue", Console.ForegroundColor);
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
     public List<World> GetWorlds()
@@ -98,7 +94,7 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
             network.SendListUsersWorlds(u, UsersManager.GetConnectedUsers(), GetWorlds());
         }
     }
-    public void UserBrutalDisconnected(User user)
+    public void UserBrutalDisconnected(string userID)
     {
         throw new NotImplementedException();
     }

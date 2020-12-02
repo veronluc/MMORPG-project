@@ -41,10 +41,6 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
     }
 
     public void ReceiveListUsers(List<User> users) {
-        if (users == null)
-            Debug.Log("List of users is null.");
-        else 
-            Debug.Log("Received users from server (count) : "+ users.Count);
         if (DataModule.ihmMainInterface == null)
             Debug.LogError("Interface cliente ihmMainInterface non implémentée");
         //GameObject.FindObjectOfType<DataModule>().GetInterfaceForIHMMain().DisplayListUser(users);
