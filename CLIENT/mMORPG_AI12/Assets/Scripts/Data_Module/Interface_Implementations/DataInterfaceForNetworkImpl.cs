@@ -21,12 +21,6 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
         DataModule.ihmMainInterface.DisplayNewAvailableWorld(worlds);
     }
 
-    [Obsolete("Use the othe ReceiveWorld method instead")]
-    public void ReceiveWorld(World world)
-    {
-        // TODO DO NOT USE
-    }
-
     public User GetUser()
     {
         return dataModule.connectedUserManager.connectedUser.user;
@@ -103,4 +97,7 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
         connectedUserManager.currentPlayer = null;
         DataModule.ihmGameInterface.DisplayServerStop();
     }
+
+    [Obsolete("Use the othe ReceiveWorld method instead")]
+    public void ReceiveWorld(World world) { }
 }
