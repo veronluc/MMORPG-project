@@ -75,6 +75,7 @@ namespace AI12_DataObjects
             List<Entity> targets = world.gameState.map[tile.location.x, tile.location.y].entities;
             targets.ForEach(delegate (Entity target)
             {
+                Debug.Log(target.vitality);
                 if (skill.healing)
                 {
                     this.healEntity(entity, target, skill);
@@ -82,6 +83,7 @@ namespace AI12_DataObjects
                 {
                     this.damageEntity(entity, target, skill);
                 }
+                Debug.Log(target.vitality);
             });
             world.gameState.map[tile.location.x, tile.location.y].entities = targets;
 

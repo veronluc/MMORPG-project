@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace AI12_DataObjects
 {
@@ -43,8 +44,10 @@ namespace AI12_DataObjects
         public void damageEntity(int damage)
         {
             int damageDone = damage - this.defense;
+            Debug.Log("Target has resistance");
             if (damageDone > 0)
             {
+                Debug.Log("Target has taken damage");
                 this.vitality = this.vitality - damageDone;
             }
         }
@@ -54,12 +57,14 @@ namespace AI12_DataObjects
             // More heal than max vitality
             if (healing > vitalityMax - vitality)
             {
+                Debug.Log("Target healed to max");
                 this.vitality = this.vitalityMax;
             } 
             
             // Healing
             else
             {
+                Debug.Log("Target was healed");
                 this.vitality = this.vitality + healing;
             }
         }

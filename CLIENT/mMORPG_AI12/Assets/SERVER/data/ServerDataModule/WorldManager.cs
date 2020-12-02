@@ -46,9 +46,9 @@ public static class WorldManager
         {
             // Generate the tiles
             Tile[,] tiles = new Tile[NB_TILES, NB_TILES];
-            for (int i = 0; i < tiles.Rank; i++)
+            for (int i = 0; i < NB_TILES; i++)
             {
-                for (int j = 0; j < tiles.GetLength(i); j++)
+                for (int j = 0; j < NB_TILES; j++)
                 {
                     tiles[i, j] = new TilePlain("" + i + "," + j, new Location(i, j), "?");
                 }
