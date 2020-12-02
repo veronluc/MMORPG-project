@@ -25,7 +25,7 @@ public class LogoutManager : MonoBehaviour
         //Disconnection from server
         ihmMainModule.GetComponent<MainConnectedScreen>().LogOutServer();
         //Deletion of the User in the main module script
-        ihmMainModule.GetComponent<IHMMainModule>().SetCurrentUser(null);
+        ihmMainModule.GetComponent<IHMMainModule>().localUser = null;
         //Go back to the authenticationScreen
         ScreensManager.ShowAuthenticationMenu();
     }
