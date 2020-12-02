@@ -1,4 +1,5 @@
-﻿using Server.Network.Messages;
+﻿using AI12_DataObjects;
+using Server.Network.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class ClientServer
 {
     public int id;
+    private User user;
     public static int dataBufferSize = 32768;
     public TcpClient socket { get; set; }
     private BasePacket receivedData;
@@ -30,7 +32,9 @@ public class ClientServer
         receivedData = new BasePacket();
         stream = socket.GetStream();
         receiveBuffer = new byte[dataBufferSize];
-
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Client " + id + " connected.", Console.ForegroundColor);
+        Console.ForegroundColor = ConsoleColor.White;
         stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
     }
 
@@ -46,7 +50,6 @@ public class ClientServer
                     ms.Position = 0;
                     bf.Serialize(ms, _packet);
                     stream.BeginWrite(ms.ToArray(), 0, ms.ToArray().Length, null, null);
-                    Console.WriteLine("Sended data : " + ms.ToArray().Length);
                 }
             }
         }
@@ -64,7 +67,8 @@ public class ClientServer
             int _byteLength = stream.EndRead(_result);
             if (_byteLength <= 0)
             {
-                Console.WriteLine($"ReceiveCallback error. Bytelength < 0 ... Disconnect client "+id);
+                Console.WriteLine($"ReceiveCallback error. Bytelength < 0 ... Disconnecting client "+id);
+                s.data.UserBrutalDisconnected(id.ToString());
                 GameServer.clients[id].Disconnect();
                 return;
             }
@@ -78,6 +82,7 @@ public class ClientServer
         catch (Exception _ex)
         {
             Console.WriteLine($"Error receiving TCP data: {_ex}");
+            s.data.UserBrutalDisconnected(id.ToString());
             GameServer.clients[id].Disconnect();
         }
     }
@@ -95,7 +100,6 @@ public class ClientServer
                 ms.Seek(0, SeekOrigin.Begin);
                 Packet res = (Packet)bf.Deserialize(ms);
                 res.Handle(s);
-                Console.WriteLine("Object handled");
             }
         });
         /*
@@ -118,7 +122,9 @@ public class ClientServer
     }
     public void Disconnect()
     {
-        Console.WriteLine("Client " + id + " disconnect");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Client " + id + " disconnected", Console.ForegroundColor);
+        Console.ForegroundColor = ConsoleColor.White;
         socket.Close();
         stream = null;
         receiveBuffer = null;

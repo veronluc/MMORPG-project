@@ -82,7 +82,7 @@ public interface ServerDataInterfaceForNetwork
     /// An User client disconnect brutally
     /// </summary>
     /// <param name="user">User instance</param>
-    void UserBrutalDisconnected(User user);
+    void UserBrutalDisconnected(string userID);
 
     /// <summary>
     /// List worlds on server
