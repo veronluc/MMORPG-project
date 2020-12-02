@@ -6,7 +6,7 @@ using AI12_DataObjects;
 
 public class GameManager : MonoBehaviour
 {
-    public DataInterfaceForIHMGameImpl dataInterface { get; set; }
+    public DataInterfaceForIHMGame dataInterface { get; set; }
 
     public string userName;
     public int maxMessages = 25;
@@ -47,12 +47,11 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Encapsulates chat message into Message object and sends it to the DataInterfaceForIHMGame
     /// </summary>
-    void SendMessageToServer(string text)
+    public void SendMessageToServer(string text)
     {
         //Message message = new Message(dataInterface.GetCurrentWorld().id, dataInterface.GetCurrentUser().id, text, System.DateTime.Now);
         Message message = new Message("testWorld", "testUser", text, System.DateTime.Now);
-        //dataInterface.SendMessage(message);
-        SendMessageToChat(message, ChatMessage.MessageType.playerMessage);
+        dataInterface.SendMessage(message);
     }
 
     /// <summary>
