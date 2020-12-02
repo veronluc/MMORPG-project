@@ -63,22 +63,22 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     public void GiveLocalUser(LocalUser localUser)
     {
         //Retrieves the game object IHMMainModule
-        IHMMainModule iHMMainModule = GameObject.FindGameObjectWithTag("IHMMainModule");
+        GameObject iHMMainGameObject = GameObject.FindGameObjectWithTag("IHMMainModule");
 
         //Updates the server credentials in MainConnectedScreen
         //Class ServerInfo contains string "server" (Ip) and int "port"
-        iHMMainModule.GetComponent<MainConnectedScreen>().UpdateIpandPortDisplay(
+        iHMMainGameObject.GetComponent<MainConnectedScreen>().UpdateIpandPortDisplay(
             localUser.lastServerConnection.server, localUser.lastServerConnection.port.ToString());
 
         //Set the current user credentials in IHMMainModule
-        iHMMainModule.GetComponent<IHMMainModule>().SetCurrentUser(localUser.user);
+        iHMMainGameObject.GetComponent<IHMMainModule>().SetCurrentUser(localUser.user);
 
         //TODO V2
         //Updates the list of user worlds in ManageMyWorldScreen
-        //iHMMainModule.GetComponent<ManageMyWorldsScreen>().UpdateListWorldsDisplay(localUser.worlds);
+        //iHMMainGameObject.GetComponent<ManageMyWorldsScreen>().UpdateListWorldsDisplay(localUser.worlds);
 
         // TODO V3
         //Updates the list of user players in ManageMyPlayersScreen (Not yet implemented)
-        //iHMMainModule.GetComponent<ManageMyPlayersScreen>().UpdateListWorldsDisplay(localUser.players);
+        //iHMMainGameObject.GetComponent<ManageMyPlayersScreen>().UpdateListWorldsDisplay(localUser.players);
     }
 }
