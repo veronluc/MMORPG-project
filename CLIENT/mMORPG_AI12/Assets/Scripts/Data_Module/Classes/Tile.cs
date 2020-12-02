@@ -9,7 +9,7 @@ namespace AI12_DataObjects {
         public string name { get; set; }
         public Location location { get; set; }
         public string sprite { get; set; }
-        public List<Entities> entities { get; set; }
+        public List<Entity> entities { get; set; }
 
         public Tile(string name, Location location, string sprite)
         {
@@ -19,7 +19,7 @@ namespace AI12_DataObjects {
             this.entities = new List<Entity>();
         }
 
-        public Tile(string name, Location location, string sprite, List<Entities> entities)
+        public Tile(string name, Location location, string sprite, List<Entity> entities)
         {
             this.name = name;
             this.location = location;
