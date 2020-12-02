@@ -37,7 +37,7 @@ namespace AI12_DataObjects
             }
 
             // Restore Entity PMs
-            entity.PM = entity.entityClass.basePM;
+            this.world.gameState.currentEntity().PM = entity.entityClass.basePM;
 
             // Change turn
             this.world.gameState.incrementIndex();

@@ -20,7 +20,6 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
         //w.id = "111";
         //ReceiveNewWorld(w);
         Debug.Log("Demarrage du serveur effectue");
-        
     }
 
     public List<World> GetWorlds()
@@ -64,13 +63,23 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     }
     public Entity ReceiveNewAction(World world)
     {
-        return world.gameState.nextPlayerEntity();
+        return world.gameState.currentEntity();
     }
     public GameState ReceiveNewAction(AI12_DataObjects.Action action)
     {
-        // G2
-        throw new NotImplementedException();
+        GameState newGameState =  action.makeAction();
+        WorldsManager.UpdateWorldFromId(action.world.id, newGameState);
+        return newGameState;
     }
+
+    public GameState makeMonsterTurn(World world)
+    {
+        AI12_DataObjects.Action endTurn = new ActionEndRound(world.gameState.currentEntity(), world);
+        GameState newGameState = endTurn.makeAction();
+        WorldsManager.UpdateWorldFromId(world.id, newGameState);
+        return newGameState;
+    }
+
     public void UserAskWorldList(User user)
     {
         throw new NotImplementedException();
