@@ -1207,6 +1207,7 @@ MonoBehaviour:
   worldType: {fileID: 7385809415818722344}
   worldTurnTime: {fileID: 1616430563}
   joinButton: {fileID: 1462769356}
+  connectedMenu: {fileID: 0}
 --- !u!1 &7385809415580808601
 GameObject:
   m_ObjectHideFlags: 0
