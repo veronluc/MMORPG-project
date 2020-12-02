@@ -20,7 +20,7 @@ public class GameServer : MonoBehaviour
         MaxPlayers = _maxPlayers;
         Port = _port;
 
-        Debug.Log("Starting server...");
+        Console.WriteLine("Starting server...");
         InitializeServerData();
 
         tcpListener = new TcpListener(IPAddress.Any, Port);
@@ -28,14 +28,13 @@ public class GameServer : MonoBehaviour
         tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
 
 
-        Debug.Log($"Server started on port {Port}.");
+        Console.WriteLine($"Server started on port {Port}.");
         network = new ServerNetworkImplementation();
         data = new ServerDataImplementation();
         data.SetupServer(network);
     }
     private void TCPConnectCallback(IAsyncResult _result)
     {
-        Console.WriteLine("TCPConnectCallBack - socket client 1 : " + clients[1].socket);
         TcpClient _client = tcpListener.EndAcceptTcpClient(_result);
         tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
         Console.WriteLine($"Incoming connection from {_client.Client.RemoteEndPoint}...");
@@ -44,18 +43,14 @@ public class GameServer : MonoBehaviour
         {
             if (clients[i].socket == null)
             {
-                Debug.Log("Client " + i + " is null");
                 clients[i].Connect(_client);
                 SendInitialisation(clients[i].id);
-                //Debug("Ok");
-
-                Console.WriteLine("Sended Initialization to client id : " + clients[i].id);
-                Console.WriteLine("socket client 1 : "+ clients[i].socket);
                 return;
             }
         }
-
-        Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server full!");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server full!",Console.ForegroundColor);
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
     private void InitializeServerData()
@@ -115,6 +110,6 @@ public class GameServer : MonoBehaviour
 
     public void DebugIt(string message)
     {
-        Debug.Log(message);
+        Console.WriteLine(message);
     }
 }

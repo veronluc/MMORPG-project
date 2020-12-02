@@ -21,5 +21,8 @@ public class AskDisconnectServer : Packet
     public override void Handle(GameServer s)
     {
         s.data.UserAskDisconnectFromServer(currentUser);
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Client "+currentUser.id+" asks to disconnect.");
+        Console.ForegroundColor = ConsoleColor.White;
     }
 }

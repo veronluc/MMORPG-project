@@ -27,15 +27,22 @@ public class ServerNetworkImplementation : MonoBehaviour
     }
     public void SendMessageToUser(User user, Message message)
     {
-        throw new NotImplementedException();
+        if (message == null)
+            throw new ArgumentNullException("Message to send to user is null");
+        if (user == null)
+            throw new ArgumentNullException("User to send message is null");
+        SendMessage msg = new SendMessage(message);
+        this.SendPacket(user.id,msg);
     }
     public void SendActionToUser(User user, AI12_DataObjects.Action action, Player player)
     {
-        throw new NotImplementedException();
+        SendActionPlayerToClient msg = new SendActionPlayerToClient(player, action);
+        SendPacket(user.id, msg);
     }
     public void SendActionToUser(User user, AI12_DataObjects.Action action, Monster monster)
     {
-        throw new NotImplementedException();
+        SendActionMonsterToClient msg = new SendActionMonsterToClient(monster, action);
+        SendPacket(user.id, msg);
     }
     public void SendConfirmationUserConnectionToWorld(User user, World world, Player player, bool result, string message)
     {
