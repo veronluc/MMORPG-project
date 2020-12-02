@@ -122,7 +122,8 @@ public class WorldDetailsManager : MonoBehaviour
     public void OnClickLoadWorld()
     {
         // TODO : call the character popup and choose a real player from user players list
-        Player player = GameObject.FindGameObjectWithTag("PlayerChoicePopup").GetComponent<WorldJoinManager>().TestCreatePlayer();
+        Player player = GameObject.FindGameObjectWithTag("PlayerChoicePopup").GetComponent<WorldJoinManager>()
+            .TestCreatePlayer();
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
             .LoadWorld(player, world.id);
     }
@@ -184,7 +185,7 @@ public class WorldDetailsManager : MonoBehaviour
     /// <param name="roundTime">The new round time in seconds</param>
     public void SetRoundTime(string roundTime)
     {
-        this.world.roundTimeSec = int.Parse(roundTime);
+        this.world.roundTimeSec = !roundTime.Equals("") ? int.Parse(roundTime) : 30;
     }
 
     /// <summary>
@@ -204,7 +205,7 @@ public class WorldDetailsManager : MonoBehaviour
     /// <param name="maxPlayers">The new max number of players</param>
     public void SetMaxPlayers(string maxPlayers)
     {
-        this.world.nbMaxPlayer = int.Parse(maxPlayers);
+        this.world.nbMaxPlayer = !maxPlayers.Equals("") ? int.Parse(maxPlayers) : 1;
     }
 
     /// <summary>
@@ -213,7 +214,7 @@ public class WorldDetailsManager : MonoBehaviour
     /// <param name="maxMonsters">The new max number of monsters</param>
     public void SetMaxMonsters(string maxMonsters)
     {
-        this.world.nbMaxMonsters = int.Parse(maxMonsters);
+        this.world.nbMaxMonsters = !maxMonsters.Equals("") ? int.Parse(maxMonsters) : 50;
     }
 
     /// <summary>
@@ -222,7 +223,7 @@ public class WorldDetailsManager : MonoBehaviour
     /// <param name="nbShops">The new number of shops</param>
     public void SetNbShops(string nbShops)
     {
-        this.world.nbShops = int.Parse(nbShops);
+        this.world.nbShops = !nbShops.Equals("") ? int.Parse(nbShops) : 0;
     }
 
     /// <summary>
