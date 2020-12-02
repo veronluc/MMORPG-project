@@ -21,13 +21,13 @@ public interface ServerDataInterfaceForNetwork
     /// Get next Player on the game
     /// </summary>
     /// <param name="world">World instance</param>
-    void ReceiveNewAction(World world);
+    Entity ReceiveNewAction(World world);
 
     /// <summary>
     /// An action is performed on a client
     /// </summary>
     /// <param name="action">Action instance</param>
-    void ReceiveNewAction(AI12_DataObjects.Action action);
+    GameState ReceiveNewAction(AI12_DataObjects.Action action);
 
     /// <summary>
     /// A new World is created on a client
@@ -93,4 +93,22 @@ public interface ServerDataInterfaceForNetwork
     /// List of User instances
     /// </returns>
     List<User> GetUsers();
+
+    /// <summary>
+    /// List users with a player connected to the world
+    /// </summary>
+    /// <returns>
+    /// List of User instances with a player connected to the world
+    /// </returns>
+    /// <param name="world">World instance</param>
+    List<User> GetUsersFromWorld(World world);
+
+    /// <summary>
+    /// List users with a player connected to the world (represented by its id)
+    /// </summary>
+    /// <returns>
+    /// List of User instances with a player connected to the world
+    /// </returns>
+    /// <param name="idWorld">Identifier of the World</param>
+    List<User> GetUsersFromWorld(string idWorld);
 }
