@@ -7,21 +7,20 @@ using UnityEngine;
 
 public class WorldJoinManager : MonoBehaviour
 {
-
     private GameObject characterListItemPrefab; // This is our prefab object that will be exposed in the inspector
     public GameObject characterContainer;
 
     private List<GameObject> characterGameObjectList;
 
-	private string worldIdToJoin;
+    private string worldIdToJoin;
 
-	public TextMeshProUGUI worldName;
+    public TextMeshProUGUI worldName;
 
     private GameObject selectedItem;
 
     private void Awake()
     {
-        characterListItemPrefab = (GameObject)Resources.Load("CharacterListItem");
+        characterListItemPrefab = (GameObject) Resources.Load("CharacterListItem");
         characterGameObjectList = new List<GameObject>();
         this.gameObject.SetActive(false);
     }
@@ -33,7 +32,8 @@ public class WorldJoinManager : MonoBehaviour
     private void OnEnable()
     {
         //Récupération du current User pour afficher ses Players
-        List<Player> players = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().GetCurrentUser().players;
+        List<Player> players = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>()
+            .GetCurrentUser().players;
         //For test purpose
         /**players = new List<Player>();
         players.Add(TestCreatePlayer());
@@ -52,11 +52,11 @@ public class WorldJoinManager : MonoBehaviour
     /// <summary>
     /// Close the popup
     /// </summary>
-	public void ClosePopup()
+    public void ClosePopup()
     {
-		if (this.gameObject.activeSelf)
+        if (this.gameObject.activeSelf)
         {
-			this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -64,58 +64,58 @@ public class WorldJoinManager : MonoBehaviour
     /// Open the popup for a specific world
     /// </summary>
     /// <param name="world"> the world where the id will be saved in this script for the connection</param>
-	public void OpenPopupForCurrentWorld(World world)
+    public void OpenPopupForCurrentWorld(World world)
     {
-		if (!this.gameObject.activeSelf)
+        if (!this.gameObject.activeSelf)
         {
-			this.gameObject.SetActive(true);
+            this.gameObject.SetActive(true);
         }
-		this.worldIdToJoin = world.id;
-		this.worldName.text = world.name;
 
+        this.worldIdToJoin = world.id;
+        this.worldName.text = world.name;
     }
 
     /// <summary>
     /// Function called by the "CONNECT" Button on the popup Screen (player choice)
     /// </summary>
-	public void ConnectToAWorld()
+    public void ConnectToAWorld()
     {
         //Call the Function useful to connect to a world
-        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>().JoinWorld(this.selectedItem.GetComponent<CharacterListItemManager>().GetPlayer(), this.worldIdToJoin);
+        GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
+            .JoinWorld(this.selectedItem.GetComponent<CharacterListItemManager>().GetPlayer(), this.worldIdToJoin);
         Debug.Log("ID WORLD : " + this.worldIdToJoin);
         Debug.Log("PLAYER NAME : " + this.selectedItem.GetComponent<CharacterListItemManager>().GetPlayer().name);
         ClosePopup();
-	}
+    }
 
-	/// <summary>
-	/// Delete the actual player list and add the new one
-	/// </summary>
-	/// <param name="players"></param>
-	public void SetPlayerList(List<Player> players)
-	{
+    /// <summary>
+    /// Delete the actual player list and add the new one
+    /// </summary>
+    /// <param name="players"></param>
+    public void SetPlayerList(List<Player> players)
+    {
+        //Destroy all players on the screen
+        if (this.characterGameObjectList.Count != 0)
+        {
+            foreach (GameObject obj in this.characterGameObjectList)
+            {
+                Destroy(obj);
+            }
+        }
 
-		//Destroy all players on the screen
-		if (this.characterGameObjectList.Count != 0)
-		{
-			foreach (GameObject obj in this.characterGameObjectList)
-			{
-				Destroy(obj);
-			}
-		}
+        GameObject newObj;
 
-		GameObject newObj;
+        //add the new player list on the screen
+        foreach (Player player in players)
+        {
+            // Create new instances of our prefab in the screen container (named 'content')
+            newObj = (GameObject) Instantiate(characterListItemPrefab, characterContainer.transform);
 
-		//add the new player list on the screen
-		foreach (Player player in players)
-		{
-			// Create new instances of our prefab in the screen container (named 'content')
-			newObj = (GameObject)Instantiate(characterListItemPrefab, characterContainer.transform);
+            //Add this new GameObject in the list to delete it later if needed
+            this.characterGameObjectList.Add(newObj);
 
-			//Add this new GameObject in the list to delete it later if needed
-			this.characterGameObjectList.Add(newObj);
-
-			//add the user to the gameObject to show its info. on the screen
-			newObj.GetComponent<CharacterListItemManager>().SetPlayerToGameObject(player);
+            //add the user to the gameObject to show its info. on the screen
+            newObj.GetComponent<CharacterListItemManager>().SetPlayerToGameObject(player);
 
             //Change the default color of the item
             newObj.GetComponent<CharacterListItemManager>().SetItemBackgroundColor(Color.white);
@@ -123,7 +123,7 @@ public class WorldJoinManager : MonoBehaviour
             //Activate the "choosability of the item"
             newObj.GetComponent<CharacterListItemManager>().ActivateChoosableItem(SelectPlayerItem);
         }
-	}
+    }
 
     /// <summary>
     /// Function called when a click is performed on one of the Character items
@@ -135,6 +135,7 @@ public class WorldJoinManager : MonoBehaviour
         {
             this.selectedItem.GetComponent<CharacterListItemManager>().SetItemBackgroundColor(Color.white);
         }
+
         this.selectedItem = playerItem;
         this.selectedItem.GetComponent<CharacterListItemManager>().SetItemBackgroundColor(Color.green);
     }
@@ -143,48 +144,19 @@ public class WorldJoinManager : MonoBehaviour
     /// Only for test purpose
     /// </summary>
     /// <returns>a player</returns>
-    private Player TestCreatePlayer(string name = "JOUEUR")
+    public Player TestCreatePlayer(string name = "JOUEUR")
     {
         // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
-        Player player = new Player();
-        player.gold = 0;
-        player.xp = 0;
-        player.name = name;
-        player.level = 0;
-        player.vitalityMax = 100;
-        player.vitality = 100;
-        player.manaMax = 100;
-        player.mana = 100;
-        player.strength = 25;
-        player.intelligence = 20;
-        player.defense = 12;
-        player.pM = 8;
-        player.location = new Location(0, 0);
-        player.entityClass = new EntityClass();
-        player.entityClass.name = "GUERRIER";
-        player.entityClass.baseVitality = 100;
-        player.entityClass.baseMana = 100;
-        player.entityClass.baseStrength = 25;
-        player.entityClass.baseIntelligence = 2;
-        player.entityClass.baseDefense = 12;
-        player.entityClass.basePM = 8;
-        player.entityClass.exclusive = Entities.player;
-        player.entityClass.skills = new List<Skill>();
         Skill skill = new Skill();
         skill.zone = 2;
         skill.damagePoints = 4;
         skill.costMana = 2;
-        skill.range = new Range();
-        skill.range.shape = shapes.star;
-        player.entityClass.skills.Add(skill);
-        User user = new User();
-        user.login = "Jean Né marre";
-        user.password = "Des classes sans constructeur";
-        user.firstName = "Créer un player prend";
-        user.lastName = "41 lignes...";
-        user.birthDate = new DateTime(2020, 11, 16);
-        user.imageRef = "/C/vide";
-        user.players = new List<Player>();
+        skill.range = new Range(shapes.star, 10);
+        List<Skill> skills = new List<Skill>() {skill};
+        EntityClass entity = new EntityClass("GUERRIER", 100, 100, 25, 2, 12, 8, Entities.player, skills);
+        Player player = new Player(name, 0, 100, 100, 100, 100, 25, 20, 12, 8, new Location(0, 0), entity, 0, 0, null);
+        User user = new User("Jean Né marre", "idididid", "Des classes sans constructeur", "Créer un player prend",
+            "Créer un player prend", new DateTime(2020, 11, 16), "/C/vide", new List<Player>(), new List<World>());
         user.players.Add(player);
         player.user = user;
         return player;
