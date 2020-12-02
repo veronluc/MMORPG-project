@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AI12_DataObjects
 {
@@ -25,7 +26,23 @@ namespace AI12_DataObjects
         /// </returns>
         public override bool IsLegal()
         {
-            // TODO Implement - Team Data
+            double distance = entity.location.distance(tile.location);
+
+            // Distance is null
+            if (distance == 0)
+            {
+                Debug.Log("Action Move : the entity doesn't need to move (distance = 0)");
+                return false;
+            }
+            
+            // Distance is bigger than PMs
+            if (distance > entity.PM)
+            {
+                Debug.Log("Action Move : the entity doesn't have enough PM");
+                return false;
+            }
+
+            // ActionMove is legal
             return true;
         }
 
@@ -37,14 +54,27 @@ namespace AI12_DataObjects
         /// </returns>
         public override GameState makeAction()
         {
+            // If ActionMove isn't legal return null
             if (!this.IsLegal())
             {
                 return null;
             }
 
-            // TODO Implement - Team Data
-            // Move entity to targeted Tile
-            return null;
+            // If ActionMove is legal change entity Location
+            entity.location = new Location(tile.location.x, tile.location.y);
+            // Take out from current tile
+            world.gameState
+                .map[entity.location.x, entity.location.y]
+                .entities
+                .Remove(entity);
+            // Put into new tile
+            world.gameState
+                .map[tile.location.x, tile.location.y]
+                .entities
+                .Add(entity);
+
+            // Return new gameState
+            return world.gameState;
         }
     }
 }

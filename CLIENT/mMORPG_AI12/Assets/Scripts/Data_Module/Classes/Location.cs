@@ -13,5 +13,10 @@ namespace AI12_DataObjects
             this.x = x;
             this.y = y;
         }
+
+        public int distance (Location loc)
+        {
+            return Math.Abs(this.x - loc.x) + Math.Abs(this.y - loc.y);
+        }
     }
 }

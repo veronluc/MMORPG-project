@@ -56,6 +56,8 @@ namespace AI12_DataObjects
             this.hasMontain = hasMontain;
             this.hasSea = hasSea;
             this.creator = creator;
+            this.players = new List<Player>();
+            this.monstersList = new List<Monster>();
         }
     }
 }
