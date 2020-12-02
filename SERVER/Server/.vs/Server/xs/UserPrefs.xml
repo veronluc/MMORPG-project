@@ -1,0 +1,46 @@
+﻿<Properties StartupConfiguration="{A2A4358C-E1D7-4534-9835-CEFBA5CA8143}|Default">
+  <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server/Interfaces/DataInterfaceForNetwork.cs">
+    <Files>
+      <File FileName="Server/Classes/Action.cs" Line="13" Column="1" />
+      <File FileName="Server/Classes/Entity.cs" />
+      <File FileName="Server/Classes/EntityClass.cs" />
+      <File FileName="Server/Classes/GameState.cs" />
+      <File FileName="Server/Classes/Location.cs" />
+      <File FileName="Server/Classes/Message.cs" />
+      <File FileName="Server/Classes/Monster.cs" />
+      <File FileName="Server/Classes/Player.cs" />
+      <File FileName="Server/Classes/Range.cs" />
+      <File FileName="Server/Classes/Skill.cs" />
+      <File FileName="Server/Classes/Tile.cs" />
+      <File FileName="Server/Classes/User.cs" />
+      <File FileName="Server/Classes/World.cs" />
+      <File FileName="Server/Data/WorldsManager.cs" />
+      <File FileName="Server/Data/WorldManager.cs" />
+      <File FileName="Server/Classes/EntityClass.cs.meta" />
+      <File FileName="Server/Data/DataImplementation.cs" />
+      <File FileName="Server/Data/UsersManager.cs" />
+      <File FileName="Server/Interfaces/DataInterfaceForNetwork.cs" Line="35" Column="1" />
+      <File FileName="Server/Interfaces/NetworkInterface.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Server" expanded="True">
+            <Node name="Server" expanded="True">
+              <Node name="Interfaces" expanded="True">
+                <Node name="DataInterfaceForNetwork.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

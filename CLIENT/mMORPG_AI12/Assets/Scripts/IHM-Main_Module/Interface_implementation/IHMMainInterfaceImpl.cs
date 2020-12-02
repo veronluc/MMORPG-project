@@ -61,4 +61,9 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     {
         throw new System.NotImplementedException();
     }
+
+    public void GiveLocalUser(LocalUser localUser)
+    {
+        // TODO
+    }
 }

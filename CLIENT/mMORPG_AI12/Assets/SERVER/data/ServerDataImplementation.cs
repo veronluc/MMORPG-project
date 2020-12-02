@@ -57,12 +57,13 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     {
         throw new NotImplementedException();
     }
-    public void ReceiveNewAction(World world)
+    public Entity ReceiveNewAction(World world)
     {
-        throw new NotImplementedException();
+        return world.gameState.nextPlayerEntity();
     }
-    public void ReceiveNewAction(AI12_DataObjects.Action action)
+    public GameState ReceiveNewAction(AI12_DataObjects.Action action)
     {
+        // G2
         throw new NotImplementedException();
     }
     public void UserAskWorldList(User user)
@@ -96,5 +97,17 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
     public void UserBrutalDisconnected(string userID)
     {
         throw new NotImplementedException();
+    }
+
+    public List<User> GetUsersFromWorld(World world)
+    {
+        return WorldsManager.GetPlayersUsers(world);
+    }
+
+    public List<User> GetUsersFromWorld(string idWorld)
+    {
+        World world = WorldsManager.getWorldFromId(idWorld);
+        if (world == null) throw new Exception("World is not online");
+        return GetUsersFromWorld(world);
     }
 }

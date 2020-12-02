@@ -43,4 +43,10 @@ public interface IHMMainInterface
     /// </summary>
     /// <param name="world"></param>
     void DisplayWorldDetail(World world);
+
+    /// <summary>
+    /// Transmit the local data relative to locally authentificated user
+    /// </summary>
+    /// <param name="localUser"></param>
+    void GiveLocalUser(LocalUser localUser);
 }
