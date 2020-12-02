@@ -11,7 +11,7 @@ public class PlayerLifeText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCaracteristics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCaracteristics>();
+        playerCaracteristics = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerCaracteristics>();
         textLife.text = playerCaracteristics.life.ToString();
     }
 }

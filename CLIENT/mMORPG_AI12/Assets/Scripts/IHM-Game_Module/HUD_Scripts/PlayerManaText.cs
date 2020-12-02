@@ -10,7 +10,7 @@ public class PlayerManaText : MonoBehaviour
 
     private void Start()
     {
-        playerCaracteristics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCaracteristics>();
+        playerCaracteristics = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerCaracteristics>();
 
         textMana.text = playerCaracteristics.mana.ToString();
     }
