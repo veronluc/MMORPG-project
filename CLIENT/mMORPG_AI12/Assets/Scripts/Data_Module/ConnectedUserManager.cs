@@ -12,6 +12,9 @@ public class ConnectedUserManager
     public bool isConnected {get => connectedUser != null; }
     public ServerInfo serverInfo {get => serverInfo; set { serverInfo = value; connectedUser.lastServerConnection = value; } }
 
+    public World currentWorld { get; set; }
+    public Player currentPlayer { get; set; }
+
     public ConnectedUserManager() {
         this.connectedUser = null;
         // RetrieveServerInfo();
