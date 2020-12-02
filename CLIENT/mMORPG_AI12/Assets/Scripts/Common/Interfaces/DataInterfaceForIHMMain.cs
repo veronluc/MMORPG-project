@@ -51,14 +51,29 @@ public interface DataInterfaceForIHMMain
     /// Load a local World instance to the server
     /// </summary>
     /// <param name="world">World instance</param>
+    [Obsolete("Please use the new method LoadWorld, directly below")]
     void LoadWorld(ref World world);
+
+    /// <summary>
+    /// Load a local World instance to the server
+    /// </summary>
+    /// <param name="world">World instance</param>
+    void LoadWorld(string worldId, string playerId);
 
     /// <summary>
     /// Join a world on the current server
     /// </summary>
     /// <param name="player">Player instance to join the World</param>
     /// <param name="worldId">World unique identifier</param>
+    [Obsolete("Please use the new method LoadWorld, directly below")]
     void JoinWorld(Player player, string worldId);
+
+    /// <summary>
+    /// Join a world on the current server
+    /// </summary>
+    /// <param name="player">Player instance to join the World</param>
+    /// <param name="worldId">World unique identifier</param>
+    void JoinWorld(string playerId, string worldId);
 
     /// <summary>
     /// Get details of a world
@@ -107,7 +122,17 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// Player instance
     /// </returns>
+    [Obsolete("Use AddPlayer(Player player) instead")]
     Player CreatePlayer(EntityClass entityClass, string name);
+
+    /// <summary>
+    /// Create a player profile locally
+    /// </summary>
+    /// <param name="player">Player</param>
+    /// <returns>
+    /// Player instance
+    /// </returns>
+    void AddPlayer(Player player);
 
     /// <summary>
     /// List local players profiles
@@ -121,7 +146,14 @@ public interface DataInterfaceForIHMMain
     /// Delete a player profile locally
     /// </summary>
     /// <param name="player">Player instance to delete</param>
+    [Obsolete("Use DeletePlayer(string playerId) instead")]
     void DeletePlayer(Player player);
+
+    /// <summary>
+    /// Delete a player profile locally
+    /// </summary>
+    /// <param name="player">Player instance to delete</param>
+    void DeletePlayer(string playerId);
 
     /// <summary>
     /// Edit a player profile locally
@@ -130,7 +162,17 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// Updated player instance
     /// </returns>
+    [Obsolete("Use ModifyPlayer(Player player) instead")]
     Player EditPlayer(Player editedPlayer);
+
+    /// <summary>
+    /// Edit a player profile locally
+    /// </summary>
+    /// <param name="player">Player instance with updated properties</param>
+    /// <returns>
+    /// Updated player instance
+    /// </returns>
+    void ModifyPlayer(Player editedPlayer);
 
     /// <summary>
     /// OBSOLETE Create a world locally
@@ -147,7 +189,7 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// Created world instance
     /// </returns>
-    World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator);
+    void CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator);
 
     /// <summary>
     /// Get list of online Worlds instances
@@ -160,7 +202,7 @@ public interface DataInterfaceForIHMMain
     /// <returns>
     /// World instance to delete
     /// </returns>
-    void DeleteWorld(World world);
+    void DeleteWorld(string worldId);
 
     /// <summary>
     /// Update a world locally

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class WorldManager
 {
@@ -35,5 +36,41 @@ public static class WorldManager
                 world.players.Add(newPlayer);
             }
         }
+    }
+
+    public static GameState GenerateGameState(World w)
+    {
+        GameState g;
+        int NB_TILES = w.sizeMap;
+        if (w.gameState == null)
+        {
+            // Generate the tiles
+            Tile[,] tiles = new Tile[NB_TILES, NB_TILES];
+            for (int i = 0; i < NB_TILES; i++)
+            {
+                for (int j = 0; j < NB_TILES; j++)
+                {
+                    tiles[i, j] = new TilePlain("" + i + "," + j, new Location(i, j), "?");
+                }
+            }
+            // Add Players (should contain only the creator player btw) then monsters
+            List<Entity> all = new List<Entity>(w.players);
+            all.AddRange(w.monstersList);
+            g = new GameState(
+                0,
+                0,
+                all,
+                tiles
+            );
+        } else
+        {
+            // Remove every player except the one of the creator
+            g = w.gameState;
+            g.turns.RemoveAll(p =>
+                typeof(Player).IsInstanceOfType(p) &&
+                ((Player) p).user.id == w.creator.id
+            );
+        }
+        return g;
     }
 }

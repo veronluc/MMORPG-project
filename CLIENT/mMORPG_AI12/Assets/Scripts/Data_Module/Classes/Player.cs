@@ -15,5 +15,17 @@ namespace AI12_DataObjects
             this.xp = xp;
             this.user = user;
         }
+
+        public Player(string id, string name, int level, int vitalityMax, int vitality, int manaMax, int mana, int strength, int intelligence, int defense, int PM, Location location, EntityClass entityClass, int gold, int xp, User user) : base(id, name, level, vitalityMax, vitality, manaMax, mana, strength, intelligence, defense, PM, location, entityClass)
+        {
+            this.gold = gold;
+            this.xp = xp;
+            this.user = user;
+        }
+
+        public override bool isMonster()
+        {
+            return false;
+        }
     }
 }
