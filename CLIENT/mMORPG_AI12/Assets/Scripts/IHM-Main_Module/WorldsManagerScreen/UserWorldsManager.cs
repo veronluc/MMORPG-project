@@ -28,8 +28,8 @@ public class UserWorldsManager : MonoBehaviour
     private void OnEnable()
     {
         // TODO : Modify those lines
-        //List<World> worlds = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().GetLocalUser().worlds;
-        //SetUserWorldsList(worlds);
+        List<World> worlds = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.worlds;
+        SetUserWorldsList(worlds);
         Debug.Log("load the user worlds");
     }
 
@@ -79,8 +79,10 @@ public class UserWorldsManager : MonoBehaviour
     /// </summary>
     public void OnClickCreateNewWorld()
     {
+        User user = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user;
+
         World defaultNewWorld = new World("New World", 0, GameMode.pve, true, 0, 30, 1, 50, 0, false, false, false,
-            false, false, false, false, false, null);
+            false, false, false, false, false, user);
 
         // Add a new object in the user worlds list
         AddUserWorld(defaultNewWorld);
@@ -92,7 +94,6 @@ public class UserWorldsManager : MonoBehaviour
     /// </summary>
     public void OnClickBackButton()
     {
-        // TODO : change screen for Main Connected Screen
         ScreensManager.ShowMainConnectedScreen();
     }
 
