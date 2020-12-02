@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public DataInterfaceForIHMGame dataInterface { get; set; }
 
-    public string userName;
     public int maxMessages = 25;
 
     public GameObject chatPanel, textObject;
@@ -51,7 +50,8 @@ public class GameManager : MonoBehaviour
     {
         //Message message = new Message(dataInterface.GetCurrentWorld().id, dataInterface.GetCurrentUser().id, text, System.DateTime.Now);
         Message message = new Message("testWorld", "testUser", text, System.DateTime.Now);
-        dataInterface.SendMessage(message);
+        //dataInterface.SendMessage(message);
+        SendMessageToChat(message, ChatMessage.MessageType.playerMessage);
     }
 
     /// <summary>
