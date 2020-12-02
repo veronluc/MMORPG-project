@@ -8,10 +8,15 @@ public class IHMGameModule : MonoBehaviour
     public DataInterfaceForIHMGame dataInterface { get; set; }
 
     // Instanciated interface for the other module(s)
-    public IHMGameInterface ihmGameInterface { get; set; }
+    public IHMGameInterfaceImpl ihmGameInterface { get; set; }
+
+    // GameManager to manage chat messages
+    public GameManager gameManager { get; set; }
 
     private void Awake()
     {
-        ihmGameInterface = new IHMGameInterfaceImpl();
+        this.ihmGameInterface = new IHMGameInterfaceImpl();
+        this.gameManager = new GameManager();
+        this.ihmGameInterface.gameManager = this.gameManager;
     }
 }
