@@ -3,10 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
+/// <summary>
+/// Wrapper for the reception of the data via the sockets
+/// </summary>
 public class BasePacket : IDisposable
 {
+    /// <summary>
+    /// Byte list buffer
+    /// </summary>
     public List<byte> buffer;
+    /// <summary>
+    /// Array buffer
+    /// </summary>
     public byte[] readableBuffer;
+    /// <summary>
+    /// The actual read position
+    /// </summary>
     private int readPos;
 
     /// <summary>Creates a new empty packet (without an ID).</summary>
