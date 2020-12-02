@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using AI12_DataObjects;
 
 public class GameManager : MonoBehaviour
 {
+    public DataInterfaceForIHMGameImpl dataInterface { get; set; }
+
     public string userName;
     public int maxMessages = 25;
 
@@ -14,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Color playerMessage, info;
 
     [SerializeField]
-    List<Message> messageList = new List<Message>();
+    List<ChatMessage> messageList = new List<ChatMessage>();
 
     // Start is called before the first frame update
     void Start()
@@ -29,28 +32,33 @@ public class GameManager : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Return))
             {
-                SendMessageToChat(userName +": "+  chatBox.text, Message.MessageType.playerMessage);
+                SendMessageToServer(chatBox.text);
                 chatBox.text = "";
+                chatBox.DeactivateInputField();
             }
         }
         else
         {
             if (!chatBox.isFocused && Input.GetKeyDown(KeyCode.Return))
                 chatBox.ActivateInputField();
-        }
-
-        if(!chatBox.isFocused)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SendMessageToChat("You pressed the space key!", Message.MessageType.info);
-                Debug.Log("Space");
-            }
-        }
-        
+        }        
     }
 
-    public void SendMessageToChat(string text, Message.MessageType messageType)
+    /// <summary>
+    /// Encapsulates chat message into Message object and sends it to the DataInterfaceForIHMGame
+    /// </summary>
+    void SendMessageToServer(string text)
+    {
+        //Message message = new Message(dataInterface.GetCurrentWorld().id, dataInterface.GetCurrentUser().id, text, System.DateTime.Now);
+        Message message = new Message("testWorld", "testUser", text, System.DateTime.Now);
+        //dataInterface.SendMessage(message);
+        SendMessageToChat(message, ChatMessage.MessageType.playerMessage);
+    }
+
+    /// <summary>
+    /// Extracts message creator and text and prints it into the chatbox
+    /// </summary>
+    public void SendMessageToChat(Message message, ChatMessage.MessageType messageType)
     {
         if (messageList.Count >= maxMessages)
         {
@@ -58,9 +66,9 @@ public class GameManager : MonoBehaviour
             messageList.Remove(messageList[0]);
 
         }
-        Message newMessage = new Message();
+        ChatMessage newMessage = new ChatMessage();
 
-        newMessage.text = text;
+        newMessage.text = "[" + message.creatorId + "] " + message.text;
 
         GameObject newText = Instantiate(textObject, chatPanel.transform);
         newMessage.textObject = newText.GetComponent<Text>();
@@ -71,12 +79,15 @@ public class GameManager : MonoBehaviour
         messageList.Add(newMessage);
     }
 
-    Color MessageTypeColor(Message.MessageType messageType)
+    /// <summary>
+    /// Defines chat message colors
+    /// </summary>
+    Color MessageTypeColor(ChatMessage.MessageType messageType)
     {
         Color color = info;
         switch (messageType)
         {
-            case Message.MessageType.playerMessage:
+            case ChatMessage.MessageType.playerMessage:
                 color = playerMessage;
                 break;
         }
@@ -85,8 +96,11 @@ public class GameManager : MonoBehaviour
 }
 
 
+/// <summary>
+/// Object used to display messages into the chatbox
+/// </summary>
 [System.Serializable]
-public class Message
+public class ChatMessage
 {
     public string text;
     public Text textObject;

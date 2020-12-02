@@ -10,11 +10,6 @@ public interface IHMGameInterface {
         void LaunchGame(User user, World world, GameState gameState, Player player);
 
         /// <summary>
-        /// Launch the game. Start the display of the game view
-        /// </summary>
-        public void launch_game();
-
-        /// <summary>
         /// Diplays the message sent by the Data module in the chat
         /// </summary>
         /// <param name="message">New message to display</param>
