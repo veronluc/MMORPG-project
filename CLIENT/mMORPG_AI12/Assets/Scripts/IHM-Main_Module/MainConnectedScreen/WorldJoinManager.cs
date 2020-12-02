@@ -33,7 +33,7 @@ public class WorldJoinManager : MonoBehaviour
     {
         //Récupération du current User pour afficher ses Players
         List<Player> players = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>()
-            .GetCurrentUser().players;
+            .localUser.players;
         //For test purpose
         /**players = new List<Player>();
         players.Add(TestCreatePlayer());

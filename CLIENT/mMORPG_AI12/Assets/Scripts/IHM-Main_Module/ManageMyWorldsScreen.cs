@@ -7,7 +7,7 @@ using UnityEngine;
 public class ManageMyWorldsScreen : MonoBehaviour
 {
     // Properties
-    private User currentUser;
+    private LocalUser localUser;
     private IHMMainModule ihmMainModule;
     private DataInterfaceForIHMMain dataInterface;
     private GameObject localWorldsManager;
@@ -15,26 +15,22 @@ public class ManageMyWorldsScreen : MonoBehaviour
     public void Awake()
     {
         this.ihmMainModule = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>();
-        this.dataInterface = ihmMainModule.dataInterface;
     }
 
     public void Start()
     {
-        this.currentUser = ihmMainModule.GetCurrentUser();
+        this.localUser = ihmMainModule.localUser;
         this.dataInterface = ihmMainModule.dataInterface;
         localWorldsManager = GameObject.FindGameObjectWithTag("LocalWorlds");
-
-        UpdateListWorldsDisplay();
     }
 
     /// <summary>
     /// Update the current list of local worlds own by the user
     /// <param name="newListWorlds">Worlds currently available</param>
     /// </summary>
-    public void UpdateListWorldsDisplay()
+    public void UpdateListWorldsDisplay(List<World> localUserWorlds)
     {
-        //TODO : DATA need to update their User object to add a List<wolrd> worlds 
-        //localWorldsManager.GetComponent<UserWorldsManager>().SetUserWorldsList(this.currentUser.worlds);
+        localWorldsManager.GetComponent<UserWorldsManager>().SetUserWorldsList(localUserWorlds);
     }
 
     /// <summary>
@@ -63,16 +59,9 @@ public class ManageMyWorldsScreen : MonoBehaviour
     {
         try
         {
-            if (name != null && sizeMap != null && gameMode != null && realDeath != null && difficulty != null &&
-                roundTimeSec != null && nbMaxPlayer != null && nbMaxMonsters != null && nbShops != null &&
-                hasCity != null && hasPlain != null && hasSwamp != null && hasRiver != null && hasForest != null &&
-                hasRockyPlain != null && hasMontain != null && hasSea != null)
+            if (!name.Equals("") && roundTimeSec != null && nbMaxPlayer != null && nbMaxMonsters != null && nbShops != null )
             {
-                //TODO : voir avec data ce qu'il leur faut lors de la création y'a des choses qu'on ne peut pas fournir 
-                //dataInterface.CreateWorld(name, sizeMap, gameMode, realDeath, difficulty,  roundTimeSec,  nbMaxPlayer,  nbMaxMonsters,  nbShops,  hasCity,  hasPlain,  hasSwamp,  hasRiver,  hasForest,  hasRockyPlain,  hasMontain,  hasSea);
-
-                //TODO: quand le monde est créé on l'add à la liste des monde du user et on update le display
-                //Est-ce qu'on le met quand dans notre local ou faut que data une fois créer et user update il nous renvoie le user ? 
+                dataInterface.CreateWorld(name, sizeMap, gameMode, realDeath, difficulty,  roundTimeSec,  nbMaxPlayer,  nbMaxMonsters,  nbShops,  hasCity,  hasPlain,  hasSwamp,  hasRiver,  hasForest,  hasRockyPlain,  hasMontain,  hasSea, localUser.user);
             }
             else
             {
@@ -97,7 +86,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
         {
             if (player != null && idWorld != null)
             {
-                //TODO : data doit mettre à jour sont interface de load world
+                //TODO : Data doit pouvoir ajouter le playerid dans leur interface 
                 //dataInterface.LoadWorld(player, idWorld);
             }
             else
@@ -123,8 +112,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
         {
             if (updatedWorld != null)
             {
-                //TODO : data doit mettre à jour son interface 
-                //dataInterface.updateWorld(updatedWorld);
+                dataInterface.UpdateWorld(updatedWorld);
             }
             else
             {
@@ -146,11 +134,9 @@ public class ManageMyWorldsScreen : MonoBehaviour
     {
         try
         {
-            //TODO : data doit mettre à jour son interface 
             if (deletedWorld != null)
             {
-                //TODO : data doit mettre à jour son interface 
-                //dataInterface.deleteWorld(deletedWorld);
+                dataInterface.DeleteWorld(deletedWorld);
             }
             else
             {
