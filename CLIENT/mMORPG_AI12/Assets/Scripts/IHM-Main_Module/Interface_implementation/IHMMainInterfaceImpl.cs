@@ -76,4 +76,9 @@ public class IHMMainInterfaceImpl : IHMMainInterface
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
             .UpdateIpandPortDisplay(ip, port);
     }
+
+    public void GiveLocalUser(LocalUser localUser)
+    {
+        // TODO
+    }
 }

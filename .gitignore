@@ -75,3 +75,7 @@
 .DS_Store
 /.vs
 /.idea
+
+# Build Server folders
+/BUILD/*
+/SERVER/*
