@@ -8,12 +8,12 @@ using System;
 
 public class ConnectedUserManager
 {
-    public LocalUser connectedUser { get => connectedUser; set { connectedUser = value; serverInfo = value.lastServerConnection; } }
-    public bool isConnected {get => connectedUser != null; }
-    public ServerInfo serverInfo {get => serverInfo; set { serverInfo = value; connectedUser.lastServerConnection = value; } }
+    public LocalUser connectedUser { get; set; }
+    public bool isConnected { get => connectedUser != null; }
+    public ServerInfo serverInfo { get => connectedUser.lastServerConnection; set { connectedUser.lastServerConnection = value; } }
 
     public ConnectedUserManager() {
-        this.connectedUser = null;
+        // this.connectedUser = null;
         // RetrieveServerInfo();
     }
 

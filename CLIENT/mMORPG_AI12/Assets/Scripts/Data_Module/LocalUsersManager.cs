@@ -29,7 +29,7 @@ public class LocalUsersManager
         celia.password = "celia123";
         */
         // this.usersStorage = new List<User>{alex, celia};
-        try
+        /*try
         {
             BinaryFormatter bf = new BinaryFormatter();
             string path = Application.persistentDataPath + PATH;
@@ -39,7 +39,8 @@ public class LocalUsersManager
                 List<LocalUser> data = (List<LocalUser>)bf.Deserialize(file);
                 file.Close();
                 this.usersStorage = data;
-            } else
+            }
+            else
             {
                 this.usersStorage = new List<LocalUser>();
                 this.Save();
@@ -49,14 +50,21 @@ public class LocalUsersManager
         {
             Debug.LogError(e);
             throw e;
-        }
+        }*/
+
+        this.usersStorage = new List<LocalUser>();
+        LocalUser user = new LocalUser(new User("test", "test123"));
+        usersStorage.Add(user);
+        Debug.Log(user.user.id);
+        Debug.Log(user.user.login);
     }
 
     public LocalUser ConnectUser(string pseudo, string password) {
         foreach (LocalUser _ in this.usersStorage)
         {
             User user = _.user;
-            if (user != null && user.login == pseudo && user.password == password) {
+            Debug.Log(user.login);
+            if (user != null && user.login.Equals(pseudo) && user.password.Equals(password)) {
                 return _;
             }
         }

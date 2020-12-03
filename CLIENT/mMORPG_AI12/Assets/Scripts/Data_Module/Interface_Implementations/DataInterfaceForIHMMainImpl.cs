@@ -69,11 +69,15 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 
     public string CreateUserSession(string pseudo, string password)
     {
-        this.connectedUserManager.connectedUser = this.localUsersManager.ConnectUser(pseudo, password);
+        Debug.Log("CreateUserSession");
+        this.connectedUserManager.connectedUser = this.localUsersManager.ConnectUser(pseudo, password); ;
+        Debug.Log(this.connectedUserManager.connectedUser);
 
+        Debug.Log("TEST CONNECT");
         // Check if user connexion was successful
         if (this.connectedUserManager.isConnected)
         {
+            Debug.Log("CONNECTED");
             DataModule.ihmMainInterface.GiveLocalUser(this.connectedUserManager.connectedUser);
             // Check if server ip is known
             if (this.connectedUserManager.serverInfo != null)
