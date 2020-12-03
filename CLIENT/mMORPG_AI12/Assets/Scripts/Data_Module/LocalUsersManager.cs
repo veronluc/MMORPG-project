@@ -54,7 +54,29 @@ public class LocalUsersManager
 
         this.usersStorage = new List<LocalUser>();
         LocalUser user = new LocalUser(new User("test", "test123"));
+        Player player = TestCreatePlayer();
+        Debug.Log("Before Add Player: " + user.players.Count);
+        user.players.Add(player);
+        Debug.Log("After Add Player: " + user.players.Count);
         usersStorage.Add(user);
+    }
+    
+    public Player TestCreatePlayer(string name = "JOUEUR")
+    {
+        // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
+        Skill skill = new Skill();
+        skill.zone = 2;
+        skill.damagePoints = 4;
+        skill.costMana = 2;
+        skill.range = new Range(shapes.star, 10);
+        List<Skill> skills = new List<Skill>() { skill };
+        EntityClass entity = new EntityClass("GUERRIER", 100, 100, 25, 2, 12, 8, Entities.player, skills);
+        Player player = new Player(name, 0, 100, 100, 100, 100, 25, 20, 12, 8, new Location(0, 0), entity, 0, 0, null);
+        User user = new User("Jean Né marre", "idididid", "Des classes sans constructeur", "Créer un player prend",
+            "Créer un player prend", new DateTime(2020, 11, 16), "/C/vide", new List<Player>(), new List<World>());
+        user.players.Add(player);
+        player.user = user;
+        return player;
     }
 
     public LocalUser ConnectUser(string pseudo, string password) {

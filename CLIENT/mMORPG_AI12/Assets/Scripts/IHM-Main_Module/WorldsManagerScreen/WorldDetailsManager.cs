@@ -124,7 +124,13 @@ public class WorldDetailsManager : MonoBehaviour
     public void OnClickLoadWorld()
     {
         // TODO : call the character popup and choose a real player from user players list
-        Player player = TestCreatePlayer();
+        Debug.Log("1-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>());
+        Debug.Log("2-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser);
+        Debug.Log("3-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user);
+        Debug.Log("4-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user.players);
+        Debug.Log("5-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user.players.Count);
+        Player player = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user
+            .players[0];
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
             .LoadWorld(player, world.id);
     }

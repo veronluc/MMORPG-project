@@ -61,7 +61,12 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 
     public void JoinWorld(string playerId, string worldId)
     {
-        DataModule.networkInterface.ConnectToWorld(connectedUserManager.GetPlayer(playerId), worldId);
+        Player player = connectedUserManager.GetPlayer(playerId);
+        if (player == null)
+        {
+            throw new Exception("The user doesn't have the player");
+        }
+        DataModule.networkInterface.ConnectToWorld(player, worldId);
     }
 
     public void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }

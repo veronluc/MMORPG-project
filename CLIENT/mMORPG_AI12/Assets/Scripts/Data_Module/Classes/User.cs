@@ -36,12 +36,16 @@ namespace AI12_DataObjects
             this.firstName = firstName;
             this.lastName = lastName;
             this.birthDate = birthDate;
+            this.players = new List<Player>();
+            this.worlds = new List<World>();
         }
 
         public User(string login, string password)
         {
             this.login = login;
             this.password = password;
+            this.players = new List<Player>();
+            this.worlds = new List<World>();
         }
     }
 }
