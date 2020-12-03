@@ -47,7 +47,6 @@ public class UserWorldsManager : MonoBehaviour
                 Destroy(obj);
             }
         }
-
         // Add each world of the new worlds list on the screen
         foreach (World world in userWorlds)
         {

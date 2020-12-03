@@ -55,15 +55,12 @@ public class LocalUsersManager
         this.usersStorage = new List<LocalUser>();
         LocalUser user = new LocalUser(new User("test", "test123"));
         usersStorage.Add(user);
-        Debug.Log(user.user.id);
-        Debug.Log(user.user.login);
     }
 
     public LocalUser ConnectUser(string pseudo, string password) {
         foreach (LocalUser _ in this.usersStorage)
         {
             User user = _.user;
-            Debug.Log(user.login);
             if (user != null && user.login.Equals(pseudo) && user.password.Equals(password)) {
                 return _;
             }

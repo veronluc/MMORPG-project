@@ -21871,6 +21871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb043d71f904af38abe877b1071e073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localWorldsManager: {fileID: 951697094}
 --- !u!1 &1811010864
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
     private LocalUser localUser;
     private IHMMainModule ihmMainModule;
     private DataInterfaceForIHMMain dataInterface;
-    private GameObject localWorldsManager;
+    public GameObject localWorldsManager;
 
     public void Awake()
     {
@@ -21,7 +21,6 @@ public class ManageMyWorldsScreen : MonoBehaviour
     {
         this.localUser = ihmMainModule.localUser;
         this.dataInterface = ihmMainModule.dataInterface;
-        localWorldsManager = GameObject.FindGameObjectWithTag("LocalWorlds");
     }
 
     /// <summary>

@@ -12,6 +12,30 @@ public class ScreensManager : MonoBehaviour
 
     public GameObject worldsManagerScreen;
 
+    public static int AUTHENTICATION_MENU = 1;
+    public static int MAIN_CONNECTED_SCREEN = 2;
+    public static int WORLDS_MANAGER_SCREEN = 3;
+
+    public static int GetCurrentScreen()
+    {
+        if (IsInstanciated())
+        {
+            if (instance.authenticationMenu.activeSelf)
+            {
+                return AUTHENTICATION_MENU;
+            }
+            else if (instance.mainConnectedScreen.activeSelf)
+            {
+                return MAIN_CONNECTED_SCREEN;
+            }
+            else if (instance.worldsManagerScreen.activeSelf)
+            {
+                return WORLDS_MANAGER_SCREEN;
+            }
+        }
+        return 0;
+    }
+
     private void Awake()
     {
         instance = this;
