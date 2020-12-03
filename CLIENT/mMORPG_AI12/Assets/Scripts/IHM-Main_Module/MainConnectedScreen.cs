@@ -64,7 +64,10 @@ public class MainConnectedScreen : MonoBehaviour
     public void UpdateIpandPortDisplay(string ip, string port)
     {
         serverInformation.GetComponent<TextMeshProUGUI>().SetText("IP = " + ip + " - Port = " + port);
-        GameObject.FindGameObjectWithTag("ServerConnection").GetComponent<ServerConnectionManager>().OpenClosePopup();
+        if (GameObject.FindGameObjectWithTag("ServerConnection") != null)
+        {
+            GameObject.FindGameObjectWithTag("ServerConnection").GetComponent<ServerConnectionManager>().OpenClosePopup();
+        }
     }
 
     /// <summary>

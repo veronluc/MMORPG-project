@@ -106,6 +106,7 @@ public class WorldDetailsManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
             .DeleteWorld(world);
+        this.gameObject.SetActive(false);
     }
 
     /// <summary>

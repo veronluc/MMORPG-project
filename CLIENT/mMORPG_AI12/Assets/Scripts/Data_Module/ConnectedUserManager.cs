@@ -19,6 +19,10 @@ public class ConnectedUserManager
 
     public void AddWorld(World world)
     {
+        if (world.id == null)
+        {
+            world.id = Guid.NewGuid().ToString();
+        }
         connectedUser.AddWorld(world);
     }
 

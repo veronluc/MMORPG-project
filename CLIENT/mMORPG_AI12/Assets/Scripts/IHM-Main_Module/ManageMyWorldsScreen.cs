@@ -60,7 +60,7 @@ public class ManageMyWorldsScreen : MonoBehaviour
         {
             if (!name.Equals("") && roundTimeSec != null && nbMaxPlayer != null && nbMaxMonsters != null && nbShops != null )
             {
-                dataInterface.CreateWorld(name, sizeMap, gameMode, realDeath, difficulty,  roundTimeSec,  nbMaxPlayer,  nbMaxMonsters,  nbShops,  hasCity,  hasPlain,  hasSwamp,  hasRiver,  hasForest,  hasRockyPlain,  hasMontain,  hasSea, localUser.user);
+                dataInterface.CreateWorld(name, sizeMap, gameMode, realDeath, difficulty,  roundTimeSec,  nbMaxPlayer,  nbMaxMonsters,  nbShops,  hasCity,  hasPlain,  hasSwamp,  hasRiver,  hasForest,  hasRockyPlain,  hasMontain,  hasSea, ihmMainModule.localUser.user);
             }
             else
             {
