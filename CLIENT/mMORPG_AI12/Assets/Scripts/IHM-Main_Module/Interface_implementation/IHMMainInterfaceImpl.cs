@@ -62,8 +62,6 @@ public class IHMMainInterfaceImpl : IHMMainInterface
     /// </param>
     public void GiveLocalUser(LocalUser localUser)
     {
-        Debug.Log("NEW GIVE : " + localUser.user.players.Count);
-        
         //Retrieves the game object IHMMainModule
         GameObject iHMMainGameObject = GameObject.FindGameObjectWithTag("IHMMainModule");
 
@@ -77,7 +75,7 @@ public class IHMMainInterfaceImpl : IHMMainInterface
 
         //Set the current user credentials in IHMMainModule
         iHMMainGameObject.GetComponent<IHMMainModule>().localUser = localUser;
-
+        
         //Updates the list of user worlds in ManageMyWorldScreen
         iHMMainGameObject.GetComponent<ManageMyWorldsScreen>().UpdateListWorldsDisplay(localUser.worlds);
         if (ScreensManager.GetCurrentScreen() == ScreensManager.AUTHENTICATION_MENU)

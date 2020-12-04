@@ -124,13 +124,7 @@ public class WorldDetailsManager : MonoBehaviour
     public void OnClickLoadWorld()
     {
         // TODO : call the character popup and choose a real player from user players list
-        Debug.Log("1-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>());
-        Debug.Log("2-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser);
-        Debug.Log("3-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user);
-        Debug.Log("4-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user.players);
-        Debug.Log("5-" + GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user.players.Count);
-        Player player = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.user
-            .players[0];
+        Player player = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>().localUser.players[0];
         GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<ManageMyWorldsScreen>()
             .LoadWorld(player, world.id);
     }
@@ -309,7 +303,7 @@ public class WorldDetailsManager : MonoBehaviour
     /// Only for test purpose
     /// </summary>
     /// <returns>a player</returns>
-    public Player TestCreatePlayer(string name = "JOUEUR")
+    /*public Player TestCreatePlayer(string name = "JOUEUR")
     {
         // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
         Skill skill = new Skill();
@@ -325,5 +319,5 @@ public class WorldDetailsManager : MonoBehaviour
         user.players.Add(player);
         player.user = user;
         return player;
-    }
+    }*/
 }

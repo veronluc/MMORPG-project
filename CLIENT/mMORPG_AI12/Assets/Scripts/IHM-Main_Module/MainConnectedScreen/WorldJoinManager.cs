@@ -144,7 +144,7 @@ public class WorldJoinManager : MonoBehaviour
     /// Only for test purpose
     /// </summary>
     /// <returns>a player</returns>
-    public Player TestCreatePlayer(string name = "JOUEUR")
+    /*public Player TestCreatePlayer(string name = "JOUEUR")
     {
         // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
         Skill skill = new Skill();
@@ -160,5 +160,5 @@ public class WorldJoinManager : MonoBehaviour
         user.players.Add(player);
         player.user = user;
         return player;
-    }
+    }*/
 }

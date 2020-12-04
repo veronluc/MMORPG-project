@@ -14,9 +14,8 @@ namespace AI12_DataObjects
 		public DateTime birthDate { get; set; }
 		public string imageRef { get; set; }
 		public List<Player> players { get; set; }
-		public List<World> worlds { get; set; }
 
-        public User(string login, string id, string password, string firstName, string lastName, DateTime birthDate, string imageRef, List<Player> players, List<World> worlds)
+        public User(string login, string id, string password, string firstName, string lastName, DateTime birthDate, string imageRef, List<Player> players)
         {
             this.login = login;
             this.id = id;
@@ -26,7 +25,6 @@ namespace AI12_DataObjects
             this.birthDate = birthDate;
             this.imageRef = imageRef;
             this.players = players;
-            this.worlds = worlds;
         }
 
         public User(string login, string password, string firstName, string lastName, DateTime birthDate)
@@ -37,7 +35,6 @@ namespace AI12_DataObjects
             this.lastName = lastName;
             this.birthDate = birthDate;
             this.players = new List<Player>();
-            this.worlds = new List<World>();
         }
 
         public User(string login, string password)
@@ -45,7 +42,6 @@ namespace AI12_DataObjects
             this.login = login;
             this.password = password;
             this.players = new List<Player>();
-            this.worlds = new List<World>();
         }
     }
 }
