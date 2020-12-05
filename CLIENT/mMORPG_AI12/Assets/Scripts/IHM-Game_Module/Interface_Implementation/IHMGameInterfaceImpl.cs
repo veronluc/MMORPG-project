@@ -12,14 +12,14 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <summary>
     /// Launch the game. Start the display of the game view
     /// </summary>
-    public void LaunchGame(User User, World World, GameState GameState, Player Player)
+    public void LaunchGame(User user, World world, GameState gameState, Player player)
     {
         SceneManager.LoadScene("IHMGame");
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
-        ihmGameModule.Player = Player;
-        ihmGameModule.User = User;
-        ihmGameModule.GameState = GameState;
-        ihmGameModule.World = World;
+        ihmGameModule.player = player;
+        ihmGameModule.user = user;
+        ihmGameModule.gameState = gameState;
+        ihmGameModule.world = world;
     }
 
     /// <summary>
