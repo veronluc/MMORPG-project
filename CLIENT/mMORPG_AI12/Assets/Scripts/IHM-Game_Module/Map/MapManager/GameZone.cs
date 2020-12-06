@@ -68,6 +68,7 @@ public class GameZone : MonoBehaviour
                 //
                 // Pour le deuxième paramètre, tileChooser permet de choisir le bon sprite parmi ceux définis dans la classe TilesHolder
                 // Ils sont physiquement présents dans le dossier Materials > IHM-Game_Module > Resources > Tiles
+                //Debug.Log("height : " + h + "; width : " + w);
                 gameZoneTilemap.SetTile(currentCellPosition, tilesHolder.TileChooser(world.gameState.map[h, w].sprite));
                 
                 //On dessine une par une les Tiles de toute la ligne en avançant sur l'axe x

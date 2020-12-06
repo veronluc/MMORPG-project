@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.CodeDom;
 using System.Linq;
 using AI12_DataObjects;
@@ -39,6 +40,30 @@ public class IHMGameModule : MonoBehaviour
         gamePlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEntity>();
         // récupération des attributs et méthodes de ihmGameModule
         movePlate = GetComponent<MovePlate>();
+
+        // Create a User for tests
+        user = new User("test1", "te0000st", "DorianTest", "ZielinskiTest", DateTime.Now);
+        // Create a GameState for tests
+        Tile[,] map = new Tile[25, 25];
+        map[0, 0] = new TilePlain("0", null, "grass");
+        for(int i = 0; i < 25; i++)
+        {
+            for (int j = 0; j< 25; j++)
+            {
+                Location tempLoc = new Location(i, j);
+                map[i, j] = new TilePlain(i + "" + j, tempLoc, "grass");
+            }
+        }
+        gameState = new GameState(0, 0, new List<Entity>(), map);
+        // Create a World for tests
+        world = new World("testWorld", 25, GameMode.pvp, false, 0, 60, 5, 20, 0, true, true, true, true, true, true, true, true, this.user);
+        world.gameState = this.gameState;
+        // Create a Player for 
+        Skill skill = new Skill("Attaque", 1, 3, 0, false);
+        List<Skill> skills = new List<Skill>(); skills.Add(skill);
+        EntityClass entityClass = new EntityClass("Guerrier", 25, 10, 3, 3, 3, 3, Entities.player, skills);
+        Location location = new Location(10, 10);
+        player = new Player("TestName", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
     }
 
     public void clickOnSkill(string skillName)  // Il vaudrait mieux faire les actions de cette fonction dans la méthode ViewSkill Distance de GameEntity

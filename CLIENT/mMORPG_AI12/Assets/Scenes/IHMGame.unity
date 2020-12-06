@@ -2152,7 +2152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58e13d94eda9eb469d5cea3a519816d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityObject: {fileID: 0}
+  entityObject: {fileID: 7268839936034581352, guid: ea089a19428640145af82cd1bf6d08de,
+    type: 3}
 --- !u!4 &891772793
 Transform:
   m_ObjectHideFlags: 0
@@ -4262,6 +4263,7 @@ GameObject:
   - component: {fileID: 2071344437}
   - component: {fileID: 2071344438}
   - component: {fileID: 2071344439}
+  - component: {fileID: 2071344440}
   m_Layer: 0
   m_Name: IHM-Game Module
   m_TagString: IHMGameModule
@@ -4373,6 +4375,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1718819234}
+--- !u!114 &2071344440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071344431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49c35839f0e01346804054f0ef76639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &3644964825975526610
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4690,8 +4704,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3644964827350348774}
   m_HandleRect: {fileID: 3644964827350348775}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.9069258
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4990,7 +5004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: -0.000017166138, y: -0.000030517578}
   m_SizeDelta: {x: -23.603897, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &3644964827212495276
