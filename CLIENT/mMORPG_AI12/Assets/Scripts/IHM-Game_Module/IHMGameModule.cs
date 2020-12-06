@@ -16,6 +16,8 @@ public class IHMGameModule : MonoBehaviour
     public User user { get; set; }
     // GameManager to manage chat messages
     public GameManager GameManager { get; set; }
+
+    // Helps to know if a skill is being used
     private Skill CurrentSkill { get; set; }
     // placement des joueurs sur la map
     public GameEntity gamePlayer { get; set; }
