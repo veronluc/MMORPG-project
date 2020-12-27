@@ -38,7 +38,7 @@ public class GameZone : MonoBehaviour
         world = ihmGameModule.world;
 
         //Taille du monde (longueur d'un côté du monde carré (ou largeur ou hauteur, c'est un carré de toute façon)
-        int size = world.sizeMap;
+        var size = world.sizeMap;
 
         //La var origin va récupérer l'origine de la Tilemap de type Vector3Int, pour savoir où commencer à dessiner la Tilemap.
         Vector3Int origin = gameZoneTilemap.origin;
