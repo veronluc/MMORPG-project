@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AI12_DataObjects;
 using UnityEngine;
 
 public class IHMMainModule : MonoBehaviour
@@ -8,10 +9,12 @@ public class IHMMainModule : MonoBehaviour
 
     // Instanciated interface for the other module(s)
     public IHMMainInterface ihmMainInterface { get; set; }
+    
+    // Intern variable needed in all IHMMAIN module 
+    public LocalUser localUser { get; set; }
 
     private void Awake()
     {
         ihmMainInterface = new IHMMainInterfaceImpl();
     }
-    
 }
