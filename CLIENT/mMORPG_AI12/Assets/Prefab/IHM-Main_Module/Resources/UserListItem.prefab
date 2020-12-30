@@ -1282,7 +1282,7 @@ MonoBehaviour:
   image: {fileID: 184921585}
   userName: {fileID: 9048937568089695871}
   realName: {fileID: 1770088065}
-  birthdate: {fileID: 1829636631}
+  birthDate: {fileID: 1829636631}
   characterContainer: {fileID: 2086756565}
 --- !u!1 &2646106403789755416
 GameObject:

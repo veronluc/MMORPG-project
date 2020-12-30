@@ -23,6 +23,7 @@ public class InitializationModule : MonoBehaviour
         DataModule.ihmGameInterface = this.ihmGameModule.ihmGameInterface;
         this.networkModule.dataInterfaceForNetwork = this.dataModule.GetInterfaceForNetwork();
         this.ihmGameModule.dataInterface = this.dataModule.GetInterfaceForIHMGame();
+        this.ihmGameModule.gameManager.dataInterface = this.dataModule.GetInterfaceForIHMGame();
     }
 
     // Update is called once per frame

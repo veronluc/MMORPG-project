@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace AI12_DataObjects
 {
@@ -56,6 +60,8 @@ namespace AI12_DataObjects
             this.hasMontain = hasMontain;
             this.hasSea = hasSea;
             this.creator = creator;
+            this.players = new List<Player>();
+            this.monstersList = new List<Monster>();
         }
     }
 }

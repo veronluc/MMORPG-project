@@ -16,6 +16,47 @@ public class ConnectedUserManager
         this.connectedUser = null;
         // RetrieveServerInfo();
     }
+
+    public void AddWorld(World world)
+    {
+        connectedUser.AddWorld(world);
+    }
+
+    public void RemoveWorld(string worldId)
+    {
+        connectedUser.RemoveWorld(worldId);
+    }
+
+    public World GetWorld(string worldId)
+    {
+        return connectedUser.GetWorld(worldId);
+    }
+
+    public Player GetPlayer(string playerId)
+    {
+        return connectedUser.GetPlayer(playerId);
+    }
+
+    public void UpdateWorld(World world)
+    {
+        connectedUser.ModifyWorld(world);
+    }
+
+    public void AddPlayer(Player player)
+    {
+        connectedUser.AddPlayer(player);
+    }
+
+    public void RemovePlayer(string playerId)
+    {
+        connectedUser.RemovePlayer(playerId);
+    }
+
+    public void ModifyPlayer(Player player)
+    {
+        connectedUser.ModifyPlayer(player);
+    }
+
     /*
     public void SaveServerInfo() {
         try {

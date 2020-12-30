@@ -22,9 +22,14 @@ namespace AI12_DataObjects
             this.map = map;
         }
 
-        public Entity nextPlayerEntity()
+        public Entity nextEntity()
         {
             return turns[nextIndex()];
+        }
+
+        public Entity currentEntity()
+        {
+            return turns[this.index];
         }
 
         public int nextIndex()
@@ -35,6 +40,16 @@ namespace AI12_DataObjects
         public void incrementIndex()
         {
             this.index = nextIndex();
+        }
+
+        public bool currentEntityIsMonster()
+        {
+            return this.currentEntity().isMonster();
+        }
+
+        public bool nextEntityIsMonster()
+        {
+            return this.nextEntity().isMonster();
         }
     }
 }

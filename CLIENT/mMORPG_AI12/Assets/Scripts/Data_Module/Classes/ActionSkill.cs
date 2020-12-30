@@ -1,4 +1,6 @@
 ﻿using System;
+using UnityEngine;
+using System.Collections.Generic;
 
 namespace AI12_DataObjects
 {
@@ -29,7 +31,23 @@ namespace AI12_DataObjects
         /// </returns>
         public override bool IsLegal()
         {
-            // TODO Implement - Team Data
+            double distance = entity.location.distance(tile.location);
+
+            // Distance is bigger than authorized distance
+            if (distance > skill.zone)
+            {
+                Debug.Log("ActionSkill : Distance is bigger than authorized distance");
+                return false;
+            }
+
+            // ManaCost is bigger than current mana
+            if (skill.costMana > entity.mana)
+            {
+                Debug.Log("ActionSkill : ManaCost is bigger than current mana");
+                return false;
+            }
+
+            // ActionSkill is legal
             return true;
         }
 
@@ -46,9 +64,40 @@ namespace AI12_DataObjects
                 return null;
             }
 
-            // TODO Implement - Team Data
-            // Apply skill to the targeted Tile
-            return null;
+            // Deplete entity mana
+            entity.mana = entity.mana - skill.costMana;
+
+            // Update entity on Tile
+            world.gameState.map[entity.location.x, entity.location.y].entities.Remove(entity);
+            world.gameState.map[entity.location.x, entity.location.y].entities.Add(entity);
+
+            // Apply skill on Tile (and contained entities)
+            List<Entity> targets = world.gameState.map[tile.location.x, tile.location.y].entities;
+            targets.ForEach(delegate (Entity target)
+            {
+                Debug.Log(target.vitality);
+                if (skill.healing)
+                {
+                    this.healEntity(entity, target, skill);
+                } else
+                {
+                    this.damageEntity(entity, target, skill);
+                }
+                Debug.Log(target.vitality);
+            });
+            world.gameState.map[tile.location.x, tile.location.y].entities = targets;
+
+            return world.gameState;
+        }
+
+        private void damageEntity(Entity brawler, Entity target, Skill skill)
+        {
+            target.damageEntity(skill.damagePoints + brawler.getAttackBase());
+        }
+
+        private void healEntity(Entity healer, Entity target, Skill skill)
+        {
+            target.healEntity(skill.damagePoints + healer.getAttackBase());
         }
     }
 }
