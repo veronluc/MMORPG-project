@@ -11,14 +11,23 @@ using UnityEngine;
 /// </summary>
 public class InfoUserDisconnectedFromWorld : Packet
 {
+    bool isWorldOwner = false;
     User user;
-    public InfoUserDisconnectedFromWorld(User pUser)
+    public InfoUserDisconnectedFromWorld(User pUser, bool isOwner)
     {
         user = pUser;
+        isWorldOwner = isOwner;
     }
     public override void Handle(Client c)
     {
-        c.data.UserDisconnectedFromWorld(user);
+        if (isWorldOwner)
+        {
+            c.data.OwnerDisconnectedFromWorld(user);
+        }
+        else
+        {
+            c.data.UserDisconnectedFromWorld(user);
+        }
     }
 
     public override void Handle(GameServer s)

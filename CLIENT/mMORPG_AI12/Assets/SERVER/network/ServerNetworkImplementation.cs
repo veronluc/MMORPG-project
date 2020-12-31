@@ -107,7 +107,18 @@ public class ServerNetworkImplementation : MonoBehaviour, ServerNetworkInterface
     /// <param name="userDisconnected">The player who has disconnected</param>
     public void SendUserDisconnectedWorld(User userDestination, User userDisconnected)
     {
-        InfoUserDisconnectedFromWorld msg = new InfoUserDisconnectedFromWorld(userDisconnected);
+        InfoUserDisconnectedFromWorld msg = new InfoUserDisconnectedFromWorld(userDisconnected, false);
+        SendPacket(userDestination.id, msg);
+    }
+
+    /// <summary>
+    /// Send a message saying that a player has disconnected from a given world (and is the owner of the world)
+    /// </summary>
+    /// <param name="userDestination">The User we want to send to</param>
+    /// <param name="userDisconnected">The player who has disconnected</param>
+    public void SendOwnerDisconnectedWorld(User userDestination, User userDisconnected)
+    {
+        InfoUserDisconnectedFromWorld msg = new InfoUserDisconnectedFromWorld(userDisconnected, true);
         SendPacket(userDestination.id, msg);
     }
 
