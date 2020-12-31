@@ -12,7 +12,7 @@ using System.Collections.Generic;
 public class AddNewWorldPacket : Packet
 {
     /// <summary>
-    /// The world to had
+    /// The world to add
     /// </summary>
     World world;
 
