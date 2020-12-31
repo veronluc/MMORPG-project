@@ -97,7 +97,8 @@ public class NetworkInterfaceImpl : NetworkInterface
     /// <param name="user">The user with refreshed data</param>
     public void RefreshUserInfos(User user)
     {
-        throw new System.NotImplementedException();
+        RefreshInfosUser msg = new RefreshInfosUser(user);
+        client.SendData(msg);
     }
 
     /// <summary>

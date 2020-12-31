@@ -45,7 +45,8 @@ public class ServerNetworkImplementation : MonoBehaviour, ServerNetworkInterface
     /// <param name="world">The world</param>
     public void SendUsersListFromWorld(User user, List<User> users, World world)
     {
-        throw new NotImplementedException();
+        SendUserListFromWorld msg = new SendUserListFromWorld(users, world);
+        SendPacket(user.id, msg);
     }
 
     /// <summary>
@@ -95,7 +96,8 @@ public class ServerNetworkImplementation : MonoBehaviour, ServerNetworkInterface
     /// <param name="user">The user we want to send to</param>
     public void SendStopServer(User user)
     {
-        throw new NotImplementedException();
+        InfoStopServer msg = new InfoStopServer();
+        SendPacket(user.id, msg);
     }
 
     /// <summary>
@@ -105,7 +107,8 @@ public class ServerNetworkImplementation : MonoBehaviour, ServerNetworkInterface
     /// <param name="userDisconnected">The player who has disconnected</param>
     public void SendUserDisconnectedWorld(User userDestination, User userDisconnected)
     {
-        throw new NotImplementedException();
+        InfoUserDisconnectedFromWorld msg = new InfoUserDisconnectedFromWorld(userDisconnected);
+        SendPacket(userDestination.id, msg);
     }
 
     /// <summary>
@@ -115,7 +118,8 @@ public class ServerNetworkImplementation : MonoBehaviour, ServerNetworkInterface
     /// <param name="userDisconnected">The player who has disconnected</param>
     public void SendUserDisconnectedServer(User userDestination, User userDisconnected)
     {
-        throw new NotImplementedException();
+        InfoUserDisconnectedFromServer msg = new InfoUserDisconnectedFromServer(userDisconnected);
+        SendPacket(userDestination.id, msg);
     }
 
     /// <summary>
@@ -151,4 +155,5 @@ public class ServerNetworkImplementation : MonoBehaviour, ServerNetworkInterface
             GameServer.clients[id].SendData(packet);
         }
     }
+
 }

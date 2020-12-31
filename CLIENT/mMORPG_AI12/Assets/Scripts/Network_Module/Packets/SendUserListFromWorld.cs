@@ -6,19 +6,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-/// <summary>
-/// Packet to say that user has disconnected from a world
-/// </summary>
-public class InfoUserDisconnectedFromWorld : Packet
+public class SendUserListFromWorld : Packet
 {
-    User user;
-    public InfoUserDisconnectedFromWorld(User pUser)
+    List<User> users;
+    World world;
+    public SendUserListFromWorld(List<User> pUsers, World pWorld)
     {
-        user = pUser;
+        users = pUsers;
+        world = pWorld;
     }
+
     public override void Handle(Client c)
     {
-        c.data.UserDisconnectedFromWorld(user);
+        c.data.ReceiveListUsersFromWorld(users, world);
     }
 
     public override void Handle(GameServer s)
