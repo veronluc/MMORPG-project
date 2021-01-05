@@ -1,32 +1,32 @@
 ﻿using AI12_DataObjects;
-using Server.Network;
 using Server.Network.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
-/// Packet to tell the server that a user will disconnect soon from his connected world
+/// The packet used to refresh user info in the server
 /// </summary>
 [Serializable]
-public class AskDisconnectWorld : Packet
+public class RefreshInfosUser : Packet
 {
     /// <summary>
-    /// The user that disconnects
+    /// The new info
     /// </summary>
-    public User currentUser;
+    User NewUserInfos;
 
     /// <summary>
     /// The constructor of the packet
     /// </summary>
-    /// <param name="u">The user</param>
-    public AskDisconnectWorld(User u)
+    /// <param name="pNewUserInfos">The new info</param>
+    public RefreshInfosUser(User pNewUserInfos)
     {
-        currentUser = u;
+        NewUserInfos = pNewUserInfos;
     }
 
     /// <summary>
-    /// Client side handle
+    /// The client handle
     /// </summary>
     /// <param name="c">The client</param>
     public override void Handle(Client c)
@@ -35,11 +35,11 @@ public class AskDisconnectWorld : Packet
     }
 
     /// <summary>
-    /// Server side handle
+    /// The server Handle
     /// </summary>
     /// <param name="s">The server</param>
     public override void Handle(GameServer s)
     {
-        s.data.UserAskDisconnectFromWorld(currentUser);
+        s.data.UserRefreshInfos(NewUserInfos);
     }
 }

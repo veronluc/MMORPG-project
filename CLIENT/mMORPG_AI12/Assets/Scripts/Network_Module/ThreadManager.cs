@@ -2,10 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Thread manager for the server threads
+/// </summary>
 public class ThreadManager : MonoBehaviour
 {
+    /// <summary>
+    /// List of actions to execute on the main thread
+    /// </summary>
     private static readonly List<Action> executeOnMainThread = new List<Action>();
+    /// <summary>
+    /// Copie of the execute on main thread
+    /// </summary>
     private static readonly List<Action> executeCopiedOnMainThread = new List<Action>();
+
+    /// <summary>
+    /// Current action to execute on main thread or not
+    /// </summary>
     private static bool actionToExecuteOnMainThread = false;
 
     private void Update()
@@ -30,7 +43,7 @@ public class ThreadManager : MonoBehaviour
         }
     }
 
-    /// <summary>Executes all code meant to run on the main thread. NOTE: Call this ONLY from the main thread.</summary>
+    ///<summary>Executes all code meant to run on the main thread. NOTE: Call this ONLY from the main thread.</summary>
     public static void UpdateMain()
     {
         if (actionToExecuteOnMainThread)

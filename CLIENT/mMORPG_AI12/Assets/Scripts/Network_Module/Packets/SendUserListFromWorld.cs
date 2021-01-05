@@ -1,50 +1,52 @@
 ﻿using AI12_DataObjects;
 using Server.Network.Messages;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
-/// Packet to send a list of users and a list of worlds
+/// Packet used to send a list of users connected to a world
 /// </summary>
 [Serializable]
-public class SendUsersAndWorlds : Packet
+public class SendUserListFromWorld : Packet
 {
     /// <summary>
     /// The user list
     /// </summary>
     List<User> users;
-    /// <summary>
-    /// The world list
-    /// </summary>
-    List<World> worlds;
 
     /// <summary>
-    /// The constructor of the packet
+    /// The world
     /// </summary>
-    /// <param name="pUsers">The user list to send</param>
-    /// <param name="pWorlds">The worl list to send</param>
-    public SendUsersAndWorlds(List<User> pUsers, List<World> pWorlds)
+    World world;
+
+    /// <summary>
+    /// Constructor of the packet
+    /// </summary>
+    /// <param name="pUsers">The user list</param>
+    /// <param name="pWorld">The world</param>
+    public SendUserListFromWorld(List<User> pUsers, World pWorld)
     {
         users = pUsers;
-        worlds = pWorlds;
+        world = pWorld;
     }
 
     /// <summary>
-    /// Client side Handle
+    /// The client handle
     /// </summary>
     /// <param name="c">The client</param>
     public override void Handle(Client c)
     {
-        c.data.ReceiveListUsers(users);
-        c.data.ReceiveListWorlds(worlds);
+        c.data.ReceiveListUsersFromWorld(users, world);
     }
 
     /// <summary>
-    /// Server side handle
+    /// The server Handle
     /// </summary>
     /// <param name="s">The server</param>
     public override void Handle(GameServer s)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }
