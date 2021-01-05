@@ -30,12 +30,11 @@ public class InitializationPacket : Packet
     /// <param name="c">The client</param>
     public override void Handle(Client c)
     {
-        c.data.setUserId(clientID.ToString());
-        //TO DO : Informer data (client) que connexion serveur reussie ou non
+        //Informer data (client) que connexion serveur reussie ou non
+        c.data.setUserId(clientID.ToString());        
         SendUserInfosPacket msg = new SendUserInfosPacket(c.data.GetUser());
         c.SendData(msg);
     }
-
 
     /// <summary>
     /// Server side Handle
