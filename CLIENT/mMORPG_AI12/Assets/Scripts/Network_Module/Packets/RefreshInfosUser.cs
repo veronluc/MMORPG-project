@@ -1,32 +1,32 @@
 ﻿using AI12_DataObjects;
-using Server.Network;
 using Server.Network.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
-/// Packet to send to add a new world to the server
+/// The packet used to refresh user info in the server
 /// </summary>
 [Serializable]
-public class AddNewWorldPacket : Packet
+public class RefreshInfosUser : Packet
 {
     /// <summary>
-    /// The world to add
+    /// The new info
     /// </summary>
-    World world;
+    User NewUserInfos;
 
     /// <summary>
     /// The constructor of the packet
     /// </summary>
-    /// <param name="w">The world to add</param>
-    public AddNewWorldPacket(World w)
+    /// <param name="pNewUserInfos">The new info</param>
+    public RefreshInfosUser(User pNewUserInfos)
     {
-        world = w;
+        NewUserInfos = pNewUserInfos;
     }
 
     /// <summary>
-    /// Client side handle
+    /// The client handle
     /// </summary>
     /// <param name="c">The client</param>
     public override void Handle(Client c)
@@ -35,11 +35,11 @@ public class AddNewWorldPacket : Packet
     }
 
     /// <summary>
-    /// Server side handle
+    /// The server Handle
     /// </summary>
     /// <param name="s">The server</param>
     public override void Handle(GameServer s)
     {
-        s.data.ReceiveNewWorld(world);
+        s.data.UserRefreshInfos(NewUserInfos);
     }
 }

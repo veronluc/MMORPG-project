@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class NetworkInterfaceImpl : NetworkInterface
 {
+    /// <summary>
+    /// The client class used to manage packets and send data 
+    /// </summary>
     Client client;
+
     public NetworkInterfaceImpl(Client pClient)
     {
         client = pClient;
     }
 
     /// <summary>
-    /// Send a new workd to the server
+    /// Send a new world to the server
     /// </summary>
     /// <param name="world">The world to send</param>
     public void AddNewWorld(World world)
@@ -97,7 +101,8 @@ public class NetworkInterfaceImpl : NetworkInterface
     /// <param name="user">The user with refreshed data</param>
     public void RefreshUserInfos(User user)
     {
-        throw new System.NotImplementedException();
+        RefreshInfosUser msg = new RefreshInfosUser(user);
+        client.SendData(msg);
     }
 
     /// <summary>

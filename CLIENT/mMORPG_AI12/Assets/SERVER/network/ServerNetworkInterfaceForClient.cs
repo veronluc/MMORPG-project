@@ -68,6 +68,13 @@ public interface ServerNetworkInterfaceForClient
     void SendUserDisconnectedWorld(User userDestination, User userDisconnected);
 
     /// <summary>
+    /// Send a message saying that a player has disconnected from a given world (and is theowner of the world)
+    /// </summary>
+    /// <param name="userDestination">The User we want to send to</param>
+    /// <param name="userDisconnected">The player who has disconnected</param>
+    void SendOwnerDisconnectedWorld(User userDestination, User userDisconnected);
+
+    /// <summary>
     /// Send a message saying that a player has disconnected from the server
     /// </summary>
     /// <param name="userDestination">The User we want to send to</param>
