@@ -17,6 +17,7 @@ TagManager:
   - UserWorldsContainer
   - EditWorldContainer
   - LocalWorlds
+  - Tilemap
   layers:
   - Default
   - TransparentFX

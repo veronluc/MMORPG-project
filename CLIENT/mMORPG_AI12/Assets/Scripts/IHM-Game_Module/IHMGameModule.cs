@@ -30,7 +30,7 @@ public class IHMGameModule : MonoBehaviour
     private void Awake()
     {
         ihmGameInterface = new IHMGameInterfaceImpl();
-        GameManager = new GameManager();
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         ihmGameInterface.gameManager = GameManager;
     }
 
@@ -64,6 +64,8 @@ public class IHMGameModule : MonoBehaviour
         EntityClass entityClass = new EntityClass("Guerrier", 25, 10, 3, 3, 3, 3, Entities.player, skills);
         Location location = new Location(10, 10);
         player = new Player("TestName", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
+
+        ihmGameInterface.LaunchGame(user, world, gameState, player);
     }
 
     public void clickOnSkill(string skillName)  // Il vaudrait mieux faire les actions de cette fonction dans la méthode ViewSkill Distance de GameEntity

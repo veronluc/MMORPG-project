@@ -34,6 +34,12 @@ public class GameZone : MonoBehaviour
         // récupération des attributs et méthodes de IHMGameModule
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
 
+        
+        
+    }
+
+    public void CreationMap()
+    {
         // affectation de world à partir de celui présent dans ihmGameModule
         world = ihmGameModule.world;
 
@@ -48,13 +54,13 @@ public class GameZone : MonoBehaviour
         //Cette taille a été spécifiée dans le fichier Materials > IHM-Game_Module > Resources > Tiles > IHM_Game_Tileset.png
         //Dans l'inspector, vous retrouverez Sprite Mode > Pixel Per Unit = 128.
         Vector3 cellSize = gameZoneTilemap.cellSize;
-        
+
         //ClearAllTiles() va nettoyer la TileMap au cas où elle a déjà été dessinée.
         gameZoneTilemap.ClearAllTiles();
-        
+
         //La var currentCellPosition va nous servir de pointeur pour dessiner la Tilemap.
         Vector3Int currentCellPosition = origin;
-        
+
         //La var size stocke la longueur/largueur de la Tilemap afin de faire deux boucles for
         // on parcourt d'abord les lignes, puis au sein de chaque ligne, les colonnes (il s'agit des tiles).
         for (int h = 0; h < size; h++)
@@ -70,7 +76,7 @@ public class GameZone : MonoBehaviour
                 // Ils sont physiquement présents dans le dossier Materials > IHM-Game_Module > Resources > Tiles
                 //Debug.Log("height : " + h + "; width : " + w);
                 gameZoneTilemap.SetTile(currentCellPosition, tilesHolder.TileChooser(world.gameState.map[h, w].sprite));
-                
+
                 //On dessine une par une les Tiles de toute la ligne en avançant sur l'axe x
                 currentCellPosition = new Vector3Int(
                     (int)(cellSize.x + currentCellPosition.x),
@@ -82,6 +88,5 @@ public class GameZone : MonoBehaviour
 
         //CompressBounds() va permettre de rendre les limites de la Tilemap plus net
         gameZoneTilemap.CompressBounds();
-        
     }
 }

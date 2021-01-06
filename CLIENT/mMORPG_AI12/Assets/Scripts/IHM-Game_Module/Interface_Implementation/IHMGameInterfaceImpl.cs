@@ -14,12 +14,14 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// </summary>
     public void LaunchGame(User user, World world, GameState gameState, Player player)
     {
-        SceneManager.LoadScene("IHMGame");
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
         ihmGameModule.player = player;
         ihmGameModule.user = user;
         ihmGameModule.gameState = gameState;
         ihmGameModule.world = world;
+        SceneManager.LoadScene("IHMGame");
+        
+        GameObject.FindGameObjectWithTag("Tilemap").GetComponent<GameZone>().CreationMap();
     }
 
     /// <summary>

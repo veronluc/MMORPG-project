@@ -51,13 +51,14 @@ public class GameMovements : MonoBehaviour
         user = ihmGameModule.user;
 
         // Crée la grille de déplacement
+        Debug.Log(ihmGameModule.world);
         if (ihmGameModule.world != null)
         {
             positions = new GameObject[ihmGameModule.world.sizeMap, ihmGameModule.world.sizeMap];
             // nombre d'entities présentes dans le jeu + le player actuel
             entities = new GameObject[ihmGameModule.world.players.Count + ihmGameModule.world.monstersList.Count + 1];
         }
-
+        Debug.Log(entities.Length);
         //On fait appelle à la méthode Create() définie ci-dessous pour créer un nouveau personnage 
         //en précisant son type et sa position initiale sur la map pour l'insérer dans la liste players
         for (int i = 0; i < entities.Length - 1; i++)
