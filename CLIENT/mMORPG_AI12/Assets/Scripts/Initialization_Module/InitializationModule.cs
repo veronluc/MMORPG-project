@@ -23,7 +23,10 @@ public class InitializationModule : MonoBehaviour
         DataModule.ihmGameInterface = this.ihmGameModule.ihmGameInterface;
         this.networkModule.dataInterfaceForNetwork = this.dataModule.GetInterfaceForNetwork();
         this.ihmGameModule.dataInterface = this.dataModule.GetInterfaceForIHMGame();
-        this.ihmGameModule.GameManager.dataInterface = this.dataModule.GetInterfaceForIHMGame();
+        //this.ihmGameModule.GameManager.dataInterface = this.dataModule.GetInterfaceForIHMGame();
+
+        //Add Don't Destroy on Load on Modules GameObject
+        GameObject.DontDestroyOnLoad(GameObject.FindGameObjectWithTag("IHMGameModule"));
     }
 
     // Update is called once per frame

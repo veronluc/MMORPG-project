@@ -5,6 +5,7 @@ using System.Linq;
 using AI12_DataObjects;
 using UnityEngine;
 using Action = AI12_DataObjects.Action;
+using UnityEngine.SceneManagement;
 
 public class IHMGameModule : MonoBehaviour
 {
@@ -30,40 +31,51 @@ public class IHMGameModule : MonoBehaviour
     private void Awake()
     {
         ihmGameInterface = new IHMGameInterfaceImpl();
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        ihmGameInterface.gameManager = GameManager;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "IHMGame")
+        {
+            GameManager = gameObject.GetComponent<GameManager>();
+            ihmGameInterface.gameManager = GameManager;
+            // récupération des attributs et méthodes de GameEntity
+            gamePlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEntity>();
+            // récupération des attributs et méthodes de ihmGameModule
+            movePlate = GetComponent<MovePlate>();
+        }
     }
 
     private void Start()
     {
-        // récupération des attributs et méthodes de GameEntity
-        gamePlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEntity>();
-        // récupération des attributs et méthodes de ihmGameModule
-        movePlate = GetComponent<MovePlate>();
-
+        //A DEGAGER LORS DE L'INTEG
         // Create a User for tests
         user = new User("test1", "te0000st", "DorianTest", "ZielinskiTest", DateTime.Now);
         // Create a GameState for tests
         Tile[,] map = new Tile[25, 25];
         map[0, 0] = new TilePlain("0", null, "grass");
-        for(int i = 0; i < 25; i++)
+        for (int i = 0; i < 25; i++)
         {
-            for (int j = 0; j< 25; j++)
+            for (int j = 0; j < 25; j++)
             {
                 Location tempLoc = new Location(i, j);
                 map[i, j] = new TilePlain(i + "" + j, tempLoc, "grass");
             }
         }
-        gameState = new GameState(0, 0, new List<Entity>(), map);
         // Create a World for tests
         world = new World("testWorld", 25, GameMode.pvp, false, 0, 60, 5, 20, 0, true, true, true, true, true, true, true, true, this.user);
-        world.gameState = this.gameState;
         // Create a Player for 
         Skill skill = new Skill("Attaque", 1, 3, 0, false);
         List<Skill> skills = new List<Skill>(); skills.Add(skill);
         EntityClass entityClass = new EntityClass("Guerrier", 25, 10, 3, 3, 3, 3, Entities.player, skills);
         Location location = new Location(10, 10);
         player = new Player("TestName", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
+        world.players.Add(player);
+        List<Entity> entities = new List<Entity>();
+        entities.Add(player);
+        gameState = new GameState(0, 0, entities, map);
+        world.gameState = gameState;
 
         ihmGameInterface.LaunchGame(user, world, gameState, player);
     }

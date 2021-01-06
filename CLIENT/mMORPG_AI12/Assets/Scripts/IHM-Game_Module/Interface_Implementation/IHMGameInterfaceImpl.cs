@@ -20,8 +20,6 @@ public class IHMGameInterfaceImpl : IHMGameInterface
         ihmGameModule.gameState = gameState;
         ihmGameModule.world = world;
         SceneManager.LoadScene("IHMGame");
-        
-        GameObject.FindGameObjectWithTag("Tilemap").GetComponent<GameZone>().CreationMap();
     }
 
     /// <summary>

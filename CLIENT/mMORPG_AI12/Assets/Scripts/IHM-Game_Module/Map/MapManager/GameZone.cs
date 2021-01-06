@@ -34,12 +34,12 @@ public class GameZone : MonoBehaviour
         // récupération des attributs et méthodes de IHMGameModule
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
 
-        
-        
+        CreationMap();
     }
 
     public void CreationMap()
     {
+
         // affectation de world à partir de celui présent dans ihmGameModule
         world = ihmGameModule.world;
 
