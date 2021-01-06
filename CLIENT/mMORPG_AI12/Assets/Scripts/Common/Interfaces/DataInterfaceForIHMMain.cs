@@ -9,24 +9,20 @@ public interface DataInterfaceForIHMMain
     /// <summary>
     /// Create an user locally
     /// </summary>
-    /// <param name="login">Login identifier</param>
-    /// <param name="password">Password</param>
-    /// <param name="firstName">First name</param>
-    /// <param name="lastName">Last name</param>
-    /// <param name="birthDate">Birthdate</param>
-    /// <param name="image">Image</param>
-    void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image);
+    /// <param name="user">User instance</param>
+    void CreateUser(User user);
 
     /// <summary>
-    /// Update user's information locally
+    /// Modify an user locally
     /// </summary>
-    /// <param name="login">Login identifier</param>
-    /// <param name="password">Password</param>
-    /// <param name="firstName">First name</param>
-    /// <param name="lastName">Last name</param>
-    /// <param name="birthDate">Birthdate</param>
-    /// <param name="image">Image</param>
-    void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image);
+    /// <param name="user">New user instance</param>
+    void ModifyUser(User user);
+
+    /// <summary>
+    /// Delete an user locally
+    /// </summary>
+    /// <param name="userId">UserId to be deleted</param>
+    void DeleteUser(string userId);
 
     /// <summary>
     /// Create a local session for the user

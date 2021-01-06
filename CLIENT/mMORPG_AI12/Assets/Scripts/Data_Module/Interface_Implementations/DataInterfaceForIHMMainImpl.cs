@@ -20,19 +20,10 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         this.connectedUserManager = dataModule.connectedUserManager;
     }
 
-    [Obsolete("Please use the new method LoadWorld, directly below")]
-    public void LoadWorld(ref World world) { }
-
     public void LoadWorld(string worldId, string playerId)
     {
         DataModule.networkInterface.AddNewWorld(connectedUserManager.GetWorld(worldId));
         JoinWorld(playerId, worldId);
-    }
-
-    [Obsolete("Please use the new method CreateWorld, directly below")]
-    public World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState)
-    {
-        throw new NotImplementedException();
     }
 
     public void CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator)
@@ -53,19 +44,27 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
     }
 
-    [Obsolete("Use method below")]
-    public void JoinWorld(Player player, string worldId)
-    {
-        DataModule.networkInterface.ConnectToWorld(player, worldId);
-    }
-
     public void JoinWorld(string playerId, string worldId)
     {
         DataModule.networkInterface.ConnectToWorld(connectedUserManager.GetPlayer(playerId), worldId);
     }
 
-    public void CreateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
-    public void UpdateUser(string login, string password, string firstName, string lastName, string birthDate, string image) { }
+    public void CreateUser(User user)
+    {
+        localUsersManager.AddUser(user);
+    }
+
+    public void ModifyUser(User user)
+    {
+        connectedUserManager.connectedUser.user = user;
+        localUsersManager.ModifyUser(user);
+        DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
+    }
+
+    public void DeleteUser(string userId)
+    {
+        localUsersManager.DeleteUser(userId);
+    }
 
     public string CreateUserSession(string pseudo, string password)
     {
@@ -102,7 +101,11 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         );
     }
 
-    public void GetWorldDetails(string worldId) { }
+    public void GetWorldDetails(string worldId)
+    {
+
+    }
+
     public void GetUserDetails(string userId) { }
 
     public void LogOut()
@@ -156,19 +159,10 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         }
     }
 
-    [Obsolete("Use AddPlayer(Player player) instead")]
-    public Player CreatePlayer(EntityClass entityClass, string name) { return null; }
-
     public void AddPlayer(Player player)
     {
         connectedUserManager.AddPlayer(player);
         DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
-    }
-
-    [Obsolete("Use DeletePlayer(string playerId) instead")]
-    public void DeletePlayer(Player player)
-    {
-        throw new NotImplementedException();
     }
 
     public void DeletePlayer(string playerId)
@@ -183,9 +177,26 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
         DataModule.ihmMainInterface.GiveLocalUser(connectedUserManager.connectedUser);
     }
 
+    public void GetWorlds() { }
+
+    [Obsolete("Use method below")]
+    public void JoinWorld(Player player, string worldId) { DataModule.networkInterface.ConnectToWorld(player, worldId); }
+
     [Obsolete("Use ModifyPlayer instead")]
     public Player EditPlayer(Player editedPlayer) { return null; }
-    public void GetWorlds() { }
+
     [Obsolete("GiveLocalUser give players")]
     public List<Player> ListPlayers() { return null; }
+
+    [Obsolete("Please use the new method LoadWorld, directly below")]
+    public void LoadWorld(ref World world) { }
+
+    [Obsolete("Use DeletePlayer(string playerId) instead")]
+    public void DeletePlayer(Player player) { }
+
+    [Obsolete("Use AddPlayer(Player player) instead")]
+    public Player CreatePlayer(EntityClass entityClass, string name) { return null; }
+
+    [Obsolete("Please use the new method CreateWorld, directly below")]
+    public World CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, List<Player> players, List<Monster> monsters, User creator, GameState gameState) { throw new NotImplementedException(); }
 }
