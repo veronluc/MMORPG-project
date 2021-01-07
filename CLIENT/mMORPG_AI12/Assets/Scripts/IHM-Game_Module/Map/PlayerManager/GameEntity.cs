@@ -39,9 +39,9 @@ public class GameEntity : MonoBehaviour
 
     private void Start()
     {
-        user = null;  // par défaut user est affecté à null
         // récupération des attributs et méthodes de ihmGameModule (pour avoir le world, le gameState...
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
+        ihmGameModule.gamePlayer = this;
     }
 
     /// <summary>
@@ -154,8 +154,10 @@ public class GameEntity : MonoBehaviour
         // les carrés noirs s'affichent seulement pour le player de l'utilisateur
         // rappel : s'il s'agit d'un monstre ou d'un player d'un autre utilsateur
         // l'attribut user de GameEntity vaut null.
+        Debug.Log("INIT " + user + " IHM " + ihmGameModule.user);
         if (user == ihmGameModule.user)
         {
+            Debug.Log("IF");
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // selon le type d'Entity (guerrier, voleur...) les déplacements possibles ne sont pas tous les mêmes à vérifier dans les règles du jeu
             // pour l'instant il n'y a pas de précision dans les règles du jeu

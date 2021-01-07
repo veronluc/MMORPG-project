@@ -63,8 +63,9 @@ public class GameMovements : MonoBehaviour
         //en précisant son type et sa position initiale sur la map pour l'insérer dans la liste players
         for (int i = 0; i < entities.Length - 1; i++)
         {
+            Debug.Log("FOR");
             entities[i] = Create(gameState.turns[i].entityClass.name,
-                null,  // user = null
+                null, // user = null
                 gameState.turns[i].location.x,
                 gameState.turns[i].location.y);
         }
@@ -72,6 +73,7 @@ public class GameMovements : MonoBehaviour
         //de la méthode SetPosition() définie ci-dessous
         for (int i = 0; i < entities.Length - 1; i++)
         {
+            Debug.Log("SET");
             SetPosition(entities[i]);
         }
         
@@ -96,7 +98,6 @@ public class GameMovements : MonoBehaviour
     /// <returns>GameObject</returns>
     public GameObject Create(string name, User user, int x, int y)
     {
-        
         GameObject obj = Instantiate(entityObject, new Vector3(0, 0, -0.2f), Quaternion.identity);
         GameEntity gp = obj.GetComponent<GameEntity>();
         gp.name = name; // entityClassName

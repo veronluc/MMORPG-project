@@ -41,7 +41,7 @@ public class IHMGameModule : MonoBehaviour
             GameManager = gameObject.GetComponent<GameManager>();
             ihmGameInterface.gameManager = GameManager;
             // récupération des attributs et méthodes de GameEntity
-            gamePlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEntity>();
+            //gamePlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEntity>();
             // récupération des attributs et méthodes de ihmGameModule
             movePlate = GetComponent<MovePlate>();
         }
@@ -68,10 +68,10 @@ public class IHMGameModule : MonoBehaviour
         // Create a Player for 
         Skill skill = new Skill("Attaque", 1, 3, 0, false);
         List<Skill> skills = new List<Skill>(); skills.Add(skill);
-        EntityClass entityClass = new EntityClass("Guerrier", 25, 10, 3, 3, 3, 3, Entities.player, skills);
+        EntityClass entityClass = new EntityClass("warrior", 25, 10, 3, 3, 3, 3, Entities.player, skills);
         Location location = new Location(10, 10);
         player = new Player("TestName", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
-        world.players.Add(player);
+        //world.players.Add(player);
         List<Entity> entities = new List<Entity>();
         entities.Add(player);
         gameState = new GameState(0, 0, entities, map);

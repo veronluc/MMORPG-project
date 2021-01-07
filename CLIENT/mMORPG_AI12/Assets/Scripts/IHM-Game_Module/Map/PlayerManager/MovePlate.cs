@@ -28,7 +28,7 @@ public class MovePlate : MonoBehaviour
     {
         // récupération des attributs et méthodes de ihmGameModule (pour avoir le world, le gameState...
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
-        reference = null;
+        //reference = null;
         if (action)
         {
             // Change to red
