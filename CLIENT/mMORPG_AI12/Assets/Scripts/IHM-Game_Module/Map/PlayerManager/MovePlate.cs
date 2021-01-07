@@ -48,8 +48,9 @@ public class MovePlate : MonoBehaviour
         // avant la destruction, on envoie la position de la case cliquée à IHMGameModule dans targetedEntity
         if (action)
         {
-            GameObject enemyEntity = controller.GetComponent<GameMovements>().GetPosition(matrixX, matrixY);
-            ihmGameModule.targetedEntity = enemyEntity;    
+            GameMovements enemyEntity = controller.GetComponent<GameMovements>();
+            GameObject enemyEntityPosition = enemyEntity.GetPosition(matrixX, matrixY);
+            ihmGameModule.targetedEntity = enemyEntityPosition;    
             Destroy(enemyEntity);
         }
 
@@ -78,6 +79,23 @@ public class MovePlate : MonoBehaviour
 
         //Une fois le player déplacé, on détruit les MovePlates
         reference.GetComponent<GameEntity>().DestroyMovePlates();
+        
+        // Si une skill est en cours (ref à la fonction précédente) alors
+        //     Récupérer les entités visées par la skill : une entité plutôt non ? C'est déjà fait
+        //
+        // 
+        //
+        // Reset l’objet A (pour qu’il n’y ai plus de skill en cours)
+        // Créer l’action qui associé à l’utilisation de ce skill
+        // Envoyer l’action à data
+        //     Exécuter l’action côté game
+        //     Sinon
+        // Si la case fait partie de la zone de déplacement du joueur (en gros si le joueur peut s’y déplacer)
+        // Créer action pour le déplacement
+        //     Envoyer l’action à data
+        //     Exécuter l’action côté game
+        //     Sinon
+        // Ne rien faire et quitter la fonction
     }
 
     public void SetCoords(int x, int y)

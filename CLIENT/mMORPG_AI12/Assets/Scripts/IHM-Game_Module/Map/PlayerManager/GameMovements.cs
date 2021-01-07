@@ -46,24 +46,21 @@ public class GameMovements : MonoBehaviour
         // récupération des attributs et méthodes de ihmGameModule
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
 
-        gameState = ihmGameModule.gameState;
+        gameState = ihmGameModule.world.gameState;
         playerUser = ihmGameModule.player;
         user = ihmGameModule.user;
 
         // Crée la grille de déplacement
-        Debug.Log(ihmGameModule.world);
         if (ihmGameModule.world != null)
         {
             positions = new GameObject[ihmGameModule.world.sizeMap, ihmGameModule.world.sizeMap];
             // nombre d'entities présentes dans le jeu + le player actuel
             entities = new GameObject[ihmGameModule.world.players.Count + ihmGameModule.world.monstersList.Count + 1];
         }
-        Debug.Log(entities.Length);
         //On fait appelle à la méthode Create() définie ci-dessous pour créer un nouveau personnage 
         //en précisant son type et sa position initiale sur la map pour l'insérer dans la liste players
         for (int i = 0; i < entities.Length - 1; i++)
         {
-            Debug.Log("FOR");
             entities[i] = Create(gameState.turns[i].entityClass.name,
                 null, // user = null
                 gameState.turns[i].location.x,
@@ -73,7 +70,6 @@ public class GameMovements : MonoBehaviour
         //de la méthode SetPosition() définie ci-dessous
         for (int i = 0; i < entities.Length - 1; i++)
         {
-            Debug.Log("SET");
             SetPosition(entities[i]);
         }
         

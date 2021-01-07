@@ -137,7 +137,7 @@ public class GameEntity : MonoBehaviour
     public void ViewSkillDistance(Skill playerSkill)
     {
         DestroyMovePlates();
-        SkillPlate(playerSkill);
+        DisplayRelativeSkillPlates(playerSkill);
     }
     
     /// <summary>
@@ -177,7 +177,7 @@ public class GameEntity : MonoBehaviour
                 case "robber":
                 case "mage":
                 case "priest":
-                    DefaultMovePlate();  // génère les déplacements possibles équivalent à celui d'un roi aux échecs
+                    DisplayPlayerMovePlates();  // génère les déplacements possibles équivalent à celui d'un roi aux échecs
                     break;
             }
         }
@@ -197,7 +197,7 @@ public class GameEntity : MonoBehaviour
 
             if (cp == null)  // on a aucune Entity sur la case en question
             {
-                MovePlateSpawn(x, y);
+                DisplayPlayerMovePossibilities(x, y);
             }
             // !!!!!!!! Comment bien comparer gameMode ??
             else if (ihmGameModule.world.gameMode.Equals("pve")) // si c'est du pve, seul les monstres sont des ennemis
@@ -221,7 +221,7 @@ public class GameEntity : MonoBehaviour
     /// <summary>
     /// Carrés noirs (ou rouge s'il y a un ennemi) s'affichant autour du joueur (équivalent au roi dans le jeu d'échecs)
     /// </summary>
-    public void DefaultMovePlate()
+    public void DisplayPlayerMovePlates()
     {
         PointMovePlate(xBoard, yBoard + 1);
         PointMovePlate(xBoard, yBoard - 1);
@@ -236,7 +236,7 @@ public class GameEntity : MonoBehaviour
     /// <summary>
     /// Carrés noirs (ou rouge s'il y a un ennemi) s'affichant en fonction de l'action
     /// </summary>
-    public void SkillPlate(Skill skill)
+    public void DisplayRelativeSkillPlates(Skill skill)
     {
         for (int i = 1; i <= skill.zone; i++)
         {
@@ -257,7 +257,7 @@ public class GameEntity : MonoBehaviour
     /// </summary>
     /// <param name="matrixX">X (ligne de la map)</param>
     /// <param name="matrixY">Y (colonne de la map)</param>
-    public void MovePlateSpawn(int matrixX, int matrixY, bool isAction = false)
+    public void DisplayPlayerMovePossibilities(int matrixX, int matrixY, bool isAction = false)
     {
         float x = matrixX;
         float y = matrixY;

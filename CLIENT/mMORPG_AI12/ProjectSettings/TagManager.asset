@@ -18,6 +18,11 @@ TagManager:
   - EditWorldContainer
   - LocalWorlds
   - Tilemap
+  - PlayerStats
+  - ManaValue
+  - LifeValue
+  - MoveValue
+  - PlayerName
   layers:
   - Default
   - TransparentFX

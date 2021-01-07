@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 28228189}
   m_Layer: 5
   m_Name: PlayerStats
-  m_TagString: Untagged
+  m_TagString: PlayerStats
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 28244223}
   - component: {fileID: 28244222}
   m_Layer: 5
-  m_Name: ButtonNextTurn
+  m_Name: EndOfTurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,7 +266,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 28244223}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 931363923}
+        m_MethodName: EndTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &28244223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +458,7 @@ GameObject:
   - component: {fileID: 173973839}
   m_Layer: 5
   m_Name: LifeValue
-  m_TagString: Untagged
+  m_TagString: LifeValue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -603,7 +614,7 @@ GameObject:
   - component: {fileID: 229556447}
   m_Layer: 5
   m_Name: MoveValue
-  m_TagString: Untagged
+  m_TagString: MoveValue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1712,12 +1723,9 @@ GameObject:
   - component: {fileID: 754310737}
   - component: {fileID: 754310739}
   - component: {fileID: 754310738}
-  - component: {fileID: 754310745}
-  - component: {fileID: 754310744}
-  - component: {fileID: 754310743}
-  - component: {fileID: 754310742}
   - component: {fileID: 754310741}
   - component: {fileID: 754310740}
+  - component: {fileID: 754310746}
   m_Layer: 5
   m_Name: TopBar
   m_TagString: Untagged
@@ -1836,7 +1844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 1274797106}
---- !u!114 &754310742
+--- !u!114 &754310746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1845,49 +1853,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 754310735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c7318ced6d08145bc9b9b6abb66960, type: 3}
+  m_Script: {fileID: 11500000, guid: f52aa5207b3f2e74a8b43caac867b9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textName: {fileID: 1011605709}
---- !u!114 &754310743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754310735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763df71b6e2989646a78d0a6e0d56edd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMove: {fileID: 229556447}
---- !u!114 &754310744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754310735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bcebe503f1feb4183177d2c8f8fb92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMana: {fileID: 1237831593}
---- !u!114 &754310745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754310735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4079d5c689a17794babd50dea27dc540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textLife: {fileID: 173973839}
+  mana: {fileID: 1785265928}
+  life: {fileID: 173973839}
+  move: {fileID: 229556447}
+  playerName: {fileID: 1011605709}
 --- !u!1 &826424883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,7 +2578,7 @@ GameObject:
   - component: {fileID: 1011605709}
   m_Layer: 5
   m_Name: ActivePlayerValue
-  m_TagString: Untagged
+  m_TagString: PlayerName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2903,7 +2875,7 @@ GameObject:
   - component: {fileID: 1237831593}
   m_Layer: 5
   m_Name: ManaValue
-  m_TagString: Untagged
+  m_TagString: ManaValue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3458,10 +3430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52aa5207b3f2e74a8b43caac867b9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mana: 12
-  life: 25
-  move: 3
-  playerName: Dorian
+  mana: {fileID: 0}
+  life: {fileID: 0}
+  move: {fileID: 0}
+  playerName: {fileID: 0}
 --- !u!1 &1690447016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4995,7 +4967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.0000019073486, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0.0000019073486, y: -0.000030517578}
   m_SizeDelta: {x: -23.603897, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &3644964827212495276

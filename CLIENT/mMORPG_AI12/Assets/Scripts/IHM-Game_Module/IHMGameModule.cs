@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.CodeDom;
 using System.Linq;
 using AI12_DataObjects;
 using UnityEngine;
-using Action = AI12_DataObjects.Action;
 using UnityEngine.SceneManagement;
+using Action = AI12_DataObjects.Action;
 
 public class IHMGameModule : MonoBehaviour
 {
@@ -13,14 +12,14 @@ public class IHMGameModule : MonoBehaviour
     public DataInterfaceForIHMGame dataInterface { get; set; }
     public IHMGameInterfaceImpl ihmGameInterface { get; set; }
     public Player player { get; set; }
-    public GameState gameState { get; set; }
+    public Player CurrentPlayer { get; set; }
     public World world { get; set; }
     public User user { get; set; }
     // GameManager to manage chat messages
     public GameManager GameManager { get; set; }
 
     // Helps to know if a skill is being used
-    private Skill CurrentSkill { get; set; }
+    public Skill CurrentSkill { get; set; }
     // placement des joueurs sur la map
     public GameEntity gamePlayer { get; set; }
     public MovePlate movePlate { get; set; }
@@ -75,26 +74,38 @@ public class IHMGameModule : MonoBehaviour
         EntityClass entityClass = new EntityClass("warrior", 25, 10, 3, 3, 3, 3, Entities.player, skills);
         Location location = new Location(10, 10);
         player = new Player("TestName", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
-        //world.players.Add(player);
+        Player player2 = new Player("TestName2", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
         List<Entity> entities = new List<Entity>();
         entities.Add(player);
-        gameState = new GameState(0, 0, entities, map);
-        world.gameState = gameState;
+        entities.Add(player2);
+        world.gameState = new GameState(0, 0, entities, map);
 
-        ihmGameInterface.LaunchGame(user, world, gameState, player);
+        ihmGameInterface.LaunchGame(user, world, player);
+    }
+
+    public Player GetNextPlayer()
+    {
+        //Il faudra check que c'est pas un monstre --> voir avec data
+        return (Player)world.gameState.nextEntity();
     }
 
     public void clickOnSkill(string skillName)  // Il vaudrait mieux faire les actions de cette fonction dans la méthode ViewSkill Distance de GameEntity
     {
-        CurrentSkill = player.entityClass.skills.Where(skill => skill.name == skillName).ToList().First();
-        //Afficher sur la carte la distance d’attaque de l’utilisateur
-        gamePlayer.ViewSkillDistance(CurrentSkill);  // mettre en parametre le skill et modifier la méthode ViewSkillDistance() ; pas sûr que ça compile
-        //Avoir un objet qui enregistre la skill en cours (objet A)
+        if (CurrentPlayer.name == player.name)
+        {
+            CurrentSkill = player.entityClass.skills.Where(skill => skill.name == skillName).ToList().First();
+            //Afficher sur la carte la distance d’attaque de l’utilisateur
+            gamePlayer.ViewSkillDistance(CurrentSkill);  // mettre en parametre le skill et modifier la méthode ViewSkillDistance() ; pas sûr que ça compile
+            //Avoir un objet qui enregistre la skill en cours (objet A)   
+        }
     }
     
     public void clickOnPlayer()  
     {
-        gamePlayer.ViewMoveDistance();  
+        if (CurrentPlayer.name == player.name)
+        {
+            gamePlayer.ViewMoveDistance();  
+        }
     }
     
     
@@ -103,30 +114,11 @@ public class IHMGameModule : MonoBehaviour
         // Récupérer la case qui a été cliquée : c'est ce qui est fait dans la fonction OnMouseUp (exemple dans MovePlate.cs)
         int caseX = movePlate.reference.GetComponent<GameEntity>().GetXBoard(); // pas sûr que ça compile
         int caseY = movePlate.reference.GetComponent<GameEntity>().GetYBoard(); // pas sûr que ça compile
-        // Si une skill est en cours (ref à la fonction précédente) alors
-        //     Récupérer les entités visées par la skill : une entité plutôt non ? C'est déjà fait
-        //
-        // 
-        //
-        // Reset l’objet A (pour qu’il n’y ai plus de skill en cours)
-        // Créer l’action qui associé à l’utilisation de ce skill
-        // Envoyer l’action à data
-        //     Exécuter l’action côté game
-        //     Sinon
-        // Si la case fait partie de la zone de déplacement du joueur (en gros si le joueur peut s’y déplacer)
-        // Créer action pour le déplacement
-        //     Envoyer l’action à data
-        //     Exécuter l’action côté game
-        //     Sinon
-        // Ne rien faire et quitter la fonction
     }
 
-    public void ClickOnEndOfTurn() {  // à faire dans le OnMouseUp de MovePlate.cs (la fin du tour c'est après avoir fait une action ou un déplacement
-        //Créer action pour fin de tour
+    public void handleEndOfTurn() {  // à faire dans le OnMouseUp de MovePlate.cs (la fin du tour c'est après avoir fait une action ou un déplacement
         Action action = new ActionEndRound(player, world);
-        // Envoyer action à Data
         dataInterface.MakeAction(action);
-        // Reset l’objet qui dit que le joueur peut jouer (n’est pas un objet qui s’affiche)
     }
 
     public void ExecuteAction(Action action)  // à faire dans le if (action) de OnMouseUp de MovePlate.cs

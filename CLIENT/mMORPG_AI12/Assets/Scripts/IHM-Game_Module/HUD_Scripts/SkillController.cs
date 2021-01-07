@@ -19,9 +19,12 @@ public class SkillController : MonoBehaviour
         }
     }
 
-    // Test button click
     public void UseSkill(int skillNumber)
     {
         ihmGameModule.clickOnSkill(ButtonList[skillNumber].GetComponentInChildren<Text>().text);
+    }    
+    public void EndTurn()
+    {
+        ihmGameModule.handleEndOfTurn();
     }
 }
