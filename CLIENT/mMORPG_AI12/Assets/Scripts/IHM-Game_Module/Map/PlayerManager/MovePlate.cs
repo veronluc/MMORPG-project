@@ -28,7 +28,6 @@ public class MovePlate : MonoBehaviour
     {
         // récupération des attributs et méthodes de ihmGameModule (pour avoir le world, le gameState...
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
-        //reference = null;
         if (action)
         {
             // Change to red
@@ -50,7 +49,7 @@ public class MovePlate : MonoBehaviour
         if (action)
         {
             GameObject enemyEntity = controller.GetComponent<GameMovements>().GetPosition(matrixX, matrixY);
-            ihmGameModule.targetedEntity = enemyEntity;
+            ihmGameModule.targetedEntity = enemyEntity;    
             Destroy(enemyEntity);
         }
 

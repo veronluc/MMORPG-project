@@ -67,7 +67,11 @@ public class IHMGameModule : MonoBehaviour
         world = new World("testWorld", 25, GameMode.pvp, false, 0, 60, 5, 20, 0, true, true, true, true, true, true, true, true, this.user);
         // Create a Player for 
         Skill skill = new Skill("Attaque", 1, 3, 0, false);
+        Skill skill2 = new Skill("Defense", 2, 3, 0, false);
+        Skill skill3 = new Skill("Bouclier", 4, 3, 0, false);
         List<Skill> skills = new List<Skill>(); skills.Add(skill);
+        skills.Add(skill2);
+        skills.Add(skill3);
         EntityClass entityClass = new EntityClass("warrior", 25, 10, 3, 3, 3, 3, Entities.player, skills);
         Location location = new Location(10, 10);
         player = new Player("TestName", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
@@ -84,11 +88,16 @@ public class IHMGameModule : MonoBehaviour
     {
         CurrentSkill = player.entityClass.skills.Where(skill => skill.name == skillName).ToList().First();
         //Afficher sur la carte la distance d’attaque de l’utilisateur
-        gamePlayer.ViewSkillDistance();  // mettre en parametre le skill et modifier la méthode ViewSkillDistance() ; pas sûr que ça compile
+        gamePlayer.ViewSkillDistance(CurrentSkill);  // mettre en parametre le skill et modifier la méthode ViewSkillDistance() ; pas sûr que ça compile
         //Avoir un objet qui enregistre la skill en cours (objet A)
-
-        
     }
+    
+    public void clickOnPlayer()  
+    {
+        gamePlayer.ViewMoveDistance();  
+    }
+    
+    
     public void ClickOnCase() {  // Il vaudrait mieux faire les actions de cette fonction dans la méthode OnMouseUp de MovePlate.cs
 
         // Récupérer la case qui a été cliquée : c'est ce qui est fait dans la fonction OnMouseUp (exemple dans MovePlate.cs)

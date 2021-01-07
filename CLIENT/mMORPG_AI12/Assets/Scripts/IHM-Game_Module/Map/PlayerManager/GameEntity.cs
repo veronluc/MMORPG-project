@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AI12_DataObjects;
@@ -127,12 +128,18 @@ public class GameEntity : MonoBehaviour
     /// Génère des carrés noirs montrant les cases où le joueur peut se déplacer
     /// et donc attaquer un joueur ou un monstre se trouvant sur une de ces cases
     /// </summary>
-    public void ViewSkillDistance()
+    public void ViewMoveDistance()
     {
         DestroyMovePlates();
         InitiateMovePlates();
     }
 
+    public void ViewSkillDistance(Skill playerSkill)
+    {
+        DestroyMovePlates();
+        SkillPlate(playerSkill);
+    }
+    
     /// <summary>
     /// Efface tous les carrés noirs.
     /// Cela peut être fait lorsqu'une action/skill a été réalisé.
@@ -146,6 +153,11 @@ public class GameEntity : MonoBehaviour
         }
     }
 
+    private void OnMouseUp()
+    {
+        ihmGameModule.clickOnPlayer();
+    }
+
     /// <summary>
     /// Affiche les carrés noirs.
     /// </summary>
@@ -154,10 +166,8 @@ public class GameEntity : MonoBehaviour
         // les carrés noirs s'affichent seulement pour le player de l'utilisateur
         // rappel : s'il s'agit d'un monstre ou d'un player d'un autre utilsateur
         // l'attribut user de GameEntity vaut null.
-        Debug.Log("INIT " + user + " IHM " + ihmGameModule.user);
         if (user == ihmGameModule.user)
         {
-            Debug.Log("IF");
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // selon le type d'Entity (guerrier, voleur...) les déplacements possibles ne sont pas tous les mêmes à vérifier dans les règles du jeu
             // pour l'instant il n'y a pas de précision dans les règles du jeu
@@ -223,13 +233,31 @@ public class GameEntity : MonoBehaviour
         PointMovePlate(xBoard + 1, yBoard + 1);
     }
 
+    /// <summary>
+    /// Carrés noirs (ou rouge s'il y a un ennemi) s'affichant en fonction de l'action
+    /// </summary>
+    public void SkillPlate(Skill skill)
+    {
+        for (int i = 1; i <= skill.zone; i++)
+        {
+            PointMovePlate(xBoard, yBoard + i);
+            PointMovePlate(xBoard+i, yBoard+i);
+            PointMovePlate(xBoard+i, yBoard);
+            PointMovePlate(xBoard+i, yBoard-i);
+            PointMovePlate(xBoard, yBoard-i);
+            PointMovePlate(xBoard-i, yBoard-i);
+            PointMovePlate(xBoard-i, yBoard);
+            PointMovePlate(xBoard-i, yBoard+i);
+        }
+    }
+
 
     /// <summary>
     /// Méthode permettant l'affichage d'un carré noir de manière visuelle (prise en compte de la caméra, cf GameZone.cs)
     /// </summary>
     /// <param name="matrixX">X (ligne de la map)</param>
     /// <param name="matrixY">Y (colonne de la map)</param>
-    public void MovePlateSpawn(int matrixX, int matrixY)
+    public void MovePlateSpawn(int matrixX, int matrixY, bool isAction = false)
     {
         float x = matrixX;
         float y = matrixY;
