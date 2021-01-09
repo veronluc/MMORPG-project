@@ -21,6 +21,6 @@ public class PlayerStatsManager : MonoBehaviour
         move.text = ihmGameModule.player.PM.ToString();
         playerName = GameObject.FindGameObjectWithTag("PlayerName").GetComponent<Text>();
         //valeur à changer
-        playerName.text = ihmGameModule.CurrentPlayer.name;
+        playerName.text = ihmGameModule.currentPlayer.name;
     }
 }

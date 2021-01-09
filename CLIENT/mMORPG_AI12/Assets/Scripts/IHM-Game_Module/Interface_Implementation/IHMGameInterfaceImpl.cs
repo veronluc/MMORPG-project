@@ -16,7 +16,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     {
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
         //need to change in order to get the current player, not the current entity
-        ihmGameModule.CurrentPlayer = (Player)world.gameState.currentEntity();
+        ihmGameModule.currentPlayer = (Player)world.gameState.currentEntity();
         ihmGameModule.player = player;
         ihmGameModule.user = user;
         ihmGameModule.world = world;
@@ -39,11 +39,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     {
         ihmGameModule.world.gameState = gameState;
         //need to change
-        ihmGameModule.CurrentPlayer = (Player)gameState.currentEntity();
-        if (gameState.currentEntity().name == ihmGameModule.player.name)
-        {
-            ihmGameModule.IsMyTurn = true;
-        }
+        ihmGameModule.currentPlayer = (Player)gameState.currentEntity();
     }
 
     /// <summary>

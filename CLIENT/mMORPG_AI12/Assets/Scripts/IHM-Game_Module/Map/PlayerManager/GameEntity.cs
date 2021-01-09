@@ -190,19 +190,19 @@ public class GameEntity : MonoBehaviour
     /// <param name="y">y</param>
     public void PointMovePlate(int x, int y)
     {
-        GameMovements sc = controller.GetComponent<GameMovements>();
-        if (sc.PositionOnBoard(x, y))
+        GameMovements gameMovements = controller.GetComponent<GameMovements>();
+        if (gameMovements.PositionOnBoard(x, y))
         {
-            GameObject cp = sc.GetPosition(x, y);
+            GameObject gameMovementsPosition = gameMovements.GetPosition(x, y);
 
-            if (cp == null)  // on a aucune Entity sur la case en question
+            if (gameMovementsPosition == null)  // on a aucune Entity sur la case en question
             {
                 DisplayPlayerMovePossibilities(x, y);
             }
             // !!!!!!!! Comment bien comparer gameMode ??
             else if (ihmGameModule.world.gameMode.Equals("pve")) // si c'est du pve, seul les monstres sont des ennemis
             {
-                if (cp.GetComponent<GameEntity>().name == "goblin" || cp.GetComponent<GameEntity>().name == "wizard")
+                if (gameMovementsPosition.GetComponent<GameEntity>().name == "goblin" || gameMovementsPosition.GetComponent<GameEntity>().name == "wizard")
                 {
                     MovePlateAttackSpawn(x, y);  // on met un carré rouge sur les monstres
                 }
@@ -210,7 +210,7 @@ public class GameEntity : MonoBehaviour
             // !!!!!!!! Comment bien comparer gameMode ??
             else if (ihmGameModule.world.gameMode.Equals("pvp")) // si c'est du pvp, toutes les entity sont des ennemis (monstres et players)
             {
-                if (cp.GetComponent<GameEntity>())  // quelle que soit l'Entity, elle est attaquable
+                if (gameMovementsPosition.GetComponent<GameEntity>())  // quelle que soit l'Entity, elle est attaquable
                 {
                     MovePlateAttackSpawn(x, y);  // on met un carré rouge sur les monstres et les autres joueurs selon l'Entity à cet endroit
                 }
@@ -270,12 +270,12 @@ public class GameEntity : MonoBehaviour
         x -= 2f;
         y -= 1f;
 
-        GameObject mp = Instantiate(movePlate, new Vector3(x, y, -2f), Quaternion.identity);
+        GameObject movePlateGameObject = Instantiate(movePlate, new Vector3(x, y, -2f), Quaternion.identity);
 
-        MovePlate mpScript = mp.GetComponent<MovePlate>();
+        MovePlate movePlateObject = movePlateGameObject.GetComponent<MovePlate>();
 
-        mpScript.SetReference(gameObject);
-        mpScript.SetCoords(matrixX, matrixY);
+        movePlateObject.SetReference(gameObject);
+        movePlateObject.SetCoords(matrixX, matrixY);
     }
 
     /// <summary>
@@ -296,12 +296,12 @@ public class GameEntity : MonoBehaviour
         x -= 2f;
         y -= 1f;
 
-        GameObject mp = Instantiate(movePlate, new Vector3(x, y, -2f), Quaternion.identity);
+        GameObject movePlateGameObject = Instantiate(movePlate, new Vector3(x, y, -2f), Quaternion.identity);
 
-        MovePlate mpScript = mp.GetComponent<MovePlate>();
-        mpScript.action = true;
-        mpScript.SetReference(gameObject);
-        mpScript.SetCoords(matrixX, matrixY);
+        MovePlate movePlateObject = movePlateGameObject.GetComponent<MovePlate>();
+        movePlateObject.action = true;
+        movePlateObject.SetReference(gameObject);
+        movePlateObject.SetCoords(matrixX, matrixY);
     }
     
 }

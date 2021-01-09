@@ -12,14 +12,14 @@ public class IHMGameModule : MonoBehaviour
     public DataInterfaceForIHMGame dataInterface { get; set; }
     public IHMGameInterfaceImpl ihmGameInterface { get; set; }
     public Player player { get; set; }
-    public Player CurrentPlayer { get; set; }
+    public Player currentPlayer { get; set; }
     public World world { get; set; }
     public User user { get; set; }
     // GameManager to manage chat messages
-    public GameManager GameManager { get; set; }
+    public GameManager gameManager { get; set; }
 
     // Helps to know if a skill is being used
-    public Skill CurrentSkill { get; set; }
+    public Skill currentSkill { get; set; }
     // placement des joueurs sur la map
     public GameEntity gamePlayer { get; set; }
     public MovePlate movePlate { get; set; }
@@ -37,8 +37,8 @@ public class IHMGameModule : MonoBehaviour
     {
         if (scene.name == "IHMGame")
         {
-            GameManager = gameObject.GetComponent<GameManager>();
-            ihmGameInterface.gameManager = GameManager;
+            gameManager = gameObject.GetComponent<GameManager>();
+            ihmGameInterface.gameManager = gameManager;
             // récupération des attributs et méthodes de GameEntity
             //gamePlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEntity>();
             // récupération des attributs et méthodes de ihmGameModule
@@ -91,18 +91,18 @@ public class IHMGameModule : MonoBehaviour
 
     public void clickOnSkill(string skillName)  // Il vaudrait mieux faire les actions de cette fonction dans la méthode ViewSkill Distance de GameEntity
     {
-        if (CurrentPlayer.name == player.name)
+        if (currentPlayer.name == player.name)
         {
-            CurrentSkill = player.entityClass.skills.Where(skill => skill.name == skillName).ToList().First();
+            currentSkill = player.entityClass.skills.Where(skill => skill.name == skillName).ToList().First();
             //Afficher sur la carte la distance d’attaque de l’utilisateur
-            gamePlayer.ViewSkillDistance(CurrentSkill);  // mettre en parametre le skill et modifier la méthode ViewSkillDistance() ; pas sûr que ça compile
+            gamePlayer.ViewSkillDistance(currentSkill);  // mettre en parametre le skill et modifier la méthode ViewSkillDistance() ; pas sûr que ça compile
             //Avoir un objet qui enregistre la skill en cours (objet A)   
         }
     }
     
     public void clickOnPlayer()  
     {
-        if (CurrentPlayer.name == player.name)
+        if (currentPlayer.name == player.name)
         {
             gamePlayer.ViewMoveDistance();  
         }

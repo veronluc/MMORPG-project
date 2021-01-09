@@ -95,31 +95,31 @@ public class GameMovements : MonoBehaviour
     public GameObject Create(string name, User user, int x, int y)
     {
         GameObject obj = Instantiate(entityObject, new Vector3(0, 0, -0.2f), Quaternion.identity);
-        GameEntity gp = obj.GetComponent<GameEntity>();
-        gp.name = name; // entityClassName
-        gp.user = user;
-        gp.SetXBoard(x);
-        gp.SetYBoard(y);
-        gp.Activate();
+        GameEntity gameEntity = obj.GetComponent<GameEntity>();
+        gameEntity.name = name; // entityClassName
+        gameEntity.user = user;
+        gameEntity.SetXBoard(x);
+        gameEntity.SetYBoard(y);
+        gameEntity.Activate();
         return obj;
     }
 
     public void SetPosition(GameObject obj)
     {
-        GameEntity gp = obj.GetComponent<GameEntity>();
+        GameEntity gameEntity = obj.GetComponent<GameEntity>();
 
-        positions[gp.GetXBoard(), gp.GetYBoard()] = obj;
+        positions[gameEntity.GetXBoard(), gameEntity.GetYBoard()] = obj;
 
     }
     
     public void SetPositionPlayerUser(GameObject obj)
     {
-        GameEntity gp = obj.GetComponent<GameEntity>();
+        GameEntity gameEntity = obj.GetComponent<GameEntity>();
 
-        positions[gp.GetXBoard(), gp.GetYBoard()] = obj;
+        positions[gameEntity.GetXBoard(), gameEntity.GetYBoard()] = obj;
 
         //On centre la caméra sur la position du joueur de l'utilisateur
-        _camera.transform.position = new Vector3(gp.transform.position.x, gp.transform.position.y, -6.5f);
+        _camera.transform.position = new Vector3(gameEntity.transform.position.x, gameEntity.transform.position.y, -6.5f);
 
     }
 
