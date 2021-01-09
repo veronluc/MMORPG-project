@@ -54,6 +54,8 @@ namespace AI12_DataObjects
             this.entityClass = entityClass;
         }
 
+        public Entity() { }
+
         public abstract bool isMonster();
 
         public bool Equals(Entity ent)
