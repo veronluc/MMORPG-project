@@ -5,19 +5,37 @@ using AI12_DataObjects;
 
 public class DataInterfaceForIHMGameImpl : DataInterfaceForIHMGame
 {
+    private DataModule dataModule;
+    private ConnectedUserManager connectedUserManager;
+
     public DataInterfaceForIHMGameImpl()
     {
+        this.dataModule = GameObject.FindGameObjectWithTag("DataModule").GetComponent<DataModule>();
+        this.connectedUserManager = dataModule.connectedUserManager;
     }
 
-    public void SendMessage(Message message) {
+    public void SendMessage(Message message)
+    {
         DataModule.networkInterface.SendChatMessage(message);
     }
 
-    public void MakeAction(Action action) {
-        DataModule.networkInterface.SendAction((Player) action.entity, action);
+    public void MakeAction(Action action)
+    {
+        DataModule.networkInterface.SendAction((Player)action.entity, action);
     }
 
-    public User GetCurrentUser() { return null; }
-    public Player GetCurrentPlayer() { return null; }
-    public World GetCurrentWorld() { return null; }
+    public User GetCurrentUser()
+    {
+        return connectedUserManager.connectedUser.user;
+    }
+
+    public Player GetCurrentPlayer()
+    {
+        return connectedUserManager.currentPlayer;
+    }
+
+    public World GetCurrentWorld()
+    {
+        return connectedUserManager.currentWorld;
+    }
 }

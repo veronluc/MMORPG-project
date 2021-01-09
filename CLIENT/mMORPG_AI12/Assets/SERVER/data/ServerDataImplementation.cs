@@ -56,12 +56,18 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
 
     public void ReceiveMessage(Message message)
     {
-        throw new NotImplementedException();
+        World currentWorld = WorldsManager.getWorldFromId(message.worldId);
+        WorldsManager.GetPlayersUsers(currentWorld).ForEach(user =>
+        {
+            network.SendMessageToUser(user, message);
+        });
     }
+
     public Entity ReceiveNewAction(World world)
     {
         return world.gameState.currentEntity();
     }
+
     public GameState ReceiveNewAction(AI12_DataObjects.Action action)
     {
         GameState newGameState =  action.makeAction();

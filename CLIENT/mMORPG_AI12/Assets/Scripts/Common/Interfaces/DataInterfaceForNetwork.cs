@@ -19,13 +19,6 @@ public interface DataInterfaceForNetwork
     /// Receive a list of User instances of a specific World (used for new or update)
     /// </summary>
     /// <param name="users">List of users</param>
-    /// <param name="world">World instance</param>
-    void ReceiveListUsersFromWorld(List<User> users, World world);
-
-    /// <summary>
-    /// Receive a list of User instances of a specific World (used for new or update)
-    /// </summary>
-    /// <param name="users">List of users</param>
     /// <param name="worlds">List of available worlds</param>
     void ReceiveListUsersWorlds(List<User> users, List<World> worlds);
 
