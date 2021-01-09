@@ -37,7 +37,7 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
 
     public void ReceiveWorld(User user, World world, Player player)
     {
-        DataModule.ihmGameInterface.LaunchGame(user, world, world.gameState, player);
+        DataModule.ihmGameInterface.LaunchGame(user, world, player);
     }
 
     public void ReceiveListUsers(List<User> users) {

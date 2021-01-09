@@ -11,8 +11,8 @@ public class InitializationModule : MonoBehaviour
     void Start()
     {
         // Get Modules Script (Module main script)
-        this.ihmMainModule = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>();
         this.ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
+        this.ihmMainModule = GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<IHMMainModule>();
         this.dataModule = GameObject.FindGameObjectWithTag("DataModule").GetComponent<DataModule>();
         this.networkModule = GameObject.FindGameObjectWithTag("NetworkModule").GetComponent<NetworkModule>();
 
@@ -23,7 +23,10 @@ public class InitializationModule : MonoBehaviour
         DataModule.ihmGameInterface = this.ihmGameModule.ihmGameInterface;
         this.networkModule.dataInterfaceForNetwork = this.dataModule.GetInterfaceForNetwork();
         this.ihmGameModule.dataInterface = this.dataModule.GetInterfaceForIHMGame();
-        this.ihmGameModule.gameManager.dataInterface = this.dataModule.GetInterfaceForIHMGame();
+        //this.ihmGameModule.GameManager.dataInterface = this.dataModule.GetInterfaceForIHMGame();
+
+        //Add Don't Destroy on Load on Modules GameObject
+        GameObject.DontDestroyOnLoad(GameObject.FindGameObjectWithTag("IHMGameModule"));
     }
 
     // Update is called once per frame
