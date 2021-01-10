@@ -23,6 +23,7 @@ public class AddNewWorldAndConnect : Packet
 
     public override void Handle(GameServer s)
     {
+        Console.WriteLine("Correctly received packet Add new world and connect.");
         s.data.ReceiveNewWorld(w);
         s.data.ReceiveConnexionUserToWorld(player, w.id);
     }

@@ -20,6 +20,7 @@ public class InitializationPacket : Packet
         //TO DO : Informer data (client) que connexion serveur reussie ou non
         SendUserInfosPacket msg = new SendUserInfosPacket(c.currentUser);
         c.SendData(msg);
+        c.DebugIt("Received correctly ID");
     }
 
 

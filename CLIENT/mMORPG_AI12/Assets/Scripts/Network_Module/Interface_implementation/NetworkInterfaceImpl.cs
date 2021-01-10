@@ -57,6 +57,7 @@ public class NetworkInterfaceImpl : NetworkInterface
     {
         AddNewWorldAndConnect msg = new AddNewWorldAndConnect(world, p);
         client.SendData(msg);
+        Debug.Log("Sended new world & connection");
     }
     public void DisconnectUserFromServer()
     {
