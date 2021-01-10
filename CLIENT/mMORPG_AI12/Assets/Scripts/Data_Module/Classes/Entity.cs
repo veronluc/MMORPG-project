@@ -105,5 +105,10 @@ namespace AI12_DataObjects
                 this.vitality = this.vitality + healing;
             }
         }
+
+        public void usePMs(int movementPoints)
+        {
+            this.PM = this.PM - movementPoints;
+        }
     }
 }

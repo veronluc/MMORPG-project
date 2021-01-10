@@ -77,9 +77,10 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
 
     public GameState MakeMonsterTurn(World world)
     {
-        GameState newGameState = WorldManager.AutoPlayMonster(world);
-        WorldsManager.UpdateWorldFromId(world.id, newGameState);
-        return newGameState;
+        world.gameState = WorldManager.AutoPlayMonster(world);
+        world.gameState = new ActionEndRound(world.gameState.currentEntity(), world).makeAction();
+        WorldsManager.UpdateWorldFromId(world.id, world.gameState);
+        return world.gameState;
     }
 
     public void UserAskWorldList(User user)

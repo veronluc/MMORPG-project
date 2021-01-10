@@ -117,9 +117,15 @@ public static class WorldManager
             // Move towards player
             // attack player if possible
             Tile destination = WorldManager.moveTowardTile(world, monster, target);
-            if (destination != null)
+            while (monster.PM > 0 && destination != null)
+                if (destination != null)
+                {
+                    world.gameState = new ActionMove(monster, world, destination).makeAction();
+                    monster = (Monster) world.gameState.currentEntity();
+                    destination = WorldManager.moveTowardTile(world, world.gameState.currentEntity(), target);
+                }
             {
-                world.gameState = new ActionMove(monster, world, destination).makeAction();
+                
             }
 
             if (monster.entityClass.skills.Count == 0)
@@ -283,11 +289,11 @@ public static class WorldManager
                 {
                     if (Math.Abs(xdiff) > 0)
                     {
-                        return world.gameState.map[origin.location.x, origin.location.y + Math.Abs(ydiff)];
+                        return world.gameState.map[origin.location.x, origin.location.y - Math.Abs(ydiff)];
                     }
                     else
                     {
-                        return world.gameState.map[origin.location.x, origin.location.y + Math.Abs(ydiff) - 1];
+                        return world.gameState.map[origin.location.x, origin.location.y - Math.Abs(ydiff) + 1];
                     }
                 }
             }
