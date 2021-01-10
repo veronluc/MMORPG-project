@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using AI12_DataObjects;
 
 public class AuthenticationScreen : MonoBehaviour
 {
@@ -61,7 +62,22 @@ public class AuthenticationScreen : MonoBehaviour
                 {
                     if (password.Equals(passwordConfirmation))
                     {
-                        dataInterface.CreateUser(login, password, firstName, lastName, birthDate, image);
+                        User user = new User(
+                            login,
+                            null,
+                            password,
+                            firstName,
+                            lastName,
+                            new DateTime(
+                                int.Parse(birthDate.Substring(6)),
+                                int.Parse(birthDate.Substring(3, 2)),
+                                int.Parse(birthDate.Substring(0, 2))
+                            ),
+                            image,
+                            new System.Collections.Generic.List<Player>()
+                        );
+                        // ERROR : DataInterface is null
+                        dataInterface.CreateUser(user);
                     }
                     else
                     {
@@ -75,7 +91,7 @@ public class AuthenticationScreen : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log("Exception : " + e);
+                Debug.LogError(e);
                 // handle user creation error
             }
         }

@@ -35,7 +35,7 @@ public class DataInterfaceForNetworkImpl : DataInterfaceForNetwork
     {
         connectedUserManager.currentWorld = world;
         connectedUserManager.currentPlayer = player;
-        DataModule.ihmGameInterface.LaunchGame(user, world, world.gameState, player);
+        DataModule.ihmGameInterface.LaunchGame(user, world, player);
     }
 
     public void ReceiveListUsers(List<User> users)

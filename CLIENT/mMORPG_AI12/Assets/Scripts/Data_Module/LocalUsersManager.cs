@@ -61,13 +61,7 @@ public class LocalUsersManager
     
     public Player TestCreatePlayer(User user, string name = "JOUEUR")
     {
-        // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
-        Skill skill = new Skill("kick",2,4,2,false);
-        // skill.range = new Range(shapes.star, 10);
-        List<Skill> skills = new List<Skill>();
-        skills.Add(skill);
-        EntityClass entity = new EntityClass("GUERRIER", 100, 100, 25, 2, 12, 8, Entities.player, skills);
-        Player player = new Player(name, 0, 100, 100, 100, 100, 25, 20, 12, 8, new Location(0, 0), entity, 0, 0, user);
+        Player player = new Player(PlayerType.Warrior, name, new Location(0, 0), user);
         return player;
     }
 

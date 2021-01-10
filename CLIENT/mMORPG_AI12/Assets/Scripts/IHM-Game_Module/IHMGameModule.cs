@@ -73,8 +73,8 @@ public class IHMGameModule : MonoBehaviour
         skills.Add(skill3);
         EntityClass entityClass = new EntityClass("warrior", 25, 10, 3, 3, 3, 3, Entities.player, skills);
         Location location = new Location(10, 10);
-        player = new Player("TestName", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
-        Player player2 = new Player("TestName2", 1, 25, 25, 10, 10, 3, 3, 3, 3, location, entityClass, 0, 0, this.user);
+        player = new Player(PlayerType.Warrior, "TestName", location, this.user);
+        Player player2 = new Player(PlayerType.Warrior, "TestName2", location, this.user);
         List<Entity> entities = new List<Entity>();
         entities.Add(player);
         entities.Add(player2);
