@@ -72,11 +72,20 @@ namespace AI12_DataObjects
         public void damageEntity(int damage)
         {
             int damageDone = damage - this.defense;
-            Debug.Log("Target has resistance");
             if (damageDone > 0)
             {
                 Debug.Log("Target has taken damage");
                 this.vitality = this.vitality - damageDone;
+                
+                if (this.vitality <= 0)
+                {
+                    // DEATH --- to be implemented
+                    this.vitality = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Target resisted all damage");
             }
         }
 

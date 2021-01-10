@@ -9,7 +9,7 @@ public interface ServerDataInterfaceForNetwork
     /// Will make the current entity play if it is a monster
     /// </summary>
     /// <param name="world">Instance of a world</param>
-    GameState makeMonsterTurn(World world);
+    GameState MakeMonsterTurn(World world);
 
     /// <summary>
     /// Receive a message from a client
