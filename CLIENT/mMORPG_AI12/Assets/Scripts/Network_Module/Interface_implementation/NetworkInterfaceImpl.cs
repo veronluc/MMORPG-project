@@ -53,6 +53,11 @@ public class NetworkInterfaceImpl : NetworkInterface
         client.ConnectToServer(ipAdress, port);
     }
 
+    public void AddNewWorldAndConnectPlayer(World world, Player p)
+    {
+        AddNewWorldAndConnect msg = new AddNewWorldAndConnect(world, p);
+        client.SendData(msg);
+    }
     public void DisconnectUserFromServer()
     {
         AskDisconnectServer msg = new AskDisconnectServer(client.currentUser);
