@@ -89,7 +89,28 @@ public static class WorldManager
             Debug.Log("No target, move randomly");
             // Move randomly
             // Skip turn
-            world.gameState = new ActionMove(monster, world, world.gameState.map[monster.location.x, monster.location.y + 1]).makeAction();
+            List<Location> possibleLocations = new List<Location>();
+            // X + Movement
+            if (monster.location.x + monster.PM < world.sizeMap)
+                possibleLocations.Add(new Location(monster.location.x + monster.PM, monster.location.y));
+            // X - Movement
+            if (monster.location.x - monster.PM >= 0)
+                possibleLocations.Add(new Location(monster.location.x - monster.PM, monster.location.y));
+            // Y + Movement
+            if (monster.location.y + monster.PM < world.sizeMap)
+                possibleLocations.Add(new Location(monster.location.x, monster.location.y + monster.PM));
+            // Y - Movement
+            if (monster.location.y - monster.PM >= 0)
+                possibleLocations.Add(new Location(monster.location.x, monster.location.y - monster.PM));
+            if (possibleLocations.Count == 0)
+            {
+                Debug.Log("Monster cannot move");
+            }
+            else
+            {
+                Location randomLocation = possibleLocations[UnityEngine.Random.Range(0,possibleLocations.Count)];
+                world.gameState = new ActionMove(monster, world, world.gameState.map[randomLocation.x, randomLocation.y]).makeAction();   
+            }
         } else
         {
             Debug.Log("Target locked, move towards target");
