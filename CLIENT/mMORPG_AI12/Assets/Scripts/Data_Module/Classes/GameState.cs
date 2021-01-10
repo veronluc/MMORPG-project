@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace AI12_DataObjects
 {
@@ -50,6 +51,39 @@ namespace AI12_DataObjects
         public bool nextEntityIsMonster()
         {
             return this.nextEntity().isMonster();
+        }
+
+        public override string ToString()
+        {
+            string str = "";
+            string bottom = "  ";
+            for (int y = map.GetUpperBound(1); y >= 0; y--) 
+            {
+                str = str + y.ToString() + " ";
+                for (int x = 0; x <= map.GetUpperBound(0); x++)
+                {
+                    Tile t = map[x,y];
+                    if (t.entities.Count == 0)
+                    {
+                        str = str + "- ";
+                    } else
+                    {
+                        if (t.entities[0].isMonster())
+                        {
+                            str = str + "x ";
+                        } else
+                        {
+                            str = str + "o ";
+                        }
+                    }
+                }
+                str = str + "\n";
+            }
+            for (int x = 0; x <= map.GetUpperBound(0); x++)
+            {
+                bottom = bottom + x.ToString() + " ";
+            }
+            return str + bottom;
         }
     }
 }

@@ -54,6 +54,8 @@ namespace AI12_DataObjects
             this.entityClass = entityClass;
         }
 
+        public Entity() { }
+
         public abstract bool isMonster();
 
         public bool Equals(Entity ent)
@@ -70,11 +72,20 @@ namespace AI12_DataObjects
         public void damageEntity(int damage)
         {
             int damageDone = damage - this.defense;
-            Debug.Log("Target has resistance");
             if (damageDone > 0)
             {
                 Debug.Log("Target has taken damage");
                 this.vitality = this.vitality - damageDone;
+                
+                if (this.vitality <= 0)
+                {
+                    // DEATH --- to be implemented
+                    this.vitality = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Target resisted all damage");
             }
         }
 
@@ -93,6 +104,11 @@ namespace AI12_DataObjects
                 Debug.Log("Target was healed");
                 this.vitality = this.vitality + healing;
             }
+        }
+
+        public void usePMs(int movementPoints)
+        {
+            this.PM = this.PM - movementPoints;
         }
     }
 }

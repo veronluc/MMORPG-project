@@ -60,13 +60,20 @@ namespace AI12_DataObjects
                 return null;
             }
 
-            // If ActionMove is legal change entity Location
-            entity.location = new Location(tile.location.x, tile.location.y);
+            int distance = entity.location.distance(tile.location);
+
             // Take out from current tile
             world.gameState
                 .map[entity.location.x, entity.location.y]
                 .entities
                 .Remove(entity);
+
+            // Change entity Location
+            entity.location = new Location(tile.location.x, tile.location.y);
+            
+            // Use entity PMs
+            entity.usePMs(distance);
+            
             // Put into new tile
             world.gameState
                 .map[tile.location.x, tile.location.y]

@@ -35,9 +35,19 @@ namespace AI12_DataObjects
             {
                 return null;
             }
+            
+            // Remove entity from map
+            this.world.gameState
+                .map[this.world.gameState.currentEntity().location.x, this.world.gameState.currentEntity().location.y]
+                .entities.Remove(this.world.gameState.currentEntity());
 
             // Restore Entity PMs
             this.world.gameState.currentEntity().PM = entity.entityClass.basePM;
+            
+            // Restore entity on map
+            this.world.gameState
+                .map[this.world.gameState.currentEntity().location.x, this.world.gameState.currentEntity().location.y]
+                .entities.Add(this.world.gameState.currentEntity());
 
             // Change turn
             this.world.gameState.incrementIndex();

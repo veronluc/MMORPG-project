@@ -9,9 +9,9 @@ public class LocalUsersManager
 {
     private List<LocalUser> usersStorage;
     private const string PATH = "/localUsers.dat";
-    public List<LocalUser> users {get => this.usersStorage; }
+    public List<LocalUser> users { get => this.usersStorage; }
 
-    public LocalUsersManager ()
+    public LocalUsersManager()
     {
         RetrieveAndSetLocalUsers();
     }
@@ -71,7 +71,8 @@ public class LocalUsersManager
         return player;
     }
 
-    public LocalUser ConnectUser(string pseudo, string password) {
+    public LocalUser ConnectUser(string pseudo, string password)
+    {
         foreach (LocalUser _ in this.usersStorage)
         {
             User user = _.user;
@@ -107,5 +108,22 @@ public class LocalUsersManager
             Debug.LogError(e);
             return false;
         }
+    }
+
+    public void DeleteUser(string userId)
+    {
+        users.Remove(users.Find(localUser => localUser.user.id == userId));
+    }
+
+    public void ModifyUser(User user)
+    {
+        users[users.FindLastIndex(localUser => localUser.user.id == user.id)].user = user;
+    }
+
+    public void AddUser(User user)
+    {
+        LocalUser localUser = new LocalUser();
+        localUser.user = user;
+        users.Add(localUser);
     }
 }
