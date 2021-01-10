@@ -73,9 +73,10 @@ namespace AI12_DataObjects
 
             // Apply skill on Tile (and contained entities)
             List<Entity> targets = world.gameState.map[tile.location.x, tile.location.y].entities;
+            
+            // Apply damage/healing on each target
             targets.ForEach(delegate (Entity target)
             {
-                Debug.Log(target.vitality);
                 if (skill.healing)
                 {
                     this.healEntity(entity, target, skill);
@@ -83,8 +84,18 @@ namespace AI12_DataObjects
                 {
                     this.damageEntity(entity, target, skill);
                 }
-                Debug.Log(target.vitality);
+                
+                // Update targets in turns list
+                world.gameState.turns.ForEach(delegate(Entity targetEntry)
+                {
+                    if (targetEntry.id == target.id)
+                    {
+                        targetEntry = target;
+                    }
+                });
             });
+            
+            // Update targets on map
             world.gameState.map[tile.location.x, tile.location.y].entities = targets;
 
             return world.gameState;
