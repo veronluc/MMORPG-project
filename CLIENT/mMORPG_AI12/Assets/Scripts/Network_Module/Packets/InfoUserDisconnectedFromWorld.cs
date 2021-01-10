@@ -1,9 +1,22 @@
-﻿using System.Collections;
+﻿using Server.Network.Messages;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InfoUserDisconnectedFromWorld : MonoBehaviour
+[Serializable]
+public class InfoUserDisconnectedFromWorld : Packet
 {
+    public override void Handle(Client c)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Handle(GameServer s)
+    {
+        throw new NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
