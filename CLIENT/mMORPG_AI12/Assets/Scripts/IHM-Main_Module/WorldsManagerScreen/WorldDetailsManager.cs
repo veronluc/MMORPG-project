@@ -38,9 +38,19 @@ public class WorldDetailsManager : MonoBehaviour
     public Toggle hasMountainToggle;
     public Toggle hasSeaToggle;
 
+    public static Dictionary<int, int> SIZE_MAP = new Dictionary<int, int>();
+
     private void Awake()
     {
         this.gameObject.SetActive(false);
+        SIZE_MAP.Add(0, 3);
+        SIZE_MAP.Add(1, 5);
+        SIZE_MAP.Add(2, 7);
+
+        SIZE_MAP.Add(3, 0);
+        SIZE_MAP.Add(5, 1);
+        SIZE_MAP.Add(7, 2);
+
     }
 
     /// <summary>
@@ -74,7 +84,7 @@ public class WorldDetailsManager : MonoBehaviour
         this.world = worldToDisplay; // Save the current world
 
         // Initiate the current values on the dropdown lists (default or previous ones)
-        this.sizeInput.value = worldToDisplay.sizeMap;
+        this.sizeInput.value = SIZE_MAP[worldToDisplay.sizeMap];
         this.gameTypeModeInput.value = worldToDisplay.gameMode == GameMode.pve ? 0 : 1;
         this.difficultyInput.value = worldToDisplay.difficulty;
         this.realDeathInput.value = worldToDisplay.realDeath ? 0 : 1;
@@ -159,7 +169,14 @@ public class WorldDetailsManager : MonoBehaviour
     /// <param name="size">The dropdown list index representing the new size of the world</param>
     public void SetMapSize(int size)
     {
-        this.world.sizeMap = size;
+        Debug.Log(size);
+        switch(size)
+        {
+            case 0: this.world.sizeMap = SIZE_MAP[0]; break;
+            case 1: this.world.sizeMap = SIZE_MAP[1]; break;
+            case 2: this.world.sizeMap = SIZE_MAP[2]; break;
+            default: SetMapSize(1);  break;
+        }
     }
 
     /// <summary>

@@ -61,7 +61,7 @@ public class LocalUsersManager
     
     public Player TestCreatePlayer(User user, string name = "JOUEUR")
     {
-        Player player = new Player(PlayerType.Warrior, name, new Location(0, 0), user);
+        Player player = new Player(PlayerType.Warrior, name, new Location(1, 1), user);
         return player;
     }
 
@@ -119,5 +119,6 @@ public class LocalUsersManager
         LocalUser localUser = new LocalUser();
         localUser.user = user;
         users.Add(localUser);
+        Save();
     }
 }

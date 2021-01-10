@@ -49,6 +49,7 @@ public class IHMGameModule : MonoBehaviour
     private void Start()
     {
         //A DEGAGER LORS DE L'INTEG
+        /*
         // Create a User for tests
         user = new User("test1", "te0000st", "DorianTest", "ZielinskiTest", DateTime.Now);
         // Create a GameState for tests
@@ -81,6 +82,7 @@ public class IHMGameModule : MonoBehaviour
         world.gameState = new GameState(0, 0, entities, map);
 
         ihmGameInterface.LaunchGame(user, world, player);
+        */
     }
 
     public Player GetNextPlayer()

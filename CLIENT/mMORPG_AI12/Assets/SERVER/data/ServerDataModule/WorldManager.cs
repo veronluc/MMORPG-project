@@ -34,6 +34,7 @@ public static class WorldManager
             if (!exists)
             {
                 world.players.Add(newPlayer);
+                world.gameState.turns.Add(newPlayer);
             }
         }
     }

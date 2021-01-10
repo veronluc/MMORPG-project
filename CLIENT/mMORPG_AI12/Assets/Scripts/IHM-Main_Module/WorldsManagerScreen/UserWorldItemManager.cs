@@ -23,8 +23,8 @@ public class UserWorldItemManager : MonoBehaviour
     public void SetWorldInfoToGameObject(World world, WorldDetailsManager worldDetailsManager)
     {
         this.worldName.text = world.name;
-
-        this.worldSize.text = sizeLabels[world.sizeMap]; // Retrieve the label corresponding to the index number given
+        Debug.Log("World size map " + world.sizeMap);
+        this.worldSize.text = sizeLabels[WorldDetailsManager.SIZE_MAP[world.sizeMap]]; // Retrieve the label corresponding to the index number given
 
         this.worldType.text = world.gameMode.ToString().ToUpper();
 

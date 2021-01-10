@@ -20,6 +20,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
         ihmGameModule.player = player;
         ihmGameModule.user = user;
         ihmGameModule.world = world;
+        Debug.Log(world.gameState.map.Length);
         SceneManager.LoadScene("IHMGame");
     }
 
