@@ -75,10 +75,9 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
         return newGameState;
     }
 
-    public GameState makeMonsterTurn(World world)
+    public GameState MakeMonsterTurn(World world)
     {
-        AI12_DataObjects.Action endTurn = new ActionEndRound(world.gameState.currentEntity(), world);
-        GameState newGameState = endTurn.makeAction();
+        GameState newGameState = WorldManager.AutoPlayMonster(world);
         WorldsManager.UpdateWorldFromId(world.id, newGameState);
         return newGameState;
     }

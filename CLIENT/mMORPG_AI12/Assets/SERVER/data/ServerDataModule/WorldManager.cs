@@ -74,7 +74,7 @@ public static class WorldManager
         return g;
     }
 
-    public static GameState autoPlayMonster(World world)
+    public static GameState AutoPlayMonster(World world)
     {
         // If the playing entity is not a monster return null
         if (!world.gameState.currentEntity().isMonster())
@@ -92,13 +92,26 @@ public static class WorldManager
             world.gameState = new ActionMove(monster, world, world.gameState.map[monster.location.x, monster.location.y + 1]).makeAction();
         } else
         {
-            Debug.Log("Target locked, attack !!!");
+            Debug.Log("Target locked, move towards target");
             // Move towards player
             // attack player if possible
             Tile destination = WorldManager.moveTowardTile(world, monster, target);
             if (destination != null)
             {
                 world.gameState = new ActionMove(monster, world, destination).makeAction();
+            }
+
+            if (monster.entityClass.skills.Count == 0)
+            {
+                Debug.Log("Entity has no skills : cannot attack");
+                return world.gameState;
+            }
+            
+            ActionSkill attack = new ActionSkill(monster, world, target , monster.entityClass.skills[0]);
+            if (attack.IsLegal())
+            {
+                Debug.Log("Attack target");
+                world.gameState = attack.makeAction();
             }
         }
 
