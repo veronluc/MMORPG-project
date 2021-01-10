@@ -7,7 +7,15 @@ namespace AI12_DataObjects
     [Serializable()]
     public class LocalUser
     {
-        public List<Player> players { get; set; }
+        public List<Player> players
+        {
+            get => user.players;
+            set
+            {
+                if (user != null) user.players = value;
+            }
+        }
+
         public List<World> worlds { get; set; }
         public User user { get; set; }
         public ServerInfo lastServerConnection { get; set; }

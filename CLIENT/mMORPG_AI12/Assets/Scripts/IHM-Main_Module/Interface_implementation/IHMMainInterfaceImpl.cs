@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
@@ -7,8 +8,6 @@ using AI12_DataObjects;
 
 public class IHMMainInterfaceImpl : IHMMainInterface
 {
-
-    //TO DO: Implement functions
 
     public void LoadMainScene()
     {
@@ -52,18 +51,40 @@ public class IHMMainInterfaceImpl : IHMMainInterface
             .UpdateListUsersDisplay(users);
     }
 
-    public void DisplayUserDetail(string token)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void DisplayWorldDetail(World world)
-    {
-        throw new System.NotImplementedException();
-    }
-
+    /// <summary>
+    /// Gives IHM Main the user currently logged in, his last connection to the server, and his lists of players and worlds.
+    /// </summary>
+    /// <param name="localUser">Last connection of the user to the server, contains :
+    ///  - user credentials, 
+    ///  - server credentials, 
+    ///  - a list of the user's players, 
+    ///  - and a list of the user's worlds.
+    /// </param>
     public void GiveLocalUser(LocalUser localUser)
     {
-        // TODO
+        //Retrieves the game object IHMMainModule
+        GameObject iHMMainGameObject = GameObject.FindGameObjectWithTag("IHMMainModule");
+
+        //Updates the server credentials in MainConnectedScreen
+        //Class ServerInfo contains string "server" (Ip) and int "port"
+        if (localUser.lastServerConnection != null)
+        {
+            iHMMainGameObject.GetComponent<MainConnectedScreen>().UpdateIpandPortDisplay(
+                localUser.lastServerConnection.server, localUser.lastServerConnection.port.ToString());
+        }
+
+        //Set the current user credentials in IHMMainModule
+        iHMMainGameObject.GetComponent<IHMMainModule>().localUser = localUser;
+        
+        //Updates the list of user worlds in ManageMyWorldScreen
+        iHMMainGameObject.GetComponent<ManageMyWorldsScreen>().UpdateListWorldsDisplay(localUser.worlds);
+        if (ScreensManager.GetCurrentScreen() == ScreensManager.AUTHENTICATION_MENU)
+        {
+            ScreensManager.ShowMainConnectedScreen();
+        }
+
+        // TODO V3
+        //Updates the list of user players in ManageMyPlayersScreen (Not yet implemented)
+        //iHMMainGameObject.GetComponent<ManageMyPlayersScreen>().UpdateListWorldsDisplay(localUser.players);
     }
 }

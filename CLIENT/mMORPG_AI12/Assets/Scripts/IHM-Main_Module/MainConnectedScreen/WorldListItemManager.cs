@@ -24,7 +24,6 @@ public class WorldListItemManager : MonoBehaviour
     public TextMeshProUGUI worldTurnTime;
     public Button joinButton;
 
-
     void Start()
     {
         details.SetActive(false);
@@ -35,6 +34,7 @@ public class WorldListItemManager : MonoBehaviour
         mainSizeTarget = GetComponent<RectTransform>().sizeDelta;
         detailsScale = details.GetComponent<RectTransform>().localScale;
         isReduced = true;
+        
     }
 
     void Update()
@@ -84,8 +84,9 @@ public class WorldListItemManager : MonoBehaviour
     /// <summary>
     /// Set the world info. to this gameObject (to show it on the screen)
     /// </summary>
-    /// <param name="world"></param>
-    public void SetWorldToGameObject(World world)
+    /// <param name="world"> the world you want to connect to this item</param>
+    /// <param name="worldsManager">the worlds manager useful to get the popup to choose the payer the user want to play with</param>
+    public void SetWorldToGameObject(World world, OnlineWorldsManager worldsManager)
     {
         this.worldName.text = world.name;
 
@@ -93,36 +94,36 @@ public class WorldListItemManager : MonoBehaviour
 
         this.worldSize.text = world.sizeMap.ToString();
 
-        this.worldType.text = world.gameMode.ToString();
+        this.worldType.text = world.gameMode.ToString().ToUpper();
 
         this.worldTurnTime.text = world.roundTimeSec.ToString() + "s";
 
-        // TO MODIFY (v2) : replace those lines with the user's chosen player (via choose player Popup) when the connection will be implemented
-        this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
-            .JoinWorld(TestCreatePlayer(),world.id));
+        this.joinButton.onClick.AddListener(() => worldsManager.playerChoicePopup.GetComponent<WorldJoinManager>().OpenPopupForCurrentWorld(world));
+        
     }
 
     /// <summary>
     /// Only for test purpose
     /// </summary>
-    public void SetRandomInfoToGameObject()
+    public void SetRandomInfoToGameObject(OnlineWorldsManager worldsManager)
     {
-        this.worldName.text = "Le nom du monde";
+        World world = new World(UnityEngine.Random.value.ToString(), 0, GameMode.pvp, true, 2, 30, 10, 42, 5, false, true, true, false, true, true, true, true, null);
 
-        this.ownerName.text = "MOI";
+        world.id = "TestID";
 
-        this.worldSize.text = "MEDIUM";
+        this.worldName.text = world.name;
 
-        this.worldType.text = "PVE";
+        this.ownerName.text = "OUI";
 
-        int time = 18;
+        this.worldSize.text = world.sizeMap.ToString();
 
-        this.worldTurnTime.text = time.ToString() + "s";
+        this.worldType.text = world.gameMode.ToString().ToUpper();
         
-        this.joinButton.onClick.AddListener(() => GameObject.FindGameObjectWithTag("IHMMainModule").GetComponent<MainConnectedScreen>()
-            .JoinWorld(TestCreatePlayer(),this.worldName.text));
-    }
+        this.worldTurnTime.text = world.roundTimeSec.ToString() + "s";
 
+        this.joinButton.onClick.AddListener(() => worldsManager.playerChoicePopup.GetComponent<WorldJoinManager>().OpenPopupForCurrentWorld(world));
+    }
+    
     /// <summary>
     /// Only for test purpose
     /// </summary>
@@ -180,4 +181,6 @@ public class WorldListItemManager : MonoBehaviour
         */
         return player;
     }
+
+   
 }

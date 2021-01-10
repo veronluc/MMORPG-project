@@ -6,12 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class IHMGameInterfaceImpl : IHMGameInterface
 {
+    public GameManager gameManager { get; set; }
+    IHMGameModule ihmGameModule;
 
     /// <summary>
     /// Launch the game. Start the display of the game view
     /// </summary>
-    public void LaunchGame(User user, World world, GameState gameState, Player player)
+    public void LaunchGame(User user, World world, Player player)
     {
+        ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
+        //need to change in order to get the current player, not the current entity
+        ihmGameModule.currentPlayer = (Player)world.gameState.currentEntity();
+        ihmGameModule.player = player;
+        ihmGameModule.user = user;
+        ihmGameModule.world = world;
         SceneManager.LoadScene("IHMGame");
     }
 
@@ -21,7 +29,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// <param name="message">New message to display</param>
     public void DisplayMessage(Message message)
     {
-        throw new System.NotImplementedException();
+        gameManager.SendMessageToChat(message, ChatMessage.MessageType.playerMessage);
     }
 
     /// <summary>
@@ -29,7 +37,9 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     /// </summary>
     public void UpdateDisplay(GameState gameState)
     {
-        throw new System.NotImplementedException();
+        ihmGameModule.world.gameState = gameState;
+        //need to change
+        ihmGameModule.currentPlayer = (Player)gameState.currentEntity();
     }
 
     /// <summary>

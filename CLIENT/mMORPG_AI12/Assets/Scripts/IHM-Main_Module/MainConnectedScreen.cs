@@ -55,6 +55,20 @@ public class MainConnectedScreen : MonoBehaviour
         worldsList = newListWorlds;
         worldsManager.GetComponent<OnlineWorldsManager>().SetWorldList(newListWorlds);
     }
+    
+    /// <summary>
+    /// Update ip and port display 
+    /// </summary>
+    /// <param name="ip"></param>
+    /// <param name="port"></param>
+    public void UpdateIpandPortDisplay(string ip, string port)
+    {
+        serverInformation.GetComponent<TextMeshProUGUI>().SetText("IP = " + ip + " - Port = " + port);
+        if (GameObject.FindGameObjectWithTag("ServerConnection") != null)
+        {
+            GameObject.FindGameObjectWithTag("ServerConnection").GetComponent<ServerConnectionManager>().OpenClosePopup();
+        }
+    }
 
     /// <summary>
     /// Connect the local user to a specific server
@@ -73,19 +87,18 @@ public class MainConnectedScreen : MonoBehaviour
         }
 
         // Set the new server information (ip and port) and close the connection pop-up
-        serverInformation.GetComponent<TextMeshProUGUI>().SetText("IP = " + ip + " - Port = " + port);
-        GameObject.FindGameObjectWithTag("ServerConnection").GetComponent<ServerConnectionManager>().OpenClosePopup();
-        
-        
+        UpdateIpandPortDisplay(ip, port);
+
+
         // For tests purpose we populate users and worlds here (keep it for v1)
-        
+
         // List<User> users = new List<User>();
         // users.Add(new User(){players = new List<Player>(), firstName = "Ines", lastName = "Ryder", login="iryder", birthDate = new DateTime(2000, 1, 1)});
         // users.Add(new User(){players = new List<Player>(), firstName = "Lucie",lastName = "Gratreau", login="lgratreau", birthDate = new DateTime(2000, 1, 1)});
         // users.Add(new User(){players = new List<Player>(), firstName = "Anais",lastName = "Mace", login="amace", birthDate = new DateTime(2000, 1, 1)});
         // users.Add(new User(){players = new List<Player>(), firstName = "Manuel",lastName = "Beaudru", login="mbeaudru", birthDate = new DateTime(2000, 1, 1)});
         // UpdateListUsersDisplay(users);
-        
+
         // List<World> worlds = new List<World>();
         // worlds.Add(CreateTestWorld("Forest Map"));
         // worlds.Add(CreateTestWorld("Welcome to hell"));
@@ -94,7 +107,7 @@ public class MainConnectedScreen : MonoBehaviour
         // UpdateListWorldsDisplay(worlds);
 
     }
-    
+
     public void OnClickManageMyWorlds() {
         throw new System.NotImplementedException();
     }

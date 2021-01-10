@@ -12,6 +12,17 @@ TagManager:
   - OnlineWorlds
   - ServerConnection
   - InfoConnectedServer
+  - MovePlate
+  - PlayerChoicePopup
+  - UserWorldsContainer
+  - EditWorldContainer
+  - LocalWorlds
+  - Tilemap
+  - PlayerStats
+  - ManaValue
+  - LifeValue
+  - MoveValue
+  - PlayerName
   layers:
   - Default
   - TransparentFX
@@ -21,7 +32,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - FontUI
   - 
   - 
   - 

@@ -68,7 +68,7 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 
     public string CreateUserSession(string pseudo, string password)
     {
-        this.connectedUserManager.connectedUser = this.localUsersManager.ConnectUser(pseudo, password);
+        this.connectedUserManager.connectedUser = this.localUsersManager.ConnectUser(pseudo, password); ;
 
         // Check if user connexion was successful
         if (this.connectedUserManager.isConnected)

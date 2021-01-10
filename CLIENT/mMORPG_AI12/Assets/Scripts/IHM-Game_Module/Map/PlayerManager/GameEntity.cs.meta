@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: afdbc2d232d6cc943bb7bd4bd291f355
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - controller: {instanceID: 0}
+  - movePlate: {fileID: 2695864063198947436, guid: e99f7dc7de82421478111c6834381583,
+      type: 3}
+  - warrior: {fileID: 21300000, guid: 9072d2ae673d4554491eccbebb9836be, type: 3}
+  - robber: {fileID: 21300000, guid: a33a726546cb285478f38ad4727ac4d9, type: 3}
+  - mage: {fileID: 21300000, guid: b51218e5979636f4ba49d44988dc493b, type: 3}
+  - priest: {fileID: 21300000, guid: b1feddf3c43beab41bf825d3e9ef2d59, type: 3}
+  - goblin: {fileID: 21300000, guid: 7f8790eb089cc59458198c5de2a317d8, type: 3}
+  - wizard: {fileID: 21300000, guid: f407f44f70eaaf54fa805bb301a39748, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
