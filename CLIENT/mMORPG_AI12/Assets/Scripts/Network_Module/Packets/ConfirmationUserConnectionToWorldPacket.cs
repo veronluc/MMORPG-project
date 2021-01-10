@@ -4,29 +4,24 @@ using Server.Network;
 using Server.Network.Messages;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 [Serializable]
 public class ConfirmationUserConnectionToWorldPacket : Packet
 {
     World world;
     User user;
     Player player;
-    bool result;
-    string message;
 
-    public ConfirmationUserConnectionToWorldPacket(World pWorld, User pUser, Player pPlayer, bool pRes, string pMessage)
+    public ConfirmationUserConnectionToWorldPacket(World pWorld, User pUser, Player pPlayer)
     {
         world = pWorld;
         user = pUser;
         player = pPlayer;
-        result = pRes;
-        message = pMessage;
     }
     public override void Handle(Client c)
     {
-        //TO DO 
-        //c.data.confirm...
+
         c.data.ReceiveWorld(user, world, player);
+        c.DebugIt("Client received connexion confirmation.");
     }
 
     public override void Handle(GameServer s)

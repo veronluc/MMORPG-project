@@ -40,10 +40,10 @@ public class ServerNetworkImplementation : MonoBehaviour
         SendActionToClient msg = new SendActionToClient(gameState);
         SendPacket(user.id, msg);
     }
-    public void SendConfirmationUserConnectionToWorld(User user, World world, Player player, bool result, string message)
+    public void SendConfirmationUserConnectionToWorld(User user, World world, Player player)
     {
         Console.WriteLine("User dest : " + user + "; World : " + world + "; Player : " + player);
-        ConfirmationUserConnectionToWorldPacket msg = new ConfirmationUserConnectionToWorldPacket(world, user, player, result, message);
+        ConfirmationUserConnectionToWorldPacket msg = new ConfirmationUserConnectionToWorldPacket(world, user, player);
         SendPacket(user.id, msg);
     }
     public void SendStopServer(User user)
