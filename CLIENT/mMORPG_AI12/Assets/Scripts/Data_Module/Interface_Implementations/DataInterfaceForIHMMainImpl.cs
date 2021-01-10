@@ -22,8 +22,11 @@ public class DataInterfaceForIHMMainImpl : DataInterfaceForIHMMain
 
     public void LoadWorld(string worldId, string playerId)
     {
+        /*
         DataModule.networkInterface.AddNewWorld(connectedUserManager.GetWorld(worldId));
         JoinWorld(playerId, worldId);
+        */
+        DataModule.networkInterface.AddNewWorldAndConnectPlayer(connectedUserManager.GetWorld(worldId), connectedUserManager.GetPlayer(playerId));
     }
 
     public void CreateWorld(string name, int sizeMap, GameMode gameMode, bool realDeath, int difficulty, int roundTimeSec, int nbMaxPlayer, int nbMaxMonsters, int nbShops, bool hasCity, bool hasPlain, bool hasSwamp, bool hasRiver, bool hasForest, bool hasRockyPlain, bool hasMontain, bool hasSea, User creator)

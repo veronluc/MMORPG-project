@@ -33,6 +33,12 @@ public interface NetworkInterface
     void AddNewWorld(World world);
 
     /// <summary>
+    /// Send a new workd to the server and connect the player to it
+    /// </summary>
+    /// <param name="world">The world to send</param>
+    void AddNewWorldAndConnectPlayer(World world, Player p);
+
+    /// <summary>
     /// Connect the player to a world on the server.
     /// </summary>
     /// <param name="idWorld">The world the player has to connect to</param>
