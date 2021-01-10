@@ -12,7 +12,7 @@ using UnityEngine;
 public class Client : MonoBehaviour
 {
     private BasePacket receivedData;
-    public static int dataBufferSize = 32768;
+    public static int dataBufferSize = 131072;
     bool isConnected = false;
     
     public User currentUser { get; set; }

@@ -55,10 +55,11 @@ public class GameMovements : MonoBehaviour
         {
             positions = new GameObject[ihmGameModule.world.sizeMap, ihmGameModule.world.sizeMap];
             // nombre d'entities présentes dans le jeu + le player actuel
-            entities = new GameObject[ihmGameModule.world.players.Count + ihmGameModule.world.monstersList.Count + 1];
+            entities = new GameObject[ihmGameModule.world.players.Count + ihmGameModule.world.monstersList.Count];
         }
         //On fait appelle à la méthode Create() définie ci-dessous pour créer un nouveau personnage 
         //en précisant son type et sa position initiale sur la map pour l'insérer dans la liste players
+        Debug.Log("PLAYER NUMBER : " + entities.Length);
         for (int i = 0; i < entities.Length - 1; i++)
         {
             entities[i] = Create(gameState.turns[i].entityClass.name,

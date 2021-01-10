@@ -11,7 +11,7 @@ public class ClientServer
 {
     public int id;
     private User user;
-    public static int dataBufferSize = 32768;
+    public static int dataBufferSize = 131072;
     public TcpClient socket { get; set; }
     private BasePacket receivedData;
     private NetworkStream stream;
