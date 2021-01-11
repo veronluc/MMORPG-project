@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">anycpu</Platform>
+    <ProjectGuid>{F52FCF1B-C97B-4E17-8010-144B9B2879D8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Server</RootNamespace>
+    <AssemblyName>Server</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|anycpu' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|anycpu' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\Data_Module\ConnectedUserManager.cs" />
+    <Compile Include="Scripts\Data_Module\LocalUsersManager.cs" />
+    <Compile Include="Scripts\Data_Module\DataModule.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\EffectNeutralZone.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Range.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\GameState.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Message.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Action.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\ActionEndRound.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Tile.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\ActionMove.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Skill.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\ServerInfo.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\User.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\World.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\TileEffect.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\LocalUser.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\TilePlain.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\ActionSkill.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\EffectBarrier.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\ActionRest.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\EffectBoostStat.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Location.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Player.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\EffectRegen.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Debug.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Monster.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\Entity.cs" />
+    <Compile Include="Scripts\Data_Module\Classes\EntityClass.cs" />
+    <Compile Include="Scripts\Data_Module\Interface_Implementations\DataInterfaceForNetworkImpl.cs" />
+    <Compile Include="Scripts\Data_Module\Interface_Implementations\DataInterfaceForIHMMainImpl.cs" />
+    <Compile Include="Scripts\Data_Module\Interface_Implementations\DataInterfaceForIHMGameImpl.cs" />
+    <Compile Include="Scripts\Network_Module\ClientWrapper.cs" />
+    <Compile Include="Scripts\Network_Module\Client.cs" />
+    <Compile Include="Scripts\Network_Module\ThreadManager.cs" />
+    <Compile Include="Scripts\Network_Module\Dispatcher.cs" />
+    <Compile Include="Scripts\Network_Module\NetworkModule.cs" />
+    <Compile Include="Scripts\Network_Module\Interface_implementation\NetworkInterfaceImpl.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\SendUserInfosPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\SendUsersAndWorlds.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\UserAsksWorldListPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\CustomizedBinder.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\SendActionToServerPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\UserAskUserListsPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\ConnectToWorldPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\SendWorldsListPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\AddNewWorldAndConnect.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\SendMessage.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\ConfirmationUserConnectionToWorldPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\BasePacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\AskDisconnectServer.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\SendActionToClient.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\SendUsersListPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\InitializationPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\InfoUserDisconnectedFromServer.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\InfoUserDisconnectedFromWorld.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\AskDisconnectWorld.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\AddNewWorldPacket.cs" />
+    <Compile Include="Scripts\Network_Module\Packets\Packet.cs" />
+    <Compile Include="Scripts\Common\Interfaces\DataInterfaceForIHMGame.cs" />
+    <Compile Include="Scripts\Common\Interfaces\NetworkInterface.cs" />
+    <Compile Include="Scripts\Common\Interfaces\IHMMainInterface.cs" />
+    <Compile Include="Scripts\Common\Interfaces\DataInterfaceForNetwork.cs" />
+    <Compile Include="Scripts\Common\Interfaces\DataInterfaceForIHMMain.cs" />
+    <Compile Include="Scripts\Common\Interfaces\IHMGameInterface.cs" />
+    <Compile Include="SERVER\network\Constants.cs" />
+    <Compile Include="SERVER\network\ServerMain.cs" />
+    <Compile Include="SERVER\network\ServerNetworkInterfaceForClient.cs" />
+    <Compile Include="SERVER\network\ClientServer.cs" />
+    <Compile Include="SERVER\network\ServerNetworkImplementation.cs" />
+    <Compile Include="SERVER\network\GameServer.cs" />
+    <Compile Include="SERVER\data\ServerDataImplementation.cs" />
+    <Compile Include="SERVER\data\ServerDataInterfaceForNetwork.cs" />
+    <Compile Include="SERVER\data\ServerDataModule\UsersManager.cs" />
+    <Compile Include="SERVER\data\ServerDataModule\WorldManager.cs" />
+    <Compile Include="SERVER\data\ServerDataModule\WorldsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Data_Module\DataModule.cs.meta" />
+    <None Include="Scripts\Data_Module\LocalUsersManager.cs.meta" />
+    <None Include="Scripts\Data_Module\ConnectedUserManager.cs.meta" />
+    <None Include="Scripts\Data_Module\Interface_Implementations.meta" />
+    <None Include="Scripts\Data_Module\Classes.meta" />
+    <None Include="Scripts\Data_Module\Classes\Entity.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\EntityClass.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Skill.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Player.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\EffectNeutralZone.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\TilePlain.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\ActionRest.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\EffectBoostStat.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\ServerInfo.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\ActionEndRound.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Tile.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\ActionMove.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\User.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\LocalUser.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\TileEffect.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Range.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Monster.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\ActionSkill.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\EffectBarrier.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Message.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\GameState.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Action.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\Location.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\World.cs.meta" />
+    <None Include="Scripts\Data_Module\Classes\EffectRegen.cs.meta" />
+    <None Include="Scripts\Data_Module\Interface_Implementations\DataInterfaceForNetworkImpl.cs.meta" />
+    <None Include="Scripts\Data_Module\Interface_Implementations\DataInterfaceForIHMMainImpl.cs.meta" />
+    <None Include="Scripts\Data_Module\Interface_Implementations\DataInterfaceForIHMGameImpl.cs.meta" />
+    <None Include="Scripts\Network_Module\Interface_implementation.meta" />
+    <None Include="Scripts\Network_Module\ThreadManager.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets.meta" />
+    <None Include="Scripts\Network_Module\SceneTestsNetwork.unity.meta" />
+    <None Include="Scripts\Network_Module\ClientWrapper.cs.meta" />
+    <None Include="Scripts\Network_Module\Client.cs.meta" />
+    <None Include="Scripts\Network_Module\Dispatcher.cs.meta" />
+    <None Include="Scripts\Network_Module\SceneTestsNetwork.unity" />
+    <None Include="Scripts\Network_Module\NetworkModule.cs.meta" />
+    <None Include="Scripts\Network_Module\Interface_implementation\NetworkInterfaceImpl.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\Packet.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\SendUsersAndWorlds.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\ConnectToWorldPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\SendWorldsListPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\SendMessage.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\AddNewWorldAndConnect.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\InfoUserDisconnectedFromWorld.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\SendUsersListPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\AskDisconnectWorld.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\CustomizedBinder.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\InitializationPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\UserAskUserListsPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\AddNewWorldPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\SendActionToServerPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\BasePacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\SendActionToClient.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\UserAsksWorldListPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\AskDisconnectServer.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\InfoUserDisconnectedFromServer.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\ConfirmationUserConnectionToWorldPacket.cs.meta" />
+    <None Include="Scripts\Network_Module\Packets\SendUserInfosPacket.cs.meta" />
+    <None Include="Scripts\Common\Interfaces.meta" />
+    <None Include="Scripts\Common\Interfaces\DataInterfaceForIHMMain.cs.meta" />
+    <None Include="Scripts\Common\Interfaces\DataInterfaceForNetwork.cs.meta" />
+    <None Include="Scripts\Common\Interfaces\IHMGameInterface.cs.meta" />
+    <None Include="Scripts\Common\Interfaces\NetworkInterface.cs.meta" />
+    <None Include="Scripts\Common\Interfaces\DataInterfaceForIHMGame.cs.meta" />
+    <None Include="Scripts\Common\Interfaces\IHMMainInterface.cs.meta" />
+    <None Include="SERVER\network\ServerNetworkImplementation.cs.meta" />
+    <None Include="SERVER\network\Constants.cs.meta" />
+    <None Include="SERVER\network\GameServer.cs.meta" />
+    <None Include="SERVER\network\ClientServer.cs.meta" />
+    <None Include="SERVER\network\ServerNetworkInterfaceForClient.cs.meta" />
+    <None Include="SERVER\network\ServerMain.cs.meta" />
+    <None Include="SERVER\data\ServerDataInterfaceForNetwork.cs.meta" />
+    <None Include="SERVER\data\ServerDataModule.meta" />
+    <None Include="SERVER\data\ServerDataImplementation.cs.meta" />
+    <None Include="SERVER\data\ServerDataModule\WorldsManager.cs.meta" />
+    <None Include="SERVER\data\ServerDataModule\UsersManager.cs.meta" />
+    <None Include="SERVER\data\ServerDataModule\WorldManager.cs.meta" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
