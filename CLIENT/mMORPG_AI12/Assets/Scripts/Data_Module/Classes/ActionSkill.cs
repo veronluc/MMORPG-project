@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace AI12_DataObjects
@@ -97,6 +98,14 @@ namespace AI12_DataObjects
             
             // Update targets on map
             world.gameState.map[tile.location.x, tile.location.y].entities = targets;
+            
+            // Delete Dead Entities
+            List<Entity> toDelete = this.world.gameState.turns.Where(entity => entity.vitality <= 0).ToList();
+            
+            toDelete.ForEach(delegate (Entity entity) {
+                this.world.gameState.map[entity.location.x, entity.location.y].entities.Remove(entity);
+                this.world.gameState.turns.Remove(entity);
+            });
 
             return world.gameState;
         }

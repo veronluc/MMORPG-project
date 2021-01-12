@@ -79,3 +79,4 @@
 # Build Server folders
 /BUILD/*
 /SERVER/*
+/BUILD CLIENT/*

@@ -110,5 +110,16 @@ namespace AI12_DataObjects
         {
             this.PM = this.PM - movementPoints;
         }
+
+        public String toString()
+        {
+            String str = "";
+            str = str + "Name: " + this.name + "\n";
+            str = str + "Class: " + this.entityClass.name + "\n";
+            str = str + "Vitality: " + this.vitality + "/" + this.vitalityMax + "\n";
+            str = str + "Mana: " + this.mana + "/" + this.manaMax + "\n";
+            str = str + "PM: " + this.PM + "/" + this.entityClass.basePM + "\n";
+            return str;
+        }
     }
 }

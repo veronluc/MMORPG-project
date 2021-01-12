@@ -38,6 +38,19 @@ public static class WorldManager
             }
         }
     }
+    
+    public static void AddMonsterToWorld(World world, Monster newMonster)
+    {
+        // If no players, create the player list with the new Player
+        if (world.monstersList == null)
+        {
+            world.monstersList = new List<Monster> { newMonster };
+        } else
+        {
+            world.monstersList.Add(newMonster);
+            world.gameState.turns.Add(newMonster);
+        }
+    }
 
     public static GameState GenerateGameState(World w)
     {
@@ -57,6 +70,10 @@ public static class WorldManager
             // Add Players (should contain only the creator player btw) then monsters
             List<Entity> all = new List<Entity>(w.players);
             all.AddRange(w.monstersList);
+            all.ForEach(delegate(Entity entity)
+            {
+                tiles[entity.location.x, entity.location.y].entities.Add(entity);
+            });
             g = new GameState(
                 0,
                 0,

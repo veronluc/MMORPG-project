@@ -73,7 +73,8 @@ namespace AI12_DataObjects
                             str = str + "x ";
                         } else
                         {
-                            str = str + "o ";
+                            // first letter of the name
+                            str = str + t.entities[0].name[0] + " ";
                         }
                     }
                 }
@@ -83,7 +84,7 @@ namespace AI12_DataObjects
             {
                 bottom = bottom + x.ToString() + " ";
             }
-            return str + bottom;
+            return str + bottom + "\n";
         }
     }
 }

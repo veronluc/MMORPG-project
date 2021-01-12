@@ -63,5 +63,29 @@ namespace AI12_DataObjects
             this.players = new List<Player>();
             this.monstersList = new List<Monster>();
         }
+
+        public World(string name, int sizeMap)
+        {
+            this.name = name;
+            this.sizeMap = sizeMap;
+            this.gameMode = GameMode.pve;
+            this.realDeath = true;
+            this.difficulty = 1;
+            this.roundTimeSec = 300;
+            this.nbMaxPlayer = 5;
+            this.nbMaxMonsters = 5;
+            this.nbShops = 0;
+            this.hasCity = false;
+            this.hasPlain = true;
+            this.hasSwamp = false;
+            this.hasRiver = false;
+            this.hasForest = false;
+            this.hasRockyPlain = false;
+            this.hasMontain = false;
+            this.hasSea = false;
+            this.creator = null;
+            this.players = new List<Player>();
+            this.monstersList = new List<Monster>();
+        }
     }
 }

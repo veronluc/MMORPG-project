@@ -17,6 +17,8 @@ public class ServerDataImplementation : MonoBehaviour, ServerDataInterfaceForNet
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Demarrage du serveur effectue", Console.ForegroundColor);
         Console.ForegroundColor = ConsoleColor.White;
+
+        new DemoManager(this).Start();
     }
 
     public List<World> GetWorlds()
