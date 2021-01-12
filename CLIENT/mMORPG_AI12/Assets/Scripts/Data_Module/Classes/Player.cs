@@ -64,8 +64,14 @@ namespace AI12_DataObjects
                                     3 + 3, // Att Damage (3 + strength)
                                     2, //Mana
                                     false //Healing
-                                )
-                                //TODO Lever bouclier ?
+                                ),
+                                new Skill(
+                                    "Throw Axe",
+                                    3, // Zone 
+                                    2+3, // Att Damage (2 + strength)
+                                    2,//Mana
+                                    false //Healing
+                                    )
                             }
                         );
                     break;

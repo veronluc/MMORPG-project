@@ -16,7 +16,7 @@ public class IHMGameInterfaceImpl : IHMGameInterface
     {
         ihmGameModule = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>();
         //need to change in order to get the current player, not the current entity
-        ihmGameModule.currentPlayer = (Player)world.gameState.currentEntity();
+        ihmGameModule.currentPlayer = (Player) world.gameState.currentEntity();
         ihmGameModule.player = player;
         ihmGameModule.user = user;
         ihmGameModule.world = world;

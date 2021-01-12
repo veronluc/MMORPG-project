@@ -110,7 +110,8 @@ public class IHMGameModule : MonoBehaviour
     {
         if (currentPlayer.name == player.name)
         {
-            gamePlayer.ViewMoveDistance();  
+            gamePlayer.ViewMoveDistance();
+
         }
     }
     

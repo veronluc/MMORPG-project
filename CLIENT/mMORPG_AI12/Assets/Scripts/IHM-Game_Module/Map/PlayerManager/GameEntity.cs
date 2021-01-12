@@ -174,9 +174,18 @@ public class GameEntity : MonoBehaviour
             switch (this.name)
             {
                 case "warrior":
+                    DisplayPlayerMovePlates();
+                    break;
                 case "robber":
+                    DisplayPlayerMovePlates();
+                    break;
                 case "mage":
+                    DisplayPlayerMovePlates();
+                    break;
                 case "priest":
+                    DisplayPlayerMovePlates();  // génère les déplacements possibles équivalent à celui d'un roi aux échecs
+                    break;
+                default:
                     DisplayPlayerMovePlates();  // génère les déplacements possibles équivalent à celui d'un roi aux échecs
                     break;
             }

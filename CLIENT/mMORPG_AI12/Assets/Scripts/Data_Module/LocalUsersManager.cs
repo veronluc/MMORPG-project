@@ -54,7 +54,7 @@ public class LocalUsersManager
 
         this.usersStorage = new List<LocalUser>();
         LocalUser localUser = new LocalUser(new User("test", "test123"));
-        Player player = TestCreatePlayer(localUser.user, "Bibi");
+        Player player = TestCreatePlayer(localUser.user, "warrior");
         localUser.players.Add(player);
         usersStorage.Add(localUser);
     }
