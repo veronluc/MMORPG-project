@@ -15,13 +15,17 @@ public class GameManager : MonoBehaviour
 
     public Color playerMessage, info;
 
+    public IHMGameModule gameModule = default;
+
     [SerializeField]
     List<ChatMessage> messageList = new List<ChatMessage>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.dataInterface = GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>().dataInterface;
+        GameObject.FindGameObjectWithTag("IHMGameModule").GetComponent<IHMGameModule>().ihmGameInterface.gameManager = this;
+        Debug.Log(dataInterface);
     }
 
     // Update is called once per frame
@@ -48,10 +52,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SendMessageToServer(string text)
     {
-        //Message message = new Message(dataInterface.GetCurrentWorld().id, dataInterface.GetCurrentUser().id, text, System.DateTime.Now);
-        Message message = new Message("testWorld", "testUser", text, System.DateTime.Now);
-        //dataInterface.SendMessage(message);
-        SendMessageToChat(message, ChatMessage.MessageType.playerMessage);
+        Message message = new Message(dataInterface.GetCurrentWorld().id, dataInterface.GetCurrentUser().id, text, System.DateTime.Now);
+        //Message message = new Message("testWorld", "testUser", text, System.DateTime.Now);
+        dataInterface.SendMessage(message);
+        //SendMessageToChat(message, ChatMessage.MessageType.playerMessage);
     }
 
     /// <summary>

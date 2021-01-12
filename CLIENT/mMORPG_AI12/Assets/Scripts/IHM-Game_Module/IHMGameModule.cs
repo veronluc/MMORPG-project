@@ -37,8 +37,11 @@ public class IHMGameModule : MonoBehaviour
     {
         if (scene.name == "IHMGame")
         {
-            gameManager = gameObject.GetComponent<GameManager>();
-            ihmGameInterface.gameManager = gameManager;
+            //gameManager = gameObject.GetComponent<GameManager>();
+            //ihmGameInterface.gameManager = gameManager;
+            //gameManager.dataInterface = dataInterface;
+
+
             // récupération des attributs et méthodes de GameEntity
             //gamePlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameEntity>();
             // récupération des attributs et méthodes de ihmGameModule
@@ -48,6 +51,7 @@ public class IHMGameModule : MonoBehaviour
 
     private void Start()
     {
+
         //A DEGAGER LORS DE L'INTEG
         /*
         // Create a User for tests
