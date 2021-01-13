@@ -2,6 +2,9 @@
 using System.Reflection;
 using System.Runtime.Serialization;
 
+/// <summary>
+/// The class to make the serialization work between two versions of the same .NET (depreciated)
+/// </summary>
 sealed class CustomizedBinder : SerializationBinder
 {
     public override Type BindToType(string assemblyName, string typeName)

@@ -5,8 +5,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The implementation class for the network interface for data
+/// It extends ServerNetworkInterfaceForClient
+/// </summary>
 public class ServerNetworkImplementation : MonoBehaviour
 {
+    /// <summary>
+    /// Sends a list of worlds to the client (the given user)
+    /// </summary>
+    /// <param name="user">The user we want to send the list to</param>
+    /// <param name="worlds">The list of worlds we want to send</param>
     public void SendWorldsList(User user, List<World> worlds)
     {
         if (worlds == null)
@@ -14,6 +23,12 @@ public class ServerNetworkImplementation : MonoBehaviour
         SendWorldsListPacket msg = new SendWorldsListPacket(worlds);
         SendPacket(user.id, msg);
     }
+
+    /// <summary>
+    /// Sends a list of users to the client (the given user)
+    /// </summary>
+    /// <param name="user">The user we want to send the list to</param>
+    /// <param name="users">The user list we want to send</param>
     public void SendUsersList(User user, List<User> users)
     {
         if (users == null)
@@ -21,10 +36,23 @@ public class ServerNetworkImplementation : MonoBehaviour
         SendUsersListPacket msg = new SendUsersListPacket(users);
         SendPacket(user.id, msg);
     }
+
+    /// <summary>
+    /// Sends a list of users in a specific world world to the client (the given user)
+    /// </summary>
+    /// <param name="user">The user we want to send the list to</param>
+    /// <param name="users">The user list we want to send</param>
+    /// <param name="world">The world</param>
     public void SendUsersListFromWorld(User user, List<User> users, World world)
     {
         throw new NotImplementedException();
     }
+
+    /// <summary>
+    /// Send a message to the given user client
+    /// </summary>
+    /// <param name="user">The user we want to send the message to</param>
+    /// <param name="message">The message to send</param>
     public void SendMessageToUser(User user, Message message)
     {
         if (message == null)
@@ -34,30 +62,82 @@ public class ServerNetworkImplementation : MonoBehaviour
         SendMessage msg = new SendMessage(message);
         this.SendPacket(user.id,msg);
     }
-  
+
+    /// <summary>
+    /// Send an action to the given user
+    /// </summary>
+    /// <param name="user">The user we want to send to</param>
+    /// <param name="gameState">The gamestate with the action being made</param>
     public void SendActionToUser(User user, GameState gameState)
     {
         SendActionToClient msg = new SendActionToClient(gameState);
         SendPacket(user.id, msg);
     }
+
+    /// <summary>
+    /// Send a confirmation that the user has connected to a world
+    /// </summary>
+    /// <param name="user">The user who connected</param>
+    /// <param name="world">The world concerned</param>
+    /// <param name="player">The player connected</param>
+    /// <param name="result">The result of the connection, true is good, false is not good</param>
+    /// <param name="message">The message of the result</param>
     public void SendConfirmationUserConnectionToWorld(User user, World world, Player player)
     {
         Console.WriteLine("User dest : " + user + "; World : " + world + "; Player : " + player);
         ConfirmationUserConnectionToWorldPacket msg = new ConfirmationUserConnectionToWorldPacket(world, user, player);
         SendPacket(user.id, msg);
     }
+
+    /// <summary>
+    /// Send a message to the user when the server is about to stop
+    /// </summary>
+    /// <param name="user">The user we want to send to</param>
     public void SendStopServer(User user)
     {
-        throw new NotImplementedException();
+        InfoStopServer msg = new InfoStopServer();
+        SendPacket(user.id, msg);
     }
+
+    /// <summary>
+    /// Send a message saying that a player has disconnected from a given world
+    /// </summary>
+    /// <param name="userDestination">The User we want to send to</param>
+    /// <param name="userDisconnected">The player who has disconnected</param>
     public void SendUserDisconnectedWorld(User userDestination, User userDisconnected)
     {
-        throw new NotImplementedException();
+        InfoUserDisconnectedFromWorld msg = new InfoUserDisconnectedFromWorld(userDisconnected, false);
+        SendPacket(userDestination.id, msg);
     }
+
+    /// <summary>
+    /// Send a message saying that a player has disconnected from a given world (and is the owner of the world)
+    /// </summary>
+    /// <param name="userDestination">The User we want to send to</param>
+    /// <param name="userDisconnected">The player who has disconnected</param>
+    public void SendOwnerDisconnectedWorld(User userDestination, User userDisconnected)
+    {
+        InfoUserDisconnectedFromWorld msg = new InfoUserDisconnectedFromWorld(userDisconnected, true);
+        SendPacket(userDestination.id, msg);
+    }
+
+    /// <summary>
+    /// Send a message saying that a player has disconnected from the server
+    /// </summary>
+    /// <param name="userDestination">The User we want to send to</param>
+    /// <param name="userDisconnected">The player who has disconnected</param>
     public void SendUserDisconnectedServer(User userDestination, User userDisconnected)
     {
-        throw new NotImplementedException();
+        InfoUserDisconnectedFromServer msg = new InfoUserDisconnectedFromServer(userDisconnected);
+        SendPacket(userDestination.id, msg);
     }
+
+    /// <summary>
+    /// Send two lists of users and worlds to the user 
+    /// </summary>
+    /// <param name="user">The user we want to send to</param>
+    /// <param name="users">The list of users</param>
+    /// <param name="worlds">The list of worlds</param>
     public void SendListUsersWorlds(User user, List<User> users, List<World> worlds)
     {
         if (users == null)
@@ -67,6 +147,12 @@ public class ServerNetworkImplementation : MonoBehaviour
         SendUsersAndWorlds msg = new SendUsersAndWorlds(users, worlds);
         SendPacket(user.id, msg);
     }
+
+    /// <summary>
+    /// Sends a packet to the user represented by its id
+    /// </summary>
+    /// <param name="idString">The id of the user</param>
+    /// <param name="packet">The packet we want to send</param>
     public void SendPacket(string idString, Packet packet)
     {
         int id = Convert.ToInt32(idString);
@@ -79,4 +165,5 @@ public class ServerNetworkImplementation : MonoBehaviour
             GameServer.clients[id].SendData(packet);
         }
     }
+
 }
