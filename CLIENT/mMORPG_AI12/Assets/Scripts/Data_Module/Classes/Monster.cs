@@ -73,7 +73,7 @@ namespace AI12_DataObjects
                                 )
                             }
                         ),
-                        10, // Vision Length
+                        5, // Vision Length
                         r.Next(20), // Gold Drop
                         r.Next(100) // Exp Drop
                     );
@@ -104,7 +104,7 @@ namespace AI12_DataObjects
                                 new Skill(
                                     "Range Attack",
                                     4, // Zone
-                                    1 + 3, // Att Damage (should be 1 + intelligence)
+                                    1 + 3 + 3, // Att Damage (should be 1 + intelligence)
                                     0, //Mana
                                     false //Healing
                                 )

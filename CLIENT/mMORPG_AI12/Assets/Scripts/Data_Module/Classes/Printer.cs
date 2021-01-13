@@ -27,5 +27,13 @@ namespace AI12_DataObjects
             Console.Write(str, Console.ForegroundColor);
             Console.ForegroundColor = ConsoleColor.White;
         }
+
+        public static void Spaces(int nb)
+        {
+            for (int i = 0; i < nb; i++)
+            {
+                Printer.Word(" ");
+            }
+        }
     }
 }

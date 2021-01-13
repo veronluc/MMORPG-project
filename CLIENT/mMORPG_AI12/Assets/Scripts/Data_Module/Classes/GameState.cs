@@ -57,35 +57,37 @@ namespace AI12_DataObjects
             for (int y = map.GetUpperBound(1); y >= 0; y--) 
             {
 				Printer.Word(y.ToString() + " ");
+				Printer.Spaces(2 - y.ToString().Length);
                 for (int x = 0; x <= map.GetUpperBound(0); x++)
                 {
                     Tile t = map[x,y];
                     if (t.entities.Count == 0)
                     {
-						Printer.Word("- ");
+						Printer.Word("-  ");
                     } else
                     {
                         if (t.entities[0].isMonster())
                         {
-							Printer.Word("x ", ConsoleColor.Red);
+							Printer.Word("x  ", ConsoleColor.Red);
                         } else
                         {
                             // first letter of the name
 							if (t.entities[0].id == currentEntity().id)
-								Printer.Word(t.entities[0].name[0] + " ", ConsoleColor.Green);
+								Printer.Word(t.entities[0].name[0] + "  ", ConsoleColor.Green);
 							else
-								Printer.Word(t.entities[0].name[0] + " ", ConsoleColor.Cyan);
+								Printer.Word(t.entities[0].name[0] + "  ", ConsoleColor.Cyan);
                         }
                     }
                 }
 				Printer.Line("");
             }
-			Printer.Word("  ");
+			Printer.Word("   ");
             for (int x = 0; x <= map.GetUpperBound(0); x++)
             {
 				Printer.Word(x.ToString() + " ");
+				Printer.Spaces(2 - x.ToString().Length);
             }
-			Printer.Line("");
+			Printer.Line("\n");
 		}
 
         public override string ToString()

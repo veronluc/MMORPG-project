@@ -12,6 +12,52 @@ public class DemoManager
     public World world { get; set; }
     public ServerDataImplementation data;
 
+    public void PrepareScenario1()
+    {
+        // Create Players
+        this.players = new List<Player>();
+        players.Add(new Player(PlayerType.Warrior, "William", new Location(1, 1), null));
+        players.Add(new Player(PlayerType.Mage, "Mira", new Location(1, 3), null));
+        players.Add(new Player(PlayerType.Priest, "Peter", new Location(0, 2), null));
+
+        // Create Monsters
+        this.monsters = new List<Monster>();
+        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Goblin, "Glumboot",
+            new Location(7, 6)));
+        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Sorcerer, "Magistrax",
+            new Location(8, 8)));
+
+        // Create world shell
+        this.world = new World("CandyLand", 10);
+        this.world.players = this.players;
+        this.world.monstersList = this.monsters;
+
+        // Create gamestate
+        this.world.gameState = WorldManager.GenerateGameState(this.world);
+    }
+    
+    public void PrepareScenario2()
+    {
+        // Create Players
+        this.players = new List<Player>();
+        players.Add(new Player(PlayerType.Warrior, "William", new Location(1, 1), null));
+
+        // Create Monsters
+        this.monsters = new List<Monster>();
+        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Goblin, "Glumboot",
+            new Location(12, 11)));
+        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Sorcerer, "Magistrax",
+            new Location(13, 13)));
+
+        // Create world shell
+        this.world = new World("CandyLand", 15);
+        this.world.players = this.players;
+        this.world.monstersList = this.monsters;
+
+        // Create gamestate
+        this.world.gameState = WorldManager.GenerateGameState(this.world);
+    }
+
     public DemoManager(ServerDataImplementation data)
     {
         // Init ServerDataImplementation
@@ -25,13 +71,13 @@ public class DemoManager
 
         // Create Monsters
         this.monsters = new List<Monster>();
-        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Goblin, "Crapok",
-            new Location(7, 6)));
+        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Goblin, "Glumboot",
+            new Location(12, 11)));
         monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Sorcerer, "Magistrax",
-            new Location(8, 8)));
+            new Location(13, 13)));
 
         // Create world shell
-        this.world = new World("CandyLand", 10);
+        this.world = new World("CandyLand", 15);
         this.world.players = this.players;
         this.world.monstersList = this.monsters;
 
@@ -41,6 +87,35 @@ public class DemoManager
 
     public void Start()
     {
+        Printer.Line("Choose un scenario: ", ConsoleColor.Yellow);
+        Printer.Line("1. 3 Player vs 2 Monsters on small map", ConsoleColor.Yellow);
+        Printer.Line("2. 1 Player vs 2 Monsters far away", ConsoleColor.Yellow);
+        bool chosen = false;
+        while (!chosen)
+        {
+            try
+            {
+                int choice = Int16.Parse(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        this.PrepareScenario1();
+                        chosen = true;
+                        break;
+                    case 2:
+                        this.PrepareScenario2();
+                        chosen = true;
+                        break;
+                    default:
+                        Printer.Line("Not a valid scenario", ConsoleColor.Red);
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Printer.Line("Not a valid number", ConsoleColor.Red);
+            }
+        }
         this.PrintColorLine("STARTING GAME", ConsoleColor.Green);
         this.PrintGameState();
         this.GameLoop();

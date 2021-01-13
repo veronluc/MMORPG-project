@@ -46,7 +46,7 @@ namespace AI12_DataObjects
         public override String ToString()
         {
             String str = "";
-            str = str + name + " -> Range=" + this.zone + "Cost=" + this.costMana + " Healing=" + this.healing;
+            str = str + name + " -> Range=" + this.zone + " Cost=" + this.costMana + " Healing=" + this.healing;
             return str;
         }
     }

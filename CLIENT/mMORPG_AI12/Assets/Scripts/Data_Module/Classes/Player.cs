@@ -148,7 +148,7 @@ namespace AI12_DataObjects
                                 ),
                                 new Skill(
                                     "Complex care",
-                                    1, // Zone //TODO mettre adjacentes
+                                    5, // Zone //TODO mettre adjacentes
                                     2 + 4, // Att Damage (3 + strength)
                                     3, //Mana
                                     true //Healing
