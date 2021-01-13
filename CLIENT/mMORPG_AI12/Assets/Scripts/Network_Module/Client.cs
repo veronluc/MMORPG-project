@@ -21,7 +21,7 @@ public class Client : MonoBehaviour
     /// <summary>
     /// Data buffer size, can be changed 
     /// </summary>
-    public static int dataBufferSize = 1048576;
+    public static int dataBufferSize = 4194304;
 
     /// <summary>
     /// Intern connection verification

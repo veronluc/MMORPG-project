@@ -23,7 +23,7 @@ public class ClientServer
     /// <summary>
     /// The size of the communication buffer (32768), size can be changed (client and server)
     /// </summary>
-    public static int dataBufferSize = 1048576;
+    public static int dataBufferSize = 4194304;
     /// <summary>
     /// The communication socket between the client and the server
     /// </summary>
