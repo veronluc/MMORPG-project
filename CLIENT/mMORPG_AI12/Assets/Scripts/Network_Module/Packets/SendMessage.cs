@@ -31,6 +31,7 @@ public class SendMessage : Packet
     /// <param name="s">The Server</param>
     public override void Handle(GameServer s)
     {
+        Console.WriteLine("Recieved : "+message.text);
         s.data.ReceiveMessage(this.message);
 
     }
