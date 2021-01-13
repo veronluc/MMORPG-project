@@ -11,6 +11,13 @@ public class DemoManager
     public List<Monster> monsters { get; set; }
     public World world { get; set; }
     public ServerDataImplementation data;
+	public bool hasAttacked;
+
+    public DemoManager(ServerDataImplementation data)
+    {
+        // Init ServerDataImplementation
+        this.data = data;
+    }
 
     public void PrepareScenario1()
     {
@@ -34,6 +41,7 @@ public class DemoManager
 
         // Create gamestate
         this.world.gameState = WorldManager.GenerateGameState(this.world);
+		this.hasAttacked = false;
     }
     
     public void PrepareScenario2()
@@ -56,38 +64,12 @@ public class DemoManager
 
         // Create gamestate
         this.world.gameState = WorldManager.GenerateGameState(this.world);
-    }
-
-    public DemoManager(ServerDataImplementation data)
-    {
-        // Init ServerDataImplementation
-        this.data = data;
-        
-        // Create Players
-        this.players = new List<Player>();
-        players.Add(new Player(PlayerType.Warrior, "William", new Location(1, 1), null));
-        players.Add(new Player(PlayerType.Mage, "Mira", new Location(1, 3), null));
-        players.Add(new Player(PlayerType.Priest, "Peter", new Location(0, 2), null));
-
-        // Create Monsters
-        this.monsters = new List<Monster>();
-        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Goblin, "Glumboot",
-            new Location(12, 11)));
-        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Sorcerer, "Magistrax",
-            new Location(13, 13)));
-
-        // Create world shell
-        this.world = new World("CandyLand", 15);
-        this.world.players = this.players;
-        this.world.monstersList = this.monsters;
-
-        // Create gamestate
-        this.world.gameState = WorldManager.GenerateGameState(this.world);
+		this.hasAttacked = false;
     }
 
     public void Start()
     {
-        Printer.Line("Choose un scenario: ", ConsoleColor.Yellow);
+        Printer.Line("\nChoose un scenario: ", ConsoleColor.Yellow);
         Printer.Line("1. 3 Player vs 2 Monsters on small map", ConsoleColor.Yellow);
         Printer.Line("2. 1 Player vs 2 Monsters far away", ConsoleColor.Yellow);
         bool chosen = false;
@@ -149,7 +131,8 @@ public class DemoManager
         this.world.gameState.Print();
         this.world.gameState.turns.ForEach(delegate(Entity entity)
         {
-            Console.WriteLine(entity);
+			entity.Print();
+            // Console.WriteLine(entity);
         });
     }
 
@@ -199,10 +182,10 @@ public class DemoManager
                     PrintGameState();
                     break;
                 case "end turn":
-                    
                     GameState newGameState = new ActionEndRound(currentPlayer, this.world).makeAction();
                     if (newGameState != null)
                         this.world.gameState = newGameState;
+					this.hasAttacked = false;
                     this.PrintGameState();
                     break;
             }
@@ -235,22 +218,27 @@ public class DemoManager
     {
         Entity currentPlayer = this.world.gameState.currentEntity();
 
-        try
-        {
-            this.PrintSkills(currentPlayer);
-            int skillIndex = Int16.Parse(Console.ReadLine());
-            Console.WriteLine("Enter X location value: ");
-            int X  = Int16.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Y location value: ");
-            int Y  = Int16.Parse(Console.ReadLine());
-            GameState newGameState = new ActionSkill(currentPlayer, this.world, this.world.gameState.map[X,Y], currentPlayer.entityClass.skills[skillIndex]).makeAction();
-            if (newGameState != null)
-                this.world.gameState = newGameState;
-        }
-        catch (Exception e)
-        {
-            this.PrintColorLine("The entered attack or location is wrong.", ConsoleColor.Red);
-        }
+		if (this.hasAttacked) {
+			Printer.Line(currentPlayer.name + " has already used a skill", ConsoleColor.Red);
+		} else {
+			try
+        	{
+            	this.PrintSkills(currentPlayer);
+            	int skillIndex = Int16.Parse(Console.ReadLine());
+            	Console.WriteLine("Enter X location value: ");
+            	int X  = Int16.Parse(Console.ReadLine());
+            	Console.WriteLine("Enter Y location value: ");
+            	int Y  = Int16.Parse(Console.ReadLine());
+            	GameState newGameState = new ActionSkill(currentPlayer, this.world, this.world.gameState.map[X,Y], currentPlayer.entityClass.skills[skillIndex]).makeAction();
+            	if (newGameState != null)
+                	this.world.gameState = newGameState;
+				this.hasAttacked = true;
+        	}
+        	catch (Exception e)
+        	{
+            	this.PrintColorLine("The entered attack or location is wrong.", ConsoleColor.Red);
+        	}
+		}
     }
 
     public void PrintColorLine(String str, ConsoleColor color)
@@ -296,8 +284,9 @@ public class DemoManager
         List<Entity> players = this.world.gameState.turns.Where(ent => !ent.isMonster()).ToList();
         players.ForEach(delegate(Entity player)
         {
-            this.world.gameState.map[player.location.x, player.location.y].entities.Remove(player);
-            this.world.gameState.turns.Remove(player);
+			this.world.gameState.RemoveEntity(player);
+            // this.world.gameState.map[player.location.x, player.location.y].entities.Remove(player);
+            // this.world.gameState.turns.Remove(player);
         });
     }
 }

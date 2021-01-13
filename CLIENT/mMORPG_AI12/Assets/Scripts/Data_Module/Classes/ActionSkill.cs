@@ -103,9 +103,11 @@ namespace AI12_DataObjects
             // Delete Dead Entities
             List<Entity> toDelete = this.world.gameState.turns.Where(entity => entity.vitality <= 0).ToList();
             
-            toDelete.ForEach(delegate (Entity entity) {
-                this.world.gameState.map[entity.location.x, entity.location.y].entities.Remove(entity);
-                this.world.gameState.turns.Remove(entity);
+            toDelete.ForEach(delegate (Entity entity)
+            {
+                this.world.gameState.RemoveEntity(entity);
+                // this.world.gameState.map[entity.location.x, entity.location.y].entities.Remove(entity);
+                // this.world.gameState.turns.Remove(entity);
             });
 
             return world.gameState;

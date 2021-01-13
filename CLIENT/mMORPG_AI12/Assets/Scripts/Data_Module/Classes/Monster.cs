@@ -47,8 +47,8 @@ namespace AI12_DataObjects
                         1, // level
                         5, // vitalityMax
                         5, // vitality
-                        0, // manaMax
-                        0, // mana
+                        1, // manaMax
+                        1, // mana
                         3, // strength
                         0, // intelligence
                         4, // defense
@@ -57,7 +57,7 @@ namespace AI12_DataObjects
                         new EntityClass(
                             "Goblin",
                             5, //baseVitality
-                            0, //baseMana
+                            1, //baseMana
                             3, //baseStrength
                             0, //baseIntelligence
                             4, //baseDefense

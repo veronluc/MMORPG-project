@@ -121,5 +121,32 @@ namespace AI12_DataObjects
             str = str + "PM: " + this.PM + "/" + this.entityClass.basePM + "\n";
             return str;
         }
+
+        public void Print()
+        {
+            Printer.Word("Name: " + this.name + "     ");
+            Printer.Line("Class: " + this.entityClass.name);
+            
+            Printer.Word("Vitality: ");
+            if (this.vitality == 0)
+                Printer.Word(this.vitality + "", ConsoleColor.Red);
+            else
+                Printer.Word(this.vitality + "");
+            Printer.Word("/" + this.vitalityMax + "     ");
+
+            Printer.Word("Mana: ");
+            if (this.mana == 0)
+                Printer.Word(this.mana + "", ConsoleColor.Red);
+            else
+                Printer.Word(this.mana + "");
+            Printer.Word("/" + this.manaMax + "     ");
+
+            Printer.Word("PM: ");
+            if (this.PM == 0)
+                Printer.Word(this.PM + "", ConsoleColor.Red);
+            else
+                Printer.Word(this.PM + "");
+            Printer.Line("/" + this.entityClass.basePM);
+        }
     }
 }

@@ -53,6 +53,19 @@ namespace AI12_DataObjects
             return this.nextEntity().isMonster();
         }
 
+        public void RemoveEntity(Entity entity)
+        {
+            
+            int indexOfEntity = this.turns.IndexOf(entity);
+            if (indexOfEntity < this.index)
+            {
+                this.index--;
+            }
+            
+            this.map[entity.location.x, entity.location.y].entities.Remove(entity);
+            this.turns.Remove(entity);
+        }
+
 		public void Print() {
             for (int y = map.GetUpperBound(1); y >= 0; y--) 
             {
