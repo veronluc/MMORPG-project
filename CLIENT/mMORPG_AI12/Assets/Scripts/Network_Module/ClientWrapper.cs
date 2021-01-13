@@ -3,8 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Wrapper for the client (USED FOR DEBUG AND PRINT)
+/// </summary>
 public class ClientWrapper : MonoBehaviour
 {
+    // <summary>
+    /// The associated client
+    /// </summary>
     public Client client { get; set; }
    
     // Start is called before the first frame update
@@ -17,23 +23,22 @@ public class ClientWrapper : MonoBehaviour
 
 
         User u = new User("Theo", "Duc");
-        //TODO change these constructors
-        //Player p = new Player();
-        //Player p2 = new Player();
         client.currentUser = u;
     }
+    /// <summary>
+    /// Start function
+    /// </summary>
     void Start()
     {
         client.ConnectToServer("127.0.0.1", 26950);
         SendUserInfosPacket msg = new SendUserInfosPacket(client.currentUser);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
+
+    /// <summary>
+    /// To debug messages on console
+    /// </summary>
+    /// <param name="message"></param>
     public void DebugIt(string message)
     {
         Debug.Log(message);

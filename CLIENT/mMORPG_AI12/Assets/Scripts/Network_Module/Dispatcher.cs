@@ -3,18 +3,34 @@ using System.Threading;
 using System;
 using UnityEngine;
 
+/// <summary>
+/// The Thread dispacher for the client
+/// </summary>
 public class Dispatcher : MonoBehaviour
 {
+    /// <summary>
+    /// Not used anymore for legacy only
+    /// </summary>
+    /// <param name="action"></param>
     public static void RunAsync(Action action)
     {
         ThreadPool.QueueUserWorkItem(o => action());
     }
 
+    /// <summary>
+    /// Not used anymore for legacy only
+    /// </summary>
+    /// <param name="action"></param>
+    /// <param name="state"></param>
     public static void RunAsync(Action<object> action, object state)
     {
         ThreadPool.QueueUserWorkItem(o => action(o), state);
     }
 
+    /// <summary>
+    /// To run on main thread
+    /// </summary>
+    /// <param name="action"></param>
     public static void RunOnMainThread(Action action)
     {
         lock (_backlog)
@@ -24,6 +40,10 @@ public class Dispatcher : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Not used anymore for legacy only
+    /// </summary>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Initialize()
     {
@@ -34,6 +54,9 @@ public class Dispatcher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Not used anymore for legacy only
+    /// </summary>
     private void Update()
     {
         if (_queued)
