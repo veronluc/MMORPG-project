@@ -31,14 +31,14 @@ namespace AI12_DataObjects
             // Distance is null
             if (distance == 0)
             {
-                Debug.Log("Action Move : the entity doesn't need to move (distance = 0)");
+				Console.WriteLine(entity.name + " cannot move, target location is too far");
                 return false;
             }
             
             // Distance is bigger than PMs
             if (distance > entity.PM)
             {
-                Debug.Log("Action Move : the entity doesn't have enough PM");
+				Console.WriteLine(entity.name + " cannot move, not enough PMs");
                 return false;
             }
 

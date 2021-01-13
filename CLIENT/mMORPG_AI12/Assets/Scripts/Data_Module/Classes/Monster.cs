@@ -43,7 +43,7 @@ namespace AI12_DataObjects
             {
                 case MonsterTypes.Goblin:
                     m = new Monster(
-                        "Goblin " + name,
+                        name,
                         1, // level
                         5, // vitalityMax
                         5, // vitality
@@ -55,7 +55,7 @@ namespace AI12_DataObjects
                         3, // PM
                         location,
                         new EntityClass(
-                            "Goblin " + name,
+                            "Goblin",
                             5, //baseVitality
                             0, //baseMana
                             3, //baseStrength
@@ -80,7 +80,7 @@ namespace AI12_DataObjects
                     break;
                 case MonsterTypes.Sorcerer:
                     m = new Monster(
-                        "Sorcerer " + name,
+                        name,
                         1, // level
                         5, // vitalityMax
                         5, // vitality
@@ -92,7 +92,7 @@ namespace AI12_DataObjects
                         2, // PM
                         location,
                         new EntityClass(
-                            "Sorcerer " + name,
+                            "Sorcerer",
                             5, //baseVitality
                             5, //baseMana
                             0, //baseStrength

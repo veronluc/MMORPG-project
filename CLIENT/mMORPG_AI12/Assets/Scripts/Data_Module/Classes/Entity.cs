@@ -74,7 +74,7 @@ namespace AI12_DataObjects
             int damageDone = damage - this.defense;
             if (damageDone > 0)
             {
-                Debug.Log("Target has taken damage");
+				Console.WriteLine(this.name + " took " + damageDone + " damage");
                 this.vitality = this.vitality - damageDone;
                 
                 if (this.vitality <= 0)
@@ -85,7 +85,7 @@ namespace AI12_DataObjects
             }
             else
             {
-                Debug.Log("Target resisted all damage");
+                Console.WriteLine(this.name + " resisted all damage");
             }
         }
 
@@ -94,14 +94,14 @@ namespace AI12_DataObjects
             // More heal than max vitality
             if (healing > vitalityMax - vitality)
             {
-                Debug.Log("Target healed to max");
+				Console.WriteLine(this.name + " healed to max");
                 this.vitality = this.vitalityMax;
             } 
             
             // Healing
             else
             {
-                Debug.Log("Target was healed");
+                Console.WriteLine(this.name + " was healed by " + healing);
                 this.vitality = this.vitality + healing;
             }
         }
@@ -111,13 +111,13 @@ namespace AI12_DataObjects
             this.PM = this.PM - movementPoints;
         }
 
-        public String toString()
+        public override String ToString()
         {
             String str = "";
-            str = str + "Name: " + this.name + "\n";
+            str = str + "Name: " + this.name + "     ";
             str = str + "Class: " + this.entityClass.name + "\n";
-            str = str + "Vitality: " + this.vitality + "/" + this.vitalityMax + "\n";
-            str = str + "Mana: " + this.mana + "/" + this.manaMax + "\n";
+            str = str + "Vitality: " + this.vitality + "/" + this.vitalityMax + "     ";
+            str = str + "Mana: " + this.mana + "/" + this.manaMax + "     ";
             str = str + "PM: " + this.PM + "/" + this.entityClass.basePM + "\n";
             return str;
         }

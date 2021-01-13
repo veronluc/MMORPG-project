@@ -53,6 +53,41 @@ namespace AI12_DataObjects
             return this.nextEntity().isMonster();
         }
 
+		public void Print() {
+            for (int y = map.GetUpperBound(1); y >= 0; y--) 
+            {
+				Printer.Word(y.ToString() + " ");
+                for (int x = 0; x <= map.GetUpperBound(0); x++)
+                {
+                    Tile t = map[x,y];
+                    if (t.entities.Count == 0)
+                    {
+						Printer.Word("- ");
+                    } else
+                    {
+                        if (t.entities[0].isMonster())
+                        {
+							Printer.Word("x ", ConsoleColor.Red);
+                        } else
+                        {
+                            // first letter of the name
+							if (t.entities[0].id == currentEntity().id)
+								Printer.Word(t.entities[0].name[0] + " ", ConsoleColor.Green);
+							else
+								Printer.Word(t.entities[0].name[0] + " ", ConsoleColor.Cyan);
+                        }
+                    }
+                }
+				Printer.Line("");
+            }
+			Printer.Word("  ");
+            for (int x = 0; x <= map.GetUpperBound(0); x++)
+            {
+				Printer.Word(x.ToString() + " ");
+            }
+			Printer.Line("");
+		}
+
         public override string ToString()
         {
             string str = "";

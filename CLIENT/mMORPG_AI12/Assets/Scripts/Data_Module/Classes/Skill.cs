@@ -42,5 +42,12 @@ namespace AI12_DataObjects
             this.costMana = costMana;
             this.healing = healing;
         }
+        
+        public override String ToString()
+        {
+            String str = "";
+            str = str + name + " -> Range=" + this.zone + "Cost=" + this.costMana + " Healing=" + this.healing;
+            return str;
+        }
     }
 }

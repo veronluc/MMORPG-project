@@ -2,6 +2,7 @@ using AI12_DataObjects;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 
 public class DemoManager
@@ -18,14 +19,15 @@ public class DemoManager
         
         // Create Players
         this.players = new List<Player>();
-        players.Add(new Player(PlayerType.Warrior, "Lazlo", new Location(1, 1), null));
+        players.Add(new Player(PlayerType.Warrior, "William", new Location(1, 1), null));
         players.Add(new Player(PlayerType.Mage, "Mira", new Location(1, 3), null));
+        players.Add(new Player(PlayerType.Priest, "Peter", new Location(0, 2), null));
 
         // Create Monsters
         this.monsters = new List<Monster>();
-        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Goblin, "Warrior Gobelin",
+        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Goblin, "Crapok",
             new Location(7, 6)));
-        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Sorcerer, "Necromancer Gobelin",
+        monsters.Add(Monster.GetMonsterFromType(MonsterTypes.Sorcerer, "Magistrax",
             new Location(8, 8)));
 
         // Create world shell
@@ -68,19 +70,29 @@ public class DemoManager
         this.PrintColorLine("----------\n" +
                             "GameState" +
                             "\n", ConsoleColor.Cyan);
-        Console.WriteLine(this.world.gameState);
-        this.PrintColorLine(this.world.gameState.currentEntity().name + " is playing\n", ConsoleColor.Magenta);
+        // Console.WriteLine(this.world.gameState);
+        this.world.gameState.Print();
         this.world.gameState.turns.ForEach(delegate(Entity entity)
         {
-            Console.WriteLine(entity.toString());
+            Console.WriteLine(entity);
         });
+    }
+
+    public void PrintCurrentEntity()
+    {
+        this.PrintColorLine(this.world.gameState.currentEntity().name + " is playing\n", ConsoleColor.Magenta);
     }
 
     public void PlayMonster()
     {
         Monster monsterToPlay = (Monster) this.world.gameState.currentEntity();
+        this.PrintCurrentEntity();
         this.PrintColorLine("Press Enter to continue...", ConsoleColor.Yellow);
-        Console.ReadLine();
+        String command = Console.ReadLine();
+        if (command != "")
+        {
+            this.ConsoleCommand(command);
+        }
 
         this.world.gameState = this.data.MakeMonsterTurn(this.world);
     }
@@ -92,6 +104,7 @@ public class DemoManager
         String actionInput = "";
         while (actionInput != "end turn" && actionInput != "exit")
         {
+            this.PrintCurrentEntity();
             this.PrintColorLine("Enter an action: [move | attack | end turn | exit]", ConsoleColor.Yellow);
             actionInput = "";
             while (actionInput != "end turn" && actionInput != "exit" && actionInput != "move" &&
@@ -149,17 +162,19 @@ public class DemoManager
 
         try
         {
+            this.PrintSkills(currentPlayer);
+            int skillIndex = Int16.Parse(Console.ReadLine());
             Console.WriteLine("Enter X location value: ");
             int X  = Int16.Parse(Console.ReadLine());
             Console.WriteLine("Enter Y location value: ");
             int Y  = Int16.Parse(Console.ReadLine());
-            GameState newGameState = new ActionSkill(currentPlayer, this.world, this.world.gameState.map[X,Y], currentPlayer.entityClass.skills[0]).makeAction();
+            GameState newGameState = new ActionSkill(currentPlayer, this.world, this.world.gameState.map[X,Y], currentPlayer.entityClass.skills[skillIndex]).makeAction();
             if (newGameState != null)
                 this.world.gameState = newGameState;
         }
         catch (Exception e)
         {
-            this.PrintColorLine("The entered location is wrong.", ConsoleColor.Red);
+            this.PrintColorLine("The entered attack or location is wrong.", ConsoleColor.Red);
         }
     }
 
@@ -175,5 +190,39 @@ public class DemoManager
         Console.ForegroundColor = color;
         Console.Write(str, Console.ForegroundColor);
         Console.ForegroundColor = ConsoleColor.White;
+    }
+
+    public void PrintSkills(Entity entity)
+    {
+        this.PrintColorLine("Choose a skill to use: ", ConsoleColor.Yellow);
+        int index = 0;
+        entity.entityClass.skills.ForEach(delegate(Skill skill)
+        {
+            Console.WriteLine(index + ". " + skill);
+            index++;
+        });
+    }
+
+    public void ConsoleCommand(String str)
+    {
+        switch (str)
+        {
+            case "killall players":
+                this.KillAllPlayers();
+                break;
+            default:
+                this.PrintColorLine("Unknown command", ConsoleColor.Red);
+                break;
+        }
+    }
+
+    public void KillAllPlayers()
+    {
+        List<Entity> players = this.world.gameState.turns.Where(ent => !ent.isMonster()).ToList();
+        players.ForEach(delegate(Entity player)
+        {
+            this.world.gameState.map[player.location.x, player.location.y].entities.Remove(player);
+            this.world.gameState.turns.Remove(player);
+        });
     }
 }

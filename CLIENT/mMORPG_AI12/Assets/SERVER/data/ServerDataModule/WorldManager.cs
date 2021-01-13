@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public static class WorldManager
 {
@@ -104,7 +105,7 @@ public static class WorldManager
         Tile target = WorldManager.targetPlayer(world, monster);
         if (target == null)
         {
-            Debug.Log("No target, move randomly");
+            Console.WriteLine("No player in sight, " + monster.name + " moves randomly");
             // Move randomly
             // Skip turn
             List<Location> possibleLocations = new List<Location>();
@@ -122,7 +123,7 @@ public static class WorldManager
                 possibleLocations.Add(new Location(monster.location.x, monster.location.y - monster.PM));
             if (possibleLocations.Count == 0)
             {
-                Debug.Log("Monster cannot move");
+                Console.WriteLine(monster.name + " cannot move");
             }
             else
             {
@@ -131,7 +132,7 @@ public static class WorldManager
             }
         } else
         {
-            Debug.Log("Target locked, move towards target");
+            Console.WriteLine(monster.name + " moves towards " + target.name);
             // Move towards player
             // attack player if possible
             Tile destination = WorldManager.moveTowardTile(world, monster, target);
@@ -148,14 +149,13 @@ public static class WorldManager
 
             if (monster.entityClass.skills.Count == 0)
             {
-                Debug.Log("Entity has no skills : cannot attack");
+                Console.WriteLine(monster.name + " has no skills : cannot attack");
                 return world.gameState;
             }
             
             ActionSkill attack = new ActionSkill(monster, world, target , monster.entityClass.skills[0]);
             if (attack.IsLegal())
             {
-                Debug.Log("Attack target");
                 world.gameState = attack.makeAction();
             }
         }
@@ -317,5 +317,20 @@ public static class WorldManager
             }
         }
         return null;
+    }
+
+    public static GameState UpdateEntity(World world, Entity entity)
+    {
+        GameState newGameState = world.gameState;
+        Entity entityToUpdate = newGameState.turns.FirstOrDefault(ent => ent.id == entity.id);
+        if (entityToUpdate != null)
+        {
+            entityToUpdate = entity;
+        }
+
+        newGameState.map[entity.location.x, entity.location.y].entities.Remove(entityToUpdate);
+        newGameState.map[entity.location.x, entity.location.y].entities.Add(entityToUpdate);
+
+        return newGameState;
     }
 }
