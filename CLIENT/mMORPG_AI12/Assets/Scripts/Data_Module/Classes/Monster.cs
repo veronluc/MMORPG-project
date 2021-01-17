@@ -43,21 +43,21 @@ namespace AI12_DataObjects
             {
                 case MonsterTypes.Goblin:
                     m = new Monster(
-                        "Goblin " + name,
+                        name,
                         1, // level
                         5, // vitalityMax
                         5, // vitality
-                        0, // manaMax
-                        0, // mana
+                        1, // manaMax
+                        1, // mana
                         3, // strength
                         0, // intelligence
                         4, // defense
                         3, // PM
                         location,
                         new EntityClass(
-                            "Goblin " + name,
+                            "Goblin",
                             5, //baseVitality
-                            0, //baseMana
+                            1, //baseMana
                             3, //baseStrength
                             0, //baseIntelligence
                             4, //baseDefense
@@ -73,14 +73,14 @@ namespace AI12_DataObjects
                                 )
                             }
                         ),
-                        10, // Vision Length
+                        5, // Vision Length
                         r.Next(20), // Gold Drop
                         r.Next(100) // Exp Drop
                     );
                     break;
                 case MonsterTypes.Sorcerer:
                     m = new Monster(
-                        "Sorcerer " + name,
+                        name,
                         1, // level
                         5, // vitalityMax
                         5, // vitality
@@ -92,7 +92,7 @@ namespace AI12_DataObjects
                         2, // PM
                         location,
                         new EntityClass(
-                            "Sorcerer " + name,
+                            "Sorcerer",
                             5, //baseVitality
                             5, //baseMana
                             0, //baseStrength
@@ -104,7 +104,7 @@ namespace AI12_DataObjects
                                 new Skill(
                                     "Range Attack",
                                     4, // Zone
-                                    1 + 3, // Att Damage (should be 1 + intelligence)
+                                    1 + 3 + 3, // Att Damage (should be 1 + intelligence)
                                     0, //Mana
                                     false //Healing
                                 )

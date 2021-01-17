@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace AI12_DataObjects
@@ -36,14 +37,14 @@ namespace AI12_DataObjects
             // Distance is bigger than authorized distance
             if (distance > skill.zone)
             {
-                Debug.Log("ActionSkill : Distance is bigger than authorized distance");
+				Console.WriteLine(entity.name + " cannot use skill, target is too far away");
                 return false;
             }
 
             // ManaCost is bigger than current mana
             if (skill.costMana > entity.mana)
             {
-                Debug.Log("ActionSkill : ManaCost is bigger than current mana");
+				Console.WriteLine(entity.name + " cannot use skill, mana is too low");
                 return false;
             }
 
@@ -68,8 +69,9 @@ namespace AI12_DataObjects
             entity.mana = entity.mana - skill.costMana;
 
             // Update entity on Tile
-            world.gameState.map[entity.location.x, entity.location.y].entities.Remove(entity);
-            world.gameState.map[entity.location.x, entity.location.y].entities.Add(entity);
+			this.world.gameState = WorldManager.UpdateEntity(this.world, entity);
+            // world.gameState.map[entity.location.x, entity.location.y].entities.Remove(entity);
+            // world.gameState.map[entity.location.x, entity.location.y].entities.Add(entity);
 
             // Apply skill on Tile (and contained entities)
             List<Entity> targets = world.gameState.map[tile.location.x, tile.location.y].entities;
@@ -97,17 +99,29 @@ namespace AI12_DataObjects
             
             // Update targets on map
             world.gameState.map[tile.location.x, tile.location.y].entities = targets;
+            
+            // Delete Dead Entities
+            List<Entity> toDelete = this.world.gameState.turns.Where(entity => entity.vitality <= 0).ToList();
+            
+            toDelete.ForEach(delegate (Entity entity)
+            {
+                this.world.gameState.RemoveEntity(entity);
+                // this.world.gameState.map[entity.location.x, entity.location.y].entities.Remove(entity);
+                // this.world.gameState.turns.Remove(entity);
+            });
 
             return world.gameState;
         }
 
         private void damageEntity(Entity brawler, Entity target, Skill skill)
         {
+			Console.WriteLine(brawler.name + " damaged " + target.name);
             target.damageEntity(skill.damagePoints + brawler.getAttackBase());
         }
 
         private void healEntity(Entity healer, Entity target, Skill skill)
         {
+			Console.WriteLine(healer.name + " healed " + target.name);
             target.healEntity(skill.damagePoints + healer.getAttackBase());
         }
     }

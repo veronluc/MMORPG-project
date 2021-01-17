@@ -12,7 +12,7 @@ namespace AI12_DataObjects
         Mage
     }
 
-    [Serializable()]
+    // [Serializable()]
     public class Player : Entity
     {
         public int gold { get; set; }
@@ -42,7 +42,7 @@ namespace AI12_DataObjects
                     manaMax = 4;
                     PM = 3;
                     entityClass = new EntityClass(
-                        this.name, // Name
+                        "Warrior", // Name
                         5, // baseVitality
                         4, // baseMana,
                         3, // baseStrength
@@ -50,6 +50,7 @@ namespace AI12_DataObjects
                         4, // baseDefense
                         3, // basePM
                         Entities.player,
+<<<<<<< HEAD
                         new List<Skill>() {
                                 new Skill(
                                     "Hand-to-hand attack",
@@ -72,6 +73,24 @@ namespace AI12_DataObjects
                                     2,//Mana
                                     false //Healing
                                     )
+=======
+                        new List<Skill>() {
+                                new Skill(
+                                    "Hand-to-hand attack",
+                                    1, // Zone
+                                    1 + 3, // Att Damage (1 + strength)
+                                    0, //Mana
+                                    false //Healing
+                                ),
+                                new Skill(
+                                    "Heavy attack",
+                                    1, // Zone //TODO mettre adjacentes
+                                    3 + 3, // Att Damage (3 + strength)
+                                    2, //Mana
+                                    false //Healing
+                                )
+                                //TODO Lever bouclier ?
+>>>>>>> demo-data-server-game
                             }
                         );
                     break;
@@ -85,7 +104,7 @@ namespace AI12_DataObjects
                     manaMax = 5;
                     PM = 2;
                     entityClass = new EntityClass(
-                        this.name, // Name
+                        "Mage", // Name
                         5, // baseVitality
                         5, // baseMana,
                         0, // baseStrength
@@ -96,14 +115,14 @@ namespace AI12_DataObjects
                         new List<Skill>() {
                                 new Skill(
                                     "Remote spell",
-                                    1, // Zone
+                                    3, // Zone
                                     1 + 4, // Att Damage (1 + strength)
                                     0, //Mana
                                     false //Healing
                                 ),
                                 new Skill(
                                     "Fireball",
-                                    1, // Zone //TODO mettre adjacentes
+                                    3, // Zone //TODO mettre adjacentes
                                     2 + 4, // Att Damage (3 + strength)
                                     2, //Mana
                                     false //Healing
@@ -129,7 +148,7 @@ namespace AI12_DataObjects
                     manaMax = 5;
                     PM = 2;
                     entityClass = new EntityClass(
-                        this.name, // Name
+                        "Priest", // Name
                         5, // baseVitality
                         5, // baseMana,
                         1, // baseStrength
@@ -154,7 +173,7 @@ namespace AI12_DataObjects
                                 ),
                                 new Skill(
                                     "Complex care",
-                                    1, // Zone //TODO mettre adjacentes
+                                    5, // Zone //TODO mettre adjacentes
                                     2 + 4, // Att Damage (3 + strength)
                                     3, //Mana
                                     true //Healing
@@ -173,7 +192,7 @@ namespace AI12_DataObjects
                     manaMax = 4;
                     PM = 3;
                     entityClass = new EntityClass(
-                        this.name, // Name
+                        "Rogue", // Name
                         5, // baseVitality
                         4, // baseMana,
                         2, // baseStrength
